@@ -7,27 +7,28 @@ tbd
 - (Optional) If you deleted `node_modules` folder, then `npm install` first
 - Start emulators (Android Studio or XCode)
 - `npm start`
+- enjoy coding ⌨️ !
 
 ## Project folder structure of Z:T App
 tbd
 
 example:
-'''
-- assets
--- global-styles
-...
-- components
--- IconButton.js
--- IconButton.styles.js
-- containers
--- LiveQuestions
---- LiveQuestions.js
---- LiveQuestions.styles.js
-- navigation
-- services
--- api-services (tbd)
--- redux-services (tbd)
--- contexts (tbd)
-App.js
-App.styles.js
-'''
+```
+/assets
+/assets/global-styles
+/assets/...
+/components
+/components/IconButton.js
+/components/IconButton.styles.js
+/containers
+/containers/LiveQuestions
+/containers/LiveQuestions/LiveQuestions.js
+/containers/LiveQuestions/LiveQuestions.styles.js
+/navigation
+/services
+/services/api-services (tbd)
+/services/redux-services (tbd)
+/services/contexts (tbd)
+/App.js
+/App.styles.js
+```
