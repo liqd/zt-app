@@ -9,6 +9,9 @@ tbd
 - `npm start`
 - enjoy coding ⌨️ !
 
+Note: There is already a very first attempt of linting included, containing rules
+of eslint, react and react-native rules. To be added react-native-a11y rules.
+
 ## Project folder structure of Z:T App
 tbd
 
