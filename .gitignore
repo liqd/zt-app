@@ -14,3 +14,5 @@ web-build/
 
 # custom liqd
 .vscode/
+package-lock.json
+yarn.lock
