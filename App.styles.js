@@ -9,4 +9,8 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  containerScroll: {
+    backgroundColor: 'white',
+    padding: 30,
+  },
 });
