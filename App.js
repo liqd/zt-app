@@ -1,14 +1,10 @@
 import React from 'react';
-import { View } from 'react-native';
-import { LiveQuestions } from './containers/LiveQuestions/LiveQuestions';
-import { styles } from './App.styles';
+import IdeaNavigator from './navigation/IdeaNavigator';
 
-// *** CONTAINS SAMPLE CODE ***
-
-export default function App() {
+const App = () => {
   return (
-    <View style={styles.container}>
-      <LiveQuestions />
-    </View>
+    <IdeaNavigator />
   );
-}
+};
+
+export default App;
