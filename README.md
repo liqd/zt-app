@@ -1,13 +1,20 @@
 ## Setup Development Environment
-tbd
 
+Prerequisites
 - Install NodeJS
 - Install via terminal/bash`expo (expo.io): npm install expo-cli --global`
+
+Setup
+- Clone repo
 - Change directory into project folder `cd zt-app`
-- (Optional) If you deleted `node_modules` folder, then `npm install` first
+- `npm install`
+- If you do `npm start` now, a window will open in your browser. If you click "Run on Andoird" or "Run on iOS", it will tell you how set these up.
+
+Run
 - Start emulators (Android Studio or XCode)
 - `npm start`
 - enjoy coding ⌨️ !
+
 
 Note: There is already a very first attempt of linting included, containing rules
 of eslint, react and react-native rules. To be added react-native-a11y rules.
