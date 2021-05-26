@@ -1,6 +1,8 @@
 import React from 'react';
-import { View, Text, Button } from 'react-native';
+import { View, Text } from 'react-native';
+import { Button } from 'react-native-elements';
 import { styles } from './Idea.styles';
+import Icon from 'react-native-vector-icons/SimpleLineIcons';
 
 import { ButtonCounter } from '../../components/buttonCounter';
 
@@ -10,10 +12,16 @@ export const Idea = (props) => {
   return (
     <View style={styles.container}>
       <View style={styles.actionsContainer}>
-        <Text style={styles.text}>
-          <Button title='Back' onPress={() => props.navigation.goBack()} /> and
-          three dots menu
-        </Text>
+        <Button
+          title='Back'
+          type='clear'
+          icon={<Icon name="arrow-left" size={15} />}
+          onPress={() => props.navigation.goBack()}
+        />
+        <Button
+          icon={<Icon name="options-vertical" size={15} />}
+          type="clear"
+        />
       </View>
       <View style={styles.titleContainer}>
         <Text style={styles.title}>{params.name}</Text>
@@ -29,11 +37,17 @@ export const Idea = (props) => {
       </View>
       <View style={styles.bottomActionsContainer}>
         <View style={styles.ratingButtons}>
-          <ButtonCounter icon='🔼' counter='0' />
-          <ButtonCounter icon='🔽' counter='0' />
+          <ButtonCounter
+            icon={<Icon name="arrow-up" />}
+            counter='0' />
+          <ButtonCounter
+            icon={<Icon name="arrow-down" />}
+            counter='0' />
         </View>
         <View>
-          <Text>💬</Text>
+          <Text>
+            <Icon name="bubble" size={15} />
+          </Text>
         </View>
       </View>
       <View>
