@@ -6,7 +6,9 @@ export const styles = StyleSheet.create({
     flexDirection: 'row'
   },
   icon: {
-    letterSpacing: 5
+    letterSpacing: 5,
+    fontSize: 15,
+    lineHeight: 20
   },
   text: {
     letterSpacing: 5
