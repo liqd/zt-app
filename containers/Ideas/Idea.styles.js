@@ -8,7 +8,8 @@ export const styles = StyleSheet.create({
   },
   actionsContainer: {
     height:60,
-    justifyContent: 'center'
+    justifyContent: 'space-between',
+    flexDirection: 'row'
   },
   titleContainer: {
     marginVertical: 5
