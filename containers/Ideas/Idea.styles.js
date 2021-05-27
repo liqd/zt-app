@@ -15,6 +15,7 @@ export const styles = StyleSheet.create({
     marginVertical: 5
   },
   descriptionContainer: {
+    flexDirection: 'row',
     marginVertical: 5
   },
   infoContainer: {
@@ -37,4 +38,10 @@ export const styles = StyleSheet.create({
     width: 80,
     flexDirection: 'row',
   },
+  ideaImage: {
+    marginRight: 5,
+    width: 100,
+    height: 100,
+    resizeMode: 'contain'
+  }
 });

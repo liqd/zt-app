@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Image } from 'react-native';
 import { Button } from 'react-native-elements';
 import { styles } from './Idea.styles';
 import Icon from 'react-native-vector-icons/SimpleLineIcons';
@@ -27,6 +27,10 @@ export const Idea = (props) => {
         <Text style={styles.title}>{params.name}</Text>
       </View>
       <View style={styles.descriptionContainer}>
+        <Image
+          source={{uri: params.image}}
+          style={styles.ideaImage}
+        />
         <Text style={styles.text}>{params.description}</Text>
       </View>
       <View style={styles.infoContainer}>
