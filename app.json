@@ -3,6 +3,7 @@
     "name": "liqd-demo",
     "slug": "liqd-demo",
     "version": "1.0.0",
+    "privacy": "unlisted",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
