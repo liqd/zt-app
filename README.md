@@ -15,6 +15,12 @@ Run
 - `npm start`
 - enjoy coding ⌨️ !
 
+Publishing to expo
+- Add the sentry dsn for the dev or prod project in App.js
+- `expo publish --release-channel dev` (or prod)
+- To also upload the sourcemaps to sentry use `SENTRY_PROJECT=zt-app-dev
+SENTRY_AUTH_TOKEN=<the secret token> expo publish --release-channel dev`
+instead (for prod replace `zt-app-dev` with `zt-app` and use the prod release channel).
 
 Note: There is already a very first attempt of linting included, containing rules
 of eslint, react and react-native rules. To be added react-native-a11y rules.
