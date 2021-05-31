@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import { styles } from './buttonCounter.styles';
+import { styles } from './ButtonCounter.styles';
 
 export const ButtonCounter = (props) => {
   return (

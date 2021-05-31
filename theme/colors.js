@@ -6,22 +6,22 @@ export const COLORS = {
 
   // priority
   success: '#a3ef90',
-  info: this.primary,
+  info: '#2d40cc',
   warning: '#ffc107',
   danger: '#a72b1e',
 
   // utility
-  paper: {
-    main: '#fff',
-    inverted: this.text.main
-  },
   text: {
     main: '#1a1a1a',
-    inverted: this.paper.main
+    inverted: '#fff',
+  },
+  paper: {
+    main: '#fff',
+    inverted: '#1a1a1a'
   },
   grey: {
     extralight: '#d8d8d8',
-    light: '#4d4d4d',
+    light: '#c4c4c4',
     medium: '#666',
     dark: '#464a4c',
   },
