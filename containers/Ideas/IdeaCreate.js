@@ -15,11 +15,22 @@ export const IdeaCreate = props => {
   return (
     <View>
       <TextInput
-        placeholder="good idea"
+        placeholder="This is my great idea"
         style={styles.TextInput}
         onChangeText={textInputHandler}
         value={enteredIdeaTitle}
       />
+      <TextInput
+        placeholder="Add your description"
+        style={styles.TextInput}
+        onChangeText={textInputHandler}
+        value={enteredIdeaTitle}
+      />
+      <View>
+        <Button title="Label 1" />
+        <Button title="Label 2" />
+        <Button title="Label 3" />
+      </View>
       <Button title="Submit Idea" onPress={pressHandler} />
     </View>
   );
