@@ -1,47 +1,80 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, StatusBar } from 'react-native';
+import { COLORS } from '../../theme/colors';
+import { SIZES} from '../../theme/fonts';
+import { SPACINGS } from '../../theme/spacings';
 
 export const styles = StyleSheet.create({
+  fontColor: {
+    color: COLORS.text.main,
+  },
   container: {
-    flex:1,
-    paddingHorizontal: 32,
-    paddingVertical: 40,
+    paddingBottom: SPACINGS.multiplyBy(2),
+    paddingHorizontal: SPACINGS.multiplyBy(.75),
+    backgroundColor: COLORS.paper.main,
+  },
+  contentContainer: {
+    paddingVertical: SPACINGS.base
   },
   actionsContainer: {
-    height:60,
+    height: SPACINGS.multiplyBy(2),
+    flexDirection: 'row',
     justifyContent: 'space-between',
-    flexDirection: 'row'
+    alignItems: 'center'
+  },
+  backButton: {
+    padding: 0,
+    marginVertical: 0,
+    marginHorizontal: -5,
+  },
+  backButtonText: {
+    fontSize: SIZES.md,
+    marginHorizontal: SPACINGS.multiplyBy(.25),
+    color: COLORS.text.main,
   },
   titleContainer: {
-    marginVertical: 5
+    marginTop: SPACINGS.multiplyBy(.25)
   },
   descriptionContainer: {
-    flexDirection: 'row',
-    marginVertical: 5
+    marginVertical: SPACINGS.multiplyBy(.25)
   },
   infoContainer: {
-    marginVertical: 15
+    marginVertical: SPACINGS.multiplyBy(.75)
   },
   title: {
-    fontSize: 20,
-    lineHeight: 60,
+    fontSize: SIZES.multiplyBy(1.375),
+    lineHeight: SPACINGS.multiplyBy(2),
     fontWeight: 'bold'
   },
   text: {
-    fontSize: 14,
+    fontSize: SIZES.sm,
+  },
+  creator: {
+    textTransform: 'capitalize',
+    fontSize: SIZES.sm,
+    lineHeight: SPACINGS.multiplyBy(1.5),
   },
   bottomActionsContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginVertical: 32,
+    marginVertical: SPACINGS.multiplyBy(1.25),
   },
   ratingButtons: {
-    width: 80,
+    width: 120,
     flexDirection: 'row',
   },
   ideaImage: {
     marginRight: 5,
-    width: 100,
-    height: 100,
-    resizeMode: 'contain'
+    width: '100%',
+    height: 270,
+    resizeMode: 'cover',
+    marginVertical: SPACINGS.base,
+  },
+  disabledIcon: {
+    color: COLORS.grey.light
+  },
+  chipsContainer: {
+    flexDirection: 'row',
+    marginVertical: SPACINGS.multiplyBy(.5),
+    flexWrap: 'wrap',
   }
 });

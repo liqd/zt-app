@@ -1,29 +1,32 @@
 import { StyleSheet } from 'react-native';
+import { COLORS } from '../../theme/colors';
+import { SIZES } from '../../theme/fonts';
+import { SPACINGS } from '../../theme/spacings';
 
 export const styles = StyleSheet.create({
   container: {
-    width: '100%',
-    height: 130,
-    borderColor: '#d8d8d8',
-    borderWidth: 1,
-    padding: 32,
-    marginVertical: 10
-  },
-  actionsContainer: {
     flex: 1,
-    alignSelf: 'flex-end',
+    width: '100%',
+    height: 128,
+    borderColor: COLORS.grey.extralight,
+    borderWidth: 1,
+    padding: SPACINGS.multiplyBy(.8),
+    marginVertical: SPACINGS.multiplyBy(.2)
   },
-  titleContainer: {
+  topContainer: {
     flex: 2,
   },
-  infoContainer: {
+  bottomContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
     flex: 1,
   },
   title: {
-    fontSize: 16,
+    fontSize: SIZES.base,
     fontWeight: 'bold'
   },
   text: {
-    fontSize: 14,
+    fontSize: SIZES.sm,
   }
 });
