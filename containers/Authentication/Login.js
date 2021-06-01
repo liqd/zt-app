@@ -1,14 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Button, View, Text } from 'react-native';
 import { Formik } from 'formik';
 import * as yup from 'yup';
 
 import { styles } from './Idea.styles';
-import { TextInputFormField, DropdownFormField, CheckBoxFormField } from '../../components/formFields';
+import { TextInputFormField } from '../../components/formFields';
 
-export const IdeaCreate = props => {
-
-  const pressHandler = () => props.navigation.pop();
+export const Login = props => {
 
   const loginValidationSchema = yup.object().shape({
     email: yup
@@ -17,7 +15,7 @@ export const IdeaCreate = props => {
       .required('Email Address is Required'),
     password: yup
       .string()
-      .min(8, ({ min }) => `Password must be at least ${min} characters`)
+      .min(5, ({ min }) => `Password must be at least ${min} characters`)
       .required('Password is required'),
   });
 

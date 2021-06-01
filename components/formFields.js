@@ -49,30 +49,3 @@ export const CheckBoxFormField = (props) => {
     </View>
   );
 };
-
-export const DropdownFormFieldTest = props => {
-  constructor ( props ) {
-    super(props);
-    this.state = {
-      selectedValue: 'Orange'
-    };
-  }
-
-  render() {
-    return (
-      <View style={styles.container}>
-        <Picker
-          style={styles.picker}
-          selectedValue={this.state.selectedValue}
-          onValueChange={(value) => {this.setState({selectedValue: value})}}
-          itemStyle={styles.pickerItem}
-        >
-          <Picker.Item label="Apple" value="Apple" />
-          <Picker.Item label="Orange" value="Orange" />
-          <Picker.Item label="Banana" value="Banana" />
-          <Picker.Item label="Kiwi" value="Kiwi" />
-        </Picker>
-      </View>
-    );
-  }
-}
