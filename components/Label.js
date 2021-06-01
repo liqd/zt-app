@@ -4,16 +4,16 @@ import { COLORS } from '../theme/colors';
 import { SIZES } from '../theme/fonts';
 import { SPACINGS } from '../theme/spacings';
 
-export const Chip = (props) => {
+export const Label = (props) => {
   return (
-    <View style={styles.chip}>
+    <View style={styles.label}>
       <Text style={styles.text}>{props.title}</Text>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  chip: {
+  label: {
     alignItems: 'center',
     alignSelf: 'flex-start',
     backgroundColor: COLORS.text.main,
