@@ -34,7 +34,7 @@ export const CheckBoxFormField = (props) => {
   );
 };
 
-export const TextInputFormField = (error, props) => {
+export const TextInputFormField = (props) => {
   return (
     <View>
       <Text style={styles.formLabel}>{props.field}</Text>
@@ -42,6 +42,7 @@ export const TextInputFormField = (error, props) => {
         style={styles.textInput}
         {...props}
       />
+      {props.touched && <Text style={styles.formError}>{props.error}</Text>}
     </View>
   );
 };

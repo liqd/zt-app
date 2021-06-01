@@ -13,12 +13,11 @@ export const IdeaCreate = props => {
   const ideaValidationSchema = yup.object().shape({
     title: yup
       .string()
-      .email('Please enter idea title')
       .required('Idea title is Required'),
     description: yup
       .string()
       .min(20, ({ min }) => `Description must be at least ${min} characters`)
-      .max(100, 'Too Long!')
+      .max(100, 'Description must be no longer then 100 characters')
       .required('Description is required'),
   });
 
@@ -36,32 +35,42 @@ export const IdeaCreate = props => {
           handleSubmit,
           values,
           errors,
-          isValid,
-          touched
+          touched,
+          isValid
         }) => (
           <>
             <TextInputFormField
               field='Idea title'
-              name='Add your idea title'
+              name='title'
+              value={values.title}
               placeholder='Enter your idea title'
               returnKeyType='next'
               returnKeyLabel='next'
               onChangeText={handleChange('title')}
+              onBlur={handleBlur('title')}
               error={errors.title}
-              touched={touched.email}
+              touched={touched.title}
             />
             <TextInputFormField
               field='Idea description'
-              name='Add your idea description'
+              name='description'
+              value={values.description}
               placeholder='Enter your idea description'
               returnKeyType='next'
               returnKeyLabel='next'
               onChangeText={handleChange('description')}
-              onBlur={handleBlur('email')}
+              onBlur={handleBlur('description')}
               error={errors.description}
-              touched={touched.email}
+              touched={touched.description}
             />
-            <Button onPress={handleSubmit} title="Submit" />
+
+            <DropdownFormFieldTest />
+            <CheckBoxFormField
+              field='Label selection'
+              name='label'
+              onChange={(e) => props.setFieldValue('label', e.target.checked)}
+            />
+            <Button onPress={handleSubmit} title="Submit" disabled={!isValid} />
           </>
         )}
       </Formik>
