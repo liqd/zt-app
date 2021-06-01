@@ -4,13 +4,12 @@ import { Formik } from 'formik';
 import * as yup from 'yup';
 
 import { styles } from './Idea.styles';
-import { TextInputFormField, DropdownFormField, CheckBoxFormField } from '../../components/formFields';
+import { TextInputFormField, CheckBoxFormField } from '../../components/formFields';
+import DropdownFormFieldTest from '../../components/formFields';
 
 export const IdeaCreate = props => {
 
   const pressHandler = () => props.navigation.pop();
-
-  const [selectedCategory, setSelectedCategory] = useState();
 
   const ideaValidationSchema = yup.object().shape({
     title: yup

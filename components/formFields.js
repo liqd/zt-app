@@ -1,6 +1,6 @@
 import React from 'react';
 import { TextInput, View, Text } from 'react-native';
-import { Picker } from '@react-native-picker/picker';
+import Picker from '@react-native-picker/picker';
 import CheckBox from '@react-native-community/checkbox';
 import { styles } from './formFields.styles';
 
@@ -18,12 +18,10 @@ export const TextInputFormField = (props) => {
 };
 
 export const DropdownFormField = (props) => {
-
   return (
     <View>
       <Text style={styles.formLabel}>{props.field}</Text>
       <Picker
-        mode="dropdown"
         style={styles.formPicker}
         selectedValue={props.selectedValue}
         onValueChange={itemValue => props.setSelectedItem(itemValue)}>
@@ -36,6 +34,7 @@ export const DropdownFormField = (props) => {
     </View>
   );
 };
+
 
 export const CheckBoxFormField = (props) => {
   return (
@@ -50,3 +49,30 @@ export const CheckBoxFormField = (props) => {
     </View>
   );
 };
+
+export const DropdownFormFieldTest = props => {
+  constructor ( props ) {
+    super(props);
+    this.state = {
+      selectedValue: 'Orange'
+    };
+  }
+
+  render() {
+    return (
+      <View style={styles.container}>
+        <Picker
+          style={styles.picker}
+          selectedValue={this.state.selectedValue}
+          onValueChange={(value) => {this.setState({selectedValue: value})}}
+          itemStyle={styles.pickerItem}
+        >
+          <Picker.Item label="Apple" value="Apple" />
+          <Picker.Item label="Orange" value="Orange" />
+          <Picker.Item label="Banana" value="Banana" />
+          <Picker.Item label="Kiwi" value="Kiwi" />
+        </Picker>
+      </View>
+    );
+  }
+}
