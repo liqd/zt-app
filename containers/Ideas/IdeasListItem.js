@@ -7,6 +7,11 @@ import { ButtonCounter } from '../../components/ButtonCounter';
 import { DateService } from '../../services/DateService';
 
 export const IdeasListItem = (props) => {
+  const {
+    comment_count: commentCount,
+    positive_rating_count: upCount,
+    negative_rating_count: downCount,
+  } = props;
   const createdDate = new DateService(props.created).get();
   const pressHandler = () =>
     props.navigation.navigate('IdeaDetail', {
@@ -20,23 +25,13 @@ export const IdeasListItem = (props) => {
           <Text style={styles.title}>{props.name}</Text>
         </View>
         <View style={styles.bottomContainer}>
-          <View>
-            <Text style={styles.text}>
-              {props.creator}, {createdDate}
-            </Text>
-          </View>
-          <View>
-            <Text style={styles.text}>
-              <ButtonCounter
-                icon={<Icon name="arrow-up" />}
-                counter='0' />
-              <ButtonCounter
-                icon={<Icon name="arrow-down" />}
-                counter='0' />
-              <ButtonCounter
-                icon={<Icon name="bubble" />}
-                counter='0' />
-            </Text>
+          <Text style={styles.text}>
+            {props.creator}, {createdDate}
+          </Text>
+          <View style={styles.counters}>
+            <ButtonCounter icon={<Icon name='arrow-up' />} counter={upCount} />
+            <ButtonCounter icon={<Icon name='arrow-down' />} counter={downCount} />
+            <ButtonCounter icon={<Icon name='bubble' />} counter={commentCount} />
           </View>
         </View>
       </View>
