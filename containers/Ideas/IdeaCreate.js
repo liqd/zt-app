@@ -4,11 +4,13 @@ import { Formik } from 'formik';
 import * as yup from 'yup';
 
 import { styles } from './Idea.styles';
-import { TextInputFormField } from '../../components/formFields';
+import { TextInputFormField, DropdownFormField, CheckBoxFormField } from '../../components/formFields';
 
 export const IdeaCreate = props => {
 
   const pressHandler = () => props.navigation.pop();
+
+  const [selectedCategory, setSelectedCategory] = useState();
 
   const ideaValidationSchema = yup.object().shape({
     title: yup
@@ -26,7 +28,7 @@ export const IdeaCreate = props => {
       <Text style={styles.formTitle}>Submit a new idea for this project</Text>
       <Formik
         validationSchema={ideaValidationSchema}
-        initialValues={{ title: '', description: '' }}
+        initialValues={{ title: '', description: '', category: '', label: '' }}
         onSubmit={values => console.log(values)}
       >
         {({

@@ -1,38 +1,8 @@
 import React from 'react';
-import { Button, TextInput, View, Text } from 'react-native';
+import { TextInput, View, Text } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import CheckBox from '@react-native-community/checkbox';
-import { Formik } from 'formik';
-import * as yup from 'yup';
-
 import { styles } from './formFields.styles';
-
-export const DropdownFormField = (props) => {
-  return (
-    <Picker
-      selectedValue={props.selectedValue}
-      onValueChange={(itemValue, itemIndex) =>
-        props.setSelectedLanguage(itemValue)
-      }>
-      <Picker.Item label="Java" value="java" />
-      <Picker.Item label="JavaScript" value="js" />
-    </Picker>
-  );
-};
-
-export const CheckBoxFormField = (props) => {
-  return (
-    <View>
-      <View>
-        <CheckBox
-          type={'checkbox'}
-          {...props}
-        />
-        <Text>{children}</Text>
-      </View>
-    </View>
-  );
-};
 
 export const TextInputFormField = (props) => {
   return (
@@ -43,6 +13,40 @@ export const TextInputFormField = (props) => {
         {...props}
       />
       {props.touched && <Text style={styles.formError}>{props.error}</Text>}
+    </View>
+  );
+};
+
+export const DropdownFormField = (props) => {
+
+  return (
+    <View>
+      <Text style={styles.formLabel}>{props.field}</Text>
+      <Picker
+        mode="dropdown"
+        style={styles.formPicker}
+        selectedValue={props.selectedValue}
+        onValueChange={itemValue => props.setSelectedItem(itemValue)}>
+        <Picker.Item label={props.label} value={props.value} />
+      </Picker>
+      <Text>
+        Selected: {props.selectedValue}
+      </Text>
+      {props.touched && <Text style={styles.formError}>{props.error}</Text>}
+    </View>
+  );
+};
+
+export const CheckBoxFormField = (props) => {
+  return (
+    <View>
+      <Text style={styles.formLabel}>{props.field}</Text>
+      <CheckBox
+        type={'checkbox'}
+        name={props.name}
+        value={props.value}
+        {...props}
+      />
     </View>
   );
 };

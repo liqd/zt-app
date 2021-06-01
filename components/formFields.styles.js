@@ -20,5 +20,10 @@ export const styles = StyleSheet.create({
   formError: {
     fontSize: 10,
     color: 'red'
+  },
+  formPicker: {
+    height:30,
+    width: 200,
+    flex: 1,
   }
 });
