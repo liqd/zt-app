@@ -28,5 +28,10 @@ export const styles = StyleSheet.create({
   },
   text: {
     fontSize: SIZES.sm,
+  },
+  counters: {
+    flexDirection: 'row',
+    alignItems: 'flex-end',
+    width: 120
   }
 });
