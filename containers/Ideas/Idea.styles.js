@@ -72,7 +72,7 @@ export const styles = StyleSheet.create({
   disabledIcon: {
     color: COLORS.grey.light
   },
-  chipsContainer: {
+  labelsContainer: {
     flexDirection: 'row',
     marginVertical: SPACINGS.multiplyBy(.5),
     flexWrap: 'wrap',
