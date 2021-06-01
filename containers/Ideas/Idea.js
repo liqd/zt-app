@@ -1,21 +1,21 @@
 import React from 'react';
-import { View, Text, Image, ScrollView, StatusBar } from 'react-native';
+import { View, Text, Image, ScrollView } from 'react-native';
 import { Button } from 'react-native-elements';
 import { styles } from './Idea.styles';
 import Icon from 'react-native-vector-icons/SimpleLineIcons';
 
 import { ButtonCounter } from '../../components/ButtonCounter';
-import { Chip } from '../../components/Chip';
+import { Label } from '../../components/Label';
 
 export const Idea = (props) => {
   const params = props.navigation.getParam('params');
   const createdDate = props.navigation.getParam('createdDate');
 
-  const getChips = () => {
-    let chipsList = [];
-    params.category && chipsList.push(params.category);
-    params.labels.length > 0 && chipsList.push(...params.labels);
-    return chipsList;
+  const getLabels = () => {
+    let labelsList = [];
+    params.category && labelsList.push(params.category);
+    params.labels.length > 0 && labelsList.push(...params.labels);
+    return labelsList;
   };
 
   return (
@@ -46,10 +46,10 @@ export const Idea = (props) => {
         )}
         <Text style={styles.text}>{params.description}</Text>
       </View>
-      {getChips().length > 0 && (
-        <View style={styles.chipsContainer}>
-          {getChips().map((chip, idx) => (
-            <Chip key={idx + chip} title={chip} />
+      {getLabels().length > 0 && (
+        <View style={styles.labelsContainer}>
+          {getLabels().map((label, idx) => (
+            <Label key={idx + label} title={label} />
           ))}
         </View>
       )}
