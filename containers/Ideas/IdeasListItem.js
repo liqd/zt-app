@@ -8,25 +8,30 @@ import { DateService } from '../../services/DateService';
 
 export const IdeasListItem = (props) => {
   const {
+    name,
+    created,
+    creator,
     comment_count: commentCount,
     positive_rating_count: upCount,
     negative_rating_count: downCount,
-  } = props;
-  const createdDate = new DateService(props.created).get();
+  } = props.idea;
+
+  const createdDate = new DateService(created).get();
   const pressHandler = () =>
     props.navigation.navigate('IdeaDetail', {
-      params: props,
+      params: props.idea,
       createdDate: createdDate,
     });
+
   return (
     <TouchableOpacity onPress={pressHandler}>
       <View style={styles.container}>
         <View style={styles.topContainer}>
-          <Text style={styles.title}>{props.name}</Text>
+          <Text style={styles.title}>{name}</Text>
         </View>
         <View style={styles.bottomContainer}>
           <Text style={styles.text}>
-            {props.creator}, {createdDate}
+            {creator}, {createdDate}
           </Text>
           <View style={styles.counters}>
             <ButtonCounter icon={<Icon name='arrow-up' />} counter={upCount} />
