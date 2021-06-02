@@ -1,10 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Button, View, Text } from 'react-native';
 import { Formik } from 'formik';
 import * as yup from 'yup';
 
 import { styles } from './Idea.styles';
-import { TextInputFormField, MultiInputFormField, CheckBoxFormField } from '../../components/formFields';
+import { TextInputFormField, CheckBoxFormFieldContainer, CheckBoxFormField, DropdownFormFieldContainer, DropdownFormField } from '../../components/formFields';
 
 export const IdeaCreate = props => {
 
@@ -20,6 +20,13 @@ export const IdeaCreate = props => {
       .max(100, 'Description must be no longer then 100 characters')
       .required('Description is required'),
   });
+
+  const [open, setOpen] = useState(false);
+  const [value, setValue] = useState(null);
+  const [items, setItems] = useState([
+    {label: 'Category 1', value: 'category1'},
+    {label: 'Category 2', value: 'category2'}
+  ]);
 
   return (
     <View style={styles.container}>
@@ -63,9 +70,21 @@ export const IdeaCreate = props => {
               error={errors.description}
               touched={touched.description}
             />
-            <MultiInputFormField
+            <DropdownFormFieldContainer
+              field='Idea Category'
+              name='category'>
+              <DropdownFormField
+                open={open}
+                value={value}
+                items={items}
+                setOpen={setOpen}
+                setValue={setValue}
+                setItems={setItems}
+              >
+              </DropdownFormField>
+            </DropdownFormFieldContainer>
+            <CheckBoxFormFieldContainer
               field='Idea Labels'
-              name='labels'
             >
               <CheckBoxFormField
                 title='Label 1'
@@ -76,7 +95,7 @@ export const IdeaCreate = props => {
               <CheckBoxFormField
                 title='Label 3'
               />
-            </MultiInputFormField>
+            </CheckBoxFormFieldContainer>
             <Button onPress={handleSubmit} title="Submit" disabled={!isValid} />
           </>
         )}
