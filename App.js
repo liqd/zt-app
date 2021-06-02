@@ -1,5 +1,5 @@
 import React from 'react';
-import * as Sentry from 'sentry-expo'
+import * as Sentry from 'sentry-expo';
 import IdeaNavigator from './navigation/IdeaNavigator';
 
 Sentry.init({
