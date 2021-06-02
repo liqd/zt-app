@@ -12,6 +12,12 @@ export const styles = StyleSheet.create({
     height: 40,
     fontSize: 18,
   },
+  checkBox: {
+    flex: 1,
+  },
+  checkBoxContainer: {
+    flexDirection: 'row',
+  },
   formTitle: {
     fontSize: 17,
     lineHeight: 25,
