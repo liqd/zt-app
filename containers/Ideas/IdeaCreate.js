@@ -4,7 +4,7 @@ import { Formik } from 'formik';
 import * as yup from 'yup';
 
 import { styles } from './Idea.styles';
-import { TextInputFormField } from '../../components/formFields';
+import { TextInputFormField, MultiInputFormField, CheckBoxFormField } from '../../components/formFields';
 
 export const IdeaCreate = props => {
 
@@ -63,6 +63,20 @@ export const IdeaCreate = props => {
               error={errors.description}
               touched={touched.description}
             />
+            <MultiInputFormField
+              field='Idea Labels'
+              name='labels'
+            >
+              <CheckBoxFormField
+                title='Label 1'
+              />
+              <CheckBoxFormField
+                title='Label 2'
+              />
+              <CheckBoxFormField
+                title='Label 3'
+              />
+            </MultiInputFormField>
             <Button onPress={handleSubmit} title="Submit" disabled={!isValid} />
           </>
         )}
