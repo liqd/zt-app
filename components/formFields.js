@@ -1,8 +1,53 @@
-import React from 'react';
-import { TextInput, View, Text } from 'react-native';
+import React, { useState } from 'react';
+import { TextInput, View, Text, Alert, TouchableOpacity } from 'react-native';
 import { CheckBox } from 'react-native-elements';
 import DropDownPicker from 'react-native-dropdown-picker';
+import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
 import { styles } from './formFields.styles';
+
+
+export const ImagePickerFormField = (props) => {
+  const [imageSource, setImageSource] = useState(null);
+
+  function selectImage() {
+    let options = {
+      title: 'You can choose one image',
+      maxWidth: 256,
+      maxHeight: 256,
+      storageOptions: {
+        skipBackup: true
+      }
+    };
+
+    launchImageLibrary(options, response => {
+      console.log({ response });
+
+      if (response.didCancel) {
+        console.log('User cancelled photo picker');
+        Alert.alert('You did not select any image');
+      } else if (response.error) {
+        console.log('ImagePicker Error: ', response.error);
+      } else if (response.customButton) {
+        console.log('User tapped custom button: ', response.customButton);
+      } else {
+        let source = { uri: response.uri };
+        console.log({ source });
+      }
+    });
+  }
+  return (
+    <View>
+      <Text style={styles.formLabel}>
+        Simple Image Picker
+      </Text>
+      <TouchableOpacity
+        onPress={selectImage}
+      >
+        <Text>Pick an image</Text>
+      </TouchableOpacity>
+    </View>
+  );
+};
 
 export const TextInputFormField = (props) => {
   return (
