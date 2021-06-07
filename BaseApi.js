@@ -4,7 +4,8 @@ const endpoints = {
   ideas: baseUrl + '/modules/$moduleId/ideas',
   liveQuestions: baseUrl + '/modules/$moduleId/interactiveevents/livequestions/',
   login: baseUrl + '/login/',
-  projects: baseUrl + '/app-projects/'
+  projects: baseUrl + '/app-projects/',
+  modules: baseUrl + '/app-modules/'
 };
 
 const makeGetRequest = (url) => {
@@ -59,6 +60,13 @@ const API = {
   },
   getProjects() {
     return makeGetRequest(endpoints.projects);
+  },
+  getModules() {
+    return makeGetRequest(endpoints.modules);
+  },
+  getModule(moduleId) {
+    const url = endpoints.modules + moduleId;
+    return makeGetRequest(url);
   }
 };
 
