@@ -2,13 +2,19 @@ import React, {useState} from 'react';
 import { Button, View, Text } from 'react-native';
 import { Formik } from 'formik';
 import * as yup from 'yup';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { styles } from './Idea.styles';
 import { TextInputFormField, CheckBoxFormFieldContainer, CheckBoxFormField, DropdownFormFieldContainer, DropdownFormField } from '../../components/formFields';
 
 export const IdeaCreate = props => {
 
-  const pressHandler = () => props.navigation.pop();
+  //const pressHandler = () => props.navigation.pop();
+
+  const handleSubmit = (values) => {
+    //AsyncStorage.getItem('authToken').then((token) => console.log(token));
+    console.log(values);
+  };
 
   const ideaValidationSchema = yup.object().shape({
     title: yup
@@ -34,7 +40,7 @@ export const IdeaCreate = props => {
       <Formik
         validationSchema={ideaValidationSchema}
         initialValues={{ title: '', description: '' }}
-        onSubmit={values => console.log(values)}
+        onSubmit={values => handleSubmit(values)}
       >
         {({
           handleChange,
