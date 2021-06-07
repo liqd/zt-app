@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { TextInput, View, Text, Button, Alert, Image } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { TextInput, View, Text, Button, Alert, Image, Platform } from 'react-native';
 import { CheckBox } from 'react-native-elements';
 import DropDownPicker from 'react-native-dropdown-picker';
 import * as ImagePicker from 'expo-image-picker';
@@ -7,8 +7,8 @@ import * as Permissions from 'expo-permissions';
 import { styles } from './formFields.styles';
 
 
-export const ImagePickerFormField = (props) => {
-  const [pickedImage, setPickedImage] = useState();
+export const ImageCaptureFormField = (props) => {
+  const [capturedImage, setCapturedImage] = useState(null);
 
   const verifyPermissions = async () => {
     const result = await Permissions.askAsync(Permissions.CAMERA_ROLL);
@@ -20,7 +20,8 @@ export const ImagePickerFormField = (props) => {
     }
     return true;
   };
-  const takeImageHandler = async () => {
+
+  const captureImageHandler = async () => {
     const hasPermission = await verifyPermissions();
     if(!hasPermission) {
       return;
@@ -31,13 +32,50 @@ export const ImagePickerFormField = (props) => {
       quality: 0.5
     });
 
-    setPickedImage(image.uri);
+    setCapturedImage(image.uri);
   };
 
   return (
     <View style={styles.formImagePicker}>
-      {!pickedImage ? ( <Text>Please choose an image</Text> ) : ( <Image style={styles.formImage} source={{uri: pickedImage}} />)}
-      <Button title='Choose Image' onPress={takeImageHandler} />
+      {!capturedImage ? ( <Text>Please choose an image</Text> ) : ( <Image style={styles.formImage} source={{uri: capturedImage}} />)}
+      <Button title='Capture Image' onPress={captureImageHandler} />
+    </View>
+  );
+};
+
+export const ImagePickerFormField = (props) => {
+  const [image, setImage] = useState(null);
+
+  useEffect(() => {
+    (async () => {
+      if (Platform.OS !== 'web') {
+        const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+        if (status !== 'granted') {
+          alert('Sorry, we need camera roll permissions to make this work!');
+        }
+      }
+    })();
+  }, []);
+
+  const pickImage = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
+
+    console.log(result);
+
+    if (!result.cancelled) {
+      setImage(result.uri);
+    }
+  };
+
+  return (
+    <View style={styles.formImagePreview}>
+      <Button title="Pick an image from camera roll" onPress={pickImage} />
+      {image && <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
     </View>
   );
 };

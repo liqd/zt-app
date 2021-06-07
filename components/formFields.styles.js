@@ -51,7 +51,7 @@ export const styles = StyleSheet.create({
   },
   formImagePreview: {
     width: '100%',
-    height: 200,
+    height: 50,
     marginBottom: 10,
     justifyContent: 'center',
     alignItems: 'center',
@@ -59,7 +59,7 @@ export const styles = StyleSheet.create({
     borderWidth: 1
   },
   formImage: {
-    width: '100%',
-    height: '100%'
+    width: '30%',
+    height: '30%'
   }
 });
