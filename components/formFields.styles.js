@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { COLORS } from '../theme/colors';
 
 export const styles = StyleSheet.create({
   formTitle: {
@@ -10,6 +11,7 @@ export const styles = StyleSheet.create({
     fontSize: 15,
     lineHeight: 20,
     paddingTop: 10,
+    paddingBottom: 5,
     width: '100%'
   },
   textInput: {
@@ -46,4 +48,32 @@ export const styles = StyleSheet.create({
     fontSize: 10,
     color: 'red'
   },
+  formImagePicker: {
+    alignItems: 'center'
+  },
+  formImagePreview: {
+    width: '100%',
+    height: 50,
+    marginBottom: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderColor: '#ccc',
+    borderWidth: 1
+  },
+  formImage: {
+    width: '30%',
+    height: '30%'
+  },
+  imageButton: {
+    width: '100%',
+    backgroundColor: COLORS.text.main,
+    color: COLORS.text.inverted
+  },
+  formRow: {
+    paddingVertical: 10,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
+    alignItems: 'center'
+  }
 });
