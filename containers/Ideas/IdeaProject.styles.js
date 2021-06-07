@@ -68,7 +68,14 @@ export const styles = StyleSheet.create({
     color: COLORS.primary
   },
   phaseContainer: {
-    marginVertical: SPACINGS.multiplyBy(1.5)
+    marginVertical: SPACINGS.multiplyBy(1.5),
+  },
+  phaseDate: {
+    fontSize: SIZES.multiplyBy(0.9375),
+    fontWeight: '700',
+  },
+  phaseText: {
+    fontSize: SIZES.multiplyBy(0.9375),
   },
   actionsContainer: {
     height: SPACINGS.multiplyBy(2),

@@ -16,7 +16,7 @@ export const IdeasListItem = (props) => {
     negative_rating_count: downCount,
   } = props.idea;
 
-  const createdDate = new DateService(created).get();
+  const createdDate = DateService(created);
   const pressHandler = () =>
     props.navigation.navigate('IdeaDetail', {
       params: props.idea,
