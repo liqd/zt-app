@@ -7,17 +7,18 @@ import IconSLI from 'react-native-vector-icons/SimpleLineIcons';
 import IconFA from 'react-native-vector-icons/FontAwesome';
 import API from '../../BaseApi';
 import { COLORS } from '../../theme/colors';
+import { DateService } from '../../services/DateService';
 
 export const IdeaProject = (props) => {
   const project = props.navigation.getParam('project');
   const [ideas, setIdeas] = useState([]);
+  const [activePhase, setActivePhase] = useState();
+  const [phaseStart, setPhaseStart] = useState();
+  const [phaseEnd, setPhaseEnd] = useState();
   const bgImage = project.image
     ? project.image
     : 'https://i.imgur.com/o4L0arH.jpg';
-  const validModule =
-    project.published_modules.length === 1
-      ? project.published_modules[0]
-      : undefined;
+  const singleModule = project.single_agenda_setting_module;
 
   const pressHandler = () =>
     props.navigation.navigate('IdeaCreate', { params: props });
@@ -32,8 +33,16 @@ export const IdeaProject = (props) => {
   );
 
   useEffect(() => {
-    validModule &&
-      API.getIdeas(validModule).then((response) => setIdeas(response));
+    singleModule &&
+      API.getIdeas(singleModule).then((ideaResponse) =>
+        setIdeas(ideaResponse)
+      ) &&
+      API.getModule(singleModule).then((moduleResponse) => {
+        const aPhase = moduleResponse.phases.find((phase) => phase.is_active);
+        aPhase && setActivePhase(aPhase);
+        aPhase && setPhaseStart(DateService(aPhase.start_date, 'month d, y, h:m'));
+        aPhase && setPhaseEnd(DateService(aPhase.end_date, 'month d, y, h:m'));
+      });
   }, []);
 
   return (
@@ -68,14 +77,26 @@ export const IdeaProject = (props) => {
                   <Text style={styles.tabsMenuItem}>Information</Text>
                   <Text style={styles.tabsMenuItem}>Results</Text>
                 </View>
-                <View style={styles.phaseContainer}>
-                  <Text>Collect phase active</Text>
-                  <Text>May 20, 2021, 8 a.m. – May 31, 2021, 11:59 p.m.</Text>
-                  <Text>Create and comment on new ideas.</Text>
-                </View>
+                {activePhase ? (
+                  <View style={styles.phaseContainer}>
+                    <Text style={styles.phaseText}>
+                      {activePhase && activePhase.name + ' (active)'}
+                    </Text>
+                    <Text style={styles.phaseDate}>
+                      {phaseStart} – {phaseEnd}
+                    </Text>
+                    <Text style={styles.phaseText}>
+                      {activePhase && activePhase.description}
+                    </Text>
+                  </View>
+                ) : (
+                  <View style={styles.phaseContainer}>
+                    <Text>No active phase found.</Text>
+                  </View>
+                )}
               </View>
             </View>
-            {validModule ? (
+            {singleModule ? (
               <View>
                 <View style={styles.listActions}>
                   <Button icon={filterIcon} type='clear' />
@@ -84,11 +105,13 @@ export const IdeaProject = (props) => {
                 <View style={styles.listContainer}>
                   <IdeasList ideas={ideas} {...props} />
                 </View>
-                <Button
-                  buttonStyle={styles.submitButton}
-                  title='Submit Idea'
-                  onPress={pressHandler}
-                />
+                {activePhase && (
+                  <Button
+                    buttonStyle={styles.submitButton}
+                    title='Submit Idea'
+                    onPress={pressHandler}
+                  />
+                )}
               </View>
             ) : (
               <Text>

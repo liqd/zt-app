@@ -38,7 +38,7 @@ export const ExplorePage = (props) => {
       <Text style={styles.subtitle}>Recently Added</Text>
       <FlatList
         keyExtractor={(i) => `pk${i.pk}`}
-        data={projects}
+        data={projects.filter(p => p.single_agenda_setting_module)}
         renderItem={projectItem}
       />
     </View>
