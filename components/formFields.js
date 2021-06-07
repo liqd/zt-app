@@ -1,16 +1,19 @@
-import React from 'react';
-import { TextInput, View, Text, Button, Alert } from 'react-native';
+import React, { useState } from 'react';
+import { TextInput, View, Text, Button, Alert, Image } from 'react-native';
 import { CheckBox } from 'react-native-elements';
 import DropDownPicker from 'react-native-dropdown-picker';
 import * as ImagePicker from 'expo-image-picker';
 import * as Permissions from 'expo-permissions';
 import { styles } from './formFields.styles';
 
-export const ImageTakerFormField = (props) => {
+
+export const ImagePickerFormField = (props) => {
+  const [pickedImage, setPickedImage] = useState();
+
   const verifyPermissions = async () => {
-    const result = await Permissions.askAsync(Permissions.CAMERA, Permissions.CAMERA_ROLL);
+    const result = await Permissions.askAsync(Permissions.CAMERA_ROLL);
     if (result.status != 'granted') {
-      Alert.alert('need to grant access to camera',
+      Alert.alert('You need to grant access to camera',
         [{text: 'Okay'}]
       );
       return false;
@@ -22,26 +25,18 @@ export const ImageTakerFormField = (props) => {
     if(!hasPermission) {
       return;
     }
-    ImagePicker.launchCameraAsync();
-  };
-  return (
-    <View>
-      <Text>Please choose an image</Text>
-      <Button title='Take Image' onPress={takeImageHandler} />
-    </View>
-  );
-};
+    const image = await ImagePicker.launchCameraAsync({
+      allowsEditing: true,
+      aspect: [16, 9],
+      quality: 0.5
+    });
 
-export const ImagePickerFormField = (props) => {
-  const verifyPermissions = () => {
-    Permissions.askAsync(Permissions.CAMERA_ROLL);
+    setPickedImage(image.uri);
   };
-  const takeImageHandler = () => {
-    ImagePicker.launchCameraAsync();
-  };
+
   return (
-    <View>
-      <Text>Please choose an image</Text>
+    <View style={styles.formImagePicker}>
+      {!pickedImage ? ( <Text>Please choose an image</Text> ) : ( <Image style={styles.formImage} source={{uri: pickedImage}} />)}
       <Button title='Choose Image' onPress={takeImageHandler} />
     </View>
   );

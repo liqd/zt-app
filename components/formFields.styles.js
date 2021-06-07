@@ -46,4 +46,20 @@ export const styles = StyleSheet.create({
     fontSize: 10,
     color: 'red'
   },
+  formImagePicker: {
+    alignItems: 'center'
+  },
+  formImagePreview: {
+    width: '100%',
+    height: 200,
+    marginBottom: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderColor: '#ccc',
+    borderWidth: 1
+  },
+  formImage: {
+    width: '100%',
+    height: '100%'
+  }
 });
