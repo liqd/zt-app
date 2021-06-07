@@ -4,7 +4,7 @@ import { Formik } from 'formik';
 import * as yup from 'yup';
 
 import { styles } from './Idea.styles';
-import { TextInputFormField, CheckBoxFormFieldContainer, CheckBoxFormField, DropdownFormFieldContainer, DropdownFormField, ImagePickerFormField, ImageCaptureFormField } from '../../components/formFields';
+import { TextInputFormField, CheckBoxFormFieldContainer, CheckBoxFormField, DropdownFormFieldContainer, DropdownFormField, ImagePickerFormField, ImageCaptureFormField, ImageButton } from '../../components/formFields';
 
 export const IdeaCreate = props => {
 
@@ -96,9 +96,10 @@ export const IdeaCreate = props => {
                 title='Label 3'
               />
             </CheckBoxFormFieldContainer>
-            <ImagePickerFormField />
+            <ImageButton
+              field='Add image'
+            />
             <ImageCaptureFormField />
-
             <Button onPress={handleSubmit} title="Submit" disabled={!isValid} />
           </>
         )}

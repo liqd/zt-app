@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { TextInput, View, Text, Button, Alert, Image, Platform } from 'react-native';
-import { CheckBox } from 'react-native-elements';
+import { TextInput, View, Text, Alert, Image, Platform } from 'react-native';
+import { CheckBox, Button } from 'react-native-elements';
 import DropDownPicker from 'react-native-dropdown-picker';
 import * as ImagePicker from 'expo-image-picker';
 import * as Permissions from 'expo-permissions';
 import { styles } from './formFields.styles';
+import Icon from 'react-native-vector-icons/SimpleLineIcons';
 
 
 export const ImageCaptureFormField = (props) => {
@@ -76,6 +77,20 @@ export const ImagePickerFormField = (props) => {
     <View style={styles.formImagePreview}>
       <Button title="Pick an image from camera roll" onPress={pickImage} />
       {image && <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
+    </View>
+  );
+};
+
+export const ImageButton = (props) => {
+  return (
+    <View>
+      <Text style={styles.formLabel}>{props.field}</Text>
+      <Button
+        buttonStyle={styles.imageButton}
+        icon={<Icon name='cloud-upload' size={22} colour={'#fff'}/>}
+        type='fill'
+        title='Select image'
+      />
     </View>
   );
 };

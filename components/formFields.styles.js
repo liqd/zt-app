@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { COLORS } from '../theme/colors';
 
 export const styles = StyleSheet.create({
   formTitle: {
@@ -61,5 +62,10 @@ export const styles = StyleSheet.create({
   formImage: {
     width: '30%',
     height: '30%'
+  },
+  imageButton: {
+    width: '100%',
+    backgroundColor: COLORS.text.main,
+    color: COLORS.paper.inverted
   }
 });
