@@ -3,6 +3,7 @@ const baseUrl = 'https://aplus-dev.liqd.net/api';
 const endpoints = {
   ideas: baseUrl + '/modules/$moduleId/ideas',
   liveQuestions: baseUrl + '/modules/$moduleId/interactiveevents/livequestions/',
+  login: baseUrl + '/login/',
   projects: baseUrl + '/app-projects/'
 };
 
@@ -52,6 +53,9 @@ const API = {
   postLiveQuestion(moduleId, data) {
     const url = endpoints.liveQuestions.replace(/\$(\w+?)\b/g, moduleId);
     return makePostRequest(url, data);
+  },
+  postLogin(data) {
+    return makePostRequest(endpoints.login, data);
   },
   getProjects() {
     return makeGetRequest(endpoints.projects);
