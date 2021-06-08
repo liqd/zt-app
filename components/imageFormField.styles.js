@@ -20,11 +20,7 @@ export const styles = StyleSheet.create({
     width: '30%',
     height: '30%'
   },
-  imageButton: {
-    width: '100%',
-    backgroundColor: COLORS.text.main,
-    color: COLORS.text.inverted
-  },
+
   // These should be refactored to go in common file
   formRow: {
     paddingVertical: SPACINGS.multiplyBy(.5),
@@ -43,9 +39,6 @@ export const styles = StyleSheet.create({
   iconButton: {
     marginHorizontal: SPACINGS.multiplyBy(.25),
     fontSize: SIZES.md
-  },
-  textLight: {
-    color: COLORS.text.inverted,
   },
   textDark: {
     color: COLORS.text.main,

@@ -76,5 +76,18 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     marginVertical: SPACINGS.multiplyBy(.5),
     flexWrap: 'wrap',
-  }
+  },
+  imageButton: {
+    width: '100%',
+    backgroundColor: COLORS.text.main,
+    color: COLORS.text.inverted,
+    marginBottom: SPACINGS.multiplyBy(.5)
+  },
+  textLight: {
+    color: COLORS.text.inverted,
+  },
+  iconButton: {
+    marginHorizontal: SPACINGS.multiplyBy(.25),
+    fontSize: SIZES.md
+  },
 });
