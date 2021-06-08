@@ -31,6 +31,8 @@
       "semi": ["error", "always"],
       "no-unused-vars": ["warn", {"varsIgnorePattern": "(React)"}],
       "eol-last": ["error", "always"],
+      "no-multiple-empty-lines": ["error", {"max": 1}],
+      "brace-style": ["error", "stroustrup", { "allowSingleLine": true}],
 
       // Specific REACT rules
       "react/jsx-uses-vars": "error",

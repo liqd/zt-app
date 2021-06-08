@@ -29,7 +29,6 @@ const makePostRequest = (url, data = {}) => {
     .catch(error => console.error(error));
 };
 
-
 const API = {
   getIdeas(moduleId) {
     const url = endpoints.ideas.replace(/\$(\w+?)\b/g, moduleId);
