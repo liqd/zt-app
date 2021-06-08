@@ -7,7 +7,6 @@ import * as Permissions from 'expo-permissions';
 import { styles } from './formFields.styles';
 import Icon from 'react-native-vector-icons/SimpleLineIcons';
 
-
 export const ImageCaptureFormField = (props) => {
   const [capturedImage, setCapturedImage] = useState(null);
 
