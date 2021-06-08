@@ -102,18 +102,3 @@ export const ImageChoiceFormFieldContainer = (props) => {
     </View>
   );
 };
-
-export const AddImageButton = () => {
-
-  return (
-    <View>
-      <Button
-        buttonStyle={styles.imageButton}
-        icon={<Icon name='cloud-upload' style={[styles.iconButton, styles.textLight]} />}
-        type='fill'
-        title='Add image'
-        titleStyle={styles.textLight}
-      />
-    </View>
-  );
-};

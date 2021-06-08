@@ -1,8 +1,10 @@
 import React, {useState} from 'react';
-import { Button, View, Text } from 'react-native';
+import { View, Text } from 'react-native';
+import { Button } from 'react-native-elements';
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import Icon from 'react-native-vector-icons/SimpleLineIcons';
 
 import { styles } from './Idea.styles';
 import {
@@ -38,6 +40,7 @@ export const IdeaCreate = props => {
   });
 
   const [open, setOpen] = useState(false);
+  const [clicked, setClicked] = useState(false);
   const [value, setValue] = useState(null);
   const [items, setItems] = useState([
     {label: 'Category 1', value: 'category1'},
@@ -112,15 +115,26 @@ export const IdeaCreate = props => {
                 title='Label 3'
               />
             </CheckBoxFormFieldContainer>
-            <AddImageButton
-              field='Add image'
-            />
-            <ImageChoiceFormFieldContainer
-              field='Add image'
-            >
-              <ImageCaptureFormField />
-              <ImagePickerFormField />
-            </ImageChoiceFormFieldContainer>
+            {!clicked &&
+              <Button
+                buttonStyle={styles.imageButton}
+                icon={<Icon name='cloud-upload' style={[styles.iconButton, styles.textLight]} />}
+                type='fill'
+                title='Add image'
+                titleStyle={styles.textLight}
+                clicked={props.clicked}
+                setClicked={props.setClicked}
+                onPress={setClicked}
+              />
+            }
+            {clicked &&
+              <ImageChoiceFormFieldContainer
+                field='Add image'
+              >
+                <ImageCaptureFormField />
+                <ImagePickerFormField />
+              </ImageChoiceFormFieldContainer>
+            }
             <Button onPress={handleSubmit} title="Submit" disabled={!isValid} />
           </>
         )}
