@@ -8,7 +8,7 @@ import IconSLI from 'react-native-vector-icons/SimpleLineIcons';
 export const ExploreListItem = (props) => {
   const image = props.item.image
     ? props.item.image
-    : 'https://i.imgur.com/o4L0arH.jpg';
+    : '';
 
   return (
     <TouchableOpacity onPress={() => props.action(props.item)}>
@@ -58,6 +58,7 @@ const styles = StyleSheet.create({
   image: {
     flex: 1,
     resizeMode: 'cover',
+    backgroundColor: COLORS.primary
   },
   textContainer: {
     padding: SPACINGS.multiplyBy(0.8),
