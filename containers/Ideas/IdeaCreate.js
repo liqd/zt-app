@@ -5,7 +5,17 @@ import * as yup from 'yup';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { styles } from './Idea.styles';
-import { TextInputFormField, CheckBoxFormFieldContainer, CheckBoxFormField, DropdownFormFieldContainer, DropdownFormField, ImagePickerFormField, ImageCaptureFormField, AddImageButton, ImageChoiceFormFieldContainer } from '../../components/formFields';
+import {
+  TextInputFormField,
+  CheckBoxFormFieldContainer,
+  CheckBoxFormField,
+  DropdownFormFieldContainer,
+  DropdownFormField } from '../../components/formFields';
+import {
+  ImagePickerFormField,
+  ImageCaptureFormField,
+  AddImageButton,
+  ImageChoiceFormFieldContainer } from '../../components/imageFormField';
 
 export const IdeaCreate = props => {
 
