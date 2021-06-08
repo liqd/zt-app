@@ -13,6 +13,7 @@ export const styles = StyleSheet.create({
   bgImage: {
     flex: 1,
     resizeMode: 'cover',
+    backgroundColor: COLORS.primary
   },
   overlayContainer: {
     borderTopLeftRadius: 24,

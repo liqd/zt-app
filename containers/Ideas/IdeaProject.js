@@ -17,7 +17,7 @@ export const IdeaProject = (props) => {
   const [phaseEnd, setPhaseEnd] = useState();
   const bgImage = project.image
     ? project.image
-    : 'https://i.imgur.com/o4L0arH.jpg';
+    : '';
   const singleModule = project.single_agenda_setting_module;
 
   const pressHandler = () =>
