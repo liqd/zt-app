@@ -1,24 +1,26 @@
 import { StyleSheet } from 'react-native';
 import { COLORS } from '../theme/colors';
+import { SPACINGS } from '../theme/spacings';
+import { SIZES, LINEHEIGHTS } from '../theme/fonts';
 
 export const styles = StyleSheet.create({
   formTitle: {
-    fontSize: 17,
-    lineHeight: 25,
+    fontSize: SIZES.md,
+    lineHeight: LINEHEIGHTS.md,
     fontWeight: 'bold'
   },
   formLabel: {
-    fontSize: 15,
-    lineHeight: 20,
-    paddingTop: 10,
-    paddingBottom: 5,
+    fontSize: SIZES.sm,
+    lineHeight: LINEHEIGHTS.sm,
+    paddingTop: SPACINGS.multiplyBy(.5),
+    paddingBottom: SPACINGS.multiplyBy(.25),
     width: '100%'
   },
   textInput: {
-    borderBottomColor: '#d8d8d8',
+    borderBottomColor: COLORS.grey.extralight,
     borderBottomWidth: 1,
-    height: 40,
-    fontSize: 18,
+    height: SPACINGS.multiplyBy(2),
+    fontSize: SIZES.md,
   },
   checkBox: {
     flex: 1,
@@ -27,7 +29,7 @@ export const styles = StyleSheet.create({
   },
   checkBoxContainer: {
     width: '45%',
-    backgroundColor: '#fff',
+    backgroundColor: COLORS.text.inverted,
     flexDirection: 'row',
     flexWrap: 'wrap',
     marginLeft: 0
@@ -37,7 +39,7 @@ export const styles = StyleSheet.create({
     flexWrap: 'wrap'
   },
   dropdownFormField: {
-    borderBottomColor: '#d8d8d8',
+    borderBottomColor: COLORS.grey.extralight,
     borderTopWidth: 0,
     borderRightWidth: 0,
     borderLeftWidth: 0,
@@ -45,32 +47,11 @@ export const styles = StyleSheet.create({
     borderBottomWidth: 1,
   },
   formError: {
-    fontSize: 10,
+    fontSize: SIZES.xs,
     color: 'red'
   },
-  formImagePicker: {
-    alignItems: 'center'
-  },
-  formImagePreview: {
-    width: '100%',
-    height: 50,
-    marginBottom: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderColor: '#ccc',
-    borderWidth: 1
-  },
-  formImage: {
-    width: '30%',
-    height: '30%'
-  },
-  imageButton: {
-    width: '100%',
-    backgroundColor: COLORS.text.main,
-    color: COLORS.text.inverted
-  },
   formRow: {
-    paddingVertical: 10,
+    paddingVertical: SPACINGS.multiplyBy(.5),
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-around',
