@@ -31,11 +31,10 @@ export const IdeaCreate = props => {
   const ideaValidationSchema = yup.object().shape({
     title: yup
       .string()
+      .max(120, ({ max }) => `Title must be no longer then ${max} characters`)
       .required('Idea title is Required'),
     description: yup
       .string()
-      .min(20, ({ min }) => `Description must be at least ${min} characters`)
-      .max(100, 'Description must be no longer then 100 characters')
       .required('Description is required'),
   });
 
