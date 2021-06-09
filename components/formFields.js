@@ -32,16 +32,11 @@ export const CheckBoxFormField = (props) => {
   return (
     <CheckBox
       checked={checked}
-      onIconPress={() => setChecked(!checked)}
-      onLongIconPress={() =>
-        console.log('onLongIconPress()')
-      }
-      onLongPress={() => console.log('onLongPress()')}
-      onPress={() => console.log('onPress()')}
+      onPress={() => setChecked(!checked)}
       title={props.title}
       titleProps={{}}
-      checkedColor='#a3ef90'
-      uncheckedColor='#2d40cc'
+      checkedIcon='check'
+      uncheckedIcon='plus'
       containerStyle={styles.checkBoxContainer}
     />
   );

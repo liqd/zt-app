@@ -9,8 +9,16 @@ export const styles = StyleSheet.create({
   },
   container: {
     paddingBottom: SPACINGS.multiplyBy(2),
+    paddingTop: SPACINGS.base,
     paddingHorizontal: SPACINGS.multiplyBy(.75),
     backgroundColor: COLORS.paper.main,
+  },
+  scrollContainer: {
+    paddingBottom: SPACINGS.multiplyBy(2),
+    paddingTop: SPACINGS.base,
+    paddingHorizontal: SPACINGS.multiplyBy(.75),
+    backgroundColor: COLORS.paper.main,
+    height: '80%'
   },
   contentContainer: {
     paddingVertical: SPACINGS.base

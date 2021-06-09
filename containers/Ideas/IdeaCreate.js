@@ -47,7 +47,7 @@ export const IdeaCreate = props => {
   ]);
 
   return (
-    <ScrollView style={styles.container}>
+    <ScrollView style={styles.scrollContainer}>
       <Text style={styles.title}>Submit a new idea for this project</Text>
       <Formik
         validationSchema={ideaValidationSchema}

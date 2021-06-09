@@ -33,7 +33,7 @@ export const styles = StyleSheet.create({
     fontSize: SIZES.sm,
     lineHeight: LINEHEIGHTS.sm,
     paddingTop: SPACINGS.multiplyBy(.5),
-    paddingBottom: SPACINGS.multiplyBy(.25),
+    paddingBottom: SPACINGS.multiplyBy(.5),
     width: '100%'
   },
   iconButton: {

@@ -12,7 +12,7 @@ export const styles = StyleSheet.create({
   formLabel: {
     fontSize: SIZES.sm,
     lineHeight: LINEHEIGHTS.sm,
-    paddingTop: SPACINGS.multiplyBy(.5),
+    paddingTop: SPACINGS.base,
     paddingBottom: SPACINGS.multiplyBy(.25),
     width: '100%'
   },
@@ -28,11 +28,15 @@ export const styles = StyleSheet.create({
     flexWrap: 'wrap'
   },
   checkBoxContainer: {
-    width: '45%',
+    width: '30%',
     backgroundColor: COLORS.text.inverted,
     flexDirection: 'row',
     flexWrap: 'wrap',
-    marginLeft: 0
+    marginLeft: 0,
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: COLORS.grey.extralight,
+    marginBottom: SPACINGS.base
   },
   checkBoxFormFieldContainer: {
     flexDirection: 'row',
