@@ -69,6 +69,10 @@ export const LoginScreen = (props) => {
             onBlur={handleBlur('username')}
             error={errors.username}
             touched={touched.username}
+            keyboardType='email-address'
+            autoCapitalize='none'
+            autoCorrect={false}
+            autoCompleteType='email'
           />
           <TextInputFormField
             field='Password:'
@@ -81,6 +85,8 @@ export const LoginScreen = (props) => {
             onBlur={handleBlur('password')}
             error={errors.password}
             touched={touched.password}
+            autoCapitalize='none'
+            autoCorrect={false}
             secureTextEntry
           />
           <Button onPress={handleSubmit} title="Login" disabled={!isValid} />
