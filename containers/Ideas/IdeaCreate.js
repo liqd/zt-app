@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { View, Text } from 'react-native';
+import { Text, ScrollView } from 'react-native';
 import { Button } from 'react-native-elements';
 import { Formik } from 'formik';
 import * as yup from 'yup';
@@ -48,7 +48,7 @@ export const IdeaCreate = props => {
   ]);
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <Text style={styles.title}>Submit a new idea for this project</Text>
       <Formik
         validationSchema={ideaValidationSchema}
@@ -139,7 +139,7 @@ export const IdeaCreate = props => {
           </>
         )}
       </Formik>
-    </View>
+    </ScrollView>
   );
 };
 
