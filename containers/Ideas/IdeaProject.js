@@ -10,7 +10,7 @@ import { COLORS } from '../../theme/colors';
 import { DateService } from '../../services/DateService';
 
 export const IdeaProject = (props) => {
-  const project = props.navigation.getParam('project');
+  const {project} = props.route.params;
   const [ideas, setIdeas] = useState([]);
   const [activePhase, setActivePhase] = useState();
   const [phaseStart, setPhaseStart] = useState();

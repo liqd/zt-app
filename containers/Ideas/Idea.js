@@ -8,9 +8,7 @@ import { ButtonCounter } from '../../components/ButtonCounter';
 import { Label } from '../../components/Label';
 
 export const Idea = (props) => {
-  const params = props.navigation.getParam('params');
-  const createdDate = props.navigation.getParam('createdDate');
-
+  const {params, createdDate} = props.route.params;
   const getLabels = () => {
     let labelsList = [];
     params.category && labelsList.push(params.category);

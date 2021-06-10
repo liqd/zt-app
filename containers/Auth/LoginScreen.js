@@ -2,15 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { Alert, Button, View } from 'react-native';
 import { Formik } from 'formik';
 import * as yup from 'yup';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
+import {useAuthorization} from './AuthProvider.js';
 import API from '../../BaseApi';
 import { styles } from '../Ideas/Idea.styles';
-
 import { TextInputFormField } from '../../components/formFields';
 
-export const LoginScreen = (props) => {
-
+export const LoginScreen = () => {
+  const {signIn} = useAuthorization();
   const [error, setError] = useState();
 
   useEffect(() => {
@@ -23,11 +22,9 @@ export const LoginScreen = (props) => {
     API.postLogin(values).then((response) => {
       if (!response.token) {
         setError(response.non_field_errors);
-        props.navigation.navigate('Auth');
       }
       else {
-        AsyncStorage.setItem('authToken', response.token);
-        props.navigation.navigate('Ideas');
+        signIn(response.token);
       }
     });
   };
