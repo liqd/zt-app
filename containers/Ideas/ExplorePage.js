@@ -17,7 +17,7 @@ export const ExplorePage = (props) => {
   );
 
   const fetchProjects = () => {
-    focusListener.remove();
+    focusListener();
     API.getProjects().then((response) => setProjects(response));
   };
 
