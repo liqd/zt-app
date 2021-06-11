@@ -1,8 +1,7 @@
 const baseUrl = 'https://aplus-dev.liqd.net/api';
 
 const endpoints = {
-  ideas: baseUrl + '/modules/$moduleId/ideas',
-  liveQuestions: baseUrl + '/modules/$moduleId/interactiveevents/livequestions/',
+  ideas: baseUrl + '/modules/$moduleId/ideas/',
   login: baseUrl + '/login/',
   projects: baseUrl + '/app-projects/',
   modules: baseUrl + '/app-modules/'
@@ -15,17 +14,31 @@ const makeGetRequest = (url) => {
     .catch(error => console.error(error));
 };
 
-const makePostRequest = (url, data = {}) => {
+const getHeaders = (token) => {
+  const headers = {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json',
+  };
+  if (token) {
+    headers['Authorization'] = 'Token '+token;
+  }
+  return headers;
+};
+
+const makePostRequest = (url, data = {}, token=null) => {
   return fetch(url, {
     method: 'POST',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    },
+    headers: getHeaders(token),
     body: JSON.stringify(data)
   })
-    .then(response => response.json())
-    .then(responseData => responseData)
+    .then(response => {
+      const statusCode = response.status;
+      const data = response.json();
+      return Promise.all([statusCode, data]);
+    })
+    .then(values => {
+      return {'statusCode': values[0], 'data': values[1]};
+    })
     .catch(error => console.error(error));
 };
 
@@ -34,25 +47,9 @@ const API = {
     const url = endpoints.ideas.replace(/\$(\w+?)\b/g, moduleId);
     return makeGetRequest(url);
   },
-
-  /*
-    this is just for testing post requests, example call
-    (eg inside useEffect in IdeaPage) would be
-
-          const liveQuestionData = {
-            text: 'Live Question posted via API',
-            category: 79
-          }
-          API.postLiveQuestion(238, liveQuestionData)
-
-    then go to
-    https://aplus-dev.liqd.net/rines-test-orga/interactiveevents/interactive-event-4/
-    and see that question has been posted
-
-    */
-  postLiveQuestion(moduleId, data) {
-    const url = endpoints.liveQuestions.replace(/\$(\w+?)\b/g, moduleId);
-    return makePostRequest(url, data);
+  postIdea(moduleId, data, token=null) {
+    const url = endpoints.ideas.replace(/\$(\w+?)\b/g, moduleId);
+    return makePostRequest(url, data, token);
   },
   postLogin(data) {
     return makePostRequest(endpoints.login, data);
