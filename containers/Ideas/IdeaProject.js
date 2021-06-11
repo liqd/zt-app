@@ -35,12 +35,7 @@ export const IdeaProject = (props) => {
     <IconSLI name='arrow-left' size={22} color={COLORS.paper.main} />
   );
 
-  const focusListener = props.navigation.addListener('didFocus', () =>
-    fetchIdeas()
-  );
-
   const fetchIdeas = () => {
-    focusListener();
     singleModule &&
       API.getIdeas(singleModule).then((ideaResponse) => setIdeas(ideaResponse)) &&
         API.getModule(singleModule).then((moduleResponse) => {
@@ -52,7 +47,10 @@ export const IdeaProject = (props) => {
   };
 
   useEffect(() => {
-    fetchIdeas();
+    const getIdeas = props.navigation.addListener('focus', () => {
+      fetchIdeas();
+    });
+    return getIdeas;
   }, []);
 
   return (
