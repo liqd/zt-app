@@ -8,7 +8,7 @@ import IconSLI from 'react-native-vector-icons/SimpleLineIcons';
 export const ExploreListItem = (props) => {
   const image = props.item.image
     ? props.item.image
-    : '';
+    : null;
 
   return (
     <TouchableOpacity onPress={() => props.action(props.item)}>
