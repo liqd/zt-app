@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import { View, Text } from 'react-native';
+import React, {useState, useEffect} from 'react';
+import { Alert, View, Text } from 'react-native';
 import { Button } from 'react-native-elements';
 import { Formik } from 'formik';
 import * as yup from 'yup';
@@ -18,18 +18,44 @@ import {
   ImageCaptureFormField,
   AddImageButton,
   ImageChoiceFormFieldContainer } from '../../components/imageFormField';
+import API from '../../BaseApi';
 
 export const IdeaCreate = props => {
 
-  //const pressHandler = () => props.navigation.pop();
+  const [error, setError] = useState();
+  const {moduleId, project} = props.route.params;
+
+  useEffect(() => {
+    if (error) {
+      Alert.alert('An error occured', error, [{ text: 'Ok' }]);
+    }
+  }, [error]);
 
   const handleSubmit = (values) => {
-    //AsyncStorage.getItem('authToken').then((token) => console.log(token));
-    console.log(values);
+    AsyncStorage.getItem('authToken')
+      .then((token) => API.postIdea(moduleId, values, token))
+      //error handling is provisional and should probably go somewhere else eventually
+      .then(response => {
+        if (response.statusCode == 201) {
+          Alert.alert('Your idea was added.', 'Thank you for participating!',  [{ text: 'Ok' }]);
+          props.navigation.navigate('IdeaProject', {
+            project: project
+          });
+        }
+        else if (response.statusCode == 400) {
+          setError('Required fields are missing.');
+        }
+        else if (response.statusCode == 403) {
+          setError(response.data.detail);
+        }
+        else {
+          setError('Try again.');
+        }
+      });
   };
 
   const ideaValidationSchema = yup.object().shape({
-    title: yup
+    name: yup
       .string()
       .required('Idea title is Required'),
     description: yup
@@ -52,7 +78,7 @@ export const IdeaCreate = props => {
       <Text style={styles.title}>Submit a new idea for this project</Text>
       <Formik
         validationSchema={ideaValidationSchema}
-        initialValues={{ title: '', description: '' }}
+        initialValues={{ name: '', description: '' , labels: []}}
         onSubmit={values => handleSubmit(values)}
       >
         {({
@@ -67,15 +93,15 @@ export const IdeaCreate = props => {
           <>
             <TextInputFormField
               field='Idea title'
-              name='title'
-              value={values.title}
+              name='name'
+              value={values.name}
               placeholder='Enter your idea title'
               returnKeyType='next'
               returnKeyLabel='next'
-              onChangeText={handleChange('title')}
-              onBlur={handleBlur('title')}
-              error={errors.title}
-              touched={touched.title}
+              onChangeText={handleChange('name')}
+              onBlur={handleBlur('name')}
+              error={errors.name}
+              touched={touched.name}
             />
             <TextInputFormField
               field='Idea description'
