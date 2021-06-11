@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { Alert, Button, View } from 'react-native';
+import { Alert, Button, StyleSheet, View } from 'react-native';
 import { Formik } from 'formik';
 import * as yup from 'yup';
 
 import {useAuthorization} from './AuthProvider.js';
 import API from '../../BaseApi';
-import { styles } from '../Ideas/Idea.styles';
 import { TextInputFormField } from '../../components/formFields';
+import { COLORS } from '../../theme/colors';
+import { SPACINGS } from '../../theme/spacings';
 
 export const LoginScreen = () => {
   const {signIn} = useAuthorization();
@@ -14,17 +15,17 @@ export const LoginScreen = () => {
 
   useEffect(() => {
     if (error) {
-      Alert.alert('An error occured', error[0], [{ text: 'Ok' }]);
+      Alert.alert('An error occured', error, [{ text: 'Ok' }]);
     }
   }, [error]);
 
   const handleLogin = (values) => {
     API.postLogin(values).then((response) => {
-      if (!response.token) {
-        setError(response.non_field_errors);
+      if (response.statusCode!==200) {
+        setError(response.data.non_field_errors[0]);
       }
       else {
-        signIn(response.token);
+        signIn(response.data.token);
       }
     });
   };
@@ -53,7 +54,7 @@ export const LoginScreen = () => {
         touched,
         isValid
       }) => (
-        <View style={styles.container}>
+        <View style={styles.loginContainer}>
 
           <TextInputFormField
             field='E-mail address:'
@@ -87,3 +88,11 @@ export const LoginScreen = () => {
     </Formik>
   );
 };
+
+export const styles = StyleSheet.create({
+  loginContainer: {
+    paddingVertical: SPACINGS.multiplyBy(2),
+    paddingHorizontal: SPACINGS.multiplyBy(2),
+    backgroundColor: COLORS.paper.main,
+  }
+});
