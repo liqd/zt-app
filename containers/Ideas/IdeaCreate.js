@@ -1,10 +1,11 @@
 import React, {useState, useEffect} from 'react';
-import { Alert, View, Text } from 'react-native';
+import { Alert, View, ScrollView, Text } from 'react-native';
 import { Button } from 'react-native-elements';
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Icon from 'react-native-vector-icons/SimpleLineIcons';
+import IconSLI from 'react-native-vector-icons/SimpleLineIcons';
 
 import { styles } from './Idea.styles';
 import {
@@ -16,7 +17,6 @@ import {
 import {
   ImagePickerFormField,
   ImageCaptureFormField,
-  AddImageButton,
   ImageChoiceFormFieldContainer } from '../../components/imageFormField';
 import API from '../../BaseApi';
 
@@ -24,6 +24,9 @@ export const IdeaCreate = props => {
 
   const [error, setError] = useState();
   const {moduleId, project} = props.route.params;
+  const arrowLeftIcon = (
+    <IconSLI name='arrow-left' size={22} />
+  );
 
   useEffect(() => {
     if (error) {
@@ -74,7 +77,20 @@ export const IdeaCreate = props => {
   ]);
 
   return (
-    <View style={styles.container}>
+    <ScrollView
+      style={styles.container}
+      contentContainerStyle={styles.contentContainer}
+    >
+      <View style={styles.actionsContainer}>
+        <Button
+          buttonStyle={styles.backButton}
+          titleStyle={styles.backButtonText}
+          title='Back'
+          type='clear'
+          icon={arrowLeftIcon}
+          onPress={() => props.navigation.goBack()}
+        />
+      </View>
       <Text style={styles.title}>Submit a new idea for this project</Text>
       <Formik
         validationSchema={ideaValidationSchema}
@@ -165,7 +181,7 @@ export const IdeaCreate = props => {
           </>
         )}
       </Formik>
-    </View>
+    </ScrollView>
   );
 };
 
