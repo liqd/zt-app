@@ -21,7 +21,10 @@ export const IdeaProject = (props) => {
   const singleModule = project.single_agenda_setting_module;
 
   const pressHandler = () =>
-    props.navigation.navigate('IdeaCreate', { params: props });
+    props.navigation.navigate('IdeaCreate', {
+      moduleId: singleModule,
+      project: project
+    });
 
   const plusIcon = <IconSLI name='plus' size={24} color={COLORS.paper.main} />;
   const sortIcon = <IconFA name='filter' size={20} color={COLORS.grey.light} />;
@@ -32,17 +35,24 @@ export const IdeaProject = (props) => {
     <IconSLI name='arrow-left' size={22} color={COLORS.paper.main} />
   );
 
-  useEffect(() => {
+  const focusListener = props.navigation.addListener('didFocus', () =>
+    fetchIdeas()
+  );
+
+  const fetchIdeas = () => {
+    focusListener();
     singleModule &&
-      API.getIdeas(singleModule).then((ideaResponse) =>
-        setIdeas(ideaResponse)
-      ) &&
-      API.getModule(singleModule).then((moduleResponse) => {
-        const aPhase = moduleResponse.phases.find((phase) => phase.is_active);
-        aPhase && setActivePhase(aPhase);
-        aPhase && setPhaseStart(DateService(aPhase.start_date, 'month d, y, h:m'));
-        aPhase && setPhaseEnd(DateService(aPhase.end_date, 'month d, y, h:m'));
-      });
+      API.getIdeas(singleModule).then((ideaResponse) => setIdeas(ideaResponse)) &&
+        API.getModule(singleModule).then((moduleResponse) => {
+          const aPhase = moduleResponse.phases.find((phase) => phase.is_active);
+          aPhase && setActivePhase(aPhase);
+          aPhase && setPhaseStart(DateService(aPhase.start_date, 'month d, y, h:m'));
+          aPhase && setPhaseEnd(DateService(aPhase.end_date, 'month d, y, h:m'));
+        });
+  };
+
+  useEffect(() => {
+    fetchIdeas();
   }, []);
 
   return (
