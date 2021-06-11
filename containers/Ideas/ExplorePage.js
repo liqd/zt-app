@@ -9,15 +9,7 @@ import { ExploreListItem } from './ExploreListItem';
 export const ExplorePage = (props) => {
   const [projects, setProjects] = useState([]);
 
-  // useEffect only runs on this page's first load
-  // in order to re-fetch modules and ideas everytime when going back to this
-  // screen, we need to use this navigation hook 'didFocus' and fetchProjects again.
-  const focusListener = props.navigation.addListener('didFocus', () =>
-    fetchProjects()
-  );
-
   const fetchProjects = () => {
-    focusListener();
     API.getProjects().then((response) => setProjects(response));
   };
 
@@ -29,7 +21,10 @@ export const ExplorePage = (props) => {
   );
 
   useEffect(() => {
-    fetchProjects();
+    const projectsListener = props.navigation.addListener('focus', () => {
+      fetchProjects();
+    });
+    return projectsListener;
   }, []);
 
   return (
