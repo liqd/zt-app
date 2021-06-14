@@ -47,10 +47,10 @@ export const IdeaProject = (props) => {
   };
 
   useEffect(() => {
-    const getIdeas = props.navigation.addListener('focus', () => {
+    const ideasListener = props.navigation.addListener('focus', () => {
       fetchIdeas();
     });
-    return getIdeas;
+    return ideasListener;
   }, []);
 
   return (
