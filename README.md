@@ -1,5 +1,7 @@
 ## Setup Development Environment
 
+![Build Status](https://github.com/liqd/zt-app/actions/workflows/react.yml/badge.svg)
+
 Prerequisites
 - Install NodeJS
 - Install via terminal/bash`expo (expo.io): npm install expo-cli --global`
