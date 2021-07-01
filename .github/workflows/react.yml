@@ -1,0 +1,48 @@
+name: React CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: '12.x'
+      - name: Cache node modules
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+      - uses: expo/expo-github-action@v6
+        with:
+          expo-version: 4.x
+          packager: npm
+          token: ${{ secrets.EXPO_TOKEN }}
+      - name: Install Dependencies
+        run: |
+          npm install
+      - name: Run Tests
+        run: |
+          npx eslint .
+      - name: Deploy
+        if: github.ref == 'refs/heads/main'
+        env:
+          SENTRY_PROJECT: zt-app-dev
+          SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_TOKEN }}
+        run: |
+          sed -i s"/dsn: ''/dsn: '$SENTRY_DSN'/" App.js
+          expo publish --release-channel dev
