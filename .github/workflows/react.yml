@@ -44,5 +44,5 @@ jobs:
           SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
           SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_TOKEN }}
         run: |
-          sed -i s"/dsn: ''/dsn: '$SENTRY_DSN'/" App.js
+          sed -i s"|dsn: ''|dsn: '$SENTRY_DSN'|" App.js
           expo publish --release-channel dev
