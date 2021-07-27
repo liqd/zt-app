@@ -17,6 +17,15 @@ Run
 - `npm start`
 - enjoy coding ⌨️ !
 
+Run with new deps (node v14.15.3)
+- Delete all deps `rm -rf node_modules`
+- Install fresh `npm install`
+- Start with cleared cache `expo start -c`
+
+Using local backend (adhocracy-plus)
+- App Repo --> BaseApi.js --> `const baseUrl = 'http://10.0.2.2:8004/api';`
+- Aplus Repo --> Add or Edit `local.py` --> `ALLOWED_HOSTS = [u'10.0.2.2', u'localhost']`
+
 Publishing to expo
 - Add the sentry dsn for the dev or prod project in App.js
 - `expo publish --release-channel dev` (or prod)
