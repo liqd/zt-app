@@ -5,27 +5,9 @@ import { COLORS } from '../../theme/colors';
 import { SIZES } from '../../theme/fonts';
 import { SPACINGS } from '../../theme/spacings';
 import { ExploreListItem } from './ExploreListItem';
-import { Menu } from '../../components/Menu';
 
 export const ExplorePage = (props) => {
   const [projects, setProjects] = useState([]);
-  const menuItems  = [
-    {
-      title: 'Edit',
-      icon: 'pencil',
-      action: () => console.log('Edit')
-    },
-    {
-      title: 'Delete',
-      icon: 'trash',
-      action: () => console.log('Delete')
-    },
-    {
-      title: 'Report',
-      icon: 'flag',
-      action: () => console.log('Report')
-    },
-  ];
 
   const fetchProjects = () => {
     API.getProjects().then((response) => setProjects(response));
@@ -54,7 +36,6 @@ export const ExplorePage = (props) => {
         data={projects.filter(p => p.single_agenda_setting_module)}
         renderItem={projectItem}
       />
-      <Menu menuItems={menuItems} />
     </View>
   );
 };
