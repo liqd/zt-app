@@ -3,8 +3,11 @@ import { Text, View, FlatList } from 'react-native';
 import API from '../../BaseApi';
 import { ExploreListItem } from './ExploreListItem';
 import { styles } from './ExplorePage.styles';
+import { Button } from 'react-native-elements';
+import {useAuthorization} from '../Auth/AuthProvider.js';
 
 export const ExplorePage = (props) => {
+  const {signOut} = useAuthorization();
   const [projects, setProjects] = useState([]);
 
   const fetchProjects = () => {
@@ -27,6 +30,13 @@ export const ExplorePage = (props) => {
 
   return (
     <View style={styles.container}>
+      <View style={styles.logoutContainer}>
+        <Button
+          onPress={signOut}
+          title='Sign out'
+          type='clear'
+        />
+      </View>
       <Text style={styles.title}>Explore</Text>
       <Text style={styles.subtitle}>Recently Added</Text>
       <FlatList

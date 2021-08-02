@@ -38,6 +38,10 @@ export const AuthProvider = (props) => {
       AsyncStorage.setItem('authToken', authToken);
       setState({ ...state, loading: false, token: authToken });
     },
+    signOut: async () => {
+      AsyncStorage.removeItem('authToken');
+      setState({ ...state, loading: false, token: null });
+    },
   }));
   return (
     <AuthContext.Provider value={{ ...state, ...actions }}>
