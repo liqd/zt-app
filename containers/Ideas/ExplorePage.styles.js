@@ -18,5 +18,11 @@ export const styles = StyleSheet.create({
     fontSize: SIZES.multiplyBy(1.25),
     fontWeight: FONTWEIGHT.semiBold,
     marginVertical: SPACINGS.multiplyBy(.25)
-  }
+  },
+  logoutContainer: {
+    height: SPACINGS.multiplyBy(2),
+    marginTop: SPACINGS.multiplyBy(.75),
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+  },
 });
