@@ -1,6 +1,6 @@
-import { StyleSheet, StatusBar } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { COLORS } from '../../theme/colors';
-import { SIZES} from '../../theme/fonts';
+import { SIZES, FONTWEIGHT } from '../../theme/fonts';
 import { SPACINGS } from '../../theme/spacings';
 
 export const styles = StyleSheet.create({
@@ -43,7 +43,7 @@ export const styles = StyleSheet.create({
   title: {
     fontSize: SIZES.multiplyBy(1.375),
     lineHeight: SPACINGS.multiplyBy(2),
-    fontWeight: 'bold'
+    fontWeight: FONTWEIGHT.bold
   },
   text: {
     fontSize: SIZES.sm,
