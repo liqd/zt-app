@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 import { COLORS } from '../../theme/colors';
-import { SIZES } from '../../theme/fonts';
-import { SPACINGS } from '../../theme/spacings';
+import { SIZES, FONTWEIGHT } from '../../theme/fonts';
+import { SPACINGS, BORDERRADIUS } from '../../theme/spacings';
 
 const headerOffset = 250;
 const submitButtonHeight = 70;
@@ -16,10 +16,10 @@ export const styles = StyleSheet.create({
     backgroundColor: COLORS.primary
   },
   overlayContainer: {
-    borderTopLeftRadius: 24,
-    borderTopRightRadius: 24,
+    borderTopLeftRadius: BORDERRADIUS.container,
+    borderTopRightRadius: BORDERRADIUS.container,
     top: headerOffset,
-    backgroundColor: 'white',
+    backgroundColor: COLORS.paper.main,
     paddingBottom: headerOffset
   },
   infoContainer: {
@@ -38,13 +38,13 @@ export const styles = StyleSheet.create({
     width: '100%',
     height: submitButtonHeight,
     fontSize: SIZES.base,
-    borderRadius: 0,
+    borderRadius: BORDERRADIUS.none,
   },
   title: {
     fontSize: SIZES.multiplyBy(1.375),
     marginTop: SPACINGS.multiplyBy(1.5),
     marginBottom: SPACINGS.multiplyBy(0.5),
-    fontWeight: 'bold',
+    fontWeight: FONTWEIGHT.bold,
   },
   description: {
     fontSize: SIZES.multiplyBy(0.9375),
@@ -61,11 +61,11 @@ export const styles = StyleSheet.create({
   },
   tabsMenuItem: {
     fontSize: SIZES.multiplyBy(1.0625),
-    fontWeight: '600'
+    fontWeight: FONTWEIGHT.bold
   },
   tabsMenuItemActive: {
     fontSize: SIZES.multiplyBy(1.0625),
-    fontWeight: '600',
+    fontWeight: FONTWEIGHT.bold,
     color: COLORS.primary
   },
   phaseContainer: {
@@ -73,7 +73,7 @@ export const styles = StyleSheet.create({
   },
   phaseDate: {
     fontSize: SIZES.multiplyBy(0.9375),
-    fontWeight: '700',
+    fontWeight: FONTWEIGHT.boldxl,
   },
   phaseText: {
     fontSize: SIZES.multiplyBy(0.9375),

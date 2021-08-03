@@ -1,7 +1,8 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View } from 'react-native';
 import { BottomSheet } from 'react-native-elements';
 import { MenuItem } from './MenuItem';
+import { styles } from './Menu.styles';
 
 export const Menu = (props) => {
   return (
@@ -16,12 +17,3 @@ export const Menu = (props) => {
     </BottomSheet>
   );
 };
-
-const styles = StyleSheet.create({
-  backdrop: {
-    backgroundColor: 'rgba(77, 77, 77, 0.9)'
-  },
-  list: {
-    alignItems: 'center'
-  }
-});

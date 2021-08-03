@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, FlatList, StyleSheet } from 'react-native';
+import { Text, View, FlatList } from 'react-native';
 import API from '../../BaseApi';
-import { COLORS } from '../../theme/colors';
-import { SIZES } from '../../theme/fonts';
-import { SPACINGS } from '../../theme/spacings';
 import { ExploreListItem } from './ExploreListItem';
+import { styles } from './ExplorePage.styles';
 
 export const ExplorePage = (props) => {
   const [projects, setProjects] = useState([]);
@@ -39,21 +37,3 @@ export const ExplorePage = (props) => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: SPACINGS.multiplyBy(0.8),
-    backgroundColor: COLORS.paper.main,
-  },
-  title: {
-    fontSize: SIZES.multiplyBy(1.75),
-    fontWeight: 'bold',
-    marginVertical: SPACINGS.multiplyBy(.5)
-  },
-  subtitle: {
-    fontSize: SIZES.multiplyBy(1.25),
-    fontWeight: '500',
-    marginVertical: SPACINGS.multiplyBy(.25)
-  }
-});

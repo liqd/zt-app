@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 import { COLORS } from '../theme/colors';
-import { SPACINGS } from '../theme/spacings';
+import { SPACINGS, BORDERWIDTH } from '../theme/spacings';
 import { SIZES, LINEHEIGHTS } from '../theme/fonts';
 
 export const styles = StyleSheet.create({
@@ -10,11 +10,11 @@ export const styles = StyleSheet.create({
   formImagePreview: {
     width: '100%',
     height: 50,
-    marginBottom: 10,
+    marginBottom: SPACINGS.multiplyBy(.5),
     justifyContent: 'center',
     alignItems: 'center',
-    borderColor: '#ccc',
-    borderWidth: 1
+    borderColor: COLORS.grey.extralight,
+    borderWidth: BORDERWIDTH.base
   },
   formImage: {
     width: '30%',

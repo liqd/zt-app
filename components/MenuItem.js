@@ -1,9 +1,10 @@
 import React from 'react';
-import { TouchableWithoutFeedback, StyleSheet } from 'react-native';
+import { TouchableWithoutFeedback } from 'react-native';
 import { ListItem } from 'react-native-elements';
 import IconSLI from 'react-native-vector-icons/SimpleLineIcons';
 import { COLORS } from '../theme/colors';
 import { SIZES } from '../theme/fonts';
+import { styles } from './MenuItem.styles';
 
 export const MenuItem = (props) => {
   const {item: { isCancel, isFirst, isLast }} = props;
@@ -38,30 +39,3 @@ export const MenuItem = (props) => {
     </ListItem>
   );
 };
-
-const styles = StyleSheet.create({
-  listButton: {
-    width: '90%',
-    borderTopLeftRadius: 0,
-    borderTopRightRadius: 0,
-  },
-  listButtonFirst: {
-    width: '90%',
-    borderTopLeftRadius: 15,
-    borderTopRightRadius: 15,
-  },
-  listButtonLast: {
-    width: '90%',
-    borderBottomLeftRadius: 15,
-    borderBottomRightRadius: 15,
-  },
-  cancelContent: {
-    alignItems: 'center',
-  },
-  cancelButton: {
-    backgroundColor: 'transparent'
-  },
-  cancelButtonText: {
-    color: 'white'
-  }
-});
