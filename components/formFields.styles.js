@@ -1,13 +1,13 @@
 import { StyleSheet } from 'react-native';
 import { COLORS } from '../theme/colors';
-import { SPACINGS } from '../theme/spacings';
-import { SIZES, LINEHEIGHTS } from '../theme/fonts';
+import { SPACINGS, BORDERWIDTH } from '../theme/spacings';
+import { SIZES, LINEHEIGHTS, FONTWEIGHT } from '../theme/fonts';
 
 export const styles = StyleSheet.create({
   formTitle: {
     fontSize: SIZES.md,
     lineHeight: LINEHEIGHTS.md,
-    fontWeight: 'bold'
+    fontWeight: FONTWEIGHT.bold
   },
   formLabel: {
     fontSize: SIZES.sm,
@@ -18,7 +18,7 @@ export const styles = StyleSheet.create({
   },
   textInput: {
     borderBottomColor: COLORS.grey.extralight,
-    borderBottomWidth: 1,
+    borderBottomWidth: BORDERWIDTH.base,
     height: SPACINGS.multiplyBy(2),
     fontSize: SIZES.md,
   },
@@ -44,11 +44,11 @@ export const styles = StyleSheet.create({
     borderRightWidth: 0,
     borderLeftWidth: 0,
     borderRadius: 0,
-    borderBottomWidth: 1,
+    borderBottomWidth: BORDERWIDTH.base,
   },
   formError: {
     fontSize: SIZES.xs,
-    color: 'red'
+    color: COLORS.warning
   },
   formRow: {
     paddingVertical: SPACINGS.multiplyBy(.5),

@@ -25,4 +25,5 @@ export const COLORS = {
     medium: '#666',
     dark: '#464a4c',
   },
+  overlay: 'rgba(77, 77, 77, 0.9)'
 };

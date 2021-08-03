@@ -24,3 +24,13 @@ export const LINEHEIGHTS = {
   xl: baseLineHeight * 1.9,
   multiplyBy: times => times * baseLineHeight
 };
+
+export const FONTWEIGHT = {
+  semiBold: '500',
+  bold: '600',
+  boldxl: '800'
+};
+
+export const LETTERSPACING = {
+  iconbtn: 5,
+};

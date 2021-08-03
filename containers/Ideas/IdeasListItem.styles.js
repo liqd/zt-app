@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 import { COLORS } from '../../theme/colors';
-import { SIZES } from '../../theme/fonts';
-import { SPACINGS } from '../../theme/spacings';
+import { SIZES, FONTWEIGHT } from '../../theme/fonts';
+import { SPACINGS, BORDERWIDTH } from '../../theme/spacings';
 
 export const styles = StyleSheet.create({
   container: {
@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
     width: '100%',
     height: 128,
     borderColor: COLORS.grey.extralight,
-    borderWidth: 1,
+    borderWidth: BORDERWIDTH.base,
     padding: SPACINGS.multiplyBy(.8),
     marginVertical: SPACINGS.multiplyBy(.2)
   },
@@ -24,7 +24,7 @@ export const styles = StyleSheet.create({
   },
   title: {
     fontSize: SIZES.base,
-    fontWeight: 'bold'
+    fontWeight: FONTWEIGHT.bold
   },
   text: {
     fontSize: SIZES.sm,

@@ -1,8 +1,6 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { COLORS } from '../theme/colors';
-import { SIZES } from '../theme/fonts';
-import { SPACINGS } from '../theme/spacings';
+import { View, Text } from 'react-native';
+import { styles } from './Label.styles';
 
 export const Label = (props) => {
   return (
@@ -11,20 +9,3 @@ export const Label = (props) => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  label: {
-    alignItems: 'center',
-    alignSelf: 'flex-start',
-    backgroundColor: COLORS.text.main,
-    paddingVertical: SPACINGS.multiplyBy(.4),
-    paddingHorizontal: SPACINGS.multiplyBy(.8),
-    borderRadius: 12,
-    marginRight: SPACINGS.multiplyBy(.5),
-    marginBottom: SPACINGS.multiplyBy(.5)
-  },
-  text: {
-    color: COLORS.text.inverted,
-    fontSize: SIZES.multiplyBy(.9375)
-  }
-});

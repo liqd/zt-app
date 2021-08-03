@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
 import { SPACINGS } from '../theme/spacings';
+import { SIZES, LINEHEIGHTS, LETTERSPACING } from '../theme/fonts';
 
 export const styles = StyleSheet.create({
   container: {
@@ -8,10 +9,10 @@ export const styles = StyleSheet.create({
   },
   icon: {
     letterSpacing: SPACINGS.multiplyBy(.5),
-    fontSize: 15,
-    lineHeight: 20,
+    fontSize: SIZES.sm,
+    lineHeight: LINEHEIGHTS.sm,
   },
   text: {
-    letterSpacing: 5,
+    letterSpacing: LETTERSPACING.iconbtn,
   }
 });
