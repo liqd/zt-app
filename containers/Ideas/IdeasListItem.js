@@ -20,6 +20,7 @@ export const IdeasListItem = (props) => {
   const pressHandler = () =>
     props.navigation.navigate('IdeaDetail', {
       params: props.idea,
+      isRatingPhase: props.isRatingPhase,
       createdDate: createdDate,
     });
 

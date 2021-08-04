@@ -1,16 +1,22 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { Text, TouchableOpacity } from 'react-native';
 import { styles } from './ButtonCounter.styles';
 
 export const ButtonCounter = (props) => {
   return (
-    <View style={styles.container}>
-      <Text style={styles.icon}>
+    <TouchableOpacity
+      style={styles.container}
+      onPress={props.onPress}
+      disabled={props.disabled}
+    >
+      <Text
+        style={props.disabled ? styles.iconDisabled : styles.icon}
+      >
         {props.icon}
       </Text>
-      <Text style={styles.text}>
+      <Text style={props.disabled ? styles.textDisabled : styles.text}>
         {props.counter}
       </Text>
-    </View>
+    </TouchableOpacity>
   );
 };
