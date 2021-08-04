@@ -1,3 +1,4 @@
+// const baseUrl = 'http://10.0.2.2:8004/api';
 const baseUrl = 'https://aplus-dev.liqd.net/api';
 
 const endpoints = {

@@ -16,6 +16,7 @@ export const IdeaProject = (props) => {
   const [activePhase, setActivePhase] = useState();
   const [phaseStart, setPhaseStart] = useState();
   const [phaseEnd, setPhaseEnd] = useState();
+  const [isRatingPhase, setIsRatingPhase] = useState();
   const bgImage = project.image
     ? project.image
     : null;
@@ -45,6 +46,7 @@ export const IdeaProject = (props) => {
         }) &&
           API.getModule(singleModule).then((moduleResponse) => {
             const aPhase = moduleResponse.phases.find((phase) => phase.is_active);
+            setIsRatingPhase(moduleResponse.ideas_rating_phase_active);
             aPhase && setActivePhase(aPhase);
             aPhase && setPhaseStart(DateService(aPhase.start_date, 'month d, y, h:m'));
             aPhase && setPhaseEnd(DateService(aPhase.end_date, 'month d, y, h:m'));
@@ -56,7 +58,7 @@ export const IdeaProject = (props) => {
       fetchIdeas();
     });
     return ideasListener;
-  }, []);
+  }, [ideas]);
 
   return (
     <View style={styles.container}>
@@ -116,7 +118,11 @@ export const IdeaProject = (props) => {
                   <Button icon={sortIcon} type='clear' />
                 </View>
                 <View style={styles.listContainer}>
-                  <IdeasList ideas={ideas} {...props} />
+                  <IdeasList
+                    ideas={ideas}
+                    isRatingPhase={isRatingPhase}
+                    {...props}
+                  />
                 </View>
                 {activePhase && (
                   <Button
