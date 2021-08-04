@@ -35,7 +35,6 @@ export const AuthProvider = (props) => {
 
   const actions = useMemo(() => ({
     signIn: async (authToken) => {
-      console.log('I was triggered during componentDidMount123');
       AsyncStorage.setItem('authToken', authToken);
       setState({ ...state, loading: false, token: authToken });
     },
