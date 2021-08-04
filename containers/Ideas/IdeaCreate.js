@@ -35,7 +35,7 @@ export const IdeaCreate = props => {
     else {
       fetchLabelsAndCategories();
     }
-  }, [error, categories]);
+  }, [error, categories, labels]);
 
   const handleSubmit = (values) => {
     AsyncStorage.getItem('authToken')
@@ -74,27 +74,26 @@ export const IdeaCreate = props => {
   const [open, setOpen] = useState(false);
   const [clicked, setClicked] = useState(false);
   const [value, setValue] = useState(null);
-  const [items, setItems] = useState([
-    {label: 'Category 1', value: 'category1'},
-    {label: 'Category 2', value: 'category2'}
-  ]);
-  const [categories, setCategories] = useState();
+  const [categories, setCategories] = useState([]);
   const [labels, setLabels] = useState([]);
 
-  const fetchLabelsAndCategories = () => {
-    API.getModule(moduleId).then((moduleResponse) => {
-      setCategories(moduleResponse.categories);
-      setLabels(moduleResponse.labels);
-      console.log(categories);
-    });
-  };
+  const fetchLabelsAndCategories = async() => {
+    const fetchedItems = await API.getModule(moduleId);
 
-  // const fetchLabelsAndCategories = async() => {
-  //   const fetchedItems = await API.getModule(moduleId);
-  //   await setCategories(fetchedItems);
-  //   console.log(fetchedItems.categories);
-  //   console.log(categories);
-  // }
+    // mapping fetched list to structure for view
+    const flattenedCategories =
+      fetchedItems && fetchedItems.categories &&
+        fetchedItems.categories.map(cat => ({value: cat[0], label: cat[1]})) || [];
+    const flattenedLabels =
+      fetchedItems && fetchedItems.categories &&
+        fetchedItems.labels.map(lab => ({value: lab[0], title: lab[1]})) || [];
+
+    // checking if not fetchedItems false, then setCategories and setLabels
+    fetchedItems && fetchedItems.categories &&  setCategories(prevItems =>
+      [...prevItems, ...flattenedCategories]);
+    fetchedItems && fetchedItems.labels && setLabels(prevItems =>
+      [...prevItems, ...flattenedLabels]);
+  };
 
   return (
     <ScrollView
@@ -151,35 +150,32 @@ export const IdeaCreate = props => {
               error={errors.description}
               touched={touched.description}
             />
-            {console.log(categories)}
-            {categories &&
+            {categories.length > 0 &&
               <DropdownFormFieldContainer
                 field='Idea Category'
                 name='category'>
                 <DropdownFormField
                   open={open}
                   value={value}
-                  items={items}
+                  items={categories}
                   setOpen={setOpen}
                   setValue={setValue}
-                  setItems={setItems}
+                  setItems={setCategories}
                 >
                 </DropdownFormField>
               </DropdownFormFieldContainer>
             }
-            {labels &&
+            {labels.length > 0 &&
               <CheckBoxFormFieldContainer
                 field='Idea Labels'
               >
-                <CheckBoxFormField
-                  title='Label 1'
-                />
-                <CheckBoxFormField
-                  title='Label 2'
-                />
-                <CheckBoxFormField
-                  title='Label 3'
-                />
+                {labels.map((label, idx) => (
+                  <CheckBoxFormField
+                    key={`labelfield-${idx}`}
+                    title={label.title}
+                    value={label.value}
+                  />)
+                )}
               </CheckBoxFormFieldContainer>
             }
             {!clicked &&
