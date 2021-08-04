@@ -32,7 +32,10 @@ export const IdeaCreate = props => {
     if (error) {
       Alert.alert('An error occured', error, [{ text: 'Ok' }]);
     }
-  }, [error]);
+    else {
+      fetchLabelsAndCategories();
+    }
+  }, [error, categories]);
 
   const handleSubmit = (values) => {
     AsyncStorage.getItem('authToken')
@@ -75,6 +78,23 @@ export const IdeaCreate = props => {
     {label: 'Category 1', value: 'category1'},
     {label: 'Category 2', value: 'category2'}
   ]);
+  const [categories, setCategories] = useState();
+  const [labels, setLabels] = useState([]);
+
+  const fetchLabelsAndCategories = () => {
+    API.getModule(moduleId).then((moduleResponse) => {
+      setCategories(moduleResponse.categories);
+      setLabels(moduleResponse.labels);
+      console.log(categories);
+    });
+  };
+
+  // const fetchLabelsAndCategories = async() => {
+  //   const fetchedItems = await API.getModule(moduleId);
+  //   await setCategories(fetchedItems);
+  //   console.log(fetchedItems.categories);
+  //   console.log(categories);
+  // }
 
   return (
     <ScrollView
@@ -131,32 +151,37 @@ export const IdeaCreate = props => {
               error={errors.description}
               touched={touched.description}
             />
-            <DropdownFormFieldContainer
-              field='Idea Category'
-              name='category'>
-              <DropdownFormField
-                open={open}
-                value={value}
-                items={items}
-                setOpen={setOpen}
-                setValue={setValue}
-                setItems={setItems}
+            {console.log(categories)}
+            {categories &&
+              <DropdownFormFieldContainer
+                field='Idea Category'
+                name='category'>
+                <DropdownFormField
+                  open={open}
+                  value={value}
+                  items={items}
+                  setOpen={setOpen}
+                  setValue={setValue}
+                  setItems={setItems}
+                >
+                </DropdownFormField>
+              </DropdownFormFieldContainer>
+            }
+            {labels &&
+              <CheckBoxFormFieldContainer
+                field='Idea Labels'
               >
-              </DropdownFormField>
-            </DropdownFormFieldContainer>
-            <CheckBoxFormFieldContainer
-              field='Idea Labels'
-            >
-              <CheckBoxFormField
-                title='Label 1'
-              />
-              <CheckBoxFormField
-                title='Label 2'
-              />
-              <CheckBoxFormField
-                title='Label 3'
-              />
-            </CheckBoxFormFieldContainer>
+                <CheckBoxFormField
+                  title='Label 1'
+                />
+                <CheckBoxFormField
+                  title='Label 2'
+                />
+                <CheckBoxFormField
+                  title='Label 3'
+                />
+              </CheckBoxFormFieldContainer>
+            }
             {!clicked &&
               <Button
                 buttonStyle={styles.imageButton}
