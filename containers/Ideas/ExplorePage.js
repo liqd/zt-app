@@ -11,7 +11,9 @@ export const ExplorePage = (props) => {
   const [projects, setProjects] = useState([]);
 
   const fetchProjects = () => {
-    API.getProjects().then((response) => setProjects(response));
+    API.getProjects()
+      .then(response => response && setProjects(response))
+      .catch(error => console.warn(error));
   };
 
   const pressHandler = (project) =>
