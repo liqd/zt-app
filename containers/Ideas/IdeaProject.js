@@ -8,6 +8,7 @@ import IconFA from 'react-native-vector-icons/FontAwesome';
 import API from '../../BaseApi';
 import { COLORS } from '../../theme/colors';
 import { DateService } from '../../services/DateService';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const IdeaProject = (props) => {
   const {project} = props.route.params;
@@ -37,13 +38,17 @@ export const IdeaProject = (props) => {
 
   const fetchIdeas = () => {
     singleModule &&
-      API.getIdeas(singleModule).then((ideaResponse) => setIdeas(ideaResponse)) &&
-        API.getModule(singleModule).then((moduleResponse) => {
-          const aPhase = moduleResponse.phases.find((phase) => phase.is_active);
-          aPhase && setActivePhase(aPhase);
-          aPhase && setPhaseStart(DateService(aPhase.start_date, 'month d, y, h:m'));
-          aPhase && setPhaseEnd(DateService(aPhase.end_date, 'month d, y, h:m'));
-        });
+      AsyncStorage.getItem('authToken')
+        .then((token) => API.getIdeas(singleModule, token))
+        .then((ideaResponse) => {
+          setIdeas(ideaResponse);
+        }) &&
+          API.getModule(singleModule).then((moduleResponse) => {
+            const aPhase = moduleResponse.phases.find((phase) => phase.is_active);
+            aPhase && setActivePhase(aPhase);
+            aPhase && setPhaseStart(DateService(aPhase.start_date, 'month d, y, h:m'));
+            aPhase && setPhaseEnd(DateService(aPhase.end_date, 'month d, y, h:m'));
+          });
   };
 
   useEffect(() => {
