@@ -8,8 +8,11 @@ const endpoints = {
   rate: baseUrl + '/contenttypes/$contentTypeId/objects/$objectPk/ratings/'
 };
 
-const makeGetRequest = (url) => {
-  return fetch(url)
+const makeGetRequest = (url, token=null) => {
+  return fetch(url, {
+    method: 'GET',
+    headers: getHeaders(token)
+  })
     .then(response => response.json())
     .then(unpackedData => unpackedData)
     .catch(error => console.error(error));
@@ -61,9 +64,9 @@ const makePutRequest = (url, data = {}, token=null) => {
 };
 
 const API = {
-  getIdeas(moduleId) {
+  getIdeas(moduleId, token=null) {
     const url = endpoints.ideas.replace(/\$(\w+?)\b/g, moduleId);
-    return makeGetRequest(url);
+    return makeGetRequest(url, token);
   },
   postIdea(moduleId, data, token=null) {
     const url = endpoints.ideas.replace(/\$(\w+?)\b/g, moduleId);
