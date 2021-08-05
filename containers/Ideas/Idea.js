@@ -7,9 +7,12 @@ import Icon from 'react-native-vector-icons/SimpleLineIcons';
 import { ButtonCounter } from '../../components/ButtonCounter';
 import { Label } from '../../components/Label';
 import { Menu } from '../../components/Menu';
+import { Modal } from '../../components/Modal';
 
 export const Idea = (props) => {
   const {params, createdDate} = props.route.params;
+  const [menuVisible, setMenuVisible] = useState(false);
+  const [deleteModalVisible, setDeleteModalVisible] = useState(false);
   const getLabels = () => {
     let labelsList = [];
     params.category && labelsList.push(params.category);
@@ -17,8 +20,11 @@ export const Idea = (props) => {
     return labelsList;
   };
   const toggleMenu = () => setMenuVisible(!menuVisible);
-  const [menuVisible, setMenuVisible] = useState(false);
-  const menuItems  = [
+  const toggleDeleteModal = () => (
+    setDeleteModalVisible(!deleteModalVisible),
+    setMenuVisible(false)
+  );
+  const menuItems = [
     {
       title: 'Edit',
       icon: 'pencil',
@@ -28,7 +34,7 @@ export const Idea = (props) => {
     {
       title: 'Delete',
       icon: 'trash',
-      action: () => console.log('Delete')
+      action: () => toggleDeleteModal()
     },
     {
       title: 'Report',
@@ -39,6 +45,21 @@ export const Idea = (props) => {
     {
       title: 'Cancel',
       action: () => toggleMenu(),
+      isCancel: true
+    },
+  ];
+  const deleteModalItems = [
+    {
+      title: 'This idea will be deleted.\nThis action cannot be undone',
+      isText: true
+    },
+    {
+      title: 'Delete',
+      action: () => console.log('Idea deleted')
+    },
+    {
+      title: 'Cancel',
+      action: () => toggleDeleteModal(),
       isCancel: true
     },
   ];
@@ -107,6 +128,10 @@ export const Idea = (props) => {
         </View>
       </ScrollView>
       <Menu menuItems={menuItems} isVisible={menuVisible} />
+      <Modal
+        modalItems={deleteModalItems}
+        isVisible={deleteModalVisible}
+      />
     </>
   );
 };
