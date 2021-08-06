@@ -1,15 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, Image, ScrollView } from 'react-native';
 import { Button } from 'react-native-elements';
 import { styles } from './Idea.styles';
 import Icon from 'react-native-vector-icons/SimpleLineIcons';
 import API from '../../BaseApi';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
 import { ButtonCounter } from '../../components/ButtonCounter';
 import { Label } from '../../components/Label';
 import { Menu } from '../../components/Menu';
 import { Modal } from '../../components/Modal';
+import { Comments } from '../Comments/Comments';
+import { TouchableOpacity } from 'react-native';
 
 export const Idea = (props) => {
   const {params, createdDate, isRatingPhase} = props.route.params;
@@ -17,6 +18,9 @@ export const Idea = (props) => {
   const [deleteModalVisible, setDeleteModalVisible] = useState(false);
   const [voteUp, setVoteUp] = useState(params.positive_rating_count);
   const [voteDown, setVoteDown] = useState(params.negative_rating_count);
+  const [comments, setComments] = useState([]);
+  const [showComments, setShowComments] = useState(false);
+  const hasComments = comments.length !== 0;
 
   const menuItems = [
     {
@@ -42,6 +46,7 @@ export const Idea = (props) => {
       isCancel: true
     },
   ];
+
   const deleteModalItems = [
     {
       title: 'This idea will be deleted.\nThis action cannot be undone',
@@ -104,6 +109,13 @@ export const Idea = (props) => {
       setVoteDown(0);
     }
   };
+  const toggleComments = () => setShowComments(!showComments);
+
+  useEffect(() => {
+    const { content_type, pk } = params;
+    API.getComments(content_type, pk)
+      .then(({results}) => setComments(results));
+  }, []);
 
   return (
     <>
@@ -166,11 +178,20 @@ export const Idea = (props) => {
             />
           </View>
           <View>
-            <Text>
-              <Icon name='bubble' size={18} color={styles.disabledIcon.color} />
-            </Text>
+            <TouchableOpacity onPress={toggleComments} disabled={!hasComments}>
+              <Icon
+                name='bubble'
+                size={18}
+                color={!hasComments
+                  ? styles.disabledIcon.color
+                  : styles.fontColor.color}
+              />
+            </TouchableOpacity>
           </View>
         </View>
+        {comments && showComments && <View>
+          <Comments comments={comments} />
+        </View>}
       </ScrollView>
       <Menu menuItems={menuItems} isVisible={menuVisible} />
       <Modal

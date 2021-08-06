@@ -6,7 +6,8 @@ const endpoints = {
   login: baseUrl + '/login/',
   projects: baseUrl + '/app-projects/',
   modules: baseUrl + '/app-modules/',
-  rate: baseUrl + '/contenttypes/$contentTypeId/objects/$objectPk/ratings/'
+  rate: baseUrl + '/contenttypes/$contentTypeId/objects/$objectPk/ratings/',
+  comments: baseUrl + '/contenttypes/$contentTypeId/objects/$objectPk/comments/',
 };
 
 const makeGetRequest = (url, token=null) => {
@@ -95,6 +96,11 @@ const API = {
     const ct_url = endpoints.rate.replace('$contentTypeId', contentTypeId);
     const url = ct_url.replace('$objectPk', objectPk) + ratingId +'/';
     return makePutRequest(url, data, token);
+  },
+  getComments(contentTypeId, objectPk) {
+    const ct_url = endpoints.comments.replace('$contentTypeId', contentTypeId);
+    const url = ct_url.replace('$objectPk', objectPk);
+    return makeGetRequest(url);
   }
 };
 
