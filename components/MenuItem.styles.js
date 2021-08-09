@@ -18,6 +18,13 @@ export const styles = StyleSheet.create({
     borderBottomLeftRadius: BORDERRADIUS.base,
     borderBottomRightRadius: BORDERRADIUS.base,
   },
+  listButtonOnly: {
+    width: '90%',
+    borderTopLeftRadius: BORDERRADIUS.base,
+    borderTopRightRadius: BORDERRADIUS.base,
+    borderBottomLeftRadius: BORDERRADIUS.base,
+    borderBottomRightRadius: BORDERRADIUS.base,
+  },
   cancelContent: {
     alignItems: 'center',
   },

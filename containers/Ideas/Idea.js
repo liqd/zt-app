@@ -23,23 +23,28 @@ export const Idea = (props) => {
       title: 'Edit',
       icon: 'pencil',
       action: () => console.log('Edit'),
-      isFirst: true
+      isFirst: true,
+      isAllowed: params.has_changing_permission
     },
     {
       title: 'Delete',
       icon: 'trash',
-      action: () => toggleDeleteModal()
+      action: () => toggleDeleteModal(),
+      isAllowed: params.has_changing_permission
     },
     {
       title: 'Report',
       icon: 'flag',
       action: () => console.log('Report'),
-      isLast: true
+      isFirst: !params.has_changing_permission,
+      isLast: true,
+      isAllowed: true
     },
     {
       title: 'Cancel',
       action: () => toggleMenu(),
-      isCancel: true
+      isCancel: true,
+      isAllowed: true
     },
   ];
   const deleteModalItems = [
