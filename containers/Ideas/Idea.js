@@ -13,7 +13,7 @@ import { Comments } from '../Comments/Comments';
 import { TouchableOpacity } from 'react-native';
 
 export const Idea = (props) => {
-  const {params, createdDate, isRatingPhase} = props.route.params;
+  const {params, createdDate} = props.route.params;
   const [menuVisible, setMenuVisible] = useState(false);
   const [deleteModalVisible, setDeleteModalVisible] = useState(false);
   const [voteUp, setVoteUp] = useState(params.positive_rating_count);
@@ -168,13 +168,13 @@ export const Idea = (props) => {
               icon={<Icon name='arrow-up' size={18} />}
               counter={voteUp}
               onPress={() => handleVote('up')}
-              disabled={!isRatingPhase}
+              disabled={!params.has_rating_permission}
             />
             <ButtonCounter
               icon={<Icon name='arrow-down' size={18} />}
               counter={voteDown}
               onPress={() => handleVote('down')}
-              disabled={!isRatingPhase}
+              disabled={!params.has_rating_permission}
             />
           </View>
           <View>
