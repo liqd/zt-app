@@ -11,7 +11,6 @@ export const IdeasList = (props) => {
           <IdeasListItem
             key={`pk${idea.pk}`}
             idea={idea}
-            isRatingPhase={props.isRatingPhase}
             {...props}
           />
         );
