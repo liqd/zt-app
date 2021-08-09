@@ -67,6 +67,7 @@ export const DropdownFormField = (props) => {
         setOpen={props.setOpen}
         setValue={props.setValue}
         setItems={props.setItems}
+        onChangeValue={props.onChangeValue}
         containerStyle={{}}
       />
     </View>
