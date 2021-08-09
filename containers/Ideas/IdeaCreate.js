@@ -6,6 +6,7 @@ import * as yup from 'yup';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Icon from 'react-native-vector-icons/SimpleLineIcons';
 import IconSLI from 'react-native-vector-icons/SimpleLineIcons';
+import DropDownPicker from 'react-native-dropdown-picker';
 
 import { styles } from './Idea.styles';
 import {
@@ -73,9 +74,10 @@ export const IdeaCreate = props => {
 
   const [open, setOpen] = useState(false);
   const [clicked, setClicked] = useState(false);
-  const [value, setValue] = useState(null);
   const [categories, setCategories] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState(null);
   const [labels, setLabels] = useState([]);
+  const [selectedLabels, setSelectedLabels] = useState([]);
 
   const fetchLabelsAndCategories = async() => {
     const fetchedItems = await API.getModule(moduleId);
@@ -89,10 +91,11 @@ export const IdeaCreate = props => {
         fetchedItems.labels.map(lab => ({value: lab[0], title: lab[1]})) || [];
 
     // checking if not fetchedItems false, then setCategories and setLabels
-    fetchedItems && fetchedItems.categories &&  setCategories(prevItems =>
-      [...prevItems, ...flattenedCategories]);
-    fetchedItems && fetchedItems.labels && setLabels(prevItems =>
-      [...prevItems, ...flattenedLabels]);
+    fetchedItems && fetchedItems.categories && setCategories(prevCategories =>
+      [...prevCategories, ...flattenedCategories]);
+    fetchedItems && fetchedItems.categories && setSelectedCategory(flattenedCategories[0].value);
+    fetchedItems && fetchedItems.labels && setLabels(prevLabels =>
+      [...prevLabels, ...flattenedLabels]);
   };
 
   return (
@@ -113,7 +116,12 @@ export const IdeaCreate = props => {
       <Text style={styles.title}>Submit a new idea for this project</Text>
       <Formik
         validationSchema={ideaValidationSchema}
-        initialValues={{ name: '', description: '' , labels: []}}
+        initialValues={{
+          name: '',
+          description: '' ,
+          labels: [],
+          ...(categories.length>0 && { category: '' }),
+        }}
         onSubmit={values => handleSubmit(values)}
       >
         {({
@@ -123,7 +131,8 @@ export const IdeaCreate = props => {
           values,
           errors,
           touched,
-          isValid
+          isValid,
+          setFieldValue
         }) => (
           <>
             <TextInputFormField
@@ -156,11 +165,12 @@ export const IdeaCreate = props => {
                 name='category'>
                 <DropdownFormField
                   open={open}
-                  value={value}
-                  items={categories}
                   setOpen={setOpen}
-                  setValue={setValue}
+                  items={categories}
                   setItems={setCategories}
+                  value={selectedCategory}
+                  setValue={setSelectedCategory}
+                  onChangeValue={() => setFieldValue('category', selectedCategory)}
                 >
                 </DropdownFormField>
               </DropdownFormFieldContainer>
@@ -168,6 +178,7 @@ export const IdeaCreate = props => {
             {labels.length > 0 &&
               <CheckBoxFormFieldContainer
                 field='Idea Labels'
+                name='labels'
               >
                 {labels.map((label, idx) => (
                   <CheckBoxFormField
