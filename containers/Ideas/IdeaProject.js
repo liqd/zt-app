@@ -16,6 +16,7 @@ export const IdeaProject = (props) => {
   const [activePhase, setActivePhase] = useState();
   const [phaseStart, setPhaseStart] = useState();
   const [phaseEnd, setPhaseEnd] = useState();
+  const [hasIdeaCreatePermission, setHasIdeaCreatePermission] = useState();
   const bgImage = project.image
     ? project.image
     : null;
@@ -43,12 +44,15 @@ export const IdeaProject = (props) => {
         .then((ideaResponse) => {
           setIdeas(ideaResponse);
         }) &&
-          API.getModule(singleModule).then((moduleResponse) => {
-            const aPhase = moduleResponse.phases.find((phase) => phase.is_active);
-            aPhase && setActivePhase(aPhase);
-            aPhase && setPhaseStart(DateService(aPhase.start_date, 'month d, y, h:m'));
-            aPhase && setPhaseEnd(DateService(aPhase.end_date, 'month d, y, h:m'));
-          });
+          AsyncStorage.getItem('authToken')
+            .then((token) => API.getModule(singleModule, token))
+            .then((moduleResponse) => {
+              const aPhase = moduleResponse.phases.find((phase) => phase.is_active);
+              aPhase && setActivePhase(aPhase);
+              aPhase && setPhaseStart(DateService(aPhase.start_date, 'month d, y, h:m'));
+              aPhase && setPhaseEnd(DateService(aPhase.end_date, 'month d, y, h:m'));
+              setHasIdeaCreatePermission(moduleResponse.has_idea_adding_permission);
+            });
   };
 
   useEffect(() => {
@@ -121,7 +125,7 @@ export const IdeaProject = (props) => {
                     {...props}
                   />
                 </View>
-                {activePhase && (
+                {hasIdeaCreatePermission && (
                   <Button
                     buttonStyle={styles.submitButton}
                     title='Submit Idea'
