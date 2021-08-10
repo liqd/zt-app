@@ -79,7 +79,6 @@ export const styles = StyleSheet.create({
   },
   imageButton: {
     width: '100%',
-    backgroundColor: COLORS.text.main,
     color: COLORS.text.inverted,
     marginBottom: SPACINGS.multiplyBy(.5)
   },
@@ -90,4 +89,8 @@ export const styles = StyleSheet.create({
     marginHorizontal: SPACINGS.multiplyBy(.25),
     fontSize: SIZES.md
   },
+  commentButton: {
+    fontSize: SIZES.md,
+    paddingVertical: SPACINGS.multiplyBy(.25),
+  }
 });
