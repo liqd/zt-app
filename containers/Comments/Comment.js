@@ -72,6 +72,7 @@ export const Comment = (props) => {
           title="Reply"
           titleStyle={styles.buttonTitle}
           type='clear'
+          styles={styles.commentButton}
         />
         <Button
           icon={<Icon name='action-redo' size={18} />}

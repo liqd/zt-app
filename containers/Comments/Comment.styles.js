@@ -60,5 +60,8 @@ export const styles = StyleSheet.create({
   buttonTitle: {
     color: COLORS.grey.dark,
     marginLeft: SPACINGS.multiplyBy(0.4)
+  },
+  commentButton: {
+    paddingVertical: SPACINGS.multiplyBy(.4)
   }
 });
