@@ -178,15 +178,13 @@ export const Idea = (props) => {
             />
           </View>
           <View>
-            <TouchableOpacity onPress={toggleComments} disabled={!hasComments}>
-              <Icon
-                name='bubble'
-                size={18}
-                color={!hasComments
-                  ? styles.disabledIcon.color
-                  : styles.fontColor.color}
-              />
-            </TouchableOpacity>
+            <Button
+              onPress={toggleComments}
+              disabled={!hasComments}
+              icon={<Icon name='bubble' size={18} color={!hasComments ? styles.disabledIcon.color : styles.fontColor.color} />}
+              type='clear'
+              containerStyle={styles.commentButton}
+            />
           </View>
         </View>
         {comments && showComments && <View>

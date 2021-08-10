@@ -9,13 +9,13 @@ export const ButtonCounter = (props) => {
       onPress={props.onPress}
       disabled={props.disabled}
     >
+      <Text style={props.disabled ? styles.textDisabled : styles.text}>
+        {props.counter}
+      </Text>
       <Text
         style={props.disabled ? styles.iconDisabled : styles.icon}
       >
         {props.icon}
-      </Text>
-      <Text style={props.disabled ? styles.textDisabled : styles.text}>
-        {props.counter}
       </Text>
     </TouchableOpacity>
   );
