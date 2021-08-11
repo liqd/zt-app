@@ -3,6 +3,7 @@ const baseUrl = 'https://aplus-dev.liqd.net/api';
 
 const endpoints = {
   ideas: baseUrl + '/modules/$moduleId/ideas/',
+  idea: baseUrl + '/modules/$moduleId/ideas/$objectPk/',
   login: baseUrl + '/login/',
   projects: baseUrl + '/app-projects/',
   modules: baseUrl + '/app-modules/',
@@ -65,6 +66,15 @@ const makePutRequest = (url, data = {}, token=null) => {
     .catch(error => console.error(error));
 };
 
+const makeDeleteRequest = (url, token=null) => {
+  return fetch(url, {
+    method: 'DELETE',
+    headers: getHeaders(token)
+  })
+    .then(response => response)
+    .catch(error => console.error(error));
+};
+
 const API = {
   getIdeas(moduleId, token=null) {
     const url = endpoints.ideas.replace(/\$(\w+?)\b/g, moduleId);
@@ -73,6 +83,11 @@ const API = {
   postIdea(moduleId, data, token=null) {
     const url = endpoints.ideas.replace(/\$(\w+?)\b/g, moduleId);
     return makePostRequest(url, data, token);
+  },
+  deleteIdea(moduleId, objectPk, token=null) {
+    const module_url = endpoints.idea.replace('$moduleId', moduleId);
+    const url = module_url.replace('$objectPk', objectPk);
+    return makeDeleteRequest(url, token);
   },
   postLogin(data) {
     return makePostRequest(endpoints.login, data);

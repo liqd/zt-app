@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Image, ScrollView } from 'react-native';
+import { Alert, View, Text, Image, ScrollView } from 'react-native';
 import { Button } from 'react-native-elements';
 import { styles } from './Idea.styles';
 import Icon from 'react-native-vector-icons/SimpleLineIcons';
@@ -13,7 +13,7 @@ import { Comments } from '../Comments/Comments';
 import { TouchableOpacity } from 'react-native';
 
 export const Idea = (props) => {
-  const {params, createdDate} = props.route.params;
+  const {params, createdDate, moduleId} = props.route.params;
   const [menuVisible, setMenuVisible] = useState(false);
   const [deleteModalVisible, setDeleteModalVisible] = useState(false);
   const [voteUp, setVoteUp] = useState(params.positive_rating_count);
@@ -34,13 +34,13 @@ export const Idea = (props) => {
       title: 'Delete',
       icon: 'trash',
       action: () => toggleDeleteModal(),
-      isAllowed: params.has_changing_permission
+      isAllowed: params.has_deleting_permission
     },
     {
       title: 'Report',
       icon: 'flag',
       action: () => console.log('Report'),
-      isFirst: !params.has_changing_permission,
+      isFirst: !params.has_changing_permission && !params.has_deleting_permission,
       isLast: true,
       isAllowed: true
     },
@@ -59,7 +59,7 @@ export const Idea = (props) => {
     },
     {
       title: 'Delete',
-      action: () => console.log('Idea deleted')
+      action: () => deleteIdea()
     },
     {
       title: 'Cancel',
@@ -114,6 +114,16 @@ export const Idea = (props) => {
       setVoteDown(0);
     }
   };
+
+  const deleteIdea = () => {
+    AsyncStorage.getItem('authToken')
+      .then((token) => API.deleteIdea(moduleId, params.pk, token))
+      .then(() => {
+        Alert.alert('Your idea was deleted.', 'Thank you for participating!',  [{ text: 'Ok' }]);
+        props.navigation.navigate('IdeaProject');
+      });
+  };
+
   const toggleComments = () => setShowComments(!showComments);
 
   useEffect(() => {
