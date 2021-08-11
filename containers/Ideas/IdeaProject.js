@@ -122,6 +122,7 @@ export const IdeaProject = (props) => {
                 <View style={styles.listContainer}>
                   <IdeasList
                     ideas={ideas}
+                    moduleId={singleModule}
                     {...props}
                   />
                 </View>
