@@ -6,7 +6,6 @@ import * as yup from 'yup';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Icon from 'react-native-vector-icons/SimpleLineIcons';
 import IconSLI from 'react-native-vector-icons/SimpleLineIcons';
-import DropDownPicker from 'react-native-dropdown-picker';
 
 import { styles } from './Idea.styles';
 import {
@@ -39,6 +38,7 @@ export const IdeaCreate = props => {
   }, [error, categories, labels]);
 
   const handleSubmit = (values) => {
+    values.labels = getSelectedLabels();
     AsyncStorage.getItem('authToken')
       .then((token) => API.postIdea(moduleId, values, token))
       //error handling is provisional and should probably go somewhere else eventually
@@ -61,6 +61,22 @@ export const IdeaCreate = props => {
       });
   };
 
+  const getSelectedLabels = () => {
+    let selectedLabels = [];
+    labelsChecked.forEach((isSelected, index) => {
+      if (isSelected) {
+        selectedLabels.push(labels[index].value);
+      }
+    });
+    return selectedLabels;
+  };
+
+  const handleLabelCheck = (labelIndex) => {
+    return labelsChecked.map((isSelected,index) => {
+      return (index === labelIndex) ? !isSelected : isSelected;
+    });
+  };
+
   const ideaValidationSchema = yup.object().shape({
     name: yup
       .string()
@@ -77,7 +93,7 @@ export const IdeaCreate = props => {
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [labels, setLabels] = useState([]);
-  const [selectedLabels, setSelectedLabels] = useState([]);
+  const [labelsChecked, setLabelsChecked] = useState([]);
 
   const fetchLabelsAndCategories = async() => {
     const fetchedItems = await API.getModule(moduleId);
@@ -88,14 +104,17 @@ export const IdeaCreate = props => {
         fetchedItems.categories.map(cat => ({value: cat[0], label: cat[1]})) || [];
     const flattenedLabels =
       fetchedItems && fetchedItems.categories &&
-        fetchedItems.labels.map(lab => ({value: lab[0], title: lab[1]})) || [];
+        fetchedItems.labels.map(lab => ({value: lab[0], label: lab[1]})) || [];
 
     // checking if not fetchedItems false, then setCategories and setLabels
-    fetchedItems && fetchedItems.categories && setCategories(prevCategories =>
-      [...prevCategories, ...flattenedCategories]);
-    fetchedItems && fetchedItems.categories && setSelectedCategory(flattenedCategories[0].value);
-    fetchedItems && fetchedItems.labels && setLabels(prevLabels =>
-      [...prevLabels, ...flattenedLabels]);
+    if (flattenedCategories.length > 0) {
+      setCategories(prevCategories => [...prevCategories, ...flattenedCategories]);
+      setSelectedCategory(flattenedCategories[0].value);
+    }
+    if (flattenedLabels.length > 0) {
+      setLabels(prevLabels => [...prevLabels, ...flattenedLabels]);
+      setLabelsChecked(new Array(flattenedLabels.length).fill(false));
+    }
   };
 
   return (
@@ -183,8 +202,10 @@ export const IdeaCreate = props => {
                 {labels.map((label, idx) => (
                   <CheckBoxFormField
                     key={`labelfield-${idx}`}
-                    title={label.title}
+                    title={label.label}
                     value={label.value}
+                    checked={labelsChecked[idx]}
+                    onIconPress={() => setLabelsChecked(handleLabelCheck(idx))}
                   />)
                 )}
               </CheckBoxFormFieldContainer>
