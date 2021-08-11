@@ -28,11 +28,10 @@ export const CheckBoxFormFieldContainer = (props) => {
 };
 
 export const CheckBoxFormField = (props) => {
-  const [checked, setChecked] = React.useState(false);
   return (
     <CheckBox
-      checked={checked}
-      onIconPress={() => setChecked(!checked)}
+      checked={props.checked}
+      onIconPress={props.onIconPress}
       onLongIconPress={() =>
         console.log('onLongIconPress()')
       }
