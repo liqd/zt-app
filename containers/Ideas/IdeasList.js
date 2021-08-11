@@ -11,6 +11,7 @@ export const IdeasList = (props) => {
           <IdeasListItem
             key={`pk${idea.pk}`}
             idea={idea}
+            moduleId={props.moduleId}
             {...props}
           />
         );
