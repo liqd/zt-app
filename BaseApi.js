@@ -83,9 +83,9 @@ const API = {
   getModules() {
     return makeGetRequest(endpoints.modules);
   },
-  getModule(moduleId) {
+  getModule(moduleId, token=null) {
     const url = endpoints.modules + moduleId;
-    return makeGetRequest(url);
+    return makeGetRequest(url, token);
   },
   rate(contentTypeId, objectPk, data, token=null) {
     const ct_url = endpoints.rate.replace('$contentTypeId', contentTypeId);
