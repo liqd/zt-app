@@ -10,6 +10,7 @@ import { SubComments } from './SubComments';
 
 export const Comment = (props) => {
   const [showSubComments, setShowSubComments] = useState(false);
+  const [showWholeComment, setShowWholeComment] = useState(false);
   const {
     user_image:userAvatar,
     user_name:userName,
@@ -24,6 +25,10 @@ export const Comment = (props) => {
 
   const toggleSubComments = () => {
     setShowSubComments(!showSubComments);
+  };
+
+  const toggleWholeComment = () => {
+    setShowWholeComment(!showWholeComment);
   };
 
   return (
@@ -43,13 +48,22 @@ export const Comment = (props) => {
           />
         </Text>
       </View>
-      <Text style={styles.comment}>
-        {comment}
-      </Text>
-      <View style={styles.linkSection}>
-        <TouchableWithoutFeedback>
-          <Text style={styles.linkButton}>Weiterlesen</Text>
+      <View>
+        {!showWholeComment &&
+          <Text style={styles.comment} numberOfLines={2}>
+            {comment}
+          </Text>
+        }
+        {showWholeComment &&
+        <Text style={styles.comment}>
+          {comment}
+        </Text>
+        }
+        <TouchableWithoutFeedback onPress={toggleWholeComment}>
+          <Text style={styles.linkButton}>{showWholeComment ? 'Read Less' : 'Read More'}</Text>
         </TouchableWithoutFeedback>
+      </View>
+      <View style={styles.linkSection}>
         {childComments.length !== 0 && <TouchableWithoutFeedback onPress={toggleSubComments}>
           <Text style={styles.linkButton}>
             {showSubComments ? 'Hide' : 'Show'} {childComments.length} answers
