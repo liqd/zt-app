@@ -19,8 +19,8 @@ export const styles = StyleSheet.create({
     borderRadius: 20,
     width: 40,
     height: 40,
-    backgroundColor: COLORS.grey.extralight,
-    marginRight: SPACINGS.base
+    marginRight: SPACINGS.base,
+    backgroundColor: COLORS.primary,
   },
   top: {
     flexDirection: 'row',
