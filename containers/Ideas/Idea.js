@@ -10,7 +10,6 @@ import { Label } from '../../components/Label';
 import { Menu } from '../../components/Menu';
 import { Modal } from '../../components/Modal';
 import { Comments } from '../Comments/Comments';
-import { TouchableOpacity } from 'react-native';
 
 export const Idea = (props) => {
   const {params, createdDate} = props.route.params;

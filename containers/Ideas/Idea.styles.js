@@ -19,7 +19,8 @@ export const styles = StyleSheet.create({
     height: SPACINGS.multiplyBy(2),
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center'
+    alignItems: 'center',
+    marginVertical: SPACINGS.multiplyBy(1)
   },
   backButton: {
     padding: 0,
