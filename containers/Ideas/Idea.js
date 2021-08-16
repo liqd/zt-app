@@ -15,8 +15,10 @@ export const Idea = (props) => {
   const {params, createdDate, moduleId} = props.route.params;
   const [menuVisible, setMenuVisible] = useState(false);
   const [deleteModalVisible, setDeleteModalVisible] = useState(false);
-  const [voteUp, setVoteUp] = useState(params.positive_rating_count);
-  const [voteDown, setVoteDown] = useState(params.negative_rating_count);
+  const [upVotes, setUpVotes] = useState(params.positive_rating_count);
+  const [downVotes, setDownVotes] = useState(params.negative_rating_count);
+  const [userRating, setUserRating] = useState(params.user_rating);
+  const [processing, setProcessing] = useState(false);
   const [comments, setComments] = useState([]);
   const [showComments, setShowComments] = useState(false);
   const hasComments = comments.length !== 0;
@@ -81,37 +83,54 @@ export const Idea = (props) => {
     setMenuVisible(false)
   );
 
-  const handleVote = (direction) => {
-    AsyncStorage.getItem('authToken')
-      .then(token => {
-        return vote(direction, token);
-      });
+  const handleVote = async(direction) => {
+    if (processing) return;
+    setProcessing(true);
+    const token = await AsyncStorage.getItem('authToken');
+    const voteObject = await vote(direction, token);
+    voteObject && setProcessing(false);
   };
 
-  const vote = (direction, token) => {
-    const {user_rating, pk, content_type} = params;
-    const alterVote = // if altering vote is true, then swap votes, otherwise reset
-      (direction === 'up' && voteUp === 0) ||
-      (direction === 'down' && voteDown === 0);
+  const swapUserVotes = (direction) => {
+    if (direction === 'up') {
+      setUpVotes(upVotes + 1);
+      downVotes > 0 && setDownVotes(downVotes - 1);
+    }
+    else {
+      upVotes > 0 && setUpVotes(upVotes - 1);
+      setDownVotes(downVotes + 1);
+    }
+  };
 
-    if (alterVote) {
-      const dirValue = direction === 'up' ? 1 : -1;
-      user_rating && API.changeRating(content_type, pk, user_rating.id, {value: dirValue}, token);
-      user_rating || API.rate(content_type, pk, {value: dirValue}, token);
-      if (direction === 'up') {
-        setVoteUp(1);
-        setVoteDown(0);
+  const resetUserVotes = (direction) => {
+    if (direction === 'up') {
+      upVotes > 0 && setUpVotes(upVotes - 1);
+    }
+    else {
+      downVotes > 0 && setDownVotes(downVotes - 1);
+    }
+  };
+
+  const vote = async(direction, token) => {
+    const {pk, content_type} = params;
+    const dirValue = direction === 'up' ? 1 : -1;
+    let voteResponse = null;
+
+    if (userRating) {
+      if (userRating.value !== dirValue) {
+        swapUserVotes(direction);
+        voteResponse = await API.changeRating(content_type, pk, userRating.id, {value: dirValue}, token);
       }
       else {
-        setVoteUp(0);
-        setVoteDown(1);
+        resetUserVotes(direction);
+        voteResponse = await API.changeRating(content_type, pk, userRating.id, {value: 0}, token);
       }
     }
     else {
-      API.changeRating(content_type, pk, user_rating.id, {value: 0}, token);
-      setVoteUp(0);
-      setVoteDown(0);
+      voteResponse =  await API.rate(content_type, pk, {value: dirValue}, token);
     }
+    setUserRating({id: voteResponse.data.id, value: voteResponse.data.value});
+    return voteResponse;
   };
 
   const deleteIdea = () => {
@@ -180,13 +199,13 @@ export const Idea = (props) => {
           <View style={styles.ratingButtons}>
             <ButtonCounter
               icon={<Icon name='arrow-up' size={18} />}
-              counter={voteUp}
+              counter={upVotes}
               onPress={() => handleVote('up')}
               disabled={!params.has_rating_permission}
             />
             <ButtonCounter
               icon={<Icon name='arrow-down' size={18} />}
-              counter={voteDown}
+              counter={downVotes}
               onPress={() => handleVote('down')}
               disabled={!params.has_rating_permission}
             />
