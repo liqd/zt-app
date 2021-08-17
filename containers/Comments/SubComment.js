@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useCallback } from 'react';
 import { View, Text, Image } from 'react-native';
 import { Button } from 'react-native-elements';
 import { styles } from './Comment.styles';
@@ -6,6 +6,8 @@ import Icon from 'react-native-vector-icons/SimpleLineIcons';
 import { DateService } from '../../services/DateService';
 import { TouchableWithoutFeedback } from 'react-native';
 import { ButtonCounter } from '../../components/ButtonCounter';
+
+const NUM_OF_LINES = 2;
 
 export const SubComment = (props) => {
   const {
@@ -18,6 +20,17 @@ export const SubComment = (props) => {
       positive_ratings:upVotes,
     }
   } = props.comment;
+  const [showWholeComment, setShowWholeComment] = useState(false);
+  const [hasExcerpt, setHasExcerpt] = useState(false);
+
+  const toggleWholeComment = () => {
+    setShowWholeComment(!showWholeComment);
+  };
+
+  const onTextLayout = useCallback(e => {
+    setHasExcerpt(e.nativeEvent.lines.length > NUM_OF_LINES);
+  }, []);
+
   return (
     <View style={styles.subContainer}>
       <View style={styles.top}>
@@ -35,13 +48,24 @@ export const SubComment = (props) => {
           />
         </Text>
       </View>
+      {!showWholeComment &&
+        <Text
+          style={styles.comment}
+          numberOfLines={NUM_OF_LINES}
+          onTextLayout={onTextLayout}
+        >
+          {comment}
+        </Text>
+      }
+      {showWholeComment &&
       <Text style={styles.comment}>
         {comment}
       </Text>
+      }
       <View style={styles.linkSection}>
-        <TouchableWithoutFeedback>
-          <Text style={styles.linkButton}>Weiterlesen</Text>
-        </TouchableWithoutFeedback>
+        {hasExcerpt && <TouchableWithoutFeedback onPress={toggleWholeComment}>
+          <Text style={styles.linkButton}>{showWholeComment ? 'Read Less' : 'Read More'}</Text>
+        </TouchableWithoutFeedback>}
       </View>
       <View style={styles.bottomActionsContainer}>
         <View style={styles.ratingButtons}>
