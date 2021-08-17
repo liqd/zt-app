@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { View, Text, Image } from 'react-native';
 import { Button } from 'react-native-elements';
 import { styles } from './Comment.styles';
@@ -8,9 +8,12 @@ import { TouchableWithoutFeedback } from 'react-native';
 import { ButtonCounter } from '../../components/ButtonCounter';
 import { SubComments } from './SubComments';
 
+const NUM_OF_LINES = 2;
+
 export const Comment = (props) => {
   const [showSubComments, setShowSubComments] = useState(false);
   const [showWholeComment, setShowWholeComment] = useState(false);
+  const [hasExcerpt, setHasExcerpt] = useState(false);
   const {
     user_image:userAvatar,
     user_name:userName,
@@ -31,6 +34,10 @@ export const Comment = (props) => {
     setShowWholeComment(!showWholeComment);
   };
 
+  const onTextLayout = useCallback(e => {
+    setHasExcerpt(e.nativeEvent.lines.length > NUM_OF_LINES);
+  }, []);
+
   return (
     <View style={styles.container}>
       <View style={styles.top}>
@@ -50,7 +57,11 @@ export const Comment = (props) => {
       </View>
       <View>
         {!showWholeComment &&
-          <Text style={styles.comment} numberOfLines={2}>
+          <Text
+            style={styles.comment}
+            numberOfLines={NUM_OF_LINES}
+            onTextLayout={onTextLayout}
+          >
             {comment}
           </Text>
         }
@@ -59,9 +70,9 @@ export const Comment = (props) => {
           {comment}
         </Text>
         }
-        <TouchableWithoutFeedback onPress={toggleWholeComment}>
+        {hasExcerpt && <TouchableWithoutFeedback onPress={toggleWholeComment}>
           <Text style={styles.linkButton}>{showWholeComment ? 'Read Less' : 'Read More'}</Text>
-        </TouchableWithoutFeedback>
+        </TouchableWithoutFeedback>}
       </View>
       <View style={styles.linkSection}>
         {childComments.length !== 0 && <TouchableWithoutFeedback onPress={toggleSubComments}>
