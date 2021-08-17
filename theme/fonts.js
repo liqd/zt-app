@@ -28,7 +28,8 @@ export const LINEHEIGHTS = {
 export const FONTWEIGHT = {
   semiBold: '500',
   bold: '600',
-  boldxl: '800'
+  boldxl: '800',
+  boldxxl: 'bold'
 };
 
 export const LETTERSPACING = {
