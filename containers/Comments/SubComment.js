@@ -35,7 +35,7 @@ export const SubComment = (props) => {
     <View style={styles.subContainer}>
       <View style={styles.top}>
         <View style={styles.topLeft}>
-          <Image style={styles.avatar} />
+          <Image source={{ uri: userAvatar }} style={styles.avatar} />
           <View style={styles.author}>
             <Text style={styles.username}>{userName}</Text>
             <Text style={styles.date}>{DateService(created)}</Text>
