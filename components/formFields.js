@@ -56,14 +56,15 @@ export const DropdownFormFieldContainer = (props) => {
 };
 
 export const DropdownFormField = (props) => {
+  const [open, setOpen] = React.useState(false);
   return (
     <View>
       <DropDownPicker
         style={styles.dropdownFormField}
-        open={props.open}
+        open={open}
         value={props.value}
         items={props.items}
-        setOpen={props.setOpen}
+        setOpen={setOpen}
         setValue={props.setValue}
         setItems={props.setItems}
         onChangeValue={props.onChangeValue}
