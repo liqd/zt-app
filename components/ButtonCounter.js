@@ -12,18 +12,22 @@ export const ButtonCounter = (props) => {
       <Text style={
         props.disabled
           ? styles.textDisabled
-          : props.highlight
-            ? styles.textHighlight
-            : styles.text
+          : !props.highlight || props.highlight === 0
+            ? styles.text
+            : props.highlight === 1
+              ? styles.textUpHighlight
+              : styles.textDownHighlight
       }>
         {props.counter}
       </Text>
       <Text style={
         props.disabled
           ? styles.iconDisabled
-          : props.highlight
-            ? styles.iconHighlight
-            : styles.icon
+          : !props.highlight || props.highlight === 0
+            ? styles.icon
+            : props.highlight === 1
+              ? styles.iconUpHighlight
+              : styles.iconDownHighlight
       }>
         {props.icon}
       </Text>
