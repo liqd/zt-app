@@ -22,43 +22,63 @@ import API from '../../BaseApi';
 
 export const IdeaCreate = props => {
 
-  const [error, setError] = useState();
-  const {moduleId, project} = props.route.params;
+  const {idea, project, editing} = props.route.params;
+  const moduleId = project.single_agenda_setting_module;
   const arrowLeftIcon = (
     <IconSLI name='arrow-left' size={22} />
   );
+  const ideaValidationSchema = yup.object().shape({
+    name: yup
+      .string()
+      .required('Idea title is Required'),
+    description: yup
+      .string()
+      .min(20, ({ min }) => `Description must be at least ${min} characters`)
+      .max(100, 'Description must be no longer then 100 characters')
+      .required('Description is required'),
+  });
+
+  const [error, setError] = useState();
+  const [clicked, setClicked] = useState(false);
+  const [categories, setCategories] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState('');
+  const [labels, setLabels] = useState([]);
+  const [labelsChecked, setLabelsChecked] = useState([]);
 
   useEffect(() => {
     if (error) {
       Alert.alert('An error occured', error, [{ text: 'Ok' }]);
     }
     else {
-      fetchLabelsAndCategories();
+      setLabelsAndCategories();
     }
-  }, [error, categories, labels]);
+  }, [error, project]);
 
-  const handleSubmit = (values) => {
-    values.labels = getSelectedLabels();
-    AsyncStorage.getItem('authToken')
-      .then((token) => API.postIdea(moduleId, values, token))
-      //error handling is provisional and should probably go somewhere else eventually
-      .then(response => {
-        if (response.statusCode == 201) {
-          Alert.alert('Your idea was added.', 'Thank you for participating!',  [{ text: 'Ok' }]);
-          props.navigation.navigate('IdeaProject', {
-            project: project
-          });
-        }
-        else if (response.statusCode == 400) {
-          setError('Required fields are missing.');
-        }
-        else if (response.statusCode == 403) {
-          setError(response.data.detail);
-        }
-        else {
-          setError('Try again.');
-        }
-      });
+  const setLabelsAndCategories = async() => {
+    const module = await API.getModule(moduleId);
+
+    if (module.categories) {
+      // map property names to format needed for formik
+      setCategories(module.categories.map(category => ({value: category.id, label: category.name})));
+      if (editing) {
+        setSelectedCategory(idea.category.id);
+      }
+      else {
+        setSelectedCategory(module.categories[0].id);
+      }
+    }
+    if (module.labels) {
+      setLabels(module.labels.map(label => ({value: label.id, label: label.name})));
+
+      if (editing) {
+        // idea.labels is array of label ids -> map that to array of bools with length = number of
+        // of module labels and true iff label is checked
+        setLabelsChecked(module.labels.map(label => (idea.labels.some(entry => entry.id===label.id))));
+      }
+      else {
+        setLabelsChecked(new Array(module.labels.length).fill(false));
+      }
+    }
   };
 
   const getSelectedLabels = () => {
@@ -72,49 +92,47 @@ export const IdeaCreate = props => {
   };
 
   const handleLabelCheck = (labelIndex) => {
-    return labelsChecked.map((isSelected,index) => {
+    return labelsChecked.map((isSelected, index) => {
       return (index === labelIndex) ? !isSelected : isSelected;
     });
   };
 
-  const ideaValidationSchema = yup.object().shape({
-    name: yup
-      .string()
-      .required('Idea title is Required'),
-    description: yup
-      .string()
-      .min(20, ({ min }) => `Description must be at least ${min} characters`)
-      .max(100, 'Description must be no longer then 100 characters')
-      .required('Description is required'),
-  });
-
-  const [open, setOpen] = useState(false);
-  const [clicked, setClicked] = useState(false);
-  const [categories, setCategories] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState(null);
-  const [labels, setLabels] = useState([]);
-  const [labelsChecked, setLabelsChecked] = useState([]);
-
-  const fetchLabelsAndCategories = async() => {
-    const fetchedItems = await API.getModule(moduleId);
-
-    // mapping fetched list to structure for view
-    const flattenedCategories =
-      fetchedItems && fetchedItems.categories &&
-        fetchedItems.categories.map(cat => ({value: cat[0], label: cat[1]})) || [];
-    const flattenedLabels =
-      fetchedItems && fetchedItems.categories &&
-        fetchedItems.labels.map(lab => ({value: lab[0], label: lab[1]})) || [];
-
-    // checking if not fetchedItems false, then setCategories and setLabels
-    if (flattenedCategories.length > 0) {
-      setCategories(prevCategories => [...prevCategories, ...flattenedCategories]);
-      setSelectedCategory(flattenedCategories[0].value);
-    }
-    if (flattenedLabels.length > 0) {
-      setLabels(prevLabels => [...prevLabels, ...flattenedLabels]);
-      setLabelsChecked(new Array(flattenedLabels.length).fill(false));
-    }
+  const handleSubmit = (values) => {
+    values.labels = getSelectedLabels();
+    AsyncStorage.getItem('authToken')
+      .then((token) => {
+        if (editing) {
+          return API.editIdea(moduleId, idea.pk, values, token);
+        }
+        else {
+          return API.postIdea(moduleId, values, token);
+        }
+      })
+      //error handling is provisional and should probably go somewhere else eventually
+      .then((response) => {
+        const {statusCode, data} = response;
+        if (statusCode == 201) {
+          Alert.alert('Your idea was added.', 'Thank you for participating!',  [{ text: 'Ok' }]);
+          props.navigation.navigate('IdeaProject', {
+            project: project
+          });
+        }
+        else if (editing && statusCode == 200) {
+          Alert.alert('Your idea was updated.', '',  [{ text: 'Ok' }]);
+          props.navigation.navigate('IdeaDetail', {
+            idea: data
+          });
+        }
+        else if (statusCode == 400) {
+          setError('Required fields are missing.');
+        }
+        else if (response.statusCode == 403) {
+          setError(response.data.detail);
+        }
+        else {
+          setError('Try again.');
+        }
+      });
   };
 
   return (
@@ -136,10 +154,18 @@ export const IdeaCreate = props => {
       <Formik
         validationSchema={ideaValidationSchema}
         initialValues={{
-          name: '',
-          description: '' ,
+          ...(editing
+            ? {
+              name: idea.name,
+              description: idea.description ,
+            }
+            : {
+              name: '',
+              description: '' ,
+            }),
+
           labels: [],
-          ...(categories.length>0 && { category: '' }),
+          category: selectedCategory,
         }}
         onSubmit={values => handleSubmit(values)}
       >
@@ -183,8 +209,6 @@ export const IdeaCreate = props => {
                 field='Idea Category'
                 name='category'>
                 <DropdownFormField
-                  open={open}
-                  setOpen={setOpen}
                   items={categories}
                   setItems={setCategories}
                   value={selectedCategory}
