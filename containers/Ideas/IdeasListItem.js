@@ -19,8 +19,8 @@ export const IdeasListItem = (props) => {
   const createdDate = DateService(created);
   const pressHandler = () =>
     props.navigation.navigate('IdeaDetail', {
-      params: props.idea,
-      moduleId: props.moduleId,
+      idea: props.idea,
+      project: props.route.params.project,
       createdDate: createdDate,
     });
 
