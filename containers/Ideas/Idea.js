@@ -201,14 +201,14 @@ export const Idea = (props) => {
               icon={<Icon name='arrow-up' size={18} />}
               counter={upVotes}
               onPress={() => handleVote('up')}
-              highlight={userRating.value === 1}
+              highlight={userRating && userRating.value === 1}
               disabled={!params.has_rating_permission}
             />
             <ButtonCounter
               icon={<Icon name='arrow-down' size={18} />}
               counter={downVotes}
               onPress={() => handleVote('down')}
-              highlight={userRating.value === -1}
+              highlight={userRating && userRating.value === -1}
               disabled={!params.has_rating_permission}
             />
           </View>
