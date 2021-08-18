@@ -12,12 +12,13 @@ import { Modal } from '../../components/Modal';
 import { Comments } from '../Comments/Comments';
 
 export const Idea = (props) => {
-  const {params, createdDate, moduleId} = props.route.params;
+  const {idea, project, createdDate} = props.route.params;
+  const moduleId = project.single_agenda_setting_module;
   const [menuVisible, setMenuVisible] = useState(false);
   const [deleteModalVisible, setDeleteModalVisible] = useState(false);
-  const [upVotes, setUpVotes] = useState(params.positive_rating_count);
-  const [downVotes, setDownVotes] = useState(params.negative_rating_count);
-  const [userRating, setUserRating] = useState(params.user_rating);
+  const [upVotes, setUpVotes] = useState(idea.positive_rating_count);
+  const [downVotes, setDownVotes] = useState(idea.negative_rating_count);
+  const [userRating, setUserRating] = useState(idea.user_rating);
   const [processing, setProcessing] = useState(false);
   const [comments, setComments] = useState([]);
   const [showComments, setShowComments] = useState(false);
@@ -27,21 +28,21 @@ export const Idea = (props) => {
     {
       title: 'Edit',
       icon: 'pencil',
-      action: () => console.log('Edit'),
+      action: () =>  props.navigation.navigate('IdeaCreate', {idea: idea, project: project, editing: true}),
       isFirst: true,
-      isAllowed: params.has_changing_permission
+      isAllowed: idea.has_changing_permission
     },
     {
       title: 'Delete',
       icon: 'trash',
       action: () => toggleDeleteModal(),
-      isAllowed: params.has_deleting_permission
+      isAllowed: idea.has_deleting_permission
     },
     {
       title: 'Report',
       icon: 'flag',
       action: () => console.log('Report'),
-      isFirst: !params.has_changing_permission && !params.has_deleting_permission,
+      isFirst: !idea.has_changing_permission && !idea.has_deleting_permission,
       isLast: true,
       isAllowed: true
     },
@@ -71,8 +72,8 @@ export const Idea = (props) => {
 
   const getLabels = () => {
     let labelsList = [];
-    params.category && labelsList.push(params.category);
-    params.labels.length > 0 && labelsList.push(...params.labels);
+    idea.category && labelsList.push(idea.category.name);
+    idea.labels.length > 0 && labelsList.push(...idea.labels.map(label => label.name));
     return labelsList;
   };
 
@@ -112,10 +113,9 @@ export const Idea = (props) => {
   };
 
   const vote = async(direction, token) => {
-    const {pk, content_type} = params;
+    const {pk, content_type} = idea;
     const dirValue = direction === 'up' ? 1 : -1;
     let voteResponse = null;
-
     if (userRating) {
       if (userRating.value !== dirValue) {
         swapUserVotes(direction);
@@ -135,7 +135,7 @@ export const Idea = (props) => {
 
   const deleteIdea = () => {
     AsyncStorage.getItem('authToken')
-      .then((token) => API.deleteIdea(moduleId, params.pk, token))
+      .then((token) => API.deleteIdea(moduleId, idea.pk, token))
       .then(() => {
         Alert.alert('Your idea was deleted.', 'Thank you for participating!',  [{ text: 'Ok' }]);
         props.navigation.navigate('IdeaProject');
@@ -145,7 +145,7 @@ export const Idea = (props) => {
   const toggleComments = () => setShowComments(!showComments);
 
   useEffect(() => {
-    const { content_type, pk } = params;
+    const { content_type, pk } = idea;
     API.getComments(content_type, pk)
       .then(({results}) => setComments(results));
   }, []);
@@ -172,13 +172,13 @@ export const Idea = (props) => {
           />
         </View>
         <View style={styles.titleContainer}>
-          <Text style={styles.title}>{params.name}</Text>
+          <Text style={styles.title}>{idea.name}</Text>
         </View>
         <View style={styles.descriptionContainer}>
-          {params.image && (
-            <Image source={{ uri: params.image }} style={styles.ideaImage} />
+          {idea.image && (
+            <Image source={{ uri: idea.image }} style={styles.ideaImage} />
           )}
-          <Text style={styles.text}>{params.description}</Text>
+          <Text style={styles.text}>{idea.description}</Text>
         </View>
         {getLabels().length > 0 && (
           <View style={styles.labelsContainer}>
@@ -189,10 +189,10 @@ export const Idea = (props) => {
         )}
         <View style={styles.infoContainer}>
           <Text style={styles.creator}>
-            {params.creator} {createdDate}
+            {idea.creator} {createdDate}
           </Text>
           <Text style={styles.text}>
-            Reference No.: {params.reference_number || 'n/a'}
+            Reference No.: {idea.reference_number || 'n/a'}
           </Text>
         </View>
         <View style={styles.bottomActionsContainer}>
@@ -202,14 +202,14 @@ export const Idea = (props) => {
               counter={upVotes}
               onPress={() => handleVote('up')}
               highlight={userRating && userRating.value === 1 && userRating.value}
-              disabled={!params.has_rating_permission}
+              disabled={!idea.has_rating_permission}
             />
             <ButtonCounter
               icon={<Icon name='arrow-down' size={18} />}
               counter={downVotes}
               onPress={() => handleVote('down')}
               highlight={userRating && userRating.value === -1 && userRating.value}
-              disabled={!params.has_rating_permission}
+              disabled={!idea.has_rating_permission}
             />
           </View>
           <View>
