@@ -36,7 +36,6 @@ export const styles = StyleSheet.create({
     fontSize: SIZES.xs
   },
   username: {
-    textTransform: 'capitalize',
     fontWeight: FONTWEIGHT.boldxl
   },
   linkSection: {
