@@ -24,7 +24,6 @@ export const IdeaProject = (props) => {
 
   const pressHandler = () =>
     props.navigation.navigate('IdeaCreate', {
-      moduleId: singleModule,
       project: project
     });
 
