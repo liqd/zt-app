@@ -26,7 +26,10 @@ export const Idea = (props) => {
     {
       title: 'Edit',
       icon: 'pencil',
-      action: () =>  props.navigation.navigate('IdeaCreate', {idea: ideaState, project: project, editing: true}),
+      action: () =>  {
+        toggleMenu();
+        props.navigation.navigate('IdeaCreate', {idea: ideaState, project: project, editing: true});
+      },
       isFirst: true,
       isAllowed: ideaState.has_changing_permission
     },
