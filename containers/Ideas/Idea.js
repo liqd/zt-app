@@ -14,11 +14,9 @@ import { Comments } from '../Comments/Comments';
 export const Idea = (props) => {
   const {idea, project, createdDate} = props.route.params;
   const moduleId = project.single_agenda_setting_module;
+  const [ideaState, setIdeaState] = useState(idea);
   const [menuVisible, setMenuVisible] = useState(false);
   const [deleteModalVisible, setDeleteModalVisible] = useState(false);
-  const [upVotes, setUpVotes] = useState(idea.positive_rating_count);
-  const [downVotes, setDownVotes] = useState(idea.negative_rating_count);
-  const [userRating, setUserRating] = useState(idea.user_rating);
   const [processing, setProcessing] = useState(false);
   const [comments, setComments] = useState([]);
   const [showComments, setShowComments] = useState(false);
@@ -28,21 +26,21 @@ export const Idea = (props) => {
     {
       title: 'Edit',
       icon: 'pencil',
-      action: () =>  props.navigation.navigate('IdeaCreate', {idea: idea, project: project, editing: true}),
+      action: () =>  props.navigation.navigate('IdeaCreate', {idea: ideaState, project: project, editing: true}),
       isFirst: true,
-      isAllowed: idea.has_changing_permission
+      isAllowed: ideaState.has_changing_permission
     },
     {
       title: 'Delete',
       icon: 'trash',
       action: () => toggleDeleteModal(),
-      isAllowed: idea.has_deleting_permission
+      isAllowed: ideaState.has_deleting_permission
     },
     {
       title: 'Report',
       icon: 'flag',
       action: () => console.log('Report'),
-      isFirst: !idea.has_changing_permission && !idea.has_deleting_permission,
+      isFirst: !ideaState.has_changing_permission && !ideaState.has_deleting_permission,
       isLast: true,
       isAllowed: true
     },
@@ -72,8 +70,8 @@ export const Idea = (props) => {
 
   const getLabels = () => {
     let labelsList = [];
-    idea.category && labelsList.push(idea.category.name);
-    idea.labels.length > 0 && labelsList.push(...idea.labels.map(label => label.name));
+    ideaState.category && labelsList.push(ideaState.category.name);
+    ideaState.labels.length > 0 && labelsList.push(...ideaState.labels.map(label => label.name));
     return labelsList;
   };
 
@@ -88,54 +86,52 @@ export const Idea = (props) => {
     if (processing) return;
     setProcessing(true);
     const token = await AsyncStorage.getItem('authToken');
-    const voteObject = await vote(direction, token);
-    voteObject && setProcessing(false);
-  };
-
-  const swapUserVotes = (direction) => {
-    if (direction === 'up') {
-      setUpVotes(upVotes + 1);
-      downVotes > 0 && setDownVotes(downVotes - 1);
-    }
-    else {
-      upVotes > 0 && setUpVotes(upVotes - 1);
-      setDownVotes(downVotes + 1);
-    }
-  };
-
-  const resetUserVotes = (direction) => {
-    if (direction === 'up') {
-      upVotes > 0 && setUpVotes(upVotes - 1);
-    }
-    else {
-      downVotes > 0 && setDownVotes(downVotes - 1);
-    }
+    const newIdea = await vote(direction, token);
+    newIdea && setProcessing(false);
   };
 
   const vote = async(direction, token) => {
-    const {pk, content_type} = idea;
+    const {pk, content_type} = ideaState;
     const dirValue = direction === 'up' ? 1 : -1;
-    let voteResponse = null;
-    if (userRating) {
-      if (userRating.value !== dirValue) {
-        swapUserVotes(direction);
-        voteResponse = await API.changeRating(content_type, pk, userRating.id, {value: dirValue}, token);
+
+    if (ideaState.user_rating) {
+      if (ideaState.user_rating.value !== dirValue) {
+        await API.changeRating(
+          content_type,
+          pk,
+          ideaState.user_rating.id,
+          {value: dirValue},
+          token
+        );
       }
       else {
-        resetUserVotes(direction);
-        voteResponse = await API.changeRating(content_type, pk, userRating.id, {value: 0}, token);
+        await API.changeRating(
+          content_type,
+          pk,
+          ideaState.user_rating.id,
+          {value: 0},
+          token
+        );
       }
     }
     else {
-      voteResponse =  await API.rate(content_type, pk, {value: dirValue}, token);
+      await API.rate(content_type, pk, {value: dirValue}, token);
     }
-    setUserRating({id: voteResponse.data.id, value: voteResponse.data.value});
-    return voteResponse;
+    return await fetchIdea();
+  };
+
+  const fetchIdea = () => {
+    return AsyncStorage.getItem('authToken')
+      .then((token) => API.getIdea(moduleId, ideaState.pk, token))
+      .then(fetchedIdea => {
+        setIdeaState(fetchedIdea);
+        return fetchedIdea;
+      });
   };
 
   const deleteIdea = () => {
     AsyncStorage.getItem('authToken')
-      .then((token) => API.deleteIdea(moduleId, idea.pk, token))
+      .then((token) => API.deleteIdea(moduleId, ideaState.pk, token))
       .then(() => {
         Alert.alert('Your idea was deleted.', 'Thank you for participating!',  [{ text: 'Ok' }]);
         props.navigation.navigate('IdeaProject');
@@ -172,13 +168,13 @@ export const Idea = (props) => {
           />
         </View>
         <View style={styles.titleContainer}>
-          <Text style={styles.title}>{idea.name}</Text>
+          <Text style={styles.title}>{ideaState.name}</Text>
         </View>
         <View style={styles.descriptionContainer}>
-          {idea.image && (
-            <Image source={{ uri: idea.image }} style={styles.ideaImage} />
+          {ideaState.image && (
+            <Image source={{ uri: ideaState.image }} style={styles.ideaImage} />
           )}
-          <Text style={styles.text}>{idea.description}</Text>
+          <Text style={styles.text}>{ideaState.description}</Text>
         </View>
         {getLabels().length > 0 && (
           <View style={styles.labelsContainer}>
@@ -189,27 +185,35 @@ export const Idea = (props) => {
         )}
         <View style={styles.infoContainer}>
           <Text style={styles.creator}>
-            {idea.creator} {createdDate}
+            {ideaState.creator} {createdDate}
           </Text>
           <Text style={styles.text}>
-            Reference No.: {idea.reference_number || 'n/a'}
+            Reference No.: {ideaState.reference_number || 'n/a'}
           </Text>
         </View>
         <View style={styles.bottomActionsContainer}>
           <View style={styles.ratingButtons}>
             <ButtonCounter
               icon={<Icon name='arrow-up' size={18} />}
-              counter={upVotes}
+              counter={ideaState.positive_rating_count}
               onPress={() => handleVote('up')}
-              highlight={userRating && userRating.value === 1 && userRating.value}
-              disabled={!idea.has_rating_permission}
+              highlight={
+                ideaState.user_rating &&
+                ideaState.user_rating.value === 1 &&
+                ideaState.user_rating.value
+              }
+              disabled={!ideaState.has_rating_permission}
             />
             <ButtonCounter
               icon={<Icon name='arrow-down' size={18} />}
-              counter={downVotes}
+              counter={ideaState.negative_rating_count}
               onPress={() => handleVote('down')}
-              highlight={userRating && userRating.value === -1 && userRating.value}
-              disabled={!idea.has_rating_permission}
+              highlight={
+                ideaState.user_rating &&
+                ideaState.user_rating.value === -1 &&
+                ideaState.user_rating.value
+              }
+              disabled={!ideaState.has_rating_permission}
             />
           </View>
           <View>
