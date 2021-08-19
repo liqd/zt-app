@@ -78,7 +78,7 @@ const makeDeleteRequest = (url, token=null) => {
 const API = {
   getIdea(moduleId, ideaId, token=null) {
     const module_url = endpoints.idea.replace('$moduleId', moduleId);
-    const url = module_url.replace('$objectPk', ideaId);
+    const url = module_url.replace('$ideaPk', ideaId);
     return makeGetRequest(url, token);
   },
   getIdeas(moduleId, token=null) {
