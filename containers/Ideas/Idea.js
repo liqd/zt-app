@@ -27,7 +27,7 @@ export const Idea = (props) => {
       title: 'Edit',
       icon: 'pencil',
       action: () =>  {
-        toggleMenu();
+        setMenuVisible(false);
         props.navigation.navigate('IdeaCreate', {idea: ideaState, project: project, editing: true});
       },
       isFirst: true,
@@ -49,7 +49,7 @@ export const Idea = (props) => {
     },
     {
       title: 'Cancel',
-      action: () => toggleMenu(),
+      action: () => setMenuVisible(false),
       isCancel: true,
       isAllowed: true
     },
