@@ -1,6 +1,7 @@
 ---
 name: Issue template - Example
-about: Create a report to help us improve
+about: This is an example on how to use the template. For current use, better use
+  the other one.
 title: ''
 labels: ''
 assignees: ''
