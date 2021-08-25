@@ -144,10 +144,11 @@ export const Idea = (props) => {
   const toggleComments = () => setShowComments(!showComments);
 
   useEffect(() => {
+    setIdeaState(idea);
     const { content_type, pk } = idea;
     API.getComments(content_type, pk)
       .then(({results}) => setComments(results));
-  }, []);
+  }, [idea]);
 
   return (
     <>
