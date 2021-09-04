@@ -37,7 +37,7 @@
     "yup": "0.32.9"
   },
   "devDependencies": {
-    "@babel/core": "7.15.4",
+    "@babel/core": "7.15.5",
     "eslint": "7.32.0",
     "eslint-plugin-react": "7.25.1",
     "eslint-plugin-react-native": "3.11.0",
