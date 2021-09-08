@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 import { COLORS } from '../../theme/colors';
 import { SIZES, FONTWEIGHT } from '../../theme/fonts';
-import { SPACINGS } from '../../theme/spacings';
+import { SPACINGS, BORDERRADIUS } from '../../theme/spacings';
 
 export const styles = StyleSheet.create({
   fontColor: {
@@ -79,9 +79,13 @@ export const styles = StyleSheet.create({
     flexWrap: 'wrap',
   },
   imageButton: {
-    width: '100%',
+    minWidth: '100%',
     color: COLORS.text.inverted,
-    marginBottom: SPACINGS.multiplyBy(.5)
+    backgroundColor: COLORS.text.main,
+    marginBottom: SPACINGS.multiplyBy(.5),
+    paddingVertical: SPACINGS.multiplyBy(.75),
+    borderColor: COLORS.text.main,
+    borderRadius: BORDERRADIUS.none,
   },
   textLight: {
     color: COLORS.text.inverted,

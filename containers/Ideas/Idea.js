@@ -176,7 +176,10 @@ export const Idea = (props) => {
         </View>
         <View style={styles.descriptionContainer}>
           {ideaState.image && (
-            <Image source={{ uri: ideaState.image }} style={styles.ideaImage} />
+            <>
+              <Text>test</Text>
+              <Image source={{ uri: ideaState.image }} style={styles.ideaImage} />
+            </>
           )}
           <Text style={styles.text}>{ideaState.description}</Text>
         </View>

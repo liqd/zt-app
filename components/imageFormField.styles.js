@@ -1,11 +1,33 @@
 import { StyleSheet } from 'react-native';
 import { COLORS } from '../theme/colors';
-import { SPACINGS, BORDERWIDTH } from '../theme/spacings';
+import { SPACINGS, BORDERWIDTH, BORDERRADIUS } from '../theme/spacings';
 import { SIZES, LINEHEIGHTS } from '../theme/fonts';
 
 export const styles = StyleSheet.create({
   formImagePicker: {
-    alignItems: 'center'
+    width: '50%'
+  },
+  imageAddButton: {
+    marginHorizontal: 'auto',
+    marginVertical: SPACINGS.multiplyBy(.5),
+    fontSize: SIZES.md,
+    height: 100,
+    textAlign: 'center',
+    borderColor: COLORS.grey.extralight,
+    borderTopWidth: BORDERWIDTH.base,
+    borderRightWidth: BORDERWIDTH.base,
+    borderLeftWidth: BORDERWIDTH.base,
+    borderBottomWidth: BORDERWIDTH.base,
+    borderRadius: BORDERRADIUS.none,
+    display: 'flex',
+    flexWrap: 'wrap'
+  },
+  iconButton: {
+    paddingLeft: SPACINGS.multiplyBy(3.75),
+    paddingBottom: SPACINGS.multiplyBy(0.5),
+    paddingTop: SPACINGS.multiplyBy(1),
+    fontSize: SIZES.md,
+    width: '100%',
   },
   formImagePreview: {
     width: '100%',
@@ -17,8 +39,8 @@ export const styles = StyleSheet.create({
     borderWidth: BORDERWIDTH.base
   },
   formImage: {
-    width: '30%',
-    height: '30%'
+    width: '100%',
+    height: 100
   },
 
   // These should be refactored to go in common file
@@ -35,10 +57,6 @@ export const styles = StyleSheet.create({
     paddingTop: SPACINGS.multiplyBy(.5),
     paddingBottom: SPACINGS.multiplyBy(.25),
     width: '100%'
-  },
-  iconButton: {
-    marginHorizontal: SPACINGS.multiplyBy(.25),
-    fontSize: SIZES.md
   },
   textDark: {
     color: COLORS.text.main,
