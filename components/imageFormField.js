@@ -1,55 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, Alert, Image, Platform } from 'react-native';
 import { Button } from 'react-native-elements';
-import * as ImagePicker from 'expo-image-picker';
-import * as Permissions from 'expo-permissions';
 import { styles } from './imageFormField.styles';
 import Icon from 'react-native-vector-icons/SimpleLineIcons';
-
-export const ImageCaptureFormField = () => {
-  const [capturedImage, setCapturedImage] = useState(null);
-
-  const verifyPermissions = async () => {
-    const result = await Permissions.askAsync(Permissions.CAMERA_ROLL);
-    if (result.status != 'granted') {
-      Alert.alert('You need to grant access to camera',
-        [{text: 'Okay'}]
-      );
-      return false;
-    }
-    return true;
-  };
-
-  const captureImageHandler = async () => {
-    const hasPermission = await verifyPermissions();
-    if(!hasPermission) {
-      return;
-    }
-    const image = await ImagePicker.launchCameraAsync({
-      allowsEditing: true,
-      aspect: [16, 9],
-      quality: 0.5
-    });
-
-    setCapturedImage(image.uri);
-  };
-
-  return (
-    <View style={styles.formImagePicker}>
-      <Button
-        title='Camera'
-        onPress={captureImageHandler}
-        icon={<Icon name='camera' style={styles.iconButton} />}
-        type='outline'
-        raised='true'
-        titleStyle={styles.textDark}
-      />
-      {capturedImage && ( <Image style={styles.formImage} source={{uri: capturedImage}} />)}
-    </View>
-  );
-};
+import * as ImagePicker from 'expo-image-picker';
 
 export const ImagePickerFormField = () => {
+  const [capturedImage, setCapturedImage] = useState(null);
   const [image, setImage] = useState(null);
 
   useEffect(() => {
@@ -67,7 +24,7 @@ export const ImagePickerFormField = () => {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
       allowsEditing: true,
-      aspect: [4, 3],
+      aspect: [16, 9],
       quality: 1,
     });
 
@@ -78,18 +35,61 @@ export const ImagePickerFormField = () => {
     }
   };
 
+  useEffect(() => {
+    (async () => {
+      if (Platform.OS !== 'web') {
+        const { status } = await ImagePicker.requestCameraPermissionsAsync();
+        if (status !== 'granted') {
+          alert('Sorry, we need camera permissions to make this work!');
+        }
+      }
+    })();
+  }, []);
+
+  const captureImageHandler = async () => {
+    let result = await ImagePicker.launchCameraAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+      aspect: [16, 9],
+      quality: 1,
+    });
+
+    console.log(result);
+
+    if (!result.cancelled) {
+      setCapturedImage(result.uri);
+    }
+  };
+
   return (
-    <View style={styles.formImagePicker}>
-      <Button
-        title='Library'
-        onPress={pickImage}
-        type='outline'
-        raised='true'
-        icon={<Icon name='picture' style={styles.iconButton} />}
-        titleStyle={styles.textDark}
-      />
-      {image && <Image style={styles.formImage} source={{ uri: image }} />}
-    </View>
+    <>
+      <View style={styles.formImagePicker}>
+        {!capturedImage && !image &&
+        <Button
+          buttonStyle={styles.imageAddButton}
+          title='Camera'
+          onPress={captureImageHandler}
+          icon={<Icon name='camera' style={styles.iconButton} />}
+          type='clear'
+          titleStyle={styles.textDark}
+          imageUri={capturedImage}
+        />}
+        {capturedImage && <Image style={styles.formImage} source={{uri: capturedImage}} />}
+      </View>
+      <View style={styles.formImagePicker}>
+        {!capturedImage && !image &&
+        <Button
+          buttonStyle={styles.imageAddButton}
+          title='Library'
+          onPress={pickImage}
+          type='clear'
+          icon={<Icon name='picture' style={styles.iconButton} />}
+          titleStyle={styles.textDark}
+          imageUri={image}
+        />}
+        {image && <Image style={styles.formImage} source={{uri: image}} />}
+      </View>
+    </>
   );
 };
 
