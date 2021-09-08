@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { Alert, View, ScrollView, Text } from 'react-native';
-import { Button } from 'react-native-elements';
+import { Button, CheckBox } from 'react-native-elements';
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -16,7 +16,6 @@ import {
   DropdownFormField } from '../../components/formFields';
 import {
   ImagePickerFormField,
-  ImageCaptureFormField,
   ImageChoiceFormFieldContainer } from '../../components/imageFormField';
 import API from '../../BaseApi';
 
@@ -234,26 +233,26 @@ export const IdeaCreate = props => {
                 )}
               </CheckBoxFormFieldContainer>
             }
-            {!clicked &&
-              <Button
-                buttonStyle={styles.imageButton}
-                icon={<Icon name='cloud-upload' style={[styles.iconButton, styles.textLight]} />}
-                type='fill'
-                title='Add image'
-                titleStyle={styles.textLight}
-                clicked={props.clicked}
-                setClicked={props.setClicked}
-                onPress={setClicked}
-              />
-            }
-            {clicked &&
-              <ImageChoiceFormFieldContainer
-                field='Add image'
-              >
-                <ImageCaptureFormField />
+            <ImageChoiceFormFieldContainer
+              field='Add Image'>
+              {!clicked &&
+                <Button
+                  buttonStyle={styles.imageButton}
+                  icon={<Icon name='cloud-upload' style={[styles.iconButton, styles.textLight]} />}
+                  type='fill'
+                  title='Add image'
+                  titleStyle={styles.textLight}
+                  clicked={props.clicked}
+                  setClicked={props.setClicked}
+                  onPress={setClicked}
+                />
+              }
+              <Text style={styles.formLabel}>Visualize your idea. It must be min. 600 pixel wide and 400 pixel tall. Allowed file formats are png, jpeg, gif. The file size should be max. 5 MB.</Text>
+
+              {clicked &&
                 <ImagePickerFormField />
-              </ImageChoiceFormFieldContainer>
-            }
+              }
+            </ImageChoiceFormFieldContainer>
             <Button onPress={handleSubmit} title="Submit" disabled={!isValid} />
           </>
         )}
