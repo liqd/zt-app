@@ -8,13 +8,13 @@ export const styles = StyleSheet.create({
   },
   modalText: {
     width: '90%',
-    borderTopLeftRadius: BORDERRADIUS.base,
-    borderTopRightRadius: BORDERRADIUS.base,
+    borderTopLeftRadius: BORDERRADIUS.md,
+    borderTopRightRadius: BORDERRADIUS.md,
   },
   actionButton: {
     width: '90%',
-    borderBottomLeftRadius: BORDERRADIUS.base,
-    borderBottomRightRadius: BORDERRADIUS.base,
+    borderBottomLeftRadius: BORDERRADIUS.md,
+    borderBottomRightRadius: BORDERRADIUS.md,
   },
   actionButtonText: {
     color: COLORS.danger

@@ -10,20 +10,20 @@ export const styles = StyleSheet.create({
   },
   listButtonFirst: {
     width: '90%',
-    borderTopLeftRadius: BORDERRADIUS.base,
-    borderTopRightRadius: BORDERRADIUS.base,
+    borderTopLeftRadius: BORDERRADIUS.md,
+    borderTopRightRadius: BORDERRADIUS.md,
   },
   listButtonLast: {
     width: '90%',
-    borderBottomLeftRadius: BORDERRADIUS.base,
-    borderBottomRightRadius: BORDERRADIUS.base,
+    borderBottomLeftRadius: BORDERRADIUS.md,
+    borderBottomRightRadius: BORDERRADIUS.md,
   },
   listButtonOnly: {
     width: '90%',
-    borderTopLeftRadius: BORDERRADIUS.base,
-    borderTopRightRadius: BORDERRADIUS.base,
-    borderBottomLeftRadius: BORDERRADIUS.base,
-    borderBottomRightRadius: BORDERRADIUS.base,
+    borderTopLeftRadius: BORDERRADIUS.md,
+    borderTopRightRadius: BORDERRADIUS.md,
+    borderBottomLeftRadius: BORDERRADIUS.md,
+    borderBottomRightRadius: BORDERRADIUS.md,
   },
   cancelContent: {
     alignItems: 'center',

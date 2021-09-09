@@ -11,6 +11,7 @@ export const BORDERWIDTH = {
 
 export const BORDERRADIUS = {
   none: 0,
-  base: 15,
+  base: 6,
+  md: 12,
   container: 24
 };

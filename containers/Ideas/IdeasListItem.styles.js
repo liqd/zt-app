@@ -33,5 +33,10 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'flex-end',
     width: 120
-  }
+  },
+  labelsContainer: {
+    flexDirection: 'row',
+    marginVertical: SPACINGS.multiplyBy(.5),
+    flexWrap: 'wrap',
+  },
 });
