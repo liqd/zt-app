@@ -13,7 +13,7 @@ help:
 	@echo "  make install         -- install dev setup"
 	@echo "  make clean           -- delete node modules and venv"
 	@echo "  make start           -- run expo"
-	@echo "  make start-cache     -- run expo with cleaned cache"
+	@echo "  make start-nocache     -- run expo with cleaned cache"
 	@echo "  make start-android   -- run expo and launch the android app"
 	@echo "  make start-web       -- run expo and launch the web app"
 	@echo "  make lint            -- run the linter"
