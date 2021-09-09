@@ -22,19 +22,17 @@ export const styles = StyleSheet.create({
     height: SPACINGS.multiplyBy(2),
     fontSize: SIZES.md,
   },
-  checkBox: {
-    flex: 1,
-    flexDirection: 'row',
-    flexWrap: 'wrap'
-  },
   checkBoxContainer: {
+    backgroundColor: COLORS.text.inverted,
+  },
+  customCheckBoxContainer: {
     width: '45%',
     backgroundColor: COLORS.text.inverted,
     flexDirection: 'row',
     flexWrap: 'wrap',
     marginLeft: 0
   },
-  checkBoxFormFieldContainer: {
+  customCheckBoxContainerParent: {
     flexDirection: 'row',
     flexWrap: 'wrap'
   },

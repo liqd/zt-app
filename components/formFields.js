@@ -17,9 +17,23 @@ export const TextInputFormField = (props) => {
   );
 };
 
-export const CheckBoxFormFieldContainer = (props) => {
+export const CheckBoxFormField = (props) => {
   return (
-    <View style={styles.checkBoxFormFieldContainer}>
+    <CheckBox
+      checked={props.checked}
+      onIconPress={props.onIconPress}
+      title={props.title}
+      titleProps={{}}
+      checkedColor='#2a3cd4'
+      uncheckedColor='#2a3cd4'
+      containerStyle={styles.checkBoxContainer}
+    >{props.children}</CheckBox>
+  );
+};
+
+export const CustomCheckBoxContainerParent = (props) => {
+  return (
+    <View style={styles.customCheckBoxContainerParent}>
       <Text style={styles.formLabel}>{props.field}</Text>
       {props.children}
       {props.children.touched && <Text style={styles.formError}>{props.error}</Text>}
@@ -27,21 +41,16 @@ export const CheckBoxFormFieldContainer = (props) => {
   );
 };
 
-export const CheckBoxFormField = (props) => {
+export const CustomCheckBoxFormField = (props) => {
   return (
     <CheckBox
       checked={props.checked}
       onIconPress={props.onIconPress}
-      onLongIconPress={() =>
-        console.log('onLongIconPress()')
-      }
-      onLongPress={() => console.log('onLongPress()')}
-      onPress={() => console.log('onPress()')}
       title={props.title}
       titleProps={{}}
-      checkedColor='#a3ef90'
-      uncheckedColor='#2d40cc'
-      containerStyle={styles.checkBoxContainer}
+      checkedColor='#2a3cd4'
+      uncheckedColor='#2a3cd4'
+      containerStyle={styles.customCheckBoxContainer}
     />
   );
 };
