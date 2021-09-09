@@ -17,6 +17,10 @@ help:
 	@echo "  make start-android   -- run expo and launch the android app"
 	@echo "  make start-web       -- run expo and launch the web app"
 	@echo "  make lint            -- run the linter"
+	@echo "  make test            -- run tests with coverage"
+	@echo "  make test-nocov      -- run tests without coverage"
+	@echo "  make test-debug      -- run changed tests only, no coverage"
+	@echo "  make updateSnapshots -- update the snapshots for tests"
 	@echo
 
 .PHONY: install
@@ -53,3 +57,19 @@ lint:
 .PHONY: lint-fix
 lint-fix:
 	npx eslint --fix *.js containers/ components/ navigation/
+
+.PHONY: test
+test:
+	npm run test
+
+.PHONY: test-nocov
+test-nocov:
+	npm run testNoCov
+
+.PHONY: test-debug
+test-debug:
+	npm run testDebug
+
+.PHONY: updateSnapshots
+updateSnapshots:
+	npm run updateSnapshots
