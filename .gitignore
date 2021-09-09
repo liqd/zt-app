@@ -10,6 +10,12 @@ npm-debug.*
 web-build/
 chrome/
 
+# formatting
+.prettierrc
+
+# tests
+coverage/
+
 # macOS
 .DS_Store
 

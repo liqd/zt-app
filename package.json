@@ -7,14 +7,36 @@
     "web": "expo start --web",
     "eject": "expo eject",
     "prepare": "husky install",
-    "lintfix": "eslint --fix --ext .js,.jsx ."
+    "lintfix": "eslint --fix --ext .js,.jsx .",
+    "test": "jest",
+    "testDebug": "jest -o --coverage=false",
+    "testNoCov": "jest --coverage=false",
+    "updateSnapshots": "jest -u --coverage=false"
+  },
+  "jest": {
+    "preset": "jest-expo",
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "**/*.{js,jsx}",
+      "!**/coverage/**",
+      "!**/node_modules/**",
+      "!**/babel.config.js",
+      "!**/jest.setup.js",
+      "!**/chrome/**"
+    ],
+    "transformIgnorePatterns": [
+      "node_modules/(?!(jest-)?react-native|react-clone-referenced-element|@react-native-community|expo(nent)?|@expo(nent)?/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base|@sentry/.*)"
+    ]
   },
   "dependencies": {
     "@expo-google-fonts/source-sans-pro": "^0.2.0",
+    "@babel/preset-env": "^7.15.4",
+    "@babel/preset-react": "^7.14.5",
     "@react-native-async-storage/async-storage": "1.15.7",
     "@react-native-community/masked-view": "0.1.11",
     "@react-navigation/native": "6.0.2",
     "@react-navigation/stack": "^6.0.7",
+    "eslint-plugin-jest": "^24.4.0",
     "expo": "42.0.3",
     "expo-app-loading": "^1.1.2",
     "expo-application": "3.2.0",
@@ -26,9 +48,10 @@
     "expo-status-bar": "1.0.4",
     "expo-updates": "0.8.5",
     "formik": "2.2.9",
+    "jest": "^27.1.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "react-native": "https://github.com/expo/react-native/archive/sdk-41.0.0.tar.gz",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-42.0.0.tar.gz",
     "react-native-dropdown-picker": "5.1.21",
     "react-native-elements": "3.4.2",
     "react-native-gesture-handler": "1.10.3",
@@ -36,15 +59,19 @@
     "react-native-safe-area-context": "3.2.0",
     "react-native-screens": "3.6.0",
     "react-native-web": "0.17.1",
+    "react-test-renderer": "^17.0.2",
     "sentry-expo": "4.0.1",
     "yup": "0.32.9"
   },
   "devDependencies": {
     "@babel/core": "7.15.5",
+    "@testing-library/jest-native": "^4.0.2",
+    "@testing-library/react-native": "^7.2.0",
     "eslint": "7.32.0",
     "eslint-plugin-react": "7.25.1",
     "eslint-plugin-react-native": "3.11.0",
     "husky": "7.0.2",
+    "jest-expo": "^42.1.0",
     "lint-staged": "11.1.2"
   },
   "private": true,
