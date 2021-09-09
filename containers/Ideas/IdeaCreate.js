@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { Alert, View, ScrollView, Text } from 'react-native';
-import { Button, CheckBox } from 'react-native-elements';
+import { Button } from 'react-native-elements';
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -10,8 +10,9 @@ import IconSLI from 'react-native-vector-icons/SimpleLineIcons';
 import { styles } from './Idea.styles';
 import {
   TextInputFormField,
-  CheckBoxFormFieldContainer,
   CheckBoxFormField,
+  CustomCheckBoxContainerParent,
+  CustomCheckBoxFormField,
   DropdownFormFieldContainer,
   DropdownFormField } from '../../components/formFields';
 import {
@@ -43,6 +44,7 @@ export const IdeaCreate = props => {
   const [selectedCategory, setSelectedCategory] = useState('');
   const [labels, setLabels] = useState([]);
   const [labelsChecked, setLabelsChecked] = useState([]);
+  const [imageChecked, setImageChecked] = useState(false);
 
   useEffect(() => {
     if (error) {
@@ -94,6 +96,10 @@ export const IdeaCreate = props => {
     return labelsChecked.map((isSelected, index) => {
       return (index === labelIndex) ? !isSelected : isSelected;
     });
+  };
+
+  const toggleImageCheck = () => {
+    setImageChecked(!imageChecked);
   };
 
   const handleSubmit = (values) => {
@@ -165,6 +171,7 @@ export const IdeaCreate = props => {
 
           labels: [],
           category: selectedCategory,
+          imageCopyrightChecked: imageChecked
         }}
         onSubmit={values => handleSubmit(values)}
       >
@@ -218,12 +225,12 @@ export const IdeaCreate = props => {
               </DropdownFormFieldContainer>
             }
             {labels.length > 0 &&
-              <CheckBoxFormFieldContainer
+              <CustomCheckBoxContainerParent
                 field='Idea Labels'
                 name='labels'
               >
                 {labels.map((label, idx) => (
-                  <CheckBoxFormField
+                  <CustomCheckBoxFormField
                     key={`labelfield-${idx}`}
                     title={label.label}
                     value={label.value}
@@ -231,7 +238,7 @@ export const IdeaCreate = props => {
                     onIconPress={() => setLabelsChecked(handleLabelCheck(idx))}
                   />)
                 )}
-              </CheckBoxFormFieldContainer>
+              </CustomCheckBoxContainerParent>
             }
             <ImageChoiceFormFieldContainer
               field='Add Image'>
@@ -247,10 +254,20 @@ export const IdeaCreate = props => {
                   onPress={setClicked}
                 />
               }
-              <Text style={styles.formLabel}>Visualize your idea. It must be min. 600 pixel wide and 400 pixel tall. Allowed file formats are png, jpeg, gif. The file size should be max. 5 MB.</Text>
-
+              <Text style={styles.formLabel}>
+                Visualize your idea. It must be min. 600 pixel wide and 400 pixel tall. Allowed file formats are png, jpeg, gif. The file size should be max. 5 MB.
+              </Text>
               {clicked &&
-                <ImagePickerFormField />
+                <>
+                  <ImagePickerFormField />
+                  <CheckBoxFormField
+                    field='Image Copyright'
+                    name='imageCopyrightChecked'
+                    onIconPress={toggleImageCheck}
+                    checked={imageChecked}
+                    title='I hereby confirm that the copyrights for this photo are with me or that I have received rights of use from the author. I also confirm that the privacy rights of depicted third persons are not violated.'
+                  />
+                </>
               }
             </ImageChoiceFormFieldContainer>
             <Button onPress={handleSubmit} title="Submit" disabled={!isValid} />
