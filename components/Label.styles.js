@@ -8,11 +8,11 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     alignSelf: 'flex-start',
     backgroundColor: COLORS.text.main,
-    paddingVertical: SPACINGS.multiplyBy(.4),
-    paddingHorizontal: SPACINGS.multiplyBy(.8),
+    paddingVertical: SPACINGS.multiplyBy(.2),
+    paddingHorizontal: SPACINGS.multiplyBy(.6),
     borderRadius: BORDERRADIUS.base,
     marginRight: SPACINGS.multiplyBy(.5),
-    marginBottom: SPACINGS.multiplyBy(.5)
+    marginBottom: SPACINGS.multiplyBy(.5),
   },
   text: {
     color: COLORS.text.inverted,
