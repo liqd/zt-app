@@ -1,8 +1,9 @@
 import React from 'react';
-import { Text, View, Image, TouchableOpacity } from 'react-native';
+import { View, Image, TouchableOpacity } from 'react-native';
 import { COLORS } from '../../theme/colors';
 import { styles } from './ExploreListItem.styles';
 import IconSLI from 'react-native-vector-icons/SimpleLineIcons';
+import { TextSourceSans } from '../../components/TextSourceSans';
 
 export const ExploreListItem = (props) => {
   const image = props.item.image
@@ -16,23 +17,23 @@ export const ExploreListItem = (props) => {
           <Image style={styles.image} source={{ uri: image }} />
         </View>
         <View style={styles.textContainer}>
-          <Text style={styles.text}>
+          <TextSourceSans style={styles.text}>
             by {props.item.organisation}
-          </Text>
-          <Text style={styles.title}>
+          </TextSourceSans>
+          <TextSourceSans style={styles.title}>
             {props.item.name}
-          </Text>
-          <Text style={styles.text}>
+          </TextSourceSans>
+          <TextSourceSans style={styles.text}>
             {props.item.description}
-          </Text>
+          </TextSourceSans>
         </View>
         <View style={styles.progressContainer}>
-          <Text style={styles.progressText}>
+          <TextSourceSans style={styles.progressText}>
             <IconSLI
               name='clock'
               color={COLORS.grey.medium}
             /> nur noch 12 Wochen
-          </Text>
+          </TextSourceSans>
         </View>
       </View>
     </TouchableOpacity>

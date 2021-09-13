@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Alert, View, Text, Image, ScrollView } from 'react-native';
+import { Alert, View, Image, ScrollView } from 'react-native';
 import { Button } from 'react-native-elements';
 import { styles } from './Idea.styles';
 import Icon from 'react-native-vector-icons/SimpleLineIcons';
@@ -9,6 +9,7 @@ import { ButtonCounter } from '../../components/ButtonCounter';
 import { Label } from '../../components/Label';
 import { Menu } from '../../components/Menu';
 import { Modal } from '../../components/Modal';
+import { TextSourceSans } from '../../components/TextSourceSans';
 import { Comments } from '../Comments/Comments';
 
 export const Idea = (props) => {
@@ -169,16 +170,16 @@ export const Idea = (props) => {
           />
         </View>
         <View style={styles.titleContainer}>
-          <Text style={styles.title}>{ideaState.name}</Text>
+          <TextSourceSans style={styles.title}>{ideaState.name}</TextSourceSans>
         </View>
         <View style={styles.descriptionContainer}>
           {ideaState.image && (
             <>
-              <Text>test</Text>
+              <TextSourceSans>test</TextSourceSans>
               <Image source={{ uri: ideaState.image }} style={styles.ideaImage} />
             </>
           )}
-          <Text style={styles.text}>{ideaState.description}</Text>
+          <TextSourceSans style={styles.text}>{ideaState.description}</TextSourceSans>
         </View>
         {getLabels().length > 0 && (
           <View style={styles.labelsContainer}>
@@ -188,12 +189,12 @@ export const Idea = (props) => {
           </View>
         )}
         <View style={styles.infoContainer}>
-          <Text style={styles.creator}>
+          <TextSourceSans style={styles.creator}>
             {ideaState.creator} {createdDate}
-          </Text>
-          <Text style={styles.text}>
+          </TextSourceSans>
+          <TextSourceSans style={styles.text}>
             Reference No.: {ideaState.reference_number || 'n/a'}
-          </Text>
+          </TextSourceSans>
         </View>
         <View style={styles.bottomActionsContainer}>
           <View style={styles.ratingButtons}>

@@ -1,7 +1,8 @@
 import React, { useState, useCallback } from 'react';
-import { View, Text, Image } from 'react-native';
+import { View, Image } from 'react-native';
 import { Button } from 'react-native-elements';
 import { styles } from './Comment.styles';
+import { TextSourceSans } from '../../components/TextSourceSans';
 import Icon from 'react-native-vector-icons/SimpleLineIcons';
 import { DateService } from '../../services/DateService';
 import { TouchableWithoutFeedback } from 'react-native';
@@ -44,41 +45,41 @@ export const Comment = (props) => {
         <View style={styles.topLeft}>
           <Image source={{ uri: userAvatar }} style={styles.avatar} />
           <View style={styles.author}>
-            <Text style={styles.username}>{userName}</Text>
-            <Text style={styles.date}>{DateService(created)}</Text>
+            <TextSourceSans style={styles.username}>{userName}</TextSourceSans>
+            <TextSourceSans style={styles.date}>{DateService(created)}</TextSourceSans>
           </View>
         </View>
-        <Text>
+        <TextSourceSans>
           <Button
             icon={<Icon name='options-vertical' size={22} />}
             type='clear'
           />
-        </Text>
+        </TextSourceSans>
       </View>
       <View>
         {!showWholeComment &&
-          <Text
+          <TextSourceSans
             style={styles.comment}
             numberOfLines={NUM_OF_LINES}
             onTextLayout={onTextLayout}
           >
             {comment}
-          </Text>
+          </TextSourceSans>
         }
         {showWholeComment &&
-        <Text style={styles.comment}>
+        <TextSourceSans style={styles.comment}>
           {comment}
-        </Text>
+        </TextSourceSans>
         }
         {hasExcerpt && <TouchableWithoutFeedback onPress={toggleWholeComment}>
-          <Text style={styles.linkButton}>{showWholeComment ? 'Read Less' : 'Read More'}</Text>
+          <TextSourceSans style={styles.linkButton}>{showWholeComment ? 'Read Less' : 'Read More'}</TextSourceSans>
         </TouchableWithoutFeedback>}
       </View>
       <View style={styles.linkSection}>
         {childComments.length !== 0 && <TouchableWithoutFeedback onPress={toggleSubComments}>
-          <Text style={styles.linkButton}>
+          <TextSourceSans style={styles.linkButton}>
             {showSubComments ? 'Hide' : 'Show'} {childComments.length} answers
-          </Text>
+          </TextSourceSans>
         </TouchableWithoutFeedback>}
       </View>
       <View style={styles.bottomActionsContainer}>

@@ -1,11 +1,12 @@
 import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, TouchableOpacity } from 'react-native';
 import { styles } from './IdeasListItem.styles';
 import Icon from 'react-native-vector-icons/SimpleLineIcons';
 
 import { ButtonCounter } from '../../components/ButtonCounter';
 import { DateService } from '../../services/DateService';
 import { Label } from '../../components/Label';
+import { TextSourceSans } from '../../components/TextSourceSans';
 
 export const IdeasListItem = (props) => {
   const {
@@ -36,7 +37,7 @@ export const IdeasListItem = (props) => {
     <TouchableOpacity onPress={pressHandler}>
       <View style={styles.container}>
         <View style={styles.topContainer}>
-          <Text style={styles.title}>{name}</Text>
+          <TextSourceSans style={styles.title}>{name}</TextSourceSans>
           {getCategory().length > 0 && (
             <View style={styles.labelsContainer}>
               {getCategory().map((category, idx) => (
@@ -46,10 +47,10 @@ export const IdeasListItem = (props) => {
           )}
         </View>
         <View style={styles.bottomContainer}>
-          <Text style={styles.text}>{creator}</Text>
-          <Text style={styles.text}>
+          <TextSourceSans style={styles.text}>{creator}</TextSourceSans>
+          <TextSourceSans style={styles.text}>
             {createdDate}
-          </Text>
+          </TextSourceSans>
           <View style={styles.counters}>
             <ButtonCounter icon={<Icon name='arrow-up' />} counter={upCount} />
             <ButtonCounter icon={<Icon name='arrow-down' />} counter={downCount} />
