@@ -256,7 +256,7 @@ export const IdeaCreate = props => {
                   onPress={setClicked}
                 />
               }
-              <TextSourceSans style={styles.formLabel}>
+              <TextSourceSans style={styles.imageInfo}>
                 Visualize your idea. It must be min. 600 pixel wide and 400 pixel tall. Allowed file formats are png, jpeg, gif. The file size should be max. 5 MB.
               </TextSourceSans>
               {clicked &&

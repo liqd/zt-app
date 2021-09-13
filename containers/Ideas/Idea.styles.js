@@ -82,10 +82,12 @@ export const styles = StyleSheet.create({
     minWidth: '100%',
     color: COLORS.text.inverted,
     backgroundColor: COLORS.text.main,
-    marginBottom: SPACINGS.multiplyBy(.5),
     paddingVertical: SPACINGS.multiplyBy(.75),
     borderColor: COLORS.text.main,
     borderRadius: BORDERRADIUS.none,
+  },
+  imageInfo: {
+    marginBottom: SPACINGS.multiplyBy(1),
   },
   textLight: {
     color: COLORS.text.inverted,
