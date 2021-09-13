@@ -1,18 +1,19 @@
 import React from 'react';
-import { TextInput, View, Text } from 'react-native';
+import { TextInput, View } from 'react-native';
 import { CheckBox } from 'react-native-elements';
 import DropDownPicker from 'react-native-dropdown-picker';
 import { styles } from './formFields.styles';
+import { TextSourceSans } from './TextSourceSans';
 
 export const TextInputFormField = (props) => {
   return (
     <View>
-      <Text style={styles.formLabel}>{props.field}</Text>
+      <TextSourceSans style={styles.formLabel}>{props.field}</TextSourceSans>
       <TextInput
         style={styles.textInput}
         {...props}
       />
-      {props.touched && <Text style={styles.formError}>{props.error}</Text>}
+      {props.touched && <TextSourceSans style={styles.formError}>{props.error}</TextSourceSans>}
     </View>
   );
 };
@@ -34,9 +35,9 @@ export const CheckBoxFormField = (props) => {
 export const CustomCheckBoxContainerParent = (props) => {
   return (
     <View style={styles.customCheckBoxContainerParent}>
-      <Text style={styles.formLabel}>{props.field}</Text>
+      <TextSourceSans style={styles.formLabel}>{props.field}</TextSourceSans>
       {props.children}
-      {props.children.touched && <Text style={styles.formError}>{props.error}</Text>}
+      {props.children.touched && <TextSourceSans style={styles.formError}>{props.error}</TextSourceSans>}
     </View>
   );
 };
@@ -58,7 +59,7 @@ export const CustomCheckBoxFormField = (props) => {
 export const DropdownFormFieldContainer = (props) => {
   return (
     <View>
-      <Text style={styles.formLabel}>{props.field}</Text>
+      <TextSourceSans style={styles.formLabel}>{props.field}</TextSourceSans>
       {props.children}
     </View>
   );

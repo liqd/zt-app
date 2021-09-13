@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, FlatList } from 'react-native';
+import { View, FlatList } from 'react-native';
 import API from '../../BaseApi';
 import { ExploreListItem } from './ExploreListItem';
 import { styles } from './ExplorePage.styles';
 import { ButtonSignOut } from '../../components/ButtonSignOut';
+import { TextSourceSans } from '../../components/TextSourceSans';
 
 export const ExplorePage = (props) => {
   const [projects, setProjects] = useState([]);
@@ -31,8 +32,8 @@ export const ExplorePage = (props) => {
   return (
     <View style={styles.container}>
       <ButtonSignOut></ButtonSignOut>
-      <Text style={styles.title}>Explore</Text>
-      <Text style={styles.subtitle}>Recently Added</Text>
+      <TextSourceSans style={styles.title}>Explore</TextSourceSans>
+      <TextSourceSans style={styles.subtitle}>Recently Added</TextSourceSans>
       <FlatList
         keyExtractor={(i) => `pk${i.pk}`}
         data={projects.filter(p => p.single_agenda_setting_module)}
