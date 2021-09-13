@@ -94,8 +94,8 @@ export const styles = StyleSheet.create({
     marginHorizontal: SPACINGS.multiplyBy(.25),
     fontSize: SIZES.md
   },
-  commentButton: {
+  commentIcon: {
     fontSize: SIZES.md,
-    paddingVertical: SPACINGS.multiplyBy(.25),
+    marginVertical: SPACINGS.multiplyBy(.5),
   }
 });

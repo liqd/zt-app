@@ -19,7 +19,6 @@ export const Idea = (props) => {
   const [deleteModalVisible, setDeleteModalVisible] = useState(false);
   const [processing, setProcessing] = useState(false);
   const [comments, setComments] = useState([]);
-  const [showComments, setShowComments] = useState(false);
   const hasComments = comments.length !== 0;
 
   const menuItems = [
@@ -141,8 +140,6 @@ export const Idea = (props) => {
       });
   };
 
-  const toggleComments = () => setShowComments(!showComments);
-
   useEffect(() => {
     setIdeaState(idea);
     const { content_type, pk } = idea;
@@ -224,16 +221,18 @@ export const Idea = (props) => {
             />
           </View>
           <View>
-            <Button
-              onPress={toggleComments}
-              disabled={!hasComments}
-              icon={<Icon name='bubble' size={18} color={!hasComments ? styles.disabledIcon.color : styles.fontColor.color} />}
-              type='clear'
-              containerStyle={styles.commentButton}
+            <Icon
+              name='bubble'
+              size={18} color={
+                !hasComments
+                  ? styles.disabledIcon.color
+                  : styles.fontColor.color
+              }
+              style={styles.commentIcon}
             />
           </View>
         </View>
-        {comments && showComments && <View>
+        {comments && <View>
           <Comments comments={comments} />
         </View>}
       </ScrollView>
