@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, ImageBackground, ScrollView } from 'react-native';
+import { View, ImageBackground, ScrollView } from 'react-native';
 import { Button } from 'react-native-elements';
 import { styles } from './IdeaProject.styles';
 import { IdeasList } from './IdeasList';
@@ -10,6 +10,7 @@ import { COLORS } from '../../theme/colors';
 import { DateService } from '../../services/DateService';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ButtonSubmit } from '../../components/ButtonSubmit';
+import { TextSourceSans } from '../../components/TextSourceSans';
 
 export const IdeaProject = (props) => {
   const {project} = props.route.params;
@@ -85,30 +86,30 @@ export const IdeaProject = (props) => {
           </View>
           <View style={styles.overlayContainer}>
             <View style={styles.infoContainer}>
-              <Text style={styles.title}>{project.name}</Text>
-              <Text style={styles.description}>{project.description}</Text>
-              <Text style={styles.organisation}>By {project.organisation}</Text>
+              <TextSourceSans style={styles.title}>{project.name}</TextSourceSans>
+              <TextSourceSans style={styles.description}>{project.description}</TextSourceSans>
+              <TextSourceSans style={styles.organisation}>By {project.organisation}</TextSourceSans>
               <View>
                 <View style={styles.tabsMenu}>
-                  <Text style={styles.tabsMenuItemActive}>Participation</Text>
-                  <Text style={styles.tabsMenuItem}>Information</Text>
-                  <Text style={styles.tabsMenuItem}>Results</Text>
+                  <TextSourceSans style={styles.tabsMenuItemActive}>Participation</TextSourceSans>
+                  <TextSourceSans style={styles.tabsMenuItem}>Information</TextSourceSans>
+                  <TextSourceSans style={styles.tabsMenuItem}>Results</TextSourceSans>
                 </View>
                 {activePhase ? (
                   <View style={styles.phaseContainer}>
-                    <Text style={styles.phaseText}>
+                    <TextSourceSans style={styles.phaseText}>
                       {activePhase && activePhase.name + ' (active)'}
-                    </Text>
-                    <Text style={styles.phaseDate}>
+                    </TextSourceSans>
+                    <TextSourceSans style={styles.phaseDate}>
                       {phaseStart} – {phaseEnd}
-                    </Text>
-                    <Text style={styles.phaseText}>
+                    </TextSourceSans>
+                    <TextSourceSans style={styles.phaseText}>
                       {activePhase && activePhase.description}
-                    </Text>
+                    </TextSourceSans>
                   </View>
                 ) : (
                   <View style={styles.phaseContainer}>
-                    <Text>No active phase found.</Text>
+                    <TextSourceSans>No active phase found.</TextSourceSans>
                   </View>
                 )}
               </View>
@@ -135,10 +136,10 @@ export const IdeaProject = (props) => {
                 )}
               </View>
             ) : (
-              <Text>
+              <TextSourceSans>
                 Oops. Multiple module projects are not supported in adhocracy+
                 app, yet! Please find them on adhocracy+ web.
-              </Text>
+              </TextSourceSans>
             )}
           </View>
         </ImageBackground>

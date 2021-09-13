@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { Alert, View, ScrollView, Text } from 'react-native';
+import { Alert, View, ScrollView } from 'react-native';
 import { Button } from 'react-native-elements';
 import { Formik } from 'formik';
 import * as yup from 'yup';
@@ -7,6 +7,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import Icon from 'react-native-vector-icons/SimpleLineIcons';
 import IconSLI from 'react-native-vector-icons/SimpleLineIcons';
 import { ButtonSubmit } from '../../components/ButtonSubmit';
+import { TextSourceSans } from '../../components/TextSourceSans';
 
 import { styles } from './Idea.styles';
 import {
@@ -156,7 +157,7 @@ export const IdeaCreate = props => {
           onPress={() => props.navigation.goBack()}
         />
       </View>
-      <Text style={styles.title}>Submit a new idea for this project</Text>
+      <TextSourceSans style={styles.title}>Submit a new idea for this project</TextSourceSans>
       <Formik
         validationSchema={ideaValidationSchema}
         initialValues={{
@@ -255,9 +256,9 @@ export const IdeaCreate = props => {
                   onPress={setClicked}
                 />
               }
-              <Text style={styles.formLabel}>
+              <TextSourceSans style={styles.formLabel}>
                 Visualize your idea. It must be min. 600 pixel wide and 400 pixel tall. Allowed file formats are png, jpeg, gif. The file size should be max. 5 MB.
-              </Text>
+              </TextSourceSans>
               {clicked &&
                 <>
                   <ImagePickerFormField />

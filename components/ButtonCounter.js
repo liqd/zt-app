@@ -1,6 +1,7 @@
 import React from 'react';
-import { Text, TouchableOpacity } from 'react-native';
+import { TouchableOpacity } from 'react-native';
 import { styles } from './ButtonCounter.styles';
+import { TextSourceSans } from './TextSourceSans';
 
 export const ButtonCounter = (props) => {
   return (
@@ -9,7 +10,7 @@ export const ButtonCounter = (props) => {
       onPress={props.onPress}
       disabled={props.disabled}
     >
-      <Text style={
+      <TextSourceSans style={
         props.disabled
           ? styles.textDisabled
           : !props.highlight || props.highlight === 0
@@ -19,8 +20,8 @@ export const ButtonCounter = (props) => {
               : styles.textDownHighlight
       }>
         {props.counter}
-      </Text>
-      <Text style={
+      </TextSourceSans>
+      <TextSourceSans style={
         props.disabled
           ? styles.iconDisabled
           : !props.highlight || props.highlight === 0
@@ -30,7 +31,7 @@ export const ButtonCounter = (props) => {
               : styles.iconDownHighlight
       }>
         {props.icon}
-      </Text>
+      </TextSourceSans>
     </TouchableOpacity>
   );
 };

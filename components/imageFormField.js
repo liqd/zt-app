@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Alert, Image, Platform } from 'react-native';
+import { View, Alert, Image, Platform } from 'react-native';
 import { Button } from 'react-native-elements';
 import { styles } from './imageFormField.styles';
 import Icon from 'react-native-vector-icons/SimpleLineIcons';
 import * as ImagePicker from 'expo-image-picker';
+import { TextSourceSans } from './TextSourceSans';
 
 export const ImagePickerFormField = () => {
   const [capturedImage, setCapturedImage] = useState(null);
@@ -96,7 +97,7 @@ export const ImagePickerFormField = () => {
 export const ImageChoiceFormFieldContainer = (props) => {
   return (
     <View style={styles.formRow}>
-      <Text style={styles.formLabel}>{props.field}</Text>
+      <TextSourceSans style={styles.formLabel}>{props.field}</TextSourceSans>
       {props.children}
     </View>
   );
