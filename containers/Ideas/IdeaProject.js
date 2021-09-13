@@ -9,6 +9,7 @@ import API from '../../BaseApi';
 import { COLORS } from '../../theme/colors';
 import { DateService } from '../../services/DateService';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { ButtonSubmit } from '../../components/ButtonSubmit';
 
 export const IdeaProject = (props) => {
   const {project} = props.route.params;
@@ -126,11 +127,11 @@ export const IdeaProject = (props) => {
                   />
                 </View>
                 {hasIdeaCreatePermission && (
-                  <Button
-                    buttonStyle={styles.submitButton}
+                  <ButtonSubmit
                     title='Submit Idea'
                     onPress={pressHandler}
-                  />
+                  >
+                  </ButtonSubmit>
                 )}
               </View>
             ) : (
