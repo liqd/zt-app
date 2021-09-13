@@ -4,7 +4,6 @@ import { SIZES, FONTWEIGHT } from '../../theme/fonts';
 import { SPACINGS, BORDERRADIUS } from '../../theme/spacings';
 
 const headerOffset = 250;
-const submitButtonHeight = 70;
 
 export const styles = StyleSheet.create({
   container: {
@@ -28,17 +27,6 @@ export const styles = StyleSheet.create({
   listContainer: {
     padding: SPACINGS.multiplyBy(0.8),
     flex: 1,
-  },
-  submitButtonContainer: {
-    height: submitButtonHeight
-  },
-  submitButton: {
-    alignItems: 'center',
-    backgroundColor: COLORS.primary,
-    width: '100%',
-    height: submitButtonHeight,
-    fontSize: SIZES.base,
-    borderRadius: BORDERRADIUS.none,
   },
   title: {
     fontSize: SIZES.multiplyBy(1.375),
