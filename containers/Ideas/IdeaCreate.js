@@ -6,6 +6,7 @@ import * as yup from 'yup';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Icon from 'react-native-vector-icons/SimpleLineIcons';
 import IconSLI from 'react-native-vector-icons/SimpleLineIcons';
+import { ButtonSubmit } from '../../components/ButtonSubmit';
 
 import { styles } from './Idea.styles';
 import {
@@ -270,7 +271,12 @@ export const IdeaCreate = props => {
                 </>
               }
             </ImageChoiceFormFieldContainer>
-            <Button onPress={handleSubmit} title="Submit" disabled={!isValid} />
+            <ButtonSubmit
+              title='Submit'
+              onPress={handleSubmit}
+              disabled={!isValid}
+            >
+            </ButtonSubmit>
           </>
         )}
       </Formik>
