@@ -48,13 +48,15 @@ export const IdeasListItem = (props) => {
         </View>
         <View style={styles.bottomContainer}>
           <TextSourceSans style={styles.text}>{creator}</TextSourceSans>
-          <TextSourceSans style={styles.text}>
-            {createdDate}
-          </TextSourceSans>
-          <View style={styles.counters}>
-            <ButtonCounter icon={<Icon name='arrow-up' />} counter={upCount} />
-            <ButtonCounter icon={<Icon name='arrow-down' />} counter={downCount} />
-            <ButtonCounter icon={<Icon name='bubble' />} counter={commentCount} />
+          <View style={styles.infoContainer}>
+            <TextSourceSans style={styles.text}>
+              {createdDate}
+            </TextSourceSans>
+            <View style={styles.counters}>
+              <ButtonCounter icon={<Icon name='arrow-up' />} counter={upCount} />
+              <ButtonCounter icon={<Icon name='arrow-down' />} counter={downCount} />
+              <ButtonCounter icon={<Icon name='bubble' />} counter={commentCount} />
+            </View>
           </View>
         </View>
       </View>
