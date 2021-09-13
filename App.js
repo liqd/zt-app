@@ -2,6 +2,11 @@ import React from 'react';
 import * as Sentry from 'sentry-expo';
 import { AuthProvider } from './containers/Auth/AuthProvider';
 import { IdeaNavigator } from './navigation/IdeaNavigator';
+import AppLoading from 'expo-app-loading';
+import {
+  useFonts,
+  SourceSansPro_400Regular
+} from '@expo-google-fonts/source-sans-pro';
 
 Sentry.init({
   url: 'https://sentry.liqd.net',
@@ -11,11 +16,20 @@ Sentry.init({
 });
 
 const App = () => {
-  return (
-    <AuthProvider>
-      <IdeaNavigator />
-    </AuthProvider>
-  );
+  const [fontsLoaded] = useFonts({
+    SourceSansPro_400Regular,
+  });
+
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  }
+  else {
+    return (
+      <AuthProvider>
+        <IdeaNavigator />
+      </AuthProvider>
+    );
+  }
 };
 
 export default App;
