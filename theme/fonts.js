@@ -2,8 +2,7 @@ const baseFontSize = 17;
 const baseLineHeight = 22;
 
 export const FONTS = {
-  familySans: '"SourceSansPro", sans-serif',
-  familySerif: '"SourceSerifPro", serif'
+  familySans: 'SourceSansPro_400Regular',
 };
 
 export const SIZES = {
