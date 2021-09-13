@@ -20,18 +20,18 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    flex: 1,
+    flex: 1
   },
   title: {
     fontSize: SIZES.base,
     fontWeight: FONTWEIGHT.bold
   },
   text: {
+    flex: 1,
     fontSize: SIZES.sm,
   },
   counters: {
     flexDirection: 'row',
-    alignItems: 'flex-end',
     width: 120
   },
   labelsContainer: {
@@ -39,4 +39,10 @@ export const styles = StyleSheet.create({
     marginVertical: SPACINGS.multiplyBy(.5),
     flexWrap: 'wrap',
   },
+  infoContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    flex: 3
+  }
 });
