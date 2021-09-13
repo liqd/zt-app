@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, StyleSheet } from 'react-native';
-import { FONTS, SIZES } from '../theme/fonts';
+import { FONTS } from '../theme/fonts';
 
 export const TextSourceSans = (props) => {
   const mergedStyles = props.style
