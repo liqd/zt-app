@@ -20,7 +20,8 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginVertical: SPACINGS.multiplyBy(1)
+    marginVertical: SPACINGS.multiplyBy(1),
+    paddingTop: SPACINGS.multiplyBy(1)
   },
   backButton: {
     padding: 0,
