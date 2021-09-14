@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 import { COLORS } from '../theme/colors';
-import { BORDERRADIUS } from '../theme/spacings';
+import { SPACINGS, BORDERRADIUS } from '../theme/spacings';
 
 export const styles = StyleSheet.create({
   listButton: {
@@ -29,9 +29,10 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
   cancelButton: {
-    backgroundColor: 'transparent'
+    backgroundColor: 'transparent',
+    marginBottom: SPACINGS.multiplyBy(2),
   },
   cancelButtonText: {
-    color: COLORS.paper.main
+    color: COLORS.paper.main,
   }
 });
