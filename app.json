@@ -1,6 +1,7 @@
 {
   "expo": {
     "name": "liqd-demo",
+    "owner": "liquiddemocracyev",
     "slug": "liqd-demo",
     "version": "1.0.0",
     "privacy": "unlisted",
