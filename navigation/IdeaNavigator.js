@@ -11,7 +11,7 @@ import { useAuthorization } from '../containers/Auth/AuthProvider.js';
 
 const Stack = createStackNavigator();
 
-export const IdeaNavigator = (props) => {
+export const IdeaNavigator = () => {
   const { loading, token } = useAuthorization();
   return (
     <NavigationContainer>
