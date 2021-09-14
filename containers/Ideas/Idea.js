@@ -57,7 +57,8 @@ export const Idea = (props) => {
 
   const deleteModalItems = [
     {
-      title: 'This idea will be deleted.\nThis action cannot be undone',
+      // space is to center the text
+      title: '   This idea will be deleted.\nThis action cannot be undone',
       isText: true
     },
     {
