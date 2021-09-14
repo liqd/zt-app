@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 import { COLORS } from '../theme/colors';
-import { BORDERRADIUS } from '../theme/spacings';
+import { SPACINGS, BORDERRADIUS } from '../theme/spacings';
 
 export const styles = StyleSheet.create({
   modalContent: {
@@ -20,7 +20,8 @@ export const styles = StyleSheet.create({
     color: COLORS.danger
   },
   cancelButton: {
-    backgroundColor: 'transparent'
+    backgroundColor: 'transparent',
+    paddingBottom: SPACINGS.multiplyBy(3),
   },
   cancelButtonText: {
     color: COLORS.paper.main
