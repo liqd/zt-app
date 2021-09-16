@@ -1,0 +1,356 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test ButtonCounter 1`] = `
+<View
+  accessible={true}
+  focusable={false}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Object {
+      "flex": 1,
+      "flexDirection": "row",
+      "opacity": 1,
+      "paddingVertical": 8,
+    }
+  }
+>
+  <Text
+    style={
+      Array [
+        Object {
+          "fontFamily": "SourceSansPro_400Regular",
+        },
+        Object {
+          "color": "#1a1a1a",
+          "letterSpacing": 5,
+        },
+      ]
+    }
+  >
+    0
+  </Text>
+  <Text
+    style={
+      Array [
+        Object {
+          "fontFamily": "SourceSansPro_400Regular",
+        },
+        Object {
+          "color": "#1a1a1a",
+          "fontSize": 20.4,
+          "letterSpacing": 10,
+          "lineHeight": 24.200000000000003,
+        },
+      ]
+    }
+  >
+    <Text />
+  </Text>
+</View>
+`;
+
+exports[`Test ButtonCounter 10 1`] = `
+<View
+  accessible={true}
+  focusable={false}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Object {
+      "flex": 1,
+      "flexDirection": "row",
+      "opacity": 1,
+      "paddingVertical": 8,
+    }
+  }
+>
+  <Text
+    style={
+      Array [
+        Object {
+          "fontFamily": "SourceSansPro_400Regular",
+        },
+        Object {
+          "color": "#1a1a1a",
+          "letterSpacing": 5,
+        },
+      ]
+    }
+  >
+    10
+  </Text>
+  <Text
+    style={
+      Array [
+        Object {
+          "fontFamily": "SourceSansPro_400Regular",
+        },
+        Object {
+          "color": "#1a1a1a",
+          "fontSize": 20.4,
+          "letterSpacing": 10,
+          "lineHeight": 24.200000000000003,
+        },
+      ]
+    }
+  >
+    <Text
+      allowFontScaling={false}
+      style={
+        Array [
+          Object {
+            "color": undefined,
+            "fontSize": 12,
+          },
+          undefined,
+          Object {
+            "fontFamily": "simple-line-icons",
+            "fontStyle": "normal",
+            "fontWeight": "normal",
+          },
+          Object {},
+        ]
+      }
+    >
+      
+    </Text>
+  </Text>
+</View>
+`;
+
+exports[`Test ButtonCounter disabled 1`] = `
+<View
+  accessible={true}
+  focusable={false}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Object {
+      "flex": 1,
+      "flexDirection": "row",
+      "opacity": 1,
+      "paddingVertical": 8,
+    }
+  }
+>
+  <Text
+    style={
+      Array [
+        Object {
+          "fontFamily": "SourceSansPro_400Regular",
+        },
+        Object {
+          "color": "#c4c4c4",
+          "letterSpacing": 5,
+        },
+      ]
+    }
+  >
+    0
+  </Text>
+  <Text
+    style={
+      Array [
+        Object {
+          "fontFamily": "SourceSansPro_400Regular",
+        },
+        Object {
+          "color": "#c4c4c4",
+          "fontSize": 20.4,
+          "letterSpacing": 10,
+          "lineHeight": 24.200000000000003,
+        },
+      ]
+    }
+  >
+    <Text
+      allowFontScaling={false}
+      style={
+        Array [
+          Object {
+            "color": undefined,
+            "fontSize": 12,
+          },
+          undefined,
+          Object {
+            "fontFamily": "simple-line-icons",
+            "fontStyle": "normal",
+            "fontWeight": "normal",
+          },
+          Object {},
+        ]
+      }
+    >
+      
+    </Text>
+  </Text>
+</View>
+`;
+
+exports[`Test ButtonCounter highlight 1`] = `
+<View
+  accessible={true}
+  focusable={false}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Object {
+      "flex": 1,
+      "flexDirection": "row",
+      "opacity": 1,
+      "paddingVertical": 8,
+    }
+  }
+>
+  <Text
+    style={
+      Array [
+        Object {
+          "fontFamily": "SourceSansPro_400Regular",
+        },
+        Object {
+          "color": "#2d40cc",
+          "fontWeight": "bold",
+          "letterSpacing": 5,
+        },
+      ]
+    }
+  >
+    0
+  </Text>
+  <Text
+    style={
+      Array [
+        Object {
+          "fontFamily": "SourceSansPro_400Regular",
+        },
+        Object {
+          "color": "#2d40cc",
+          "fontSize": 20.4,
+          "fontWeight": "bold",
+          "letterSpacing": 10,
+          "lineHeight": 24.200000000000003,
+        },
+      ]
+    }
+  >
+    <Text
+      allowFontScaling={false}
+      style={
+        Array [
+          Object {
+            "color": undefined,
+            "fontSize": 12,
+          },
+          undefined,
+          Object {
+            "fontFamily": "simple-line-icons",
+            "fontStyle": "normal",
+            "fontWeight": "normal",
+          },
+          Object {},
+        ]
+      }
+    >
+      
+    </Text>
+  </Text>
+</View>
+`;
+
+exports[`Test ButtonCounter highlight 10 1`] = `
+<View
+  accessible={true}
+  focusable={false}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Object {
+      "flex": 1,
+      "flexDirection": "row",
+      "opacity": 1,
+      "paddingVertical": 8,
+    }
+  }
+>
+  <Text
+    style={
+      Array [
+        Object {
+          "fontFamily": "SourceSansPro_400Regular",
+        },
+        Object {
+          "color": "#a72b1e",
+          "fontWeight": "bold",
+          "letterSpacing": 5,
+        },
+      ]
+    }
+  >
+    0
+  </Text>
+  <Text
+    style={
+      Array [
+        Object {
+          "fontFamily": "SourceSansPro_400Regular",
+        },
+        Object {
+          "color": "#a72b1e",
+          "fontSize": 20.4,
+          "fontWeight": "bold",
+          "letterSpacing": 10,
+          "lineHeight": 24.200000000000003,
+        },
+      ]
+    }
+  >
+    <Text
+      allowFontScaling={false}
+      style={
+        Array [
+          Object {
+            "color": undefined,
+            "fontSize": 12,
+          },
+          undefined,
+          Object {
+            "fontFamily": "simple-line-icons",
+            "fontStyle": "normal",
+            "fontWeight": "normal",
+          },
+          Object {},
+        ]
+      }
+    >
+      
+    </Text>
+  </Text>
+</View>
+`;

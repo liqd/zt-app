@@ -1,0 +1,74 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test ButtonSubmit 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "borderRadius": 3,
+        "overflow": "hidden",
+      },
+      Object {
+        "borderRadius": 3,
+      },
+      undefined,
+      false,
+    ]
+  }
+>
+  <View
+    accessibilityRole="button"
+    accessibilityState={
+      Object {
+        "busy": false,
+        "disabled": false,
+      }
+    }
+    accessible={true}
+    focusable={true}
+    nativeBackgroundAndroid={
+      Object {
+        "attribute": "selectableItemBackground",
+        "rippleRadius": undefined,
+        "type": "ThemeAttrAndroid",
+      }
+    }
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "#2d40cc",
+        "borderColor": "#2089dc",
+        "borderRadius": 0,
+        "borderWidth": 0,
+        "flexDirection": "row",
+        "fontSize": 17,
+        "height": 70,
+        "justifyContent": "center",
+        "padding": 8,
+        "width": "100%",
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "color": "white",
+          "fontFamily": "sans-serif-medium",
+          "fontSize": 16,
+          "paddingVertical": 1,
+          "textAlign": "center",
+        }
+      }
+    >
+      TestTitle
+    </Text>
+  </View>
+</View>
+`;
