@@ -49,6 +49,37 @@ const makePostRequest = (url, data = {}, token=null) => {
     .catch(error => console.error(error));
 };
 
+const makeFormPostRequest = (url, formData = {}, token=null) => {
+  return fetch(url, {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'multipart/form-data',
+      'Authorization': 'Token '+token
+    },
+    body: formData,
+  })
+    .then(response => {
+
+      /* tell me everything you know! */
+      for (let key in response) {
+        console.log('response: ', key, response[key]);
+      }
+
+      const result = response.text();
+      if (!response.ok) {
+        throw new Error('HTTP error: ', response.status);
+      }
+      return result;
+    })
+    .then(result => {
+      console.log('fetch result: ', result);
+    })
+    .catch(error => {
+      console.log('fetch error: ', error.message);
+    });
+};
+
 const makePutRequest = (url, data = {}, token=null) => {
   return fetch(url, {
     method: 'PUT',
@@ -85,9 +116,9 @@ const API = {
     const url = endpoints.ideas.replace(/\$(\w+?)\b/g, moduleId);
     return makeGetRequest(url, token);
   },
-  postIdea(moduleId, data, token=null) {
+  postIdea(moduleId, formData, token=null) {
     const url = endpoints.ideas.replace(/\$(\w+?)\b/g, moduleId);
-    return makePostRequest(url, data, token);
+    return makeFormPostRequest(url, formData, token);
   },
   deleteIdea(moduleId, ideaPk, token=null) {
     const module_url = endpoints.idea.replace('$moduleId', moduleId);
