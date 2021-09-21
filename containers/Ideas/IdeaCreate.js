@@ -48,6 +48,7 @@ export const IdeaCreate = props => {
   const [labels, setLabels] = useState([]);
   const [labelsChecked, setLabelsChecked] = useState([]);
   const [imageChecked, setImageChecked] = useState(false);
+  const [image, setImage] = useState();
 
   useEffect(() => {
     if (error) {
@@ -107,13 +108,23 @@ export const IdeaCreate = props => {
 
   const handleSubmit = (values) => {
     values.labels = getSelectedLabels();
+    let formData = new FormData();
+    for (let value in values) {
+      formData.append(value, values[value]);
+    }
+    image && formData.append('image', {
+      uri: image.uri,
+      name: image.name,
+      type: image.mimeType
+    });
+
     AsyncStorage.getItem('authToken')
       .then((token) => {
         if (editing) {
           return API.editIdea(moduleId, idea.pk, values, token);
         }
         else {
-          return API.postIdea(moduleId, values, token);
+          return API.postIdea(moduleId, formData, token);
         }
       })
       //error handling is provisional and should probably go somewhere else eventually
@@ -144,6 +155,8 @@ export const IdeaCreate = props => {
       });
   };
 
+  const onSetImage = (image) => setImage(image);
+
   return (
     <VirtualScrollView
       style={styles.container}
@@ -166,11 +179,12 @@ export const IdeaCreate = props => {
           ...(editing
             ? {
               name: idea.name,
-              description: idea.description ,
+              description: idea.description,
             }
             : {
               name: '',
-              description: '' ,
+              description: '',
+
             }),
 
           labels: [],
@@ -263,7 +277,9 @@ export const IdeaCreate = props => {
               </TextSourceSans>
               {clicked &&
                 <>
-                  <ImagePickerFormField />
+                  <ImagePickerFormField
+                    onSetImage={(img) => onSetImage(img)}
+                  />
                   <CheckBoxFormField
                     field='Image Copyright'
                     name='imageCopyrightChecked'
@@ -271,6 +287,7 @@ export const IdeaCreate = props => {
                     checked={imageChecked}
                     title='I hereby confirm that the copyrights for this photo are with me or that I have received rights of use from the author. I also confirm that the privacy rights of depicted third persons are not violated.'
                   />
+
                 </>
               }
             </ImageChoiceFormFieldContainer>

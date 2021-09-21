@@ -5,8 +5,9 @@ import { styles } from './imageFormField.styles';
 import Icon from 'react-native-vector-icons/SimpleLineIcons';
 import * as ImagePicker from 'expo-image-picker';
 import { TextSourceSans } from './TextSourceSans';
+import mime from 'mime';
 
-export const ImagePickerFormField = () => {
+export const ImagePickerFormField = (props) => {
   const [capturedImage, setCapturedImage] = useState(null);
   const [image, setImage] = useState(null);
 
@@ -29,10 +30,9 @@ export const ImagePickerFormField = () => {
       quality: 1,
     });
 
-    console.log(result);
-
     if (!result.cancelled) {
       setImage(result.uri);
+      props.onSetImage(result);
     }
   };
 
@@ -55,10 +55,18 @@ export const ImagePickerFormField = () => {
       quality: 1,
     });
 
-    console.log(result);
+    // eslint-disable-next-line
+    const nameRegex = /[^\/]*$/;
+    const imgName = result.uri.match(nameRegex);
+    imgName ? (result.name = imgName[0]) : 'unknown';
+
+    const extRegex = /\w+$/;
+    const imgExt = imgName[0].match(extRegex);
+    imgExt ? (result.mimeType = mime.getType(imgExt[0])) : 'image/jpeg';
 
     if (!result.cancelled) {
       setCapturedImage(result.uri);
+      props.onSetImage(result);
     }
   };
 
