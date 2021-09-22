@@ -132,6 +132,7 @@ exports[`Test MenuItem isAllowed isCancel 1`] = `
       "backgroundColor": "transparent",
       "borderColor": "#bcbbc1",
       "flexDirection": "row",
+      "marginBottom": 40,
       "padding": 14,
     }
   }
