@@ -7,7 +7,7 @@ export const TextSourceSans = (props) => {
     ? [styles.font, props.style]
     : styles.font;
   return (
-    <Text style={mergedStyles}>
+    <Text {...props} style={mergedStyles}>
       {props.children}
     </Text>
   );
