@@ -55,13 +55,13 @@ Already working:
 - name
 - description as plain text
 - categories if they exist (but whenever the category is clicked we get `VirtualizedLists should never be nested inside plain ScrollViews with the same orientation - use another VirtualizedList-backed container instead.`)
-- labels if they exist
+- labels if they exist (but don't have the right styling yet)
 - using the camera to take a photo or adding photos from the local storage. Posting the image does not yet work, though.
 
 Not currently working/in progress:
 - error handling for posting an idea (we do not currently show the error the API gives us?!, but handle the errors in the IdeaCreate component)
 - posting formData. We need that to post images. PR starting that: https://github.com/liqd/zt-app/pull/134
-- having the descrition in it's own component with a bigger textfield to open and close
+- having the descrition in it's own component with a bigger textfield to open and close (also currently we do not allow test with less than 20 chars, this should be replaced by proper error handling depending on the model fields)
 - adding markup to the description. To do that, a+ needs to be changed first and the model field needs to be adapted as well as the CK editor that should be replaced by a markup editor
 
 ## Idea Edit
@@ -95,8 +95,6 @@ For the comments rating is currently not possible (but the buttons are shown).
 Comments added on the connected a+ site are shown on the idea detail page.
 Commenting is not yet possible.
 
-https://github.com/liqd/zt-app/issues/149
-
 Shown for the comments:
 - the number of comments on top of the list
 - user avatar or fallback blue circle
@@ -104,7 +102,9 @@ Shown for the comments:
 - created date
 - dummy dropdown dots
 - comment text
+- very long comments are shortened and read more (/less) link is shown
 - link to show answers
+- answers (child comments) are also displayd after after clicking link
 - number of up- and down-votes (FIX ME: check if works)
 - dummy button reply
 - dummy button share
