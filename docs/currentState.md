@@ -56,7 +56,7 @@ Already working:
 - description as plain text
 - categories if they exist (but whenever the category is clicked we get `VirtualizedLists should never be nested inside plain ScrollViews with the same orientation - use another VirtualizedList-backed container instead.`)
 - labels if they exist (but don't have the right styling yet)
-- using the camera to take a photo or adding photos from the local storage. Posting the image does not yet work, though.
+- using the camera to take a photo or adding photos from the local storage. Posting and editing the image does not yet work, though.
 
 Not currently working/in progress:
 - error handling for posting an idea (we do not currently show the error the API gives us?!, but handle the errors in the IdeaCreate component)
@@ -104,7 +104,7 @@ Shown for the comments:
 - comment text
 - very long comments are shortened and read more (/less) link is shown
 - link to show answers
-- answers (child comments) are also displayd after after clicking link
+- answers (child comments) are also displayd after clicking link
 - number of up- and down-votes (FIX ME: check if works)
 - dummy button reply
 - dummy button share
