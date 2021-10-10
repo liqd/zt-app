@@ -72,7 +72,7 @@
     "eslint-plugin-react-native": "3.11.0",
     "husky": "7.0.2",
     "jest-expo": "^42.1.0",
-    "lint-staged": "11.2.2"
+    "lint-staged": "11.2.3"
   },
   "private": true,
   "lint-staged": {
