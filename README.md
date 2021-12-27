@@ -13,6 +13,12 @@ Setup
 - `npm install`
 - If you do `npm start` now, a window will open in your browser. If you click "Run on Andoird" or "Run on iOS", it will tell you how set these up.
 
+Setup after Hibernation
+- Check correct Node version: 14.15.3 (27.12.21)
+- Update expo-cli - `npm install -g expo-cli`: 5.0.3 (27.12.21)
+- Pull latest zt:app repo and install dependencies
+- Update expo go (app on virtual phone) - expo/metro should ask you
+
 Run
 - Start emulators (Android Studio or XCode)
 - `npm start`
