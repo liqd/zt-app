@@ -63,7 +63,7 @@ export const IdeaCreate = props => {
     if (module.categories) {
       // map property names to format needed for formik
       setCategories(module.categories.map(category => ({value: category.id, label: category.name})));
-      if (editing) {
+      if (editing && idea.category) {
         setSelectedCategory(idea.category.id);
       }
       else {
