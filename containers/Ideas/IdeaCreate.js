@@ -127,7 +127,8 @@ export const IdeaCreate = props => {
         else if (editing && statusCode == 200) {
           Alert.alert('Your idea was updated.', '',  [{ text: 'Ok' }]);
           props.navigation.navigate('IdeaDetail', {
-            idea: data
+            idea: data,
+            project: project
           });
         }
         else if (statusCode == 400) {
