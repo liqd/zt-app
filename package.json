@@ -11,7 +11,8 @@
     "test": "jest",
     "testDebug": "jest -o --coverage=false",
     "testNoCov": "jest --coverage=false",
-    "updateSnapshots": "jest -u --coverage=false"
+    "updateSnapshots": "jest -u --coverage=false",
+    "postinstall": "patch-package"
   },
   "jest": {
     "preset": "jest-expo",
@@ -72,7 +73,8 @@
     "eslint-plugin-react-native": "4.0.0",
     "husky": "7.0.4",
     "jest-expo": "44.0.1",
-    "lint-staged": "12.1.4"
+    "lint-staged": "12.1.4",
+    "patch-package": "^6.4.7"
   },
   "private": true,
   "lint-staged": {
