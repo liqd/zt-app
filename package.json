@@ -81,7 +81,7 @@
     "husky": "7.0.4",
     "jest-expo": "44.0.1",
     "lint-staged": "12.1.4",
-    "patch-package": "^6.4.7"
+    "patch-package": "6.4.7"
   },
   "private": true,
   "lint-staged": {
