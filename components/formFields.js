@@ -5,6 +5,10 @@ import DropDownPicker from 'react-native-dropdown-picker';
 import { styles } from './formFields.styles';
 import { TextSourceSans } from './TextSourceSans';
 
+// Setting list mode to scrollview globally
+// FIXME: to be checked if we want this
+DropDownPicker.setListMode('SCROLLVIEW');
+
 export const TextInputFormField = (props) => {
   return (
     <View>
