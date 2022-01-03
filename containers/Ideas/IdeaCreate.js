@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { Alert, View, ScrollView } from 'react-native';
+import { Alert, View } from 'react-native';
 import { Button } from 'react-native-elements';
 import { Formik } from 'formik';
 import * as yup from 'yup';
@@ -8,6 +8,7 @@ import Icon from 'react-native-vector-icons/SimpleLineIcons';
 import IconSLI from 'react-native-vector-icons/SimpleLineIcons';
 import { ButtonSubmit } from '../../components/ButtonSubmit';
 import { TextSourceSans } from '../../components/TextSourceSans';
+import { VirtualScrollView } from '../../components/VirtualScrollView';
 
 import { styles } from './Idea.styles';
 import {
@@ -144,7 +145,7 @@ export const IdeaCreate = props => {
   };
 
   return (
-    <ScrollView
+    <VirtualScrollView
       style={styles.container}
       contentContainerStyle={styles.contentContainer}
     >
@@ -282,7 +283,7 @@ export const IdeaCreate = props => {
           </>
         )}
       </Formik>
-    </ScrollView>
+    </VirtualScrollView>
   );
 };
 
