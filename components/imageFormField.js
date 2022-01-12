@@ -32,7 +32,7 @@ export const ImagePickerFormField = (props) => {
 
     if (!result.cancelled) {
       setImage(result.uri);
-      props.onSetImage(result.uri);
+      props.onSetImage(result);
     }
   };
 

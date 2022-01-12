@@ -75,7 +75,7 @@ export const Idea = (props) => {
   const getLabels = () => {
     let labelsList = [];
     ideaState.category && labelsList.push(ideaState.category.name);
-    ideaState.labels.length > 0 && labelsList.push(...ideaState.labels.map(label => label.name));
+    ideaState.labels && ideaState.labels.length > 0 && labelsList.push(...ideaState.labels.map(label => label.name));
     return labelsList;
   };
 

@@ -1,5 +1,7 @@
-// const baseUrl = 'http://10.0.2.2:8004/api';
-const baseUrl = 'https://aplus-dev.liqd.net/api';
+const baseUrl = 'http://10.0.2.2:8004/api';
+// const baseUrl = 'http://localhost:8004/api';
+// const baseUrl = 'http://192.168.0.20:8004/api';
+// const baseUrl = 'https://aplus-dev.liqd.net/api';
 
 const endpoints = {
   ideas: baseUrl + '/modules/$moduleId/ideas/',
@@ -8,10 +10,10 @@ const endpoints = {
   projects: baseUrl + '/app-projects/',
   modules: baseUrl + '/app-modules/',
   rate: baseUrl + '/contenttypes/$contentTypeId/objects/$objectPk/ratings/',
-  comments: baseUrl + '/contenttypes/$contentTypeId/objects/$objectPk/comments/',
+  comments: baseUrl + '/contenttypes/$contentTypeId/objects/$objectPk/comments/'
 };
 
-const makeGetRequest = (url, token=null) => {
+const makeGetRequest = (url, token = null) => {
   return fetch(url, {
     method: 'GET',
     headers: getHeaders(token)
@@ -21,18 +23,18 @@ const makeGetRequest = (url, token=null) => {
     .catch(error => console.error(error));
 };
 
-const getHeaders = (token) => {
+const getHeaders = token => {
   const headers = {
-    'Accept': 'application/json',
-    'Content-Type': 'application/json',
+    Accept: 'application/json',
+    'Content-Type': 'application/json'
   };
   if (token) {
-    headers['Authorization'] = 'Token '+token;
+    headers['Authorization'] = 'Token ' + token;
   }
   return headers;
 };
 
-const makePostRequest = (url, data = {}, token=null) => {
+const makePostRequest = (url, data = {}, token = null) => {
   return fetch(url, {
     method: 'POST',
     headers: getHeaders(token),
@@ -41,46 +43,47 @@ const makePostRequest = (url, data = {}, token=null) => {
     .then(response => {
       const statusCode = response.status;
       const data = response.json();
-      return Promise.all([statusCode, data]);
+      return Promise.all([ statusCode, data ]);
     })
     .then(values => {
-      return {'statusCode': values[0], 'data': values[1]};
+      return {statusCode: values[0], data: values[1]};
     })
     .catch(error => console.error(error));
 };
 
-const makeFormPostRequest = (url, formData = {}, token=null) => {
+const makeFormPostRequest = (url, formData = {}, token = null) => {
   return fetch(url, {
     method: 'POST',
     headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'multipart/form-data',
-      'Authorization': 'Token '+token
+      Accept: 'application/json',
+      Authorization: 'Token ' + token
     },
-    body: formData,
+    body: formData
   })
     .then(response => {
-
       /* tell me everything you know! */
       for (let key in response) {
         console.log('response: ', key, response[key]);
       }
 
-      const result = response.text();
       if (!response.ok) {
         throw new Error('HTTP error: ', response.status);
       }
-      return result;
+      return [ response.json(), response.status ];
     })
-    .then(result => {
+    .then(([ result, status ]) => {
       console.log('fetch result: ', result);
+      return {
+        data: result,
+        statusCode: status
+      };
     })
     .catch(error => {
       console.log('fetch error: ', error.message);
     });
 };
 
-const makePutRequest = (url, data = {}, token=null) => {
+const makePutRequest = (url, data = {}, token = null) => {
   return fetch(url, {
     method: 'PUT',
     headers: getHeaders(token),
@@ -89,15 +92,15 @@ const makePutRequest = (url, data = {}, token=null) => {
     .then(response => {
       const statusCode = response.status;
       const data = response.json();
-      return Promise.all([statusCode, data]);
+      return Promise.all([ statusCode, data ]);
     })
     .then(values => {
-      return {'statusCode': values[0], 'data': values[1]};
+      return {statusCode: values[0], data: values[1]};
     })
     .catch(error => console.error(error));
 };
 
-const makeDeleteRequest = (url, token=null) => {
+const makeDeleteRequest = (url, token = null) => {
   return fetch(url, {
     method: 'DELETE',
     headers: getHeaders(token)
@@ -107,25 +110,25 @@ const makeDeleteRequest = (url, token=null) => {
 };
 
 const API = {
-  getIdea(moduleId, ideaId, token=null) {
+  getIdea(moduleId, ideaId, token = null) {
     const module_url = endpoints.idea.replace('$moduleId', moduleId);
     const url = module_url.replace('$ideaPk', ideaId);
     return makeGetRequest(url, token);
   },
-  getIdeas(moduleId, token=null) {
+  getIdeas(moduleId, token = null) {
     const url = endpoints.ideas.replace(/\$(\w+?)\b/g, moduleId);
     return makeGetRequest(url, token);
   },
-  postIdea(moduleId, formData, token=null) {
+  postIdea(moduleId, formData, token = null) {
     const url = endpoints.ideas.replace(/\$(\w+?)\b/g, moduleId);
     return makeFormPostRequest(url, formData, token);
   },
-  deleteIdea(moduleId, ideaPk, token=null) {
+  deleteIdea(moduleId, ideaPk, token = null) {
     const module_url = endpoints.idea.replace('$moduleId', moduleId);
     const url = module_url.replace('$ideaPk', ideaPk);
     return makeDeleteRequest(url, token);
   },
-  editIdea(moduleId, ideaPk, data, token=null) {
+  editIdea(moduleId, ideaPk, data, token = null) {
     const module_url = endpoints.idea.replace('$moduleId', moduleId);
     const url = module_url.replace('$ideaPk', ideaPk);
     return makePutRequest(url, data, token);
@@ -139,18 +142,18 @@ const API = {
   getModules() {
     return makeGetRequest(endpoints.modules);
   },
-  getModule(moduleId, token=null) {
+  getModule(moduleId, token = null) {
     const url = endpoints.modules + moduleId;
     return makeGetRequest(url, token);
   },
-  rate(contentTypeId, objectPk, data, token=null) {
+  rate(contentTypeId, objectPk, data, token = null) {
     const ct_url = endpoints.rate.replace('$contentTypeId', contentTypeId);
     const url = ct_url.replace('$objectPk', objectPk);
     return makePostRequest(url, data, token);
   },
-  changeRating(contentTypeId, objectPk, ratingId, data, token=null) {
+  changeRating(contentTypeId, objectPk, ratingId, data, token = null) {
     const ct_url = endpoints.rate.replace('$contentTypeId', contentTypeId);
-    const url = ct_url.replace('$objectPk', objectPk) + ratingId +'/';
+    const url = ct_url.replace('$objectPk', objectPk) + ratingId + '/';
     return makePutRequest(url, data, token);
   },
   getComments(contentTypeId, objectPk) {

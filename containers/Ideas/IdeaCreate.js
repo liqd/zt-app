@@ -106,6 +106,46 @@ export const IdeaCreate = props => {
     setImageChecked(!imageChecked);
   };
 
+  const afterFetch = async (response, strict=false) => {
+    // FIXME: This forces to load the list even with network error.
+
+    if (response && strict) {
+      // only if response contains data and we want to be strict
+      // we will error handle this. (Case: editing = true)
+      const {statusCode, data} = response;
+      if (statusCode == 201) {
+        Alert.alert('Your idea was added.', 'Thank you for participating!',  [{ text: 'Ok' }]);
+        props.navigation.navigate('IdeaProject', {
+          project: project
+        });
+      }
+      else if (editing && statusCode == 200) {
+        Alert.alert('Your idea was updated.', '',  [{ text: 'Ok' }]);
+        props.navigation.navigate('IdeaDetail', {
+          idea: data,
+          project: project
+        });
+      }
+      else if (statusCode == 400) {
+        setError('Required fields are missing.');
+      }
+      else if (response.statusCode == 403) {
+        setError(response.data.detail);
+      }
+      else {
+        setError('Try again.');
+      }
+    }
+    else {
+      // if response is empty or strict set to false (default) we just go back to the list
+      // regardless if it was successful or not.
+      // Note: setTimeout used here to wait one second hoping request (esp. with image)
+      // has been processed on server
+      await Alert.alert('Your data has been submitted.', '',  [{ text: 'Ok' }]);
+      setTimeout(() => props.navigation.navigate('IdeaProject', { project }), 500);
+    }
+  };
+
   const handleSubmit = (values) => {
     values.labels = getSelectedLabels();
     let formData = new FormData();
@@ -116,7 +156,7 @@ export const IdeaCreate = props => {
     for (let value in values) {
       formData.append(value, values[value]);
     }
-    formData.append('image', {
+    image && formData.append('image', {
       uri: image.uri,
       name: image.name,
       type: image.mimeType
@@ -137,31 +177,9 @@ export const IdeaCreate = props => {
           return API.postIdea(moduleId, formData, token);
         }
       })
-      //error handling is provisional and should probably go somewhere else eventually
       .then((response) => {
-        const {statusCode, data} = response;
-        if (statusCode == 201) {
-          Alert.alert('Your idea was added.', 'Thank you for participating!',  [{ text: 'Ok' }]);
-          props.navigation.navigate('IdeaProject', {
-            project: project
-          });
-        }
-        else if (editing && statusCode == 200) {
-          Alert.alert('Your idea was updated.', '',  [{ text: 'Ok' }]);
-          props.navigation.navigate('IdeaDetail', {
-            idea: data,
-            project: project
-          });
-        }
-        else if (statusCode == 400) {
-          setError('Required fields are missing.');
-        }
-        else if (response.statusCode == 403) {
-          setError(response.data.detail);
-        }
-        else {
-          setError('Try again.');
-        }
+        const strict = editing;
+        afterFetch(response, strict);
       });
   };
 
