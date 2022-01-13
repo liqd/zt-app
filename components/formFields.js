@@ -4,6 +4,8 @@ import { CheckBox } from 'react-native-elements';
 import DropDownPicker from 'react-native-dropdown-picker';
 import { styles } from './formFields.styles';
 import { TextSourceSans } from './TextSourceSans';
+import IconFA from 'react-native-vector-icons/FontAwesome';
+import { COLORS } from '../theme/colors';
 
 // Setting list mode to scrollview globally
 // FIXME: to be checked if we want this
@@ -47,15 +49,23 @@ export const CustomCheckBoxContainerParent = (props) => {
 };
 
 export const CustomCheckBoxFormField = (props) => {
+  const plusIcon = (
+    <IconFA name='plus' size={16} color={COLORS.text.main} />
+  );
+  const checkIcon = (
+    <IconFA name='check' size={16} color={COLORS.text.inverted} />
+  );
   return (
     <CheckBox
+      center
       checked={props.checked}
-      onIconPress={props.onIconPress}
+      onPress={props.onIconPress}
       title={props.title}
       titleProps={{}}
-      checkedColor='#2a3cd4'
-      uncheckedColor='#2a3cd4'
-      containerStyle={styles.customCheckBoxContainer}
+      textStyle={ (props.checked) ? styles.customCheckBoxTitleChecked : styles.customCheckBoxTitle }
+      checkedIcon={checkIcon}
+      uncheckedIcon={plusIcon}
+      containerStyle={ (props.checked) ? styles.customCheckBoxContainerChecked : styles.customCheckBoxContainer }
     />
   );
 };
