@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 import { COLORS } from '../theme/colors';
-import { SPACINGS, BORDERWIDTH } from '../theme/spacings';
+import { SPACINGS, BORDERWIDTH, BORDERRADIUS } from '../theme/spacings';
 import { SIZES, LINEHEIGHTS, FONTWEIGHT } from '../theme/fonts';
 
 export const styles = StyleSheet.create({
@@ -22,15 +22,31 @@ export const styles = StyleSheet.create({
     height: SPACINGS.multiplyBy(2),
     fontSize: SIZES.md,
   },
+  customCheckBoxTitle: {
+    color: COLORS.text.main
+  },
+  customCheckBoxTitleChecked: {
+    color: COLORS.text.inverted
+  },
   checkBoxContainer: {
     backgroundColor: COLORS.text.inverted,
   },
   customCheckBoxContainer: {
-    width: '45%',
     backgroundColor: COLORS.text.inverted,
+    width: '30%',
     flexDirection: 'row',
     flexWrap: 'wrap',
-    marginLeft: 0
+    marginLeft: 0,
+    borderRadius: BORDERRADIUS.lg
+  },
+  customCheckBoxContainerChecked: {
+    color: COLORS.text.inverted,
+    backgroundColor: COLORS.primary,
+    width: '30%',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    marginLeft: 0,
+    borderRadius: BORDERRADIUS.lg,
   },
   customCheckBoxContainerParent: {
     flexDirection: 'row',
