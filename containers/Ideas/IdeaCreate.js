@@ -106,43 +106,33 @@ export const IdeaCreate = props => {
     setImageChecked(!imageChecked);
   };
 
-  const afterFetch = async (response, strict=false) => {
+  const afterFetch = async (response) => {
     // FIXME: This forces to load the list even with network error.
 
-    if (response && strict) {
-      // only if response contains data and we want to be strict
-      // we will error handle this. (Case: editing = true)
-      const {statusCode, data} = response;
-      if (statusCode == 201) {
-        Alert.alert('Your idea was added.', 'Thank you for participating!',  [{ text: 'Ok' }]);
-        props.navigation.navigate('IdeaProject', {
-          project: project
-        });
-      }
-      else if (editing && statusCode == 200) {
-        Alert.alert('Your idea was updated.', '',  [{ text: 'Ok' }]);
-        props.navigation.navigate('IdeaDetail', {
-          idea: data,
-          project: project
-        });
-      }
-      else if (statusCode == 400) {
-        setError('Required fields are missing.');
-      }
-      else if (response.statusCode == 403) {
-        setError(response.data.detail);
-      }
-      else {
-        setError('Try again.');
-      }
+    const { statusCode, data } = response;
+    if (statusCode == 201) {
+      Alert.alert('Your idea was added.', 'Thank you for participating!', [
+        { text: 'Ok' }
+      ]);
+      props.navigation.navigate('IdeaProject', {
+        project: project
+      });
+    }
+    else if (editing && statusCode == 200) {
+      Alert.alert('Your idea was updated.', '', [{ text: 'Ok' }]);
+      props.navigation.navigate('IdeaDetail', {
+        idea: data,
+        project: project
+      });
+    }
+    else if (statusCode == 400) {
+      setError('Required fields are missing.');
+    }
+    else if (response.statusCode == 403) {
+      setError(response.data.detail);
     }
     else {
-      // if response is empty or strict set to false (default) we just go back to the list
-      // regardless if it was successful or not.
-      // Note: setTimeout used here to wait one second hoping request (esp. with image)
-      // has been processed on server
-      await Alert.alert('Your data has been submitted.', '',  [{ text: 'Ok' }]);
-      setTimeout(() => props.navigation.navigate('IdeaProject', { project }), 500);
+      setError('Try again.');
     }
   };
 
@@ -153,8 +143,10 @@ export const IdeaCreate = props => {
     // formData.append("website", "question");
 
     /* append input field values to formData */
-    for (let value in values) {
-      formData.append(value, values[value]);
+    for (let key in values) {
+      Array.isArray(values[key])
+        ? values[key].forEach((value) => formData.append(key + '[]', value))
+        : formData.append(key, values[key]);
     }
     image && formData.append('image', {
       uri: image.uri,
@@ -178,8 +170,7 @@ export const IdeaCreate = props => {
         }
       })
       .then((response) => {
-        const strict = editing;
-        afterFetch(response, strict);
+        afterFetch(response);
       });
   };
 
