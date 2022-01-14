@@ -21,7 +21,6 @@ const getHeaders = (token, isFormData = false) => {
   if (token) {
     headers['Authorization'] = 'Token '+token;
   }
-  console.log(headers);
   return headers;
 };
 
@@ -54,10 +53,11 @@ const makePostRequest = (url, data = {}, token = null) => {
 };
 
 const makePutRequest = (url, data = {}, token = null) => {
+  const isFormData = data instanceof FormData;
   return fetch(url, {
     method: 'PUT',
-    headers: getHeaders(token),
-    body: JSON.stringify(data)
+    headers: getHeaders(token, isFormData),
+    body: isFormData ? data : JSON.stringify(data)
   })
     .then(response => {
       const statusCode = response.status;
