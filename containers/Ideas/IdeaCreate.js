@@ -123,7 +123,7 @@ export const IdeaCreate = props => {
     AsyncStorage.getItem('authToken')
       .then((token) => {
         if (editing) {
-          return API.editIdea(moduleId, idea.pk, values, token);
+          return API.editIdea(moduleId, idea.pk, formData, token);
         }
         else {
           return API.postIdea(moduleId, formData, token);
