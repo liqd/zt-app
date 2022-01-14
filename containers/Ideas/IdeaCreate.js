@@ -109,8 +109,10 @@ export const IdeaCreate = props => {
   const handleSubmit = (values) => {
     values.labels = getSelectedLabels();
     let formData = new FormData();
-    for (let value in values) {
-      formData.append(value, values[value]);
+    for (let key in values) {
+      Array.isArray(values[key])
+        ? values[key].forEach((value) => formData.append(key, value))
+        : formData.append(key, values[key]);
     }
     image && formData.append('image', {
       uri: image.uri,
