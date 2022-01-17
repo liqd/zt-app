@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Alert, View, Image, ScrollView } from 'react-native';
 import { Button } from 'react-native-elements';
 import { styles } from './Idea.styles';
-import Icon from 'react-native-vector-icons/SimpleLineIcons';
+import IconSLI from 'react-native-vector-icons/SimpleLineIcons';
 import API from '../../BaseApi';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ButtonCounter } from '../../components/ButtonCounter';
@@ -142,6 +142,20 @@ export const Idea = (props) => {
       });
   };
 
+  const arrowLeftIcon = (<IconSLI name='arrow-left' size={22} />);
+  const optionsIcon = (<IconSLI name='options-vertical' size={22} />);
+  const arrowUpIcon = (<IconSLI name='arrow-up' size={18} />);
+  const arrowDownIcon = (<IconSLI name='arrow-down' size={18} />);
+  const commentIcon = (
+    <IconSLI name='bubble' size={18}
+      color={!hasComments
+        ? styles.disabledIcon.color
+        : styles.fontColor.color
+      }
+      style={styles.commentIcon}
+    />
+  );
+
   useEffect(() => {
     setIdeaState(idea);
     const { content_type, pk } = idea;
@@ -161,11 +175,11 @@ export const Idea = (props) => {
             titleStyle={styles.backButtonText}
             title='Back'
             type='clear'
-            icon={<Icon name='arrow-left' size={22} />}
+            icon={arrowLeftIcon}
             onPress={() => props.navigation.goBack()}
           />
           <Button
-            icon={<Icon name='options-vertical' size={22} />}
+            icon={optionsIcon}
             type='clear'
             onPress={toggleMenu}
           />
@@ -176,7 +190,6 @@ export const Idea = (props) => {
         <View style={styles.descriptionContainer}>
           {ideaState.image && (
             <>
-              <TextSourceSans>test</TextSourceSans>
               <Image source={{ uri: ideaState.image }} style={styles.ideaImage} />
             </>
           )}
@@ -200,7 +213,7 @@ export const Idea = (props) => {
         <View style={styles.bottomActionsContainer}>
           <View style={styles.ratingButtons}>
             <ButtonCounter
-              icon={<Icon name='arrow-up' size={18} />}
+              icon={arrowUpIcon}
               counter={ideaState.positive_rating_count}
               onPress={() => handleVote('up')}
               highlight={
@@ -211,7 +224,7 @@ export const Idea = (props) => {
               disabled={!ideaState.has_rating_permission}
             />
             <ButtonCounter
-              icon={<Icon name='arrow-down' size={18} />}
+              icon={arrowDownIcon}
               counter={ideaState.negative_rating_count}
               onPress={() => handleVote('down')}
               highlight={
@@ -223,15 +236,7 @@ export const Idea = (props) => {
             />
           </View>
           <View>
-            <Icon
-              name='bubble'
-              size={18} color={
-                !hasComments
-                  ? styles.disabledIcon.color
-                  : styles.fontColor.color
-              }
-              style={styles.commentIcon}
-            />
+            {commentIcon}
           </View>
         </View>
         {comments && <View>

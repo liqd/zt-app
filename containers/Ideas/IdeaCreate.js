@@ -4,7 +4,6 @@ import { Button } from 'react-native-elements';
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import Icon from 'react-native-vector-icons/SimpleLineIcons';
 import IconSLI from 'react-native-vector-icons/SimpleLineIcons';
 import { ButtonSubmit } from '../../components/ButtonSubmit';
 import { TextSourceSans } from '../../components/TextSourceSans';
@@ -29,6 +28,9 @@ export const IdeaCreate = props => {
   const moduleId = project.single_agenda_setting_module;
   const arrowLeftIcon = (
     <IconSLI name='arrow-left' size={22} />
+  );
+  const cloudUploadIcon = (
+    <IconSLI name='cloud-upload' style={[styles.iconButton, styles.textLight]} />
   );
   const ideaValidationSchema = yup.object().shape({
     name: yup
@@ -265,7 +267,7 @@ export const IdeaCreate = props => {
               {!clicked &&
                 <Button
                   buttonStyle={styles.imageButton}
-                  icon={<Icon name='cloud-upload' style={[styles.iconButton, styles.textLight]} />}
+                  icon={cloudUploadIcon}
                   type='fill'
                   title='Add image'
                   titleStyle={styles.textLight}

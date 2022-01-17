@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, TouchableOpacity } from 'react-native';
 import { styles } from './IdeasListItem.styles';
-import Icon from 'react-native-vector-icons/SimpleLineIcons';
+import IconSLI from 'react-native-vector-icons/SimpleLineIcons';
 
 import { ButtonCounter } from '../../components/ButtonCounter';
 import { DateService } from '../../services/DateService';
@@ -33,6 +33,10 @@ export const IdeasListItem = (props) => {
     return categoryList;
   };
 
+  const arrowUpIcon = (<IconSLI name='arrow-up' size={18} />);
+  const arrowDownIcon = (<IconSLI name='arrow-down' size={18} />);
+  const commentIcon = (<IconSLI name='bubble' size={18} />);
+
   return (
     <TouchableOpacity onPress={pressHandler}>
       <View style={styles.container}>
@@ -53,9 +57,9 @@ export const IdeasListItem = (props) => {
               {createdDate}
             </TextSourceSans>
             <View style={styles.counters}>
-              <ButtonCounter icon={<Icon name='arrow-up' />} counter={upCount} />
-              <ButtonCounter icon={<Icon name='arrow-down' />} counter={downCount} />
-              <ButtonCounter icon={<Icon name='bubble' />} counter={commentCount} />
+              <ButtonCounter icon={arrowUpIcon} counter={upCount} />
+              <ButtonCounter icon={arrowDownIcon} counter={downCount} />
+              <ButtonCounter icon={commentIcon} counter={commentCount} />
             </View>
           </View>
         </View>
