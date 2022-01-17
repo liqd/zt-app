@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Alert, Image, Platform } from 'react-native';
 import { Button } from 'react-native-elements';
 import { styles } from './imageFormField.styles';
-import Icon from 'react-native-vector-icons/SimpleLineIcons';
+import IconSLI from 'react-native-vector-icons/SimpleLineIcons';
 import * as ImagePicker from 'expo-image-picker';
 import { TextSourceSans } from './TextSourceSans';
 import mime from 'mime';
@@ -70,6 +70,9 @@ export const ImagePickerFormField = (props) => {
     }
   };
 
+  const cameraIcon = <IconSLI name='camera' style={styles.iconButton} />;
+  const pictureIcon = <IconSLI name='picture' style={styles.iconButton} />;
+
   return (
     <>
       <View style={styles.formImagePicker}>
@@ -78,7 +81,7 @@ export const ImagePickerFormField = (props) => {
           buttonStyle={styles.imageAddButton}
           title='Camera'
           onPress={captureImageHandler}
-          icon={<Icon name='camera' style={styles.iconButton} />}
+          icon={cameraIcon}
           type='clear'
           titleStyle={styles.textDark}
           imageUri={capturedImage}
@@ -92,7 +95,7 @@ export const ImagePickerFormField = (props) => {
           title='Library'
           onPress={pickImage}
           type='clear'
-          icon={<Icon name='picture' style={styles.iconButton} />}
+          icon={pictureIcon}
           titleStyle={styles.textDark}
           imageUri={image}
         />}

@@ -10,6 +10,8 @@ export const ExploreListItem = (props) => {
     ? props.item.image
     : null;
 
+  const clockIcon = (<IconSLI name='clock' color={COLORS.grey.medium} />);
+
   return (
     <TouchableOpacity onPress={() => props.action(props.item)}>
       <View style={styles.container}>
@@ -29,10 +31,7 @@ export const ExploreListItem = (props) => {
         </View>
         <View style={styles.progressContainer}>
           <TextSourceSans style={styles.progressText}>
-            <IconSLI
-              name='clock'
-              color={COLORS.grey.medium}
-            /> nur noch 12 Wochen
+            {clockIcon} time remaining {props.item.module_running_time_left}
           </TextSourceSans>
         </View>
       </View>

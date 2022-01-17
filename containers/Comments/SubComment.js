@@ -2,7 +2,7 @@ import React, { useState, useCallback } from 'react';
 import { View, Image } from 'react-native';
 import { Button } from 'react-native-elements';
 import { styles } from './Comment.styles';
-import Icon from 'react-native-vector-icons/SimpleLineIcons';
+import IconSLI from 'react-native-vector-icons/SimpleLineIcons';
 import { DateService } from '../../services/DateService';
 import { TouchableWithoutFeedback } from 'react-native';
 import { ButtonCounter } from '../../components/ButtonCounter';
@@ -32,6 +32,11 @@ export const SubComment = (props) => {
     setHasExcerpt(e.nativeEvent.lines.length > NUM_OF_LINES);
   }, []);
 
+  const optionsIcon = (<IconSLI name='options-vertical' size={22} />);
+  const arrowUpIcon = (<IconSLI name='arrow-up' size={18} />);
+  const arrowDownIcon = (<IconSLI name='arrow-down' size={18} />);
+  const redoIcon = (<IconSLI name='action-redo' size={18} />);
+
   return (
     <View style={styles.subContainer}>
       <View style={styles.top}>
@@ -44,7 +49,7 @@ export const SubComment = (props) => {
         </View>
         <TextSourceSans>
           <Button
-            icon={<Icon name='options-vertical' size={22} />}
+            icon={optionsIcon}
             type='clear'
           />
         </TextSourceSans>
@@ -71,16 +76,16 @@ export const SubComment = (props) => {
       <View style={styles.bottomActionsContainer}>
         <View style={styles.ratingButtons}>
           <ButtonCounter
-            icon={<Icon name='arrow-up' size={18} />}
+            icon={arrowUpIcon}
             counter={upVotes}
           />
           <ButtonCounter
-            icon={<Icon name='arrow-down' size={18} />}
+            icon={arrowDownIcon}
             counter={downVotes}
           />
         </View>
         <Button
-          icon={<Icon name='action-redo' size={18} />}
+          icon={redoIcon}
           title="Share"
           titleStyle={styles.buttonTitle}
           type='clear'
