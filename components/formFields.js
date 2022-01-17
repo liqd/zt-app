@@ -31,8 +31,8 @@ export const CheckBoxFormField = (props) => {
       onIconPress={props.onIconPress}
       title={props.title}
       titleProps={{}}
-      checkedColor='#2a3cd4'
-      uncheckedColor='#2a3cd4'
+      checkedColor={COLORS.primary}
+      uncheckedColor={COLORS.primary}
       containerStyle={styles.checkBoxContainer}
     >{props.children}</CheckBox>
   );
