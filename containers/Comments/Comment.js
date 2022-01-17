@@ -3,7 +3,7 @@ import { View, Image } from 'react-native';
 import { Button } from 'react-native-elements';
 import { styles } from './Comment.styles';
 import { TextSourceSans } from '../../components/TextSourceSans';
-import Icon from 'react-native-vector-icons/SimpleLineIcons';
+import IconSLI from 'react-native-vector-icons/SimpleLineIcons';
 import { DateService } from '../../services/DateService';
 import { TouchableWithoutFeedback } from 'react-native';
 import { ButtonCounter } from '../../components/ButtonCounter';
@@ -39,6 +39,12 @@ export const Comment = (props) => {
     setHasExcerpt(e.nativeEvent.lines.length > NUM_OF_LINES);
   }, []);
 
+  const optionsIcon = (<IconSLI name='options-vertical' size={22} />);
+  const arrowUpIcon = (<IconSLI name='arrow-up' size={18} />);
+  const arrowDownIcon = (<IconSLI name='arrow-down' size={18} />);
+  const commentIcon = (<IconSLI name='bubble' size={18} />);
+  const redoIcon = (<IconSLI name='action-redo' size={18} />);
+
   return (
     <View style={styles.container}>
       <View style={styles.top}>
@@ -51,7 +57,7 @@ export const Comment = (props) => {
         </View>
         <TextSourceSans>
           <Button
-            icon={<Icon name='options-vertical' size={22} />}
+            icon={optionsIcon}
             type='clear'
           />
         </TextSourceSans>
@@ -85,23 +91,23 @@ export const Comment = (props) => {
       <View style={styles.bottomActionsContainer}>
         <View style={styles.ratingButtons}>
           <ButtonCounter
-            icon={<Icon name='arrow-up' size={18} />}
+            icon={arrowUpIcon}
             counter={upVotes}
           />
           <ButtonCounter
-            icon={<Icon name='arrow-down' size={18} />}
+            icon={arrowDownIcon}
             counter={downVotes}
           />
         </View>
         <Button
-          icon={<Icon name='bubble' size={18} />}
+          icon={commentIcon}
           title="Reply"
           titleStyle={styles.buttonTitle}
           type='clear'
           styles={styles.commentButton}
         />
         <Button
-          icon={<Icon name='action-redo' size={18} />}
+          icon={redoIcon}
           title="Share"
           titleStyle={styles.buttonTitle}
           type='clear'
