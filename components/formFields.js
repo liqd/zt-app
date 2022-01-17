@@ -24,6 +24,19 @@ export const TextInputFormField = (props) => {
   );
 };
 
+export const TextInputFullFormField = (props) => {
+  return (
+    <View>
+      <TextSourceSans style={styles.formLabel}>{props.field}</TextSourceSans>
+      <TextInput
+        style={styles.textInputFull}
+        {...props}
+      />
+      {props.touched && <TextSourceSans style={styles.formError}>{props.error}</TextSourceSans>}
+    </View>
+  );
+};
+
 export const CheckBoxFormField = (props) => {
   return (
     <CheckBox

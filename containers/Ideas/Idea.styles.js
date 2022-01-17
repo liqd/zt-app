@@ -12,11 +12,18 @@ export const styles = StyleSheet.create({
     paddingHorizontal: SPACINGS.multiplyBy(.75),
     backgroundColor: COLORS.paper.main,
   },
-  contentContainer: {
-    paddingVertical: SPACINGS.base
+  descripContainer: {
+    paddingHorizontal: SPACINGS.multiplyBy(.75),
+    backgroundColor: COLORS.paper.main,
+    flex: 1,
+  },
+  descripBtnContainer: {
+    marginHorizontal: SPACINGS.multiplyBy(-.75),
+    flex: 1,
+    justifyContent: 'flex-end'
   },
   actionsContainer: {
-    height: SPACINGS.multiplyBy(2),
+    height: SPACINGS.multiplyBy(3),
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',

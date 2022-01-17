@@ -6,6 +6,7 @@ import * as yup from 'yup';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import IconSLI from 'react-native-vector-icons/SimpleLineIcons';
 import { ButtonSubmit } from '../../components/ButtonSubmit';
+import { ButtonTextInput, ButtonTextInputFieldContainer } from '../../components/ButtonTextInput';
 import { TextSourceSans } from '../../components/TextSourceSans';
 import { VirtualScrollView } from '../../components/VirtualScrollView';
 
@@ -32,8 +33,6 @@ export const IdeaCreate = props => {
       .required('Idea title is Required'),
     description: yup
       .string()
-      .min(20, ({ min }) => `Description must be at least ${min} characters`)
-      .max(100, 'Description must be no longer then 100 characters')
       .required('Description is required'),
   });
 
@@ -151,6 +150,11 @@ export const IdeaCreate = props => {
     };
   };
 
+  const toDescription = () =>
+    props.navigation.navigate('IdeaCreateDescription', {
+      project: project
+    });
+
   return (
     <VirtualScrollView
       style={styles.container}
@@ -195,18 +199,15 @@ export const IdeaCreate = props => {
               error={errors.name}
               touched={touched.name}
             />
-            <TextInputFormField
-              field='Idea description'
-              name='description'
-              value={values.description}
-              placeholder='Enter your idea description'
-              returnKeyType='next'
-              returnKeyLabel='next'
-              onChangeText={handleChange('description')}
-              onBlur={handleBlur('description')}
-              error={errors.description}
-              touched={touched.description}
-            />
+            <ButtonTextInputFieldContainer
+              field='Idea Description'
+              name='description'>
+              <ButtonTextInput
+                title='Enter your idea description'
+                onPress={toDescription}
+              >
+              </ButtonTextInput>
+            </ButtonTextInputFieldContainer>
             {categories.length > 0 &&
               <DropdownFormFieldContainer
                 field='Idea Category'
