@@ -11,6 +11,7 @@ import { Menu } from '../../components/Menu';
 import { Modal } from '../../components/Modal';
 import { TextSourceSans } from '../../components/TextSourceSans';
 import { Comments } from '../Comments/Comments';
+import { CommentForm } from '../Comments/CommentForm';
 
 export const Idea = (props) => {
   const {idea, project, createdDate} = props.route.params;
@@ -20,6 +21,9 @@ export const Idea = (props) => {
   const [deleteModalVisible, setDeleteModalVisible] = useState(false);
   const [processing, setProcessing] = useState(false);
   const [comments, setComments] = useState([]);
+  const [objectToComment, setObjectToComment] = useState({'contentType': idea.content_type, 'pk': idea.pk});
+  const [focusCommentForm, setFocusCommentForm] = useState(false);
+  const [commentLastCommented, setCommentLastCommented] = useState(-1);
   const hasComments = comments.length !== 0;
 
   const menuItems = [
@@ -124,6 +128,43 @@ export const Idea = (props) => {
     return await fetchIdea();
   };
 
+  const handleCommentSubmit = (values) => {
+    AsyncStorage.getItem('authToken')
+      .then((token) => {
+        return API.addComment(objectToComment.contentType, objectToComment.pk, values, token);
+      })
+      .then((response) => {
+        const {statusCode, data} = response;
+        if (statusCode == 201) {
+          if (data.content_type == data.comment_content_type) {
+            setCommentLastCommented(data.object_pk);
+          }
+          else {
+            setCommentLastCommented(-1);
+          }
+          fetchComments(idea.content_type, idea.pk);
+          setObjectToComment({'contentType': idea.content_type, 'pk': idea.pk});
+        }
+        else {
+          const errorMessage = 'That did not work.';
+          let errorDetail;
+          if (statusCode==403) {
+            errorDetail = data.detail;
+          }
+          else if (statusCode == 400) {
+            errorDetail = ('comment' in data ? ('Comment: ' + data['comment']) : 'Bad request');
+          }
+          Alert.alert(errorMessage, errorDetail, [{ text: 'Ok' }]);
+        }
+      });
+
+  };
+
+  const handleCommentReply = (commentContentType, commentObjectPk) => {
+    setObjectToComment({'contentType': commentContentType, 'pk': commentObjectPk});
+    setFocusCommentForm(true);
+  };
+
   const fetchIdea = () => {
     return AsyncStorage.getItem('authToken')
       .then((token) => API.getIdea(moduleId, ideaState.pk, token))
@@ -156,11 +197,15 @@ export const Idea = (props) => {
     />
   );
 
+  const fetchComments = (ideaContentType, ideaPk) => {
+    API.getComments(ideaContentType, ideaPk)
+      .then(({results}) => setComments(results));
+  };
+
   useEffect(() => {
     setIdeaState(idea);
     const { content_type, pk } = idea;
-    API.getComments(content_type, pk)
-      .then(({results}) => setComments(results));
+    fetchComments(content_type, pk);
   }, [idea]);
 
   return (
@@ -240,8 +285,16 @@ export const Idea = (props) => {
           </View>
         </View>
         {comments && <View>
-          <Comments comments={comments} />
+          <Comments
+            comments={comments}
+            handleReply={handleCommentReply}
+            commentLastCommented={commentLastCommented}
+          />
         </View>}
+        <CommentForm
+          handleSubmit={handleCommentSubmit}
+          isFocused={focusCommentForm}
+        />
       </ScrollView>
       <Menu menuItems={menuItems} isVisible={menuVisible} />
       <Modal

@@ -153,6 +153,11 @@ const API = {
     const ct_url = endpoints.comments.replace('$contentTypeId', contentTypeId);
     const url = ct_url.replace('$objectPk', objectPk);
     return makeGetRequest(url);
+  },
+  addComment(contentTypeId, objectPk, data, token=null) {
+    const ct_url = endpoints.comments.replace('$contentTypeId', contentTypeId);
+    const url = ct_url.replace('$objectPk', objectPk);
+    return makePostRequest(url, data, token);
   }
 };
 
