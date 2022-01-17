@@ -1,7 +1,6 @@
-const baseUrl = 'http://10.0.2.2:8004/api';
+//const baseUrl = 'http://10.0.2.2:8004/api';
 // const baseUrl = 'http://localhost:8004/api';
-// const baseUrl = 'http://192.168.0.20:8004/api';
-// const baseUrl = 'https://aplus-dev.liqd.net/api';
+const baseUrl = 'https://aplus-dev.liqd.net/api';
 
 const endpoints = {
   ideas: baseUrl + '/modules/$moduleId/ideas/',
@@ -10,16 +9,16 @@ const endpoints = {
   projects: baseUrl + '/app-projects/',
   modules: baseUrl + '/app-modules/',
   rate: baseUrl + '/contenttypes/$contentTypeId/objects/$objectPk/ratings/',
-  comments: baseUrl + '/contenttypes/$contentTypeId/objects/$objectPk/comments/',
+  comments: baseUrl + '/contenttypes/$contentTypeId/objects/$objectPk/comments/'
 };
 
 const getHeaders = (token, isFormData = false) => {
   const headers = {
     Accept: 'application/json',
-    'Content-Type': isFormData ? 'multipart/form-data' : 'application/json',
+    'Content-Type': isFormData ? 'multipart/form-data' : 'application/json'
   };
   if (token) {
-    headers['Authorization'] = 'Token '+token;
+    headers['Authorization'] = 'Token ' + token;
   }
   return headers;
 };
@@ -123,7 +122,7 @@ const API = {
   },
   changeRating(contentTypeId, objectPk, ratingId, data, token = null) {
     const ct_url = endpoints.rate.replace('$contentTypeId', contentTypeId);
-    const url = ct_url.replace('$objectPk', objectPk) + ratingId +'/';
+    const url = ct_url.replace('$objectPk', objectPk) + ratingId + '/';
     return makePutRequest(url, data, token);
   },
   getComments(contentTypeId, objectPk) {
