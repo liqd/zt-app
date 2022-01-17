@@ -11,10 +11,12 @@ export const Comments = (props) => {
           ? 'Entries'
           : 'Entry'}
       </TextSourceSans>
-      {props.comments.map((comment, idx) =>
+      {props.comments.map((comment) =>
         <Comment
-          key={`comment-${idx}`}
+          key={`comment-${comment.id}`}
           comment={comment}
+          handleReply={props.handleReply}
+          openSubComments={(props.commentLastCommented==comment.id) ? true : false}
         />)}
     </View>
   );
