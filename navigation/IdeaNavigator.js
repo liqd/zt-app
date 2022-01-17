@@ -4,6 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { ExplorePage } from '../containers/Ideas/ExplorePage';
 import { Idea } from '../containers/Ideas/Idea';
 import { IdeaCreate } from '../containers/Ideas/IdeaCreate';
+import { IdeaCreateDescription } from '../containers/Ideas/IdeaCreateDescription';
 import { IdeaProject } from '../containers/Ideas/IdeaProject';
 import { LoginScreen } from '../containers/Auth/LoginScreen';
 import { StartUpScreen } from '../containers/Auth/StartUpScreen';
@@ -29,6 +30,7 @@ export const IdeaNavigator = () => {
             <Stack.Screen name="IdeaProject" component={IdeaProject} />
             <Stack.Screen name="IdeaDetail" component={Idea} />
             <Stack.Screen name="IdeaCreate" component={IdeaCreate} />
+            <Stack.Screen name="IdeaCreateDescription" component={IdeaCreateDescription} />
           </>
         )}
       </Stack.Navigator>
