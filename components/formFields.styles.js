@@ -22,6 +22,11 @@ export const styles = StyleSheet.create({
     height: SPACINGS.multiplyBy(2),
     fontSize: SIZES.md,
   },
+  textInputFull: {
+    fontSize: SIZES.md,
+    justifyContent: 'flex-start',
+    alignContent: 'flex-start'
+  },
   customCheckBoxTitle: {
     color: COLORS.text.main
   },
