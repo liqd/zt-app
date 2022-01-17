@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { View, Image } from 'react-native';
 import { Button } from 'react-native-elements';
 import { styles } from './Comment.styles';
@@ -24,8 +24,14 @@ export const Comment = (props) => {
     ratings: {
       negative_ratings:downVotes,
       positive_ratings:upVotes,
-    }
+    },
+    id: pk,
+    comment_content_type: commentContentType,
   } = props.comment;
+
+  useEffect(() => {
+    if (props.openSubComments) {setShowSubComments(true);}
+  }, [props.openSubComments]);
 
   const toggleSubComments = () => {
     setShowSubComments(!showSubComments);
@@ -105,6 +111,7 @@ export const Comment = (props) => {
           titleStyle={styles.buttonTitle}
           type='clear'
           styles={styles.commentButton}
+          onPress={() => {props.handleReply(commentContentType, pk);}}
         />
         <Button
           icon={redoIcon}
