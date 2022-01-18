@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Markdown from 'react-native-simple-markdown';
 import { Alert, View, Image, ScrollView } from 'react-native';
 import { Button } from 'react-native-elements';
 import { styles } from './Idea.styles';
@@ -193,7 +194,11 @@ export const Idea = (props) => {
               <Image source={{ uri: ideaState.image }} style={styles.ideaImage} />
             </>
           )}
-          <TextSourceSans style={styles.text}>{ideaState.description}</TextSourceSans>
+          <TextSourceSans>
+            <Markdown>
+              {ideaState.description}
+            </Markdown>
+          </TextSourceSans>
         </View>
         {getLabels().length > 0 && (
           <View style={styles.labelsContainer}>
