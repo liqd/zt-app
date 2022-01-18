@@ -1,6 +1,21 @@
-//const baseUrl = 'http://10.0.2.2:8004/api';
-// const baseUrl = 'http://localhost:8004/api';
-const baseUrl = 'https://aplus-dev.liqd.net/api';
+import Constants from 'expo-constants';
+import * as Device from 'expo-device';
+
+const baseUrl = (() => {
+  /*global __DEV__*/
+  if (__DEV__) {
+    if (Constants.manifest.extra.localAPI) {
+      if (Device.isDevice) {
+        return 'http://localhost:8004/api';
+      }
+      return 'http://10.0.2.2:8004/api';
+    }
+    return 'https://aplus-dev.liqd.net/api';
+  }
+  else {
+    return 'https://adhocracy.plus/api';
+  }
+})();
 
 const endpoints = {
   ideas: baseUrl + '/modules/$moduleId/ideas/',

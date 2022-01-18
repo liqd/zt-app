@@ -13,7 +13,8 @@ help:
 	@echo "  make install         -- install dev setup"
 	@echo "  make clean           -- delete node modules and venv"
 	@echo "  make start           -- run expo"
-	@echo "  make start-nocache     -- run expo with cleaned cache"
+	@echo "  make start-local     -- run expo with api set to local"
+	@echo "  make start-nocache   -- run expo with cleaned cache"
 	@echo "  make start-android   -- run expo and launch the android app"
 	@echo "  make start-web       -- run expo and launch the web app"
 	@echo "  make lint            -- run the linter"
@@ -37,6 +38,10 @@ clean:
 .PHONY: start
 start:
 	npm start
+
+.PHONY: start-local
+start-local:
+	LOCAL_API=true npm run start
 
 .PHONY: start-nocache
 start-nocache:
