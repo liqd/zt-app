@@ -13,7 +13,16 @@ const baseUrl = (() => {
     return 'https://aplus-dev.liqd.net/api';
   }
   else {
-    return 'https://adhocracy.plus/api';
+    switch (Constants.manifest.releaseChannel) {
+      case 'prod':
+      case 'default':
+        return 'https://adhocracy.plus/api';
+      case 'stage':
+        return 'https://aplus-stage.liqd.net/api';
+      case 'dev':
+      default:
+        return 'https://aplus-dev.liqd.net/api';
+    }
   }
 })();
 
