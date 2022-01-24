@@ -12,13 +12,11 @@ import { VirtualScrollView } from '../../components/VirtualScrollView';
 import { styles } from './Idea.styles';
 import {
   TextInputFormField,
-  CheckBoxFormField,
-  CustomCheckBoxContainerParent,
-  CustomCheckBoxFormField,
+  LabelListContainer,
+  LabelList,
   DropdownFormFieldContainer,
   DropdownFormField } from '../../components/formFields';
 import {
-  ImagePickerFormField,
   ImageChoiceFormFieldContainer } from '../../components/imageFormField';
 import API from '../../BaseApi';
 
@@ -28,9 +26,6 @@ export const IdeaCreate = props => {
   const moduleId = project.single_agenda_setting_module;
   const arrowLeftIcon = (
     <IconSLI name='arrow-left' size={22} />
-  );
-  const cloudUploadIcon = (
-    <IconSLI name='cloud-upload' style={[styles.iconButton, styles.textLight]} />
   );
   const ideaValidationSchema = yup.object().shape({
     name: yup
@@ -44,13 +39,10 @@ export const IdeaCreate = props => {
   });
 
   const [error, setError] = useState();
-  const [clicked, setClicked] = useState(false);
   const [categories, setCategories] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState('');
-  const [labels, setLabels] = useState([]);
-  const [labelsChecked, setLabelsChecked] = useState([]);
-  const [imageChecked, setImageChecked] = useState(false);
-  const [image, setImage] = useState();
+  const [labelChoices, setLabelChoices] = useState([]);
+  const [initialCategory, setInitialCategory] = useState();
+  const [initialLabels, setInitialLabels] = useState();
 
   useEffect(() => {
     if (error) {
@@ -66,62 +58,45 @@ export const IdeaCreate = props => {
 
     if (module.categories) {
       // map property names to format needed for formik
+      // Example: [{value: 9, label: 'catname1'}]
       setCategories(module.categories.map(category => ({value: category.id, label: category.name})));
       if (editing && idea.category) {
-        setSelectedCategory(idea.category.id);
+        setInitialCategory(idea.category.id);
       }
       else {
-        setSelectedCategory(module.categories[0].id);
+        setInitialCategory(module.categories[0].id);
       }
     }
     if (module.labels) {
-      setLabels(module.labels.map(label => ({value: label.id, label: label.name})));
+      setLabelChoices(module.labels);
 
       if (editing) {
-        // idea.labels is array of label ids -> map that to array of bools with length = number of
-        // of module labels and true iff label is checked
-        setLabelsChecked(module.labels.map(label => (idea.labels.some(entry => entry.id===label.id))));
+        setInitialLabels(idea.labels);
       }
       else {
-        setLabelsChecked(new Array(module.labels.length).fill(false));
+        setInitialLabels([]);
       }
     }
   };
 
-  const getSelectedLabels = () => {
-    let selectedLabels = [];
-    labelsChecked.forEach((isSelected, index) => {
-      if (isSelected) {
-        selectedLabels.push(labels[index].value);
-      }
-    });
-    return selectedLabels;
+  const mapLabels = (exLabels) => {
+    return exLabels.map(el => el.id); 
   };
 
-  const handleLabelCheck = (labelIndex) => {
-    return labelsChecked.map((isSelected, index) => {
-      return (index === labelIndex) ? !isSelected : isSelected;
-    });
-  };
-
-  const toggleImageCheck = () => {
-    setImageChecked(!imageChecked);
-  };
-
-  const handleSubmit = (values) => {
-    values.labels = getSelectedLabels();
+  const makeFormData = (values) => {
+    const extractedLabels = [...values.labels];
+    extractedLabels && (values.labels = mapLabels(extractedLabels));
     let formData = new FormData();
     for (let key in values) {
       Array.isArray(values[key])
         ? values[key].forEach((value) => formData.append(key, value))
         : formData.append(key, values[key]);
     }
-    image && formData.append('image', {
-      uri: image.uri,
-      name: image.name,
-      type: image.mimeType
-    });
+    return formData;
+  };
 
+  const handleSubmit = (values) => {
+    const formData = makeFormData(values);
     AsyncStorage.getItem('authToken')
       .then((token) => {
         if (editing) {
@@ -159,7 +134,15 @@ export const IdeaCreate = props => {
       });
   };
 
-  const onSetImage = (image) => setImage(image);
+  const getInitialValues = () => {
+    return {
+      name: editing ? idea.name : '',
+      description: editing ? idea.description : '',
+      labels: initialLabels,
+      category: initialCategory,
+      imageChecked: editing ? !!idea.image : false
+    };
+  };
 
   return (
     <VirtualScrollView
@@ -179,22 +162,7 @@ export const IdeaCreate = props => {
       <TextSourceSans style={styles.title}>Submit a new idea for this project</TextSourceSans>
       <Formik
         validationSchema={ideaValidationSchema}
-        initialValues={{
-          ...(editing
-            ? {
-              name: idea.name,
-              description: idea.description,
-            }
-            : {
-              name: '',
-              description: '',
-
-            }),
-
-          labels: [],
-          category: selectedCategory,
-          imageCopyrightChecked: imageChecked
-        }}
+        initialValues={getInitialValues()}
         onSubmit={values => handleSubmit(values)}
       >
         {({
@@ -239,62 +207,31 @@ export const IdeaCreate = props => {
                 <DropdownFormField
                   items={categories}
                   setItems={setCategories}
-                  value={selectedCategory}
-                  setValue={setSelectedCategory}
-                  onChangeValue={() => setFieldValue('category', selectedCategory)}
+                  value={values.category}
+                  onChangeValue={(selCat) => setFieldValue('category', selCat)}
                 >
                 </DropdownFormField>
               </DropdownFormFieldContainer>
             }
-            {labels.length > 0 &&
-              <CustomCheckBoxContainerParent
+            {labelChoices.length > 0 && initialLabels &&
+              <LabelListContainer
                 field='Idea Labels'
                 name='labels'
               >
-                {labels.map((label, idx) => (
-                  <CustomCheckBoxFormField
-                    key={`labelfield-${idx}`}
-                    title={label.label}
-                    value={label.value}
-                    checked={labelsChecked[idx]}
-                    onIconPress={() => setLabelsChecked(handleLabelCheck(idx))}
-                  />)
-                )}
-              </CustomCheckBoxContainerParent>
+                <LabelList
+                  labelChoices={labelChoices}
+                  selectedLabels={values.labels}
+                  onIconPress={(selectedLabels) => setFieldValue('labels', selectedLabels)}
+                />
+              </LabelListContainer>
             }
             <ImageChoiceFormFieldContainer
-              field='Add Image'>
-              {!clicked &&
-                <Button
-                  buttonStyle={styles.imageButton}
-                  icon={cloudUploadIcon}
-                  type='fill'
-                  title='Add image'
-                  titleStyle={styles.textLight}
-                  clicked={props.clicked}
-                  setClicked={props.setClicked}
-                  onPress={setClicked}
-                />
-              }
-              <TextSourceSans style={styles.imageInfo}>
-                Visualize your idea. It must be min. 600 pixel wide and 400 pixel tall. Allowed file formats are png, jpeg, gif. The file size should be max. 5 MB.
-              </TextSourceSans>
-              {clicked &&
-                <>
-                  <ImagePickerFormField
-                    onSetImage={(img) => onSetImage(img)}
-                  />
-                  <CheckBoxFormField
-                    field='Image Copyright'
-                    name='imageCopyrightChecked'
-                    onIconPress={toggleImageCheck}
-                    checked={imageChecked}
-                    title='I hereby confirm that the copyrights for this photo are with me or that I have received rights of use from the author. I also confirm that the privacy rights of depicted third persons are not violated.'
-                  />
-
-                </>
-              }
-            </ImageChoiceFormFieldContainer>
+              field='Add Image'
+              onSetImage={(img) => setFieldValue('image', img)}
+              onIconPress={() => setFieldValue('imageChecked', !values.imageChecked)}
+              checked={values.imageChecked}
+              image={idea && idea.image}
+            />
             <ButtonSubmit
               title='Submit'
               onPress={handleSubmit}

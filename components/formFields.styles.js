@@ -31,7 +31,7 @@ export const styles = StyleSheet.create({
   checkBoxContainer: {
     backgroundColor: COLORS.text.inverted,
   },
-  customCheckBoxContainer: {
+  customCheckBoxButton: {
     backgroundColor: COLORS.text.inverted,
     width: '30%',
     flexDirection: 'row',
@@ -39,7 +39,7 @@ export const styles = StyleSheet.create({
     marginLeft: 0,
     borderRadius: BORDERRADIUS.lg
   },
-  customCheckBoxContainerChecked: {
+  customCheckBoxButtonChecked: {
     color: COLORS.text.inverted,
     backgroundColor: COLORS.primary,
     width: '30%',
@@ -48,7 +48,7 @@ export const styles = StyleSheet.create({
     marginLeft: 0,
     borderRadius: BORDERRADIUS.lg,
   },
-  customCheckBoxContainerParent: {
+  customCheckBoxContainer: {
     flexDirection: 'row',
     flexWrap: 'wrap'
   },
