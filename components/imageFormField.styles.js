@@ -60,5 +60,23 @@ export const styles = StyleSheet.create({
   },
   textDark: {
     color: COLORS.text.main,
+  },
+  imageButtonIcon: {
+    marginHorizontal: SPACINGS.multiplyBy(0.25),
+    fontSize: SIZES.md
+  },
+  imageButton: {
+    minWidth: '100%',
+    color: COLORS.text.inverted,
+    backgroundColor: COLORS.text.main,
+    paddingVertical: SPACINGS.multiplyBy(0.75),
+    borderColor: COLORS.text.main,
+    borderRadius: BORDERRADIUS.none
+  },
+  imageInfo: {
+    marginBottom: SPACINGS.multiplyBy(1)
+  },
+  textLight: {
+    color: COLORS.text.inverted
   }
 });

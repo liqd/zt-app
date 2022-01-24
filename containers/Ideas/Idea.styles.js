@@ -79,23 +79,8 @@ export const styles = StyleSheet.create({
     marginVertical: SPACINGS.multiplyBy(.5),
     flexWrap: 'wrap',
   },
-  imageButton: {
-    minWidth: '100%',
-    color: COLORS.text.inverted,
-    backgroundColor: COLORS.text.main,
-    paddingVertical: SPACINGS.multiplyBy(.75),
-    borderColor: COLORS.text.main,
-    borderRadius: BORDERRADIUS.none,
-  },
-  imageInfo: {
-    marginBottom: SPACINGS.multiplyBy(1),
-  },
   textLight: {
     color: COLORS.text.inverted,
-  },
-  iconButton: {
-    marginHorizontal: SPACINGS.multiplyBy(.25),
-    fontSize: SIZES.md
   },
   commentIcon: {
     fontSize: SIZES.md,

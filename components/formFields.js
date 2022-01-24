@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { TextInput, View } from 'react-native';
 import { CheckBox } from 'react-native-elements';
 import DropDownPicker from 'react-native-dropdown-picker';
@@ -7,8 +7,8 @@ import { TextSourceSans } from './TextSourceSans';
 import IconFA from 'react-native-vector-icons/FontAwesome';
 import { COLORS } from '../theme/colors';
 
-// Setting list mode to scrollview globally
-// FIXME: to be checked if we want this
+/*  Setting list mode to scrollview globally
+FIXME: to be checked if we want this */
 DropDownPicker.setListMode('SCROLLVIEW');
 
 export const TextInputFormField = (props) => {
@@ -38,9 +38,9 @@ export const CheckBoxFormField = (props) => {
   );
 };
 
-export const CustomCheckBoxContainerParent = (props) => {
+export const LabelListContainer = (props) => {
   return (
-    <View style={styles.customCheckBoxContainerParent}>
+    <View style={styles.customCheckBoxContainer}>
       <TextSourceSans style={styles.formLabel}>{props.field}</TextSourceSans>
       {props.children}
       {props.children.touched && <TextSourceSans style={styles.formError}>{props.error}</TextSourceSans>}
@@ -48,24 +48,72 @@ export const CustomCheckBoxContainerParent = (props) => {
   );
 };
 
-export const CustomCheckBoxFormField = (props) => {
-  const plusIcon = (
-    <IconFA name='plus' size={16} color={COLORS.text.main} />
-  );
+export const LabelList = props => {
+  const [ selectedLabels, setSelectedLabels ] = useState(props.selectedLabels);
+
+  const handleItemPressed = selectedLabel => {
+    let selectedLabelsCopy = [...selectedLabels];
+    /* the following code might be hard to read. It is comparing if the newly
+     selected label was selected before or not. If yes, then it removes the label,
+     if not it adds to the list. Then updating the state and sending to its parent
+     Note: this has to be done separately because setting State does not immediately change
+     the actual state (FIXME). */
+    const labelIndex = selectedLabels.findIndex(sl => sl.id === selectedLabel.id);
+    (labelIndex === -1) && (selectedLabelsCopy = [...selectedLabels, selectedLabel]);
+    (labelIndex !== -1) && [...selectedLabelsCopy.splice(labelIndex, 1)];
+    setSelectedLabels([...selectedLabelsCopy]);
+    props.onIconPress(selectedLabelsCopy);
+  };
+
+  const getCheckState = (choice) => {
+    return !!props.selectedLabels.find(sl => sl.id === choice.id);
+  };
+
+  return props.labelChoices.map(choice => (
+    <LabelFormField
+      key={`customCheckBox_${choice.value}`}
+      label={choice}
+      checked={getCheckState(choice)}
+      onIconPress={selectedLabel => handleItemPressed(selectedLabel)}
+    />
+  ));
+};
+
+export const LabelFormField = props => {
+  const [ checkState, setCheckState ] = useState(props.checked);
+  const plusIcon = <IconFA name="plus" size={16} color={COLORS.text.main} />;
   const checkIcon = (
     <IconFA name='check' size={16} color={COLORS.text.inverted} />
   );
+
+  const toggleCheckState = () => {
+    setCheckState(!checkState);
+    props.onIconPress(props.label);
+  };
+
   return (
     <CheckBox
       center
-      checked={props.checked}
-      onPress={props.onIconPress}
-      title={props.title}
+      checked={checkState}
+      onPress={toggleCheckState}
+      title={props.label.name}
       titleProps={{}}
-      textStyle={ (props.checked) ? styles.customCheckBoxTitleChecked : styles.customCheckBoxTitle }
+      textStyle={
+        checkState ? (
+          styles.customCheckBoxTitleChecked
+        ) : (
+          styles.customCheckBoxTitle
+        )
+      }
       checkedIcon={checkIcon}
       uncheckedIcon={plusIcon}
-      containerStyle={ (props.checked) ? styles.customCheckBoxContainerChecked : styles.customCheckBoxContainer }
+      containerStyle={
+        checkState ? (
+          styles.customCheckBoxButtonChecked
+        ) : (
+          styles.customCheckBoxButton
+        )
+      }
     />
   );
 };
@@ -80,18 +128,19 @@ export const DropdownFormFieldContainer = (props) => {
 };
 
 export const DropdownFormField = (props) => {
-  const [open, setOpen] = React.useState(false);
+  const [ open, setOpen ] = useState(false);
+  const [ selected, setSelected ] = useState(props.value);
   return (
     <View>
       <DropDownPicker
         style={styles.dropdownFormField}
         open={open}
-        value={props.value}
+        value={selected}
         items={props.items}
         setOpen={setOpen}
-        setValue={props.setValue}
         setItems={props.setItems}
-        onChangeValue={props.onChangeValue}
+        setValue={setSelected}
+        onChangeValue={value => props.onChangeValue(value)}
         containerStyle={{}}
       />
     </View>
