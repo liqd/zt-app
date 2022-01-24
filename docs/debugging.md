@@ -17,10 +17,24 @@ You can also start the app in a browser (chrome or chromium) and use the web dev
 To do so, start the app with 
 ``make start-web``
 and open the url given in chrome or chromium.
-When using your local Aplus, make sure to set
+To use your local Aplus, first do 
 
-``const baseUrl = 'http://localhost:8004/api';``
+``export LOCAL_API=true``
 
-in BaseApi.js
+in the console window that you start the app with.
+
+
+# react-devtools
+You can also use react-devtools while running the app in an emulator.
+You first need to install react-devtools:
+
+``sudo npm install -g react-devtools --unsafe-perm=true``
+
+Then start the app with 
+``make start-local`` or ``make start``
+and in a separate terminal start react devtools: ``react-devtools``. 
+This will open up the react devtools console and you can search for 
+your react components at the top and see their states and props.
+See also https://docs.expo.dev/workflow/debugging/#debugging-with-react-devtools
 
 
