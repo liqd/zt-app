@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Alert, Image, Platform } from 'react-native';
 import { Button } from 'react-native-elements';
+import { CheckBoxFormField } from './formFields';
 import { styles } from './imageFormField.styles';
 import IconSLI from 'react-native-vector-icons/SimpleLineIcons';
 import * as ImagePicker from 'expo-image-picker';
@@ -9,7 +10,7 @@ import mime from 'mime';
 
 export const ImagePickerFormField = (props) => {
   const [capturedImage, setCapturedImage] = useState(null);
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState(props.initialImage);
 
   useEffect(() => {
     (async () => {
@@ -20,13 +21,13 @@ export const ImagePickerFormField = (props) => {
         }
       }
     })();
-  }, []);
+  }, [capturedImage, image]);
 
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
       allowsEditing: true,
-      aspect: [16, 9],
+      aspect: [3, 2],
       quality: 1,
     });
 
@@ -45,13 +46,13 @@ export const ImagePickerFormField = (props) => {
         }
       }
     })();
-  }, []);
+  }, [capturedImage, image]);
 
   const captureImageHandler = async () => {
     let result = await ImagePicker.launchCameraAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       allowsEditing: true,
-      aspect: [16, 9],
+      aspect: [3, 2],
       quality: 1,
     });
 
@@ -62,7 +63,7 @@ export const ImagePickerFormField = (props) => {
 
     const extRegex = /\w+$/;
     const imgExt = imgName[0].match(extRegex);
-    imgExt ? (result.mimeType = mime.getType(imgExt[0])) : 'image/jpeg';
+    imgExt ? (result.type = mime.getType(imgExt[0])) : 'image/jpeg';
 
     if (!result.cancelled) {
       setCapturedImage(result.uri);
@@ -106,10 +107,45 @@ export const ImagePickerFormField = (props) => {
 };
 
 export const ImageChoiceFormFieldContainer = (props) => {
+  const cloudUploadIcon = (
+    <IconSLI name='cloud-upload' style={[styles.imageButtonIcon, styles.textLight]} />
+  );
+
+  const [clicked, setClicked] = useState(false);
+
   return (
     <View style={styles.formRow}>
       <TextSourceSans style={styles.formLabel}>{props.field}</TextSourceSans>
-      {props.children}
+      {(!clicked && !props.image) &&
+                <Button
+                  buttonStyle={styles.imageButton}
+                  icon={cloudUploadIcon}
+                  type='fill'
+                  title='Add image'
+                  titleStyle={styles.textLight}
+                  clicked={props.clicked}
+                  setClicked={props.setClicked}
+                  onPress={setClicked}
+                />
+      }
+      <TextSourceSans style={styles.imageInfo}>
+                Visualize your idea. It must be min. 600 pixel wide and 400 pixel tall. Allowed file formats are png, jpeg, gif. The file size should be max. 5 MB.
+      </TextSourceSans>
+      {(clicked || props.image) && 
+        <>
+          <ImagePickerFormField
+            onSetImage={props.onSetImage}
+            initialImage={props.image}
+          />
+          <CheckBoxFormField
+            field='Image Copyright'
+            name='imageCopyrightChecked'
+            onIconPress={props.onIconPress}
+            checked={props.checked}
+            title='I hereby confirm that the copyrights for this photo are with me or that I have received rights of use from the author. I also confirm that the privacy rights of depicted third persons are not violated.'
+          />
+        </>
+      }
     </View>
   );
 };
