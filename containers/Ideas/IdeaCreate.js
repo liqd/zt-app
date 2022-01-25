@@ -12,12 +12,11 @@ import { VirtualScrollView } from '../../components/VirtualScrollView';
 import { styles } from './Idea.styles';
 import {
   TextInputFormField,
-  LabelListContainer,
-  LabelList,
   DropdownFormFieldContainer,
   DropdownFormField } from '../../components/formFields';
 import {
   ImageChoiceFormFieldContainer } from '../../components/imageFormField';
+import { LabelListContainer, LabelList } from '../../components/LabelForm';
 import API from '../../BaseApi';
 
 export const IdeaCreate = props => {
@@ -80,7 +79,7 @@ export const IdeaCreate = props => {
   };
 
   const mapLabels = (exLabels) => {
-    return exLabels.map(el => el.id); 
+    return exLabels.map(el => el.id);
   };
 
   const makeFormData = (values) => {
