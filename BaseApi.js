@@ -33,7 +33,8 @@ const endpoints = {
   projects: baseUrl + '/app-projects/',
   modules: baseUrl + '/app-modules/',
   rate: baseUrl + '/contenttypes/$contentTypeId/objects/$objectPk/ratings/',
-  comments: baseUrl + '/contenttypes/$contentTypeId/objects/$objectPk/comments/'
+  comments: baseUrl + '/contenttypes/$contentTypeId/objects/$objectPk/comments/',
+  comment: baseUrl + '/contenttypes/$contentTypeId/objects/$objectPk/comments/$commentPk/',
 };
 
 const getHeaders = (token, isFormData = false) => {
@@ -149,12 +150,18 @@ const API = {
     const url = ct_url.replace('$objectPk', objectPk) + ratingId + '/';
     return makePutRequest(url, data, token);
   },
-  getComments(contentTypeId, objectPk) {
+  getComments(contentTypeId, objectPk, token = null) {
     const ct_url = endpoints.comments.replace('$contentTypeId', contentTypeId);
     const url = ct_url.replace('$objectPk', objectPk);
-    return makeGetRequest(url);
+    return makeGetRequest(url, token);
   },
-  addComment(contentTypeId, objectPk, data, token=null) {
+  getComment(contentTypeId, objectPk, commentPk, token = null) {
+    const ct_url = endpoints.comment.replace('$contentTypeId', contentTypeId);
+    const ct_obj_url = ct_url.replace('$objectPk', objectPk);
+    const url = ct_obj_url.replace('$commentPk', commentPk);
+    return makeGetRequest(url, token);
+  },
+  addComment(contentTypeId, objectPk, data, token = null) {
     const ct_url = endpoints.comments.replace('$contentTypeId', contentTypeId);
     const url = ct_url.replace('$objectPk', objectPk);
     return makePostRequest(url, data, token);
