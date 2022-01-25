@@ -1,8 +1,12 @@
 import React from 'react';
+import { View, TouchableOpacity } from 'react-native';
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import { TextInputFormField } from '../../components/formFields';
-import { ButtonSubmit } from '../../components/ButtonSubmit';
+import { styles } from './CommentForm.styles';
+import IconSLI from 'react-native-vector-icons/SimpleLineIcons';
+import { COLORS } from '../../theme/colors';
+import { SIZES } from '../../theme/fonts';
 
 export const CommentForm = (props) => {
 
@@ -30,24 +34,33 @@ export const CommentForm = (props) => {
         touched,
         isValid,
       }) => (
-        <>
-          <TextInputFormField
-            name='comment'
-            value={values.comment}
-            placeholder='Enter your comment'
-            onChangeText={handleChange('comment')}
-            onBlur={handleBlur('comment')}
-            error={errors.comment}
-            touched={touched.comment}
-            autoFocus = {props.isFocused}
-            multiline
-          />
-          <ButtonSubmit
-            title="Comment"
-            onPress={handleSubmit}
-            disabled={!isValid}
-          />
-        </>
+        <View style={styles.submitContainer}>
+          <View style={styles.textInputContainer}>
+            <TextInputFormField
+              name='comment'
+              value={values.comment}
+              placeholder='Enter your comment'
+              onChangeText={handleChange('comment')}
+              onBlur={handleBlur('comment')}
+              error={errors.comment}
+              touched={touched.comment}
+              autoFocus = {props.isFocused}
+              multiline
+            />
+          </View>
+          <View style={styles.submitButton}>
+            <TouchableOpacity
+              onPress={handleSubmit}
+              disabled={!isValid}
+            >
+              <IconSLI
+                name="paper-plane"
+                color={COLORS.primary}
+                size={SIZES.md}
+              />
+            </TouchableOpacity>
+          </View>
+        </View>
       )}
     </Formik>
   );

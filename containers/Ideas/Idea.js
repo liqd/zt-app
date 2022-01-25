@@ -12,6 +12,7 @@ import { Modal } from '../../components/Modal';
 import { TextSourceSans } from '../../components/TextSourceSans';
 import { Comments } from '../Comments/Comments';
 import { CommentForm } from '../Comments/CommentForm';
+import { ButtonSubmit } from '../../components/ButtonSubmit';
 
 export const Idea = (props) => {
   const {idea, project, createdDate} = props.route.params;
@@ -22,9 +23,10 @@ export const Idea = (props) => {
   const [processing, setProcessing] = useState(false);
   const [comments, setComments] = useState([]);
   const [objectToComment, setObjectToComment] = useState({'contentType': idea.content_type, 'pk': idea.pk});
-  const [focusCommentForm, setFocusCommentForm] = useState(false);
+  //const [focusCommentForm, setFocusCommentForm] = useState(false);
   const [commentLastCommented, setCommentLastCommented] = useState(-1);
   const hasComments = comments.length !== 0;
+  const [showCommentForm, setShowCommentForm] = useState(false);
 
   const menuItems = [
     {
@@ -129,6 +131,7 @@ export const Idea = (props) => {
   };
 
   const handleCommentSubmit = (values) => {
+    setShowCommentForm(false);
     AsyncStorage.getItem('authToken')
       .then((token) => {
         return API.addComment(objectToComment.contentType, objectToComment.pk, values, token);
@@ -162,7 +165,7 @@ export const Idea = (props) => {
 
   const handleCommentReply = (commentContentType, commentObjectPk) => {
     setObjectToComment({'contentType': commentContentType, 'pk': commentObjectPk});
-    setFocusCommentForm(true);
+    setShowCommentForm(true);
   };
 
   const fetchIdea = () => {
@@ -291,11 +294,19 @@ export const Idea = (props) => {
             commentLastCommented={commentLastCommented}
           />
         </View>}
-        <CommentForm
-          handleSubmit={handleCommentSubmit}
-          isFocused={focusCommentForm}
-        />
+        {!showCommentForm && (
+          <ButtonSubmit
+            title='Add Comment'
+            onPress={() => setShowCommentForm(true)}
+          />)}
       </ScrollView>
+      {showCommentForm && (
+        <View>
+          <CommentForm
+            handleSubmit={handleCommentSubmit}
+            isFocused={showCommentForm}
+          />
+        </View>)}
       <Menu menuItems={menuItems} isVisible={menuVisible} />
       <Modal
         modalItems={deleteModalItems}
