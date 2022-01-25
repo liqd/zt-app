@@ -92,25 +92,24 @@ export const Idea = (props) => {
     setMenuVisible(false)
   );
 
-  const handleVote = async(direction) => {
+  const handleRate = async(value) => {
     if (processing) return;
     setProcessing(true);
     const token = await AsyncStorage.getItem('authToken');
-    const newIdea = await vote(direction, token);
+    const newIdea = await rate(value, token);
     newIdea && setProcessing(false);
   };
 
-  const vote = async(direction, token) => {
+  const rate = async(value, token) => {
     const {pk, content_type} = ideaState;
-    const dirValue = direction === 'up' ? 1 : -1;
 
     if (ideaState.user_rating) {
-      if (ideaState.user_rating.value !== dirValue) {
+      if (ideaState.user_rating.value !== value) {
         await API.changeRating(
           content_type,
           pk,
           ideaState.user_rating.id,
-          {value: dirValue},
+          {value: value},
           token
         );
       }
@@ -125,7 +124,7 @@ export const Idea = (props) => {
       }
     }
     else {
-      await API.rate(content_type, pk, {value: dirValue}, token);
+      await API.rate(content_type, pk, {value: value}, token);
     }
     return await fetchIdea();
   };
@@ -201,7 +200,8 @@ export const Idea = (props) => {
   );
 
   const fetchComments = (ideaContentType, ideaPk) => {
-    API.getComments(ideaContentType, ideaPk)
+    AsyncStorage.getItem('authToken')
+      .then((token) => API.getComments(ideaContentType, ideaPk, token))
       .then(({results}) => setComments(results));
   };
 
@@ -263,7 +263,7 @@ export const Idea = (props) => {
             <ButtonCounter
               icon={arrowUpIcon}
               counter={ideaState.positive_rating_count}
-              onPress={() => handleVote('up')}
+              onPress={() => handleRate(1)}
               highlight={
                 ideaState.user_rating &&
                 ideaState.user_rating.value === 1 &&
@@ -274,7 +274,7 @@ export const Idea = (props) => {
             <ButtonCounter
               icon={arrowDownIcon}
               counter={ideaState.negative_rating_count}
-              onPress={() => handleVote('down')}
+              onPress={() => handleRate(-1)}
               highlight={
                 ideaState.user_rating &&
                 ideaState.user_rating.value === -1 &&

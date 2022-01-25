@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { View, Image } from 'react-native';
 import { Button } from 'react-native-elements';
 import { styles } from './Comment.styles';
@@ -11,18 +11,13 @@ import { TextSourceSans } from '../../components/TextSourceSans';
 const NUM_OF_LINES = 2;
 
 export const SubComment = (props) => {
-  const {
-    user_image:userAvatar,
-    user_name:userName,
-    created,
-    comment,
-    ratings: {
-      negative_ratings:downVotes,
-      positive_ratings:upVotes,
-    }
-  } = props.comment;
+  const [comment, setComment] = useState(props.comment);
   const [showWholeComment, setShowWholeComment] = useState(false);
   const [hasExcerpt, setHasExcerpt] = useState(false);
+
+  useEffect(() => {
+    setComment(props.comment);
+  }, [props.comment]);
 
   const toggleWholeComment = () => {
     setShowWholeComment(!showWholeComment);
@@ -41,10 +36,10 @@ export const SubComment = (props) => {
     <View style={styles.subContainer}>
       <View style={styles.top}>
         <View style={styles.topLeft}>
-          <Image source={{ uri: userAvatar }} style={styles.avatar} />
+          <Image source={{ uri: comment.user_image }} style={styles.avatar} />
           <View style={styles.author}>
-            <TextSourceSans style={styles.username}>{userName}</TextSourceSans>
-            <TextSourceSans style={styles.date}>{DateService(created)}</TextSourceSans>
+            <TextSourceSans style={styles.username}>{comment.user_name}</TextSourceSans>
+            <TextSourceSans style={styles.date}>{DateService(comment.created)}</TextSourceSans>
           </View>
         </View>
         <TextSourceSans>
@@ -60,12 +55,12 @@ export const SubComment = (props) => {
           numberOfLines={NUM_OF_LINES}
           onTextLayout={onTextLayout}
         >
-          {comment}
+          {comment.comment}
         </TextSourceSans>
       }
       {showWholeComment &&
       <TextSourceSans style={styles.comment}>
-        {comment}
+        {comment.comment}
       </TextSourceSans>
       }
       <View style={styles.linkSection}>
@@ -77,11 +72,25 @@ export const SubComment = (props) => {
         <View style={styles.ratingButtons}>
           <ButtonCounter
             icon={arrowUpIcon}
-            counter={upVotes}
+            counter={comment.ratings.positive_ratings}
+            onPress={() => props.handleRate(comment, 1)}
+            highlight={
+              comment.ratings.current_user_rating_id &&
+              comment.ratings.current_user_rating_value === 1 &&
+              comment.ratings.current_user_rating_value
+            }
+            disabled={!comment.has_rating_permission}
           />
           <ButtonCounter
             icon={arrowDownIcon}
-            counter={downVotes}
+            counter={comment.ratings.negative_ratings}
+            onPress={() => props.handleRate(comment, -1)}
+            highlight={
+              comment.ratings.current_user_rating_id &&
+              comment.ratings.current_user_rating_value === -1 &&
+              comment.ratings.current_user_rating_value
+            }
+            disabled={!comment.has_rating_permission}
           />
         </View>
         <Button

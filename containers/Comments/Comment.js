@@ -8,6 +8,8 @@ import { DateService } from '../../services/DateService';
 import { TouchableWithoutFeedback } from 'react-native';
 import { ButtonCounter } from '../../components/ButtonCounter';
 import { SubComments } from './SubComments';
+import API from '../../BaseApi';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const NUM_OF_LINES = 2;
 
@@ -15,23 +17,13 @@ export const Comment = (props) => {
   const [showSubComments, setShowSubComments] = useState(false);
   const [showWholeComment, setShowWholeComment] = useState(false);
   const [hasExcerpt, setHasExcerpt] = useState(false);
-  const {
-    user_image:userAvatar,
-    user_name:userName,
-    child_comments: childComments,
-    created,
-    comment,
-    ratings: {
-      negative_ratings:downVotes,
-      positive_ratings:upVotes,
-    },
-    id: pk,
-    comment_content_type: commentContentType,
-  } = props.comment;
+  const [processing, setProcessing] = useState(false);
+  const [comment, setComment] = useState(props.comment);
 
   useEffect(() => {
+    setComment(props.comment);
     if (props.openSubComments) {setShowSubComments(true);}
-  }, [props.openSubComments]);
+  }, [props.openSubComments, props.comment]);
 
   const toggleSubComments = () => {
     setShowSubComments(!showSubComments);
@@ -45,6 +37,50 @@ export const Comment = (props) => {
     setHasExcerpt(e.nativeEvent.lines.length > NUM_OF_LINES);
   }, []);
 
+  const handleRate = async(ratingComment, value) => {
+    if (processing) return;
+    setProcessing(true);
+    const token = await AsyncStorage.getItem('authToken');
+    const newComment = await rate(ratingComment, value, token);
+    newComment && setProcessing(false);
+  };
+
+  const rate = async(ratingComment, value, token) => {
+    if (ratingComment.ratings.current_user_rating_id) {
+      if (ratingComment.ratings.current_user_rating_value !== value) {
+        await API.changeRating(
+          ratingComment.comment_content_type,
+          ratingComment.id,
+          ratingComment.ratings.current_user_rating_id,
+          {value: value},
+          token
+        );
+      }
+      else {
+        await API.changeRating(
+          ratingComment.comment_content_type,
+          ratingComment.id,
+          ratingComment.ratings.current_user_rating_id,
+          {value: 0},
+          token
+        );
+      }
+    }
+    else {
+      await API.rate(ratingComment.comment_content_type, ratingComment.id, {value: value}, token);
+    }
+    return await fetchComment();
+  };
+
+  const fetchComment = () => {
+    return AsyncStorage.getItem('authToken')
+      .then((token) => API.getComment(comment.content_type, comment.object_pk, comment.id, token))
+      .then(fetchedComment => {
+        setComment(fetchedComment);
+        return fetchedComment;
+      });
+  };
+
   const optionsIcon = (<IconSLI name='options-vertical' size={22} />);
   const arrowUpIcon = (<IconSLI name='arrow-up' size={18} />);
   const arrowDownIcon = (<IconSLI name='arrow-down' size={18} />);
@@ -55,10 +91,10 @@ export const Comment = (props) => {
     <View style={styles.container}>
       <View style={styles.top}>
         <View style={styles.topLeft}>
-          <Image source={{ uri: userAvatar }} style={styles.avatar} />
+          <Image source={{ uri: comment.user_image }} style={styles.avatar} />
           <View style={styles.author}>
-            <TextSourceSans style={styles.username}>{userName}</TextSourceSans>
-            <TextSourceSans style={styles.date}>{DateService(created)}</TextSourceSans>
+            <TextSourceSans style={styles.username}>{comment.user_name}</TextSourceSans>
+            <TextSourceSans style={styles.date}>{DateService(comment.created)}</TextSourceSans>
           </View>
         </View>
         <TextSourceSans>
@@ -75,12 +111,12 @@ export const Comment = (props) => {
             numberOfLines={NUM_OF_LINES}
             onTextLayout={onTextLayout}
           >
-            {comment}
+            {comment.comment}
           </TextSourceSans>
         }
         {showWholeComment &&
         <TextSourceSans style={styles.comment}>
-          {comment}
+          {comment.comment}
         </TextSourceSans>
         }
         {hasExcerpt && <TouchableWithoutFeedback onPress={toggleWholeComment}>
@@ -88,9 +124,9 @@ export const Comment = (props) => {
         </TouchableWithoutFeedback>}
       </View>
       <View style={styles.linkSection}>
-        {childComments.length !== 0 && <TouchableWithoutFeedback onPress={toggleSubComments}>
+        {comment.child_comments.length !== 0 && <TouchableWithoutFeedback onPress={toggleSubComments}>
           <TextSourceSans style={styles.linkButton}>
-            {showSubComments ? 'Hide' : 'Show'} {childComments.length} answers
+            {showSubComments ? 'Hide' : 'Show'} {comment.child_comments.length} answers
           </TextSourceSans>
         </TouchableWithoutFeedback>}
       </View>
@@ -98,11 +134,25 @@ export const Comment = (props) => {
         <View style={styles.ratingButtons}>
           <ButtonCounter
             icon={arrowUpIcon}
-            counter={upVotes}
+            counter={comment.ratings.positive_ratings}
+            onPress={() => handleRate(comment, 1)}
+            highlight={
+              comment.ratings.current_user_rating_id &&
+              comment.ratings.current_user_rating_value === 1 &&
+              comment.ratings.current_user_rating_value
+            }
+            disabled={!comment.has_rating_permission}
           />
           <ButtonCounter
             icon={arrowDownIcon}
-            counter={downVotes}
+            counter={comment.ratings.negative_ratings}
+            onPress={() => handleRate(comment, -1)}
+            highlight={
+              comment.ratings.current_user_rating_id &&
+              comment.ratings.current_user_rating_value === -1 &&
+              comment.ratings.current_user_rating_value
+            }
+            disabled={!comment.has_rating_permission}
           />
         </View>
         <Button
@@ -111,7 +161,7 @@ export const Comment = (props) => {
           titleStyle={styles.buttonTitle}
           type='clear'
           styles={styles.commentButton}
-          onPress={() => {props.handleReply(commentContentType, pk);}}
+          onPress={() => {props.handleReply(comment.comment_content_type, comment.id);}}
         />
         <Button
           icon={redoIcon}
@@ -120,7 +170,12 @@ export const Comment = (props) => {
           type='clear'
         />
       </View>
-      {showSubComments && <SubComments comments={childComments} />}
+      {showSubComments &&
+        <SubComments
+          comments={comment.child_comments}
+          handleRate={handleRate}
+        />
+      }
     </View>
   );
 };
