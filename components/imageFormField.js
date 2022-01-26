@@ -76,7 +76,9 @@ export const ImagePickerFormField = (props) => {
 
   return (
     <>
-      <View style={styles.formImagePicker}>
+      <View
+        style={capturedImage || image ? styles.formImagePickerFull : styles.formImagePicker}
+      >
         {!capturedImage && !image &&
         <Button
           buttonStyle={styles.imageAddButton}
@@ -87,7 +89,12 @@ export const ImagePickerFormField = (props) => {
           titleStyle={styles.textDark}
           imageUri={capturedImage}
         />}
-        {capturedImage && <Image style={styles.formImage} source={{uri: capturedImage}} />}
+        {capturedImage &&
+          <Image
+            style={styles.formImagePreview}
+            source={{uri: capturedImage}}
+            resizeMode="contain"/>
+        }
       </View>
       <View style={styles.formImagePicker}>
         {!capturedImage && !image &&
@@ -100,7 +107,12 @@ export const ImagePickerFormField = (props) => {
           titleStyle={styles.textDark}
           imageUri={image}
         />}
-        {image && <Image style={styles.formImage} source={{uri: image}} />}
+        {image &&
+          <Image
+            style={styles.formImagePreview}
+            source={{uri: image}}
+            resizeMode="contain"/>
+        }
       </View>
     </>
   );
@@ -131,7 +143,7 @@ export const ImageChoiceFormFieldContainer = (props) => {
       <TextSourceSans style={styles.imageInfo}>
                 Visualize your idea. It must be min. 600 pixel wide and 400 pixel tall. Allowed file formats are png, jpeg, gif. The file size should be max. 5 MB.
       </TextSourceSans>
-      {(clicked || props.image) && 
+      {(clicked || props.image) &&
         <>
           <ImagePickerFormField
             onSetImage={props.onSetImage}
