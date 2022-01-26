@@ -12,6 +12,17 @@ export const ImagePickerFormField = (props) => {
   const [capturedImage, setCapturedImage] = useState(null);
   const [image, setImage] = useState(props.initialImage);
 
+  const mutateImageProps = (imageObj) => {
+    // eslint-disable-next-line
+    const nameRegex = /[^\/]*$/;
+    const imgName = imageObj.uri.match(nameRegex);
+    imgName ? (imageObj.name = imgName[0]) : 'unknown';
+  
+    const extRegex = /\w+$/;
+    const imgExt = imgName[0].match(extRegex);
+    imgExt ? (imageObj.type = mime.getType(imgExt[0])) : 'image/jpeg';
+  };
+
   useEffect(() => {
     (async () => {
       if (Platform.OS !== 'web') {
@@ -30,6 +41,8 @@ export const ImagePickerFormField = (props) => {
       aspect: [3, 2],
       quality: 1,
     });
+
+    mutateImageProps(result);
 
     if (!result.cancelled) {
       setImage(result.uri);
@@ -56,14 +69,7 @@ export const ImagePickerFormField = (props) => {
       quality: 1,
     });
 
-    // eslint-disable-next-line
-    const nameRegex = /[^\/]*$/;
-    const imgName = result.uri.match(nameRegex);
-    imgName ? (result.name = imgName[0]) : 'unknown';
-
-    const extRegex = /\w+$/;
-    const imgExt = imgName[0].match(extRegex);
-    imgExt ? (result.type = mime.getType(imgExt[0])) : 'image/jpeg';
+    mutateImageProps(result);
 
     if (!result.cancelled) {
       setCapturedImage(result.uri);
