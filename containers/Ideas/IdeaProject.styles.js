@@ -15,6 +15,13 @@ export const styles = StyleSheet.create({
     backgroundColor: COLORS.primary,
     paddingTop: SPACINGS.multiplyBy(1.5),
   },
+  linearGradient: {
+    position: 'absolute',
+    top: 0,
+    width:'100%',
+    height: '15%',
+    opacity: 0.5
+  },
   overlayContainer: {
     borderTopLeftRadius: BORDERRADIUS.container,
     borderTopRightRadius: BORDERRADIUS.container,

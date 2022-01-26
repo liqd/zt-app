@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, ImageBackground, ScrollView } from 'react-native';
 import { Button } from 'react-native-elements';
+import { LinearGradient } from 'expo-linear-gradient';
 import { styles } from './IdeaProject.styles';
 import { IdeasList } from './IdeasList';
 import IconSLI from 'react-native-vector-icons/SimpleLineIcons';
@@ -67,6 +68,10 @@ export const IdeaProject = (props) => {
     <View style={styles.container}>
       <ScrollView>
         <ImageBackground style={styles.bgImage} source={{ uri: bgImage }}>
+          <LinearGradient
+            colors={['rgba(0,0,0,0.80)', 'rgba(0,0,0,0.00)']}
+            style={styles.linearGradient}
+          />
           <View style={styles.actionsContainer}>
             <Button
               buttonStyle={styles.button}
