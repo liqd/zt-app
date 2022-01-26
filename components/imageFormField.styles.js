@@ -7,6 +7,9 @@ export const styles = StyleSheet.create({
   formImagePicker: {
     width: '50%'
   },
+  formImagePickerFull: {
+    width: '100%',
+  },
   imageAddButton: {
     marginHorizontal: 'auto',
     marginVertical: SPACINGS.multiplyBy(.5),
@@ -31,16 +34,7 @@ export const styles = StyleSheet.create({
   },
   formImagePreview: {
     width: '100%',
-    height: 50,
-    marginBottom: SPACINGS.multiplyBy(.5),
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderColor: COLORS.grey.extralight,
-    borderWidth: BORDERWIDTH.base
-  },
-  formImage: {
-    width: '100%',
-    height: 100
+    height: 150
   },
 
   // These should be refactored to go in common file
