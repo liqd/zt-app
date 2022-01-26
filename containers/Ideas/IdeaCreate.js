@@ -122,7 +122,15 @@ export const IdeaCreate = props => {
           });
         }
         else if (statusCode == 400) {
-          setError('Required fields are missing.');
+          if (data && data.image) {
+            const errorString = data.image.reduce((acc, curr) => {
+              return `${acc}\n${curr}`;
+            }, 'Please try again.\n');
+            setError(errorString);
+          }
+          else {
+            setError('Required fields are missing.');
+          }
         }
         else if (response.statusCode == 403) {
           setError(response.data.detail);
