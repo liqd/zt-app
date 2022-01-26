@@ -22,7 +22,7 @@ export const Idea = (props) => {
   const [deleteModalVisible, setDeleteModalVisible] = useState(false);
   const [processing, setProcessing] = useState(false);
   const [comments, setComments] = useState([]);
-  const [objectToComment, setObjectToComment] = useState({'contentType': idea.content_type, 'pk': idea.pk});
+  const [contentObjectOfComment, setContentObjectOfComment] = useState({'contentType': idea.content_type, 'pk': idea.pk});
   //const [focusCommentForm, setFocusCommentForm] = useState(false);
   const [commentLastCommented, setCommentLastCommented] = useState(-1);
   const hasComments = comments.length !== 0;
@@ -133,7 +133,7 @@ export const Idea = (props) => {
     setShowCommentForm(false);
     AsyncStorage.getItem('authToken')
       .then((token) => {
-        return API.addComment(objectToComment.contentType, objectToComment.pk, values, token);
+        return API.addComment(contentObjectOfComment.contentType, contentObjectOfComment.pk, values, token);
       })
       .then((response) => {
         const {statusCode, data} = response;
@@ -145,7 +145,7 @@ export const Idea = (props) => {
             setCommentLastCommented(-1);
           }
           fetchComments(idea.content_type, idea.pk);
-          setObjectToComment({'contentType': idea.content_type, 'pk': idea.pk});
+          setContentObjectOfComment({'contentType': idea.content_type, 'pk': idea.pk});
         }
         else {
           const errorMessage = 'That did not work.';
@@ -163,7 +163,7 @@ export const Idea = (props) => {
   };
 
   const handleCommentReply = (commentContentType, commentObjectPk) => {
-    setObjectToComment({'contentType': commentContentType, 'pk': commentObjectPk});
+    setContentObjectOfComment({'contentType': commentContentType, 'pk': commentObjectPk});
     setShowCommentForm(true);
   };
 

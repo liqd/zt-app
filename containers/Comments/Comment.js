@@ -22,7 +22,7 @@ export const Comment = (props) => {
 
   useEffect(() => {
     setComment(props.comment);
-    if (props.openSubComments) {setShowSubComments(true);}
+    props.openSubComments && setShowSubComments(true);
   }, [props.openSubComments, props.comment]);
 
   const toggleSubComments = () => {
