@@ -70,7 +70,8 @@
     "react-native-web": "0.17.5",
     "react-test-renderer": "17.0.2",
     "sentry-expo": "4.0.3",
-    "yup": "0.32.11"
+    "yup": "0.32.11",
+    "expo-linear-gradient": "~11.0.0"
   },
   "devDependencies": {
     "@babel/core": "7.16.7",
