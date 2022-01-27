@@ -23,7 +23,7 @@ export const IdeaCreateDescription = props => {
       .required('Description is required'),
   });
 
-  const handleSubmitNoSave = (values) => {
+  const handleSubmit = (values) => {
     props.navigation.navigate('IdeaCreate', {
       project: project,
       descriptionText: values.description,
@@ -60,7 +60,7 @@ export const IdeaCreateDescription = props => {
       <Formik
         validationSchema={ideaDescriptionValidationSchema}
         initialValues={getInitialValues()}
-        onSubmit={values => handleSubmitNoSave(values)}
+        onSubmit={values => handleSubmit(values)}
       >
         {({
           handleChange,
