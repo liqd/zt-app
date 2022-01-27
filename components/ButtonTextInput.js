@@ -26,7 +26,7 @@ export const ButtonTextInput = (props) => {
       style={styles.textInputButton}
       disabled={props.disabled}
     >
-      <TextSourceSans style={styles.textInputButtonTitle}>
+      <TextSourceSans style={styles.textInputButtonTitle} numberOfLines={1}>
         {props.title}
       </TextSourceSans>
       <TextSourceSans style={styles.textInputButtonTitle}>
