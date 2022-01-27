@@ -17,7 +17,7 @@ export const ImagePickerFormField = (props) => {
     const nameRegex = /[^\/]*$/;
     const imgName = imageObj.uri.match(nameRegex);
     imgName ? (imageObj.name = imgName[0]) : 'unknown';
-  
+
     const extRegex = /\w+$/;
     const imgExt = imgName[0].match(extRegex);
     imgExt ? (imageObj.type = mime.getType(imgExt[0])) : 'image/jpeg';
@@ -77,8 +77,15 @@ export const ImagePickerFormField = (props) => {
     }
   };
 
+  const deleteImageHandler = async () => {
+    let image = null;
+    setCapturedImage(image);
+    setImage(image);
+  };
+
   const cameraIcon = <IconSLI name='camera' style={styles.iconButton} />;
   const pictureIcon = <IconSLI name='picture' style={styles.iconButton} />;
+  const closeIcon = <IconSLI name='close' style={styles.iconRemoveButton} />;
 
   return (
     <>
@@ -96,13 +103,21 @@ export const ImagePickerFormField = (props) => {
           imageUri={capturedImage}
         />}
         {capturedImage &&
-          <Image
-            style={styles.formImagePreview}
-            source={{uri: capturedImage}}
-            resizeMode="contain"/>
+          <>
+            <Button
+              buttonStyle={styles.imageRemoveButton}
+              onPress={deleteImageHandler}
+              icon={closeIcon}
+              type='clear'
+            />
+            <Image
+              style={styles.formImagePreview}
+              source={{uri: capturedImage}}
+              resizeMode="contain"/>
+          </>
         }
       </View>
-      <View style={styles.formImagePicker}>
+      <View style={capturedImage || image ? styles.formImagePickerFull : styles.formImagePicker}>
         {!capturedImage && !image &&
         <Button
           buttonStyle={styles.imageAddButton}
@@ -114,10 +129,18 @@ export const ImagePickerFormField = (props) => {
           imageUri={image}
         />}
         {image &&
-          <Image
-            style={styles.formImagePreview}
-            source={{uri: image}}
-            resizeMode="contain"/>
+          <>
+            <Button
+              buttonStyle={styles.imageRemoveButton}
+              onPress={deleteImageHandler}
+              icon={closeIcon}
+              type='clear'
+            />
+            <Image
+              style={styles.formImagePreview}
+              source={{uri: image}}
+              resizeMode="contain"/>
+          </>
         }
       </View>
     </>
