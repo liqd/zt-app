@@ -15,6 +15,7 @@ export const TextInputFormField = (props) => {
     <View>
       <TextSourceSans style={styles.formLabel}>{props.field}</TextSourceSans>
       <TextInput
+        ref={props.inputRef}
         style={styles.textInput}
         {...props}
       />
