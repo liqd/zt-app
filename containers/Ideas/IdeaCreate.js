@@ -22,7 +22,7 @@ import API from '../../BaseApi';
 
 export const IdeaCreate = props => {
 
-  const {idea, project, editing} = props.route.params;
+  const {idea, project, editing, descriptionText } = props.route.params;
   const moduleId = project.single_agenda_setting_module;
   const arrowLeftIcon = (
     <IconSLI name='arrow-left' size={22} />
@@ -41,15 +41,25 @@ export const IdeaCreate = props => {
   const [labelChoices, setLabelChoices] = useState([]);
   const [initialCategory, setInitialCategory] = useState();
   const [initialLabels, setInitialLabels] = useState();
+  const [description, setDescription] = useState('');
+  const [prevValues, setPrevValues] = useState('');
 
   useEffect(() => {
     if (error) {
       Alert.alert('An error occured', error, [{ text: 'Ok' }]);
     }
     else {
+      if (descriptionText) {
+        setDescription(descriptionText);
+      }
+      else {
+        if (editing) {
+          setDescription(idea.description);
+        }
+      }
       setLabelsAndCategories();
     }
-  }, [error, project]);
+  }, [error, project, descriptionText]);
 
   const setLabelsAndCategories = async() => {
     const module = await API.getModule(moduleId);
@@ -94,6 +104,7 @@ export const IdeaCreate = props => {
   };
 
   const handleSubmit = (values) => {
+    values.description = description;
     const formData = makeFormData(values);
     AsyncStorage.getItem('authToken')
       .then((token) => {
@@ -133,19 +144,37 @@ export const IdeaCreate = props => {
   };
 
   const getInitialValues = () => {
-    return {
-      name: editing ? idea.name : '',
-      description: editing ? idea.description : '',
-      labels: initialLabels,
-      category: initialCategory,
-      imageChecked: editing ? !!idea.image : false
-    };
+    const initialValues = prevValues
+      ? {
+        name: prevValues.name ? prevValues.name : '',
+        description: description ? description : '',
+        labels: prevValues.labels ? prevValues.labels : initialLabels,
+        category: prevValues.category ? prevValues.category : initialCategory,
+        imageChecked: prevValues.imageChecked ? prevValues.imageChecked : false,
+      }
+      : {
+        name: editing ? idea.name : '',
+        description: editing ? idea.description : '',
+        labels: initialLabels,
+        category: initialCategory,
+        imageChecked: editing ? !!idea.image : false
+      };
+
+    if (prevValues.image) {
+      initialValues.image = prevValues.image;
+    }
+    return initialValues;
   };
 
-  const toDescription = () =>
+  const toDescription = (values) => {
+    setPrevValues(values);
     props.navigation.navigate('IdeaCreateDescription', {
-      project: project
+      project: project,
+      description: description,
+      editing: editing,
+      idea: idea
     });
+  };
 
   return (
     <VirtualScrollView
@@ -195,8 +224,8 @@ export const IdeaCreate = props => {
               field='Idea Description'
               name='description'>
               <ButtonTextInput
-                title='Enter your idea description'
-                onPress={toDescription}
+                title={description ? description : 'Enter your idea description'}
+                onPress={() => toDescription(values)}
               >
               </ButtonTextInput>
             </ButtonTextInputFieldContainer>
