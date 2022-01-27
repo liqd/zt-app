@@ -38,13 +38,13 @@ export const CommentForm = (props) => {
           <View style={styles.textInputContainer}>
             <TextInputFormField
               name='comment'
+              inputRef={props.inputRef}
               value={values.comment}
               placeholder='Enter your comment'
               onChangeText={handleChange('comment')}
               onBlur={handleBlur('comment')}
               error={errors.comment}
               touched={touched.comment}
-              autoFocus = {props.isFocused}
               multiline
             />
           </View>

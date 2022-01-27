@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Alert, View, Image, ScrollView } from 'react-native';
 import { Button } from 'react-native-elements';
 import { styles } from './Idea.styles';
@@ -12,7 +12,6 @@ import { Modal } from '../../components/Modal';
 import { TextSourceSans } from '../../components/TextSourceSans';
 import { Comments } from '../Comments/Comments';
 import { CommentForm } from '../Comments/CommentForm';
-import { ButtonSubmit } from '../../components/ButtonSubmit';
 
 export const Idea = (props) => {
   const {idea, project, createdDate} = props.route.params;
@@ -23,10 +22,13 @@ export const Idea = (props) => {
   const [processing, setProcessing] = useState(false);
   const [comments, setComments] = useState([]);
   const [contentObjectOfComment, setContentObjectOfComment] = useState({'contentType': idea.content_type, 'pk': idea.pk});
-  //const [focusCommentForm, setFocusCommentForm] = useState(false);
   const [commentLastCommented, setCommentLastCommented] = useState(-1);
   const hasComments = comments.length !== 0;
-  const [showCommentForm, setShowCommentForm] = useState(false);
+  const commentInputRef = useRef(null);
+
+  // currently always showing, leaving here to
+  // be used if permission does not allow commenting
+  const [showCommentForm, setShowCommentForm] = useState(true);
 
   const menuItems = [
     {
@@ -130,7 +132,7 @@ export const Idea = (props) => {
   };
 
   const handleCommentSubmit = (values) => {
-    setShowCommentForm(false);
+    commentInputRef.current.blur();
     AsyncStorage.getItem('authToken')
       .then((token) => {
         return API.addComment(contentObjectOfComment.contentType, contentObjectOfComment.pk, values, token);
@@ -164,7 +166,7 @@ export const Idea = (props) => {
 
   const handleCommentReply = (commentContentType, commentObjectPk) => {
     setContentObjectOfComment({'contentType': commentContentType, 'pk': commentObjectPk});
-    setShowCommentForm(true);
+    commentInputRef.current.focus();
   };
 
   const fetchIdea = () => {
@@ -294,17 +296,12 @@ export const Idea = (props) => {
             commentLastCommented={commentLastCommented}
           />
         </View>}
-        {!showCommentForm && (
-          <ButtonSubmit
-            title='Add Comment'
-            onPress={() => setShowCommentForm(true)}
-          />)}
       </ScrollView>
       {showCommentForm && (
         <View>
           <CommentForm
+            inputRef={commentInputRef}
             handleSubmit={handleCommentSubmit}
-            isFocused={showCommentForm}
           />
         </View>)}
       <Menu menuItems={menuItems} isVisible={menuVisible} />
