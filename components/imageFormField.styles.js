@@ -27,9 +27,18 @@ export const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: SIZES.md,
   },
+  imageRemoveButton: {
+    flex: 1,
+    justifyContent: 'flex-end'
+  },
+  iconRemoveButton: {
+    fontSize: SIZES.lg,
+    backgroundColor: COLORS.text.inverted,
+    borderRadius: BORDERRADIUS.container,
+  },
   formImagePreview: {
     width: '100%',
-    height: 150
+    height: 150,
   },
 
   // These should be refactored to go in common file
