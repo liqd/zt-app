@@ -1,21 +1,18 @@
-import React, { useState } from 'react';
-import { Alert, View } from 'react-native';
+import React from 'react';
+import { View } from 'react-native';
 import { Button } from 'react-native-elements';
 import { Formik } from 'formik';
 import * as yup from 'yup';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import IconSLI from 'react-native-vector-icons/SimpleLineIcons';
 import { ButtonSubmit } from '../../components/ButtonSubmit';
 import { TextSourceSans } from '../../components/TextSourceSans';
 
 import { styles } from './Idea.styles';
 import { TextInputFullFormField } from '../../components/formFields';
-import API from '../../BaseApi';
 
 export const IdeaCreateDescription = props => {
 
-  const {idea, project, editing} = props.route.params;
-  const moduleId = project.single_agenda_setting_module;
+  const {idea, project, editing, description } = props.route.params;
   const arrowLeftIcon = (
     <IconSLI name='arrow-left' size={22} />
   );
@@ -26,50 +23,23 @@ export const IdeaCreateDescription = props => {
       .required('Description is required'),
   });
 
-  const [error, setError] = useState();
+  const handleSubmitNoSave = (values) => {
+    props.navigation.navigate('IdeaCreate', {
+      project: project,
+      descriptionText: values.description,
+      editing: editing,
+      idea: idea
+    });
+  };
 
-  const handleSubmit = (values) => {
-    let formData = new FormData();
-    for (let key in values) {
-      Array.isArray(values[key])
-        ? values[key].forEach((value) => formData.append(key, value))
-        : formData.append(key, values[key]);
-    }
+  const getInitialValues = () => {
+    const initialValues = description
+      ? {description: description}
+      : editing
+        ? {description: idea.description}
+        : {description: ''};
 
-    AsyncStorage.getItem('authToken')
-      .then((token) => {
-        if (editing) {
-          return API.editIdea(moduleId, idea.pk, formData, token);
-        }
-        else {
-          return API.postIdea(moduleId, formData, token);
-        }
-      })
-      //error handling is provisional and should probably go somewhere else eventually
-      .then((response) => {
-        const {statusCode, data} = response;
-        if (statusCode == 201) {
-          props.navigation.navigate('IdeaCreate', {
-            project: project
-          });
-        }
-        else if (editing && statusCode == 200) {
-          Alert.alert('Your description was updated.', '',  [{ text: 'Ok' }]);
-          props.navigation.navigate('IdeaCreate', {
-            idea: data,
-            project: project
-          });
-        }
-        else if (statusCode == 400) {
-          setError('Required field is missing.');
-        }
-        else if (response.statusCode == 403) {
-          setError(response.data.detail);
-        }
-        else {
-          setError('Try again.');
-        }
-      });
+    return initialValues;
   };
 
   return (
@@ -89,16 +59,8 @@ export const IdeaCreateDescription = props => {
       <TextSourceSans style={styles.title}>Add description</TextSourceSans>
       <Formik
         validationSchema={ideaDescriptionValidationSchema}
-        initialValues={{
-          ...(editing
-            ? {
-              description: idea.description,
-            }
-            : {
-              description: '',
-            }),
-        }}
-        onSubmit={values => handleSubmit(values)}
+        initialValues={getInitialValues()}
+        onSubmit={values => handleSubmitNoSave(values)}
       >
         {({
           handleChange,
