@@ -90,6 +90,10 @@ export const IdeaCreate = props => {
   const makeFormData = (values) => {
     const extractedLabels = [...values.labels];
     extractedLabels && (values.labels = mapLabels(extractedLabels));
+    // do not send null image on create
+    if (!editing && 'image' in values && values.image == null) {
+      delete values['image'];
+    }
     let formData = new FormData();
     for (let key in values) {
       Array.isArray(values[key])
