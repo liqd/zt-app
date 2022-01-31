@@ -1,17 +1,25 @@
 import { StyleSheet } from 'react-native';
-import { SPACINGS } from '../../theme/spacings';
+import { SPACINGS, BORDERRADIUS } from '../../theme/spacings';
 import { COLORS } from '../../theme/colors';
 
 export const styles = StyleSheet.create({
   submitContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 20,
-    paddingBottom: 20,
+    paddingHorizontal: SPACINGS.multiplyBy(1),
+    paddingVertical: SPACINGS.multiplyBy(0.75),
   },
   textInputContainer: {
-    flex: 8
+    flex: 2,
+    backgroundColor: COLORS.text.inverted,
+    borderRadius: BORDERRADIUS.lg,
+    padding: SPACINGS.multiplyBy(0.5),
   },
   submitButton: {
+    padding: SPACINGS.multiplyBy(0.25),
+    paddingRight: SPACINGS.multiplyBy(0.4),
+    marginLeft: SPACINGS.multiplyBy(0.5),
+    backgroundColor: COLORS.primary,
+    borderRadius: BORDERRADIUS.lg
   }
 });

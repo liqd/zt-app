@@ -1,5 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, Platform, KeyboardAvoidingView } from 'react-native';
 import { Button } from 'react-native-elements';
 import { Formik } from 'formik';
 import * as yup from 'yup';
@@ -43,8 +43,9 @@ export const IdeaCreateDescription = props => {
   };
 
   return (
-    <View
+    <KeyboardAvoidingView
       style={styles.descripContainer}
+      behavior={(Platform.OS === 'ios')? 'padding' : null}
     >
       <View style={styles.actionsContainer}>
         <Button
@@ -97,7 +98,7 @@ export const IdeaCreateDescription = props => {
           </>
         )}
       </Formik>
-    </View>
+    </KeyboardAvoidingView>
   );
 };
 
