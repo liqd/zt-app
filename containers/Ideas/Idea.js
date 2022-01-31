@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Alert, View, Image, ScrollView } from 'react-native';
+import { Alert, View, Image, ScrollView, Platform, KeyboardAvoidingView } from 'react-native';
 import { Button } from 'react-native-elements';
 import { styles } from './Idea.styles';
 import IconSLI from 'react-native-vector-icons/SimpleLineIcons';
@@ -214,7 +214,10 @@ export const Idea = (props) => {
   }, [idea]);
 
   return (
-    <>
+    <KeyboardAvoidingView
+      behavior={(Platform.OS === 'ios')? 'padding' : null}
+      style={{flex:1}}
+    >
       <ScrollView
         style={styles.container}
         contentContainerStyle={styles.contentContainer}
@@ -309,6 +312,6 @@ export const Idea = (props) => {
         modalItems={deleteModalItems}
         isVisible={deleteModalVisible}
       />
-    </>
+    </KeyboardAvoidingView>
   );
 };
