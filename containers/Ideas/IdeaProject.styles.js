@@ -75,8 +75,8 @@ export const styles = StyleSheet.create({
     fontSize: SIZES.multiplyBy(0.9375),
   },
   actionsContainer: {
-    height: SPACINGS.multiplyBy(2),
-    marginTop: SPACINGS.multiplyBy(.75),
+    height: SPACINGS.multiplyBy(4),
+    marginTop: SPACINGS.multiplyBy(1.5),
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center'

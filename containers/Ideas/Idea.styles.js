@@ -23,12 +23,11 @@ export const styles = StyleSheet.create({
     justifyContent: 'flex-end'
   },
   actionsContainer: {
-    height: SPACINGS.multiplyBy(3),
+    height: SPACINGS.multiplyBy(4),
+    marginTop: SPACINGS.multiplyBy(2),
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginVertical: SPACINGS.multiplyBy(1),
-    paddingTop: SPACINGS.multiplyBy(1)
   },
   backButton: {
     padding: 0,
