@@ -1,10 +1,9 @@
 import React from 'react';
-import { View, TouchableOpacity } from 'react-native';
+import { View, TextInput, TouchableOpacity } from 'react-native';
 import { Formik } from 'formik';
 import * as yup from 'yup';
-import { TextInputFormField } from '../../components/formFields';
 import { styles } from './CommentForm.styles';
-import IconSLI from 'react-native-vector-icons/SimpleLineIcons';
+import IconFA from 'react-native-vector-icons/FontAwesome';
 import { COLORS } from '../../theme/colors';
 import { SIZES } from '../../theme/fonts';
 
@@ -14,8 +13,9 @@ export const CommentForm = (props) => {
     comment: yup
       .string()
       .max(4000, 'Comment must be no longer than 4000 characters.')
-      .required('Please enter you comment.'),
   });
+
+  const planeIcon = (<IconFA name="paper-plane" color={COLORS.text.inverted} size={SIZES.md} />);
 
   return (
     <Formik
@@ -36,9 +36,9 @@ export const CommentForm = (props) => {
       }) => (
         <View style={styles.submitContainer}>
           <View style={styles.textInputContainer}>
-            <TextInputFormField
+            <TextInput
               name='comment'
-              inputRef={props.inputRef}
+              ref={props.inputRef}
               value={values.comment}
               placeholder='Enter your comment'
               onChangeText={handleChange('comment')}
@@ -53,11 +53,7 @@ export const CommentForm = (props) => {
               onPress={handleSubmit}
               disabled={!isValid}
             >
-              <IconSLI
-                name="paper-plane"
-                color={COLORS.primary}
-                size={SIZES.md}
-              />
+              {planeIcon}
             </TouchableOpacity>
           </View>
         </View>
