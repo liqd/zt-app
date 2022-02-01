@@ -57,11 +57,12 @@ export const IdeaCreate = props => {
           setDescription(idea.description);
         }
       }
-      setLabelsAndCategories();
+      getCategories();
+      getLabels();
     }
   }, [error, project, descriptionText]);
 
-  const setLabelsAndCategories = async() => {
+  const getCategories = async() => {
     const module = await API.getModule(moduleId);
 
     if (module.categories) {
@@ -75,6 +76,11 @@ export const IdeaCreate = props => {
         setInitialCategory(module.categories[0].id);
       }
     }
+  };
+
+  const getLabels = async() => {
+    const module = await API.getModule(moduleId);
+
     if (module.labels) {
       setLabelChoices(module.labels);
 
@@ -91,6 +97,7 @@ export const IdeaCreate = props => {
     return exLabels.map(el => el.id);
   };
 
+  /* gathers all form data except description (not just labels)*/
   const makeFormData = (values) => {
     const extractedLabels = [...values.labels];
     extractedLabels && (values.labels = mapLabels(extractedLabels));
