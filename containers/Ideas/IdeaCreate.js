@@ -39,8 +39,8 @@ export const IdeaCreate = props => {
   const [error, setError] = useState();
   const [categories, setCategories] = useState([]);
   const [labelChoices, setLabelChoices] = useState([]);
-  const [initialCategory, setInitialCategory] = useState();
-  const [initialLabels, setInitialLabels] = useState();
+  const [initialCategory, setInitialCategory] = useState('');
+  const [initialLabels, setInitialLabels] = useState([]);
   const [description, setDescription] = useState('');
   const [prevValues, setPrevValues] = useState('');
 
