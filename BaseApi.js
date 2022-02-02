@@ -99,7 +99,15 @@ const makeDeleteRequest = (url, token = null) => {
     method: 'DELETE',
     headers: getHeaders(token)
   })
-    .then(response => response)
+    .then(response => {
+      const statusCode = response.status;
+      let data;
+      statusCode == 204 ? data = {} : data = response.json();
+      return Promise.all([ statusCode, data ]);
+    })
+    .then(values => {
+      return {statusCode: values[0], data: values[1]};
+    })
     .catch(error => console.error(error));
 };
 
@@ -165,6 +173,13 @@ const API = {
     const ct_url = endpoints.comments.replace('$contentTypeId', contentTypeId);
     const url = ct_url.replace('$objectPk', objectPk);
     return makePostRequest(url, data, token);
+  },
+  deleteComment(contentTypeId, objectPk, commentPk, token = null) {
+    const ct_url = endpoints.comment.replace('$contentTypeId', contentTypeId);
+    const ct_obj_url = ct_url.replace('$objectPk', objectPk);
+    const url = ct_obj_url.replace('$commentPk', commentPk);
+    console.log(url);
+    return makeDeleteRequest(url, token);
   }
 };
 

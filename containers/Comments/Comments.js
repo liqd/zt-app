@@ -17,6 +17,10 @@ export const Comments = (props) => {
           comment={comment}
           handleReply={props.handleReply}
           openSubComments={(props.commentLastCommented==comment.id) ? true : false}
+          setMenuItems={props.setMenuItems}
+          toggleMenu={props.toggleMenu}
+          setDeleteModalItems={props.setDeleteModalItems}
+          toggleDeleteModal={props.toggleDeleteModal}
         />)}
     </View>
   );
