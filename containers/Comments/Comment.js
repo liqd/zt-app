@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useEffect } from 'react';
-import { View, Image } from 'react-native';
+import { Alert, View, Image } from 'react-native';
 import { Button } from 'react-native-elements';
 import { styles } from './Comment.styles';
 import { TextSourceSans } from '../../components/TextSourceSans';
@@ -19,11 +19,63 @@ export const Comment = (props) => {
   const [hasExcerpt, setHasExcerpt] = useState(false);
   const [processing, setProcessing] = useState(false);
   const [comment, setComment] = useState(props.comment);
+  const [commentBeingProcessed, setCommentBeingProcessed] = useState(props.comment);
+  const commentMenuItems = [
+    {
+      title: 'Edit',
+      icon: 'pencil',
+      action: () => console.log('Edit comment'),
+      isFirst: true,
+      isAllowed: comment.has_changing_permission
+    },
+    {
+      title: 'Delete',
+      icon: 'trash',
+      action: () => props.toggleDeleteModal(),
+      isAllowed: comment.has_deleting_permission
+    },
+    {
+      title: 'Report',
+      icon: 'flag',
+      action: () => console.log('Report comment'),
+      isFirst: !comment.has_changing_permission && !comment.has_deleting_permission,
+      isLast: true,
+      isAllowed: true
+    },
+    {
+      title: 'Cancel',
+      action: () => props.toggleMenu(),
+      isCancel: true,
+      isAllowed: true
+    },
+  ];
+
+  const commentDeleteModalItems = [
+    {
+      // space is to center the text
+      title: '   This comment will be deleted.\nThis action cannot be undone.',
+      isText: true
+    },
+    {
+      title: 'Delete',
+      action: () => deleteComment()
+    },
+    {
+      title: 'Cancel',
+      action: () => props.toggleDeleteModal(),
+      isCancel: true
+    },
+  ];
 
   useEffect(() => {
     setComment(props.comment);
     props.openSubComments && setShowSubComments(true);
   }, [props.openSubComments, props.comment]);
+
+  useEffect(() => {
+    props.setDeleteModalItems(commentDeleteModalItems);
+    props.setMenuItems(commentMenuItems);
+  }, [commentBeingProcessed]);
 
   const toggleSubComments = () => {
     setShowSubComments(!showSubComments);
@@ -81,6 +133,46 @@ export const Comment = (props) => {
       });
   };
 
+  const deleteComment = () => {
+    AsyncStorage.getItem('authToken')
+      .then((token) => API.deleteComment(commentBeingProcessed.content_type, commentBeingProcessed.object_pk, commentBeingProcessed.id, token))
+      .then((response) => {
+        const {statusCode, data} = response;
+        props.toggleDeleteModal();
+        if (statusCode == 200) {
+          Alert.alert('Your comment was deleted.', 'Thank you for participating!',  [{ text: 'Ok' }]);
+          fetchComment();
+        }
+        else {
+          const errorMessage = 'That did not work.';
+          let errorDetail;
+          if (statusCode==403) {
+            errorDetail = data.detail;
+          }
+          else if (statusCode == 400) {
+            errorDetail = 'Bad request';
+          }
+          Alert.alert(errorMessage, errorDetail, [{ text: 'Ok' }]);
+        }
+      });
+  };
+
+  const getCommentTextDisplay = (comment) => {
+    if (comment.is_removed) {
+      return 'Deleted by creator on ' + DateService(comment.modified);
+    }
+    else if (comment.is_censored || comment.is_blocked) {
+      return 'Deleted by moderation on '+ DateService(comment.modified);
+    }
+    else {
+      return comment.comment;
+    }
+  };
+
+  const isDisplayed = (comment) => {
+    return !(comment.is_deleted || comment.is_blocked);
+  };
+
   const optionsIcon = (<IconSLI name='options-vertical' size={22} />);
   const arrowUpIcon = (<IconSLI name='arrow-up' size={18} />);
   const arrowDownIcon = (<IconSLI name='arrow-down' size={18} />);
@@ -91,18 +183,25 @@ export const Comment = (props) => {
     <View style={styles.container}>
       <View style={styles.top}>
         <View style={styles.topLeft}>
+          {isDisplayed(comment) &&
           <Image source={{ uri: comment.user_image }} style={styles.avatar} />
+          }
           <View style={styles.author}>
             <TextSourceSans style={styles.username}>{comment.user_name}</TextSourceSans>
+            {isDisplayed(comment) &&
             <TextSourceSans style={styles.date}>{DateService(comment.created)}</TextSourceSans>
+            }
           </View>
         </View>
+        {isDisplayed(comment) &&
         <TextSourceSans>
           <Button
             icon={optionsIcon}
             type='clear'
+            onPress={() => {setCommentBeingProcessed(comment); props.toggleMenu();}}
           />
         </TextSourceSans>
+        }
       </View>
       <View>
         {!showWholeComment &&
@@ -111,7 +210,7 @@ export const Comment = (props) => {
             numberOfLines={NUM_OF_LINES}
             onTextLayout={onTextLayout}
           >
-            {comment.comment}
+            {getCommentTextDisplay(comment)}
           </TextSourceSans>
         }
         {showWholeComment &&
@@ -174,6 +273,10 @@ export const Comment = (props) => {
         <SubComments
           comments={comment.child_comments}
           handleRate={handleRate}
+          setCommentBeingProcessed={setCommentBeingProcessed}
+          toggleMenu={props.toggleMenu}
+          getCommentTextDisplay={getCommentTextDisplay}
+          isDisplayed={isDisplayed}
         />
       }
     </View>

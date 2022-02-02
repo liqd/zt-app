@@ -30,7 +30,7 @@ export const Idea = (props) => {
   // be used if permission does not allow commenting
   const [showCommentForm, setShowCommentForm] = useState(true);
 
-  const menuItems = [
+  const ideaMenuItems = [
     {
       title: 'Edit',
       icon: 'pencil',
@@ -44,7 +44,7 @@ export const Idea = (props) => {
     {
       title: 'Delete',
       icon: 'trash',
-      action: () => toggleDeleteModal(),
+      action: () => {setDeleteModalItems(ideaDeleteModalItems); toggleDeleteModal();},
       isAllowed: ideaState.has_deleting_permission
     },
     {
@@ -57,16 +57,16 @@ export const Idea = (props) => {
     },
     {
       title: 'Cancel',
-      action: () => setMenuVisible(false),
+      action: () => toggleMenu(),
       isCancel: true,
       isAllowed: true
     },
   ];
 
-  const deleteModalItems = [
+  const ideaDeleteModalItems = [
     {
       // space is to center the text
-      title: '   This idea will be deleted.\nThis action cannot be undone',
+      title: '   This idea will be deleted.\nThis action cannot be undone.',
       isText: true
     },
     {
@@ -80,6 +80,9 @@ export const Idea = (props) => {
     },
   ];
 
+  const [menuItems, setMenuItems] = useState(ideaMenuItems);
+  const [deleteModalItems, setDeleteModalItems] = useState(ideaDeleteModalItems);
+
   const getLabels = () => {
     let labelsList = [];
     ideaState.category && labelsList.push(ideaState.category.name);
@@ -87,12 +90,12 @@ export const Idea = (props) => {
     return labelsList;
   };
 
-  const toggleMenu = () => setMenuVisible(!menuVisible);
+  const toggleMenu = () => setMenuVisible(prevState => !prevState);
 
-  const toggleDeleteModal = () => (
-    setDeleteModalVisible(!deleteModalVisible),
-    setMenuVisible(false)
-  );
+  const toggleDeleteModal = () => {
+    setDeleteModalVisible(prevState => !prevState);
+    setMenuVisible(false);
+  };
 
   const handleRate = async(value) => {
     if (processing) return;
@@ -181,9 +184,26 @@ export const Idea = (props) => {
   const deleteIdea = () => {
     AsyncStorage.getItem('authToken')
       .then((token) => API.deleteIdea(moduleId, ideaState.pk, token))
-      .then(() => {
-        Alert.alert('Your idea was deleted.', 'Thank you for participating!',  [{ text: 'Ok' }]);
-        props.navigation.navigate('IdeaProject');
+      .then((response) => {
+        const {statusCode, data} = response;
+        toggleDeleteModal();
+        if (statusCode == 204) {
+          Alert.alert('Your idea was deleted.', 'Thank you for participating!',  [{ text: 'Ok' }]);
+          props.navigation.navigate('IdeaProject', {
+            project: project
+          });
+        }
+        else {
+          const errorMessage = 'That did not work.';
+          let errorDetail;
+          if (statusCode==403) {
+            errorDetail = data.detail;
+          }
+          else if (statusCode == 400) {
+            errorDetail = 'Bad request';
+          }
+          Alert.alert(errorMessage, errorDetail, [{ text: 'Ok' }]);
+        }
       });
   };
 
@@ -234,7 +254,7 @@ export const Idea = (props) => {
           <Button
             icon={optionsIcon}
             type='clear'
-            onPress={toggleMenu}
+            onPress={() => {setMenuItems(ideaMenuItems); toggleMenu();}}
           />
         </View>
         <View style={styles.titleContainer}>
@@ -297,6 +317,10 @@ export const Idea = (props) => {
             comments={comments}
             handleReply={handleCommentReply}
             commentLastCommented={commentLastCommented}
+            setMenuItems={setMenuItems}
+            toggleMenu={toggleMenu}
+            setDeleteModalItems={setDeleteModalItems}
+            toggleDeleteModal={toggleDeleteModal}
           />
         </View>}
       </ScrollView>
