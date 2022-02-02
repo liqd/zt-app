@@ -36,18 +36,25 @@ export const SubComment = (props) => {
     <View style={styles.subContainer}>
       <View style={styles.top}>
         <View style={styles.topLeft}>
+          {props.isDisplayed(comment) &&
           <Image source={{ uri: comment.user_image }} style={styles.avatar} />
+          }
           <View style={styles.author}>
             <TextSourceSans style={styles.username}>{comment.user_name}</TextSourceSans>
+            {props.isDisplayed(comment) &&
             <TextSourceSans style={styles.date}>{DateService(comment.created)}</TextSourceSans>
+            }
           </View>
         </View>
+        {props.isDisplayed(comment) &&
         <TextSourceSans>
           <Button
             icon={optionsIcon}
             type='clear'
+            onPress={() => {props.setCommentBeingProcessed(comment); props.toggleMenu();}}
           />
         </TextSourceSans>
+        }
       </View>
       {!showWholeComment &&
         <TextSourceSans
@@ -55,7 +62,7 @@ export const SubComment = (props) => {
           numberOfLines={NUM_OF_LINES}
           onTextLayout={onTextLayout}
         >
-          {comment.comment}
+          {props.getCommentTextDisplay(comment)}
         </TextSourceSans>
       }
       {showWholeComment &&
