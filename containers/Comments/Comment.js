@@ -261,6 +261,7 @@ export const Comment = (props) => {
           type='clear'
           styles={styles.commentButton}
           onPress={() => {props.handleReply(comment.comment_content_type, comment.id);}}
+          disabled={!props.hasCommentingPermission}
         />
         <Button
           icon={redoIcon}

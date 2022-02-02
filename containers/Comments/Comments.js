@@ -21,6 +21,7 @@ export const Comments = (props) => {
           toggleMenu={props.toggleMenu}
           setDeleteModalItems={props.setDeleteModalItems}
           toggleDeleteModal={props.toggleDeleteModal}
+          hasCommentingPermission={props.hasCommentingPermission}
         />)}
     </View>
   );
