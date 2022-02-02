@@ -25,11 +25,6 @@ export const Idea = (props) => {
   const [commentLastCommented, setCommentLastCommented] = useState(-1);
   const hasComments = comments.length !== 0;
   const commentInputRef = useRef(null);
-
-  // currently always showing, leaving here to
-  // be used if permission does not allow commenting
-  const [showCommentForm, setShowCommentForm] = useState(true);
-
   const ideaMenuItems = [
     {
       title: 'Edit',
@@ -321,10 +316,11 @@ export const Idea = (props) => {
             toggleMenu={toggleMenu}
             setDeleteModalItems={setDeleteModalItems}
             toggleDeleteModal={toggleDeleteModal}
+            hasCommentingPermission={idea.has_commenting_permission}
           />
         </View>}
       </ScrollView>
-      {showCommentForm && (
+      {idea.has_commenting_permission && (
         <View>
           <CommentForm
             inputRef={commentInputRef}
