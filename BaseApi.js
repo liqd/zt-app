@@ -31,8 +31,9 @@ const endpoints = {
   idea: baseUrl + '/modules/$moduleId/ideas/$ideaPk/',
   login: baseUrl + '/login/',
   projects: baseUrl + '/app-projects/',
-  modules: baseUrl + '/app-modules/',
-  rate: baseUrl + '/contenttypes/$contentTypeId/objects/$objectPk/ratings/',
+  module: baseUrl + '/app-modules/$moduleId/',
+  ratings: baseUrl + '/contenttypes/$contentTypeId/objects/$objectPk/ratings/',
+  rating: baseUrl + '/contenttypes/$contentTypeId/objects/$objectPk/ratings/$ratingId/',
   comments: baseUrl + '/contenttypes/$contentTypeId/objects/$objectPk/comments/',
   comment: baseUrl + '/contenttypes/$contentTypeId/objects/$objectPk/comments/$commentPk/',
 };
@@ -141,21 +142,19 @@ const API = {
   getProjects() {
     return makeGetRequest(endpoints.projects);
   },
-  getModules() {
-    return makeGetRequest(endpoints.modules);
-  },
   getModule(moduleId, token = null) {
-    const url = endpoints.modules + moduleId;
+    const url = endpoints.module.replace('$moduleId', moduleId);
     return makeGetRequest(url, token);
   },
-  rate(contentTypeId, objectPk, data, token = null) {
-    const ct_url = endpoints.rate.replace('$contentTypeId', contentTypeId);
+  postRating(contentTypeId, objectPk, data, token = null) {
+    const ct_url = endpoints.ratings.replace('$contentTypeId', contentTypeId);
     const url = ct_url.replace('$objectPk', objectPk);
     return makePostRequest(url, data, token);
   },
   changeRating(contentTypeId, objectPk, ratingId, data, token = null) {
-    const ct_url = endpoints.rate.replace('$contentTypeId', contentTypeId);
-    const url = ct_url.replace('$objectPk', objectPk) + ratingId + '/';
+    const ct_url = endpoints.rating.replace('$contentTypeId', contentTypeId);
+    const ct_obj_url = ct_url.replace('$objectPk', objectPk);
+    const url = ct_obj_url.replace('$ratingId', ratingId);
     return makePutRequest(url, data, token);
   },
   getComments(contentTypeId, objectPk, token = null) {
@@ -178,7 +177,6 @@ const API = {
     const ct_url = endpoints.comment.replace('$contentTypeId', contentTypeId);
     const ct_obj_url = ct_url.replace('$objectPk', objectPk);
     const url = ct_obj_url.replace('$commentPk', commentPk);
-    console.log(url);
     return makeDeleteRequest(url, token);
   }
 };

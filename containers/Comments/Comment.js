@@ -119,7 +119,7 @@ export const Comment = (props) => {
       }
     }
     else {
-      await API.rate(ratingComment.comment_content_type, ratingComment.id, {value: value}, token);
+      await API.postRating(ratingComment.comment_content_type, ratingComment.id, {value: value}, token);
     }
     return await fetchComment();
   };
