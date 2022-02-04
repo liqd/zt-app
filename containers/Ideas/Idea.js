@@ -124,7 +124,7 @@ export const Idea = (props) => {
       }
     }
     else {
-      await API.rate(content_type, pk, {value: value}, token);
+      await API.postRating(content_type, pk, {value: value}, token);
     }
     return await fetchIdea();
   };
