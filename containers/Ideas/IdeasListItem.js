@@ -19,12 +19,10 @@ export const IdeasListItem = (props) => {
     negative_rating_count: downCount,
   } = props.idea;
 
-  const createdDate = DateService(created);
   const pressHandler = () =>
     props.navigation.navigate('IdeaDetail', {
       idea: props.idea,
-      project: props.route.params.project,
-      createdDate: createdDate,
+      module: props.module,
     });
 
   const getCategory = () => {
@@ -54,7 +52,7 @@ export const IdeasListItem = (props) => {
           <TextSourceSans style={styles.text}>{creator}</TextSourceSans>
           <View style={styles.infoContainer}>
             <TextSourceSans style={styles.text}>
-              {createdDate}
+              {DateService(created)}
             </TextSourceSans>
             <View style={styles.counters}>
               <ButtonCounter icon={arrowUpIcon} counter={upCount} />

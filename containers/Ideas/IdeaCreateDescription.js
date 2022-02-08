@@ -12,7 +12,7 @@ import { TextInputFullFormField } from '../../components/formFields';
 
 export const IdeaCreateDescription = props => {
 
-  const {idea, project, editing, description } = props.route.params;
+  const description = props.route.params.description;
   const arrowLeftIcon = (
     <IconSLI name='arrow-left' size={22} />
   );
@@ -24,22 +24,11 @@ export const IdeaCreateDescription = props => {
   });
 
   const handleSubmit = (values) => {
-    props.navigation.navigate('IdeaCreate', {
-      project: project,
-      descriptionText: values.description,
-      editing: editing,
-      idea: idea
+    props.navigation.navigate({
+      name: 'IdeaCreate',
+      params: { descriptionText: values.description },
+      merge: true,
     });
-  };
-
-  const getInitialValues = () => {
-    const initialValues = description
-      ? {description: description}
-      : editing
-        ? {description: idea.description}
-        : {description: ''};
-
-    return initialValues;
   };
 
   return (
@@ -60,7 +49,7 @@ export const IdeaCreateDescription = props => {
       <TextSourceSans style={styles.title}>Add description</TextSourceSans>
       <Formik
         validationSchema={ideaDescriptionValidationSchema}
-        initialValues={getInitialValues()}
+        initialValues={{description: description}}
         onSubmit={values => handleSubmit(values)}
       >
         {({
