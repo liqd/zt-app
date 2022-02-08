@@ -16,18 +16,15 @@ import { TextSourceSans } from '../../components/TextSourceSans';
 export const IdeaProject = (props) => {
   const {project} = props.route.params;
   const [ideas, setIdeas] = useState([]);
+  const [module, setModule] = useState([]);
   const [activePhase, setActivePhase] = useState();
-  const [phaseStart, setPhaseStart] = useState();
-  const [phaseEnd, setPhaseEnd] = useState();
-  const [hasIdeaCreatePermission, setHasIdeaCreatePermission] = useState();
   const bgImage = project.image
     ? project.image
     : null;
-  const singleModule = project.single_agenda_setting_module;
 
   const pressHandler = () =>
     props.navigation.navigate('IdeaCreate', {
-      project: project
+      module: module
     });
 
   const plusIcon = <IconSLI name='plus' size={24} color={COLORS.paper.main} />;
@@ -40,21 +37,22 @@ export const IdeaProject = (props) => {
   );
 
   const fetchIdeas = () => {
-    singleModule &&
+    project.single_agenda_setting_module &&
       AsyncStorage.getItem('authToken')
-        .then((token) => API.getIdeas(singleModule, token))
+        .then((token) => API.getIdeas(project.single_agenda_setting_module, token))
         .then((ideaResponse) => {
           setIdeas(ideaResponse);
-        }) &&
-          AsyncStorage.getItem('authToken')
-            .then((token) => API.getModule(singleModule, token))
-            .then((moduleResponse) => {
-              const aPhase = moduleResponse.phases.find((phase) => phase.is_active);
-              aPhase && setActivePhase(aPhase);
-              aPhase && setPhaseStart(DateService(aPhase.start_date, 'month d, y, h:m'));
-              aPhase && setPhaseEnd(DateService(aPhase.end_date, 'month d, y, h:m'));
-              setHasIdeaCreatePermission(moduleResponse.has_idea_adding_permission);
-            });
+        });
+  };
+
+  const fetchModule = () => {
+    AsyncStorage.getItem('authToken')
+      .then((token) => API.getModule(project.single_agenda_setting_module, token))
+      .then((moduleResponse) => {
+        setModule(moduleResponse);
+        const activePhase = moduleResponse.phases.find((phase) => phase.is_active);
+        activePhase && setActivePhase(activePhase);
+      });
   };
 
   useEffect(() => {
@@ -63,6 +61,14 @@ export const IdeaProject = (props) => {
     });
     return ideasListener;
   }, [ideas]);
+
+  useEffect(() => {
+    fetchModule();
+  }, []);
+
+  const getDateTimeDisplay = (dateTime) => {
+    return DateService(dateTime, 'month d, y, h:m');
+  };
 
   return (
     <View style={styles.container}>
@@ -103,13 +109,13 @@ export const IdeaProject = (props) => {
                 {activePhase ? (
                   <View style={styles.phaseContainer}>
                     <TextSourceSans style={styles.phaseText}>
-                      {activePhase && activePhase.name + ' (active)'}
+                      {activePhase.name + ' (active)'}
                     </TextSourceSans>
                     <TextSourceSans style={styles.phaseDate}>
-                      {phaseStart} – {phaseEnd}
+                      {getDateTimeDisplay(activePhase.start_date)} – {getDateTimeDisplay(activePhase.end_date)}
                     </TextSourceSans>
                     <TextSourceSans style={styles.phaseText}>
-                      {activePhase && activePhase.description}
+                      {activePhase.description}
                     </TextSourceSans>
                   </View>
                 ) : (
@@ -119,7 +125,7 @@ export const IdeaProject = (props) => {
                 )}
               </View>
             </View>
-            {singleModule ? (
+            {project.single_agenda_setting_module ? (
               <View>
                 <View style={styles.listActions}>
                   <Button icon={filterIcon} type='clear' />
@@ -128,11 +134,11 @@ export const IdeaProject = (props) => {
                 <View style={styles.listContainer}>
                   <IdeasList
                     ideas={ideas}
-                    moduleId={singleModule}
-                    {...props}
+                    module={module}
+                    navigation={props.navigation}
                   />
                 </View>
-                {hasIdeaCreatePermission && (
+                {module.has_idea_adding_permission && (
                   <ButtonSubmit
                     title='Submit Idea'
                     onPress={pressHandler}

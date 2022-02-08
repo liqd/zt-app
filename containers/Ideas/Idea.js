@@ -12,10 +12,10 @@ import { Modal } from '../../components/Modal';
 import { TextSourceSans } from '../../components/TextSourceSans';
 import { Comments } from '../Comments/Comments';
 import { CommentForm } from '../Comments/CommentForm';
+import { DateService } from '../../services/DateService';
 
 export const Idea = (props) => {
-  const {idea, project, createdDate} = props.route.params;
-  const moduleId = project.single_agenda_setting_module;
+  const {idea, module} = props.route.params;
   const [ideaState, setIdeaState] = useState(idea);
   const [menuVisible, setMenuVisible] = useState(false);
   const [deleteModalVisible, setDeleteModalVisible] = useState(false);
@@ -31,7 +31,7 @@ export const Idea = (props) => {
       icon: 'pencil',
       action: () =>  {
         setMenuVisible(false);
-        props.navigation.navigate('IdeaCreate', {idea: ideaState, project: project, editing: true});
+        props.navigation.navigate('IdeaCreate', {idea: ideaState, module: module, editing: true});
       },
       isFirst: true,
       isAllowed: ideaState.has_changing_permission
@@ -169,7 +169,7 @@ export const Idea = (props) => {
 
   const fetchIdea = () => {
     return AsyncStorage.getItem('authToken')
-      .then((token) => API.getIdea(moduleId, ideaState.pk, token))
+      .then((token) => API.getIdea(module.pk, ideaState.pk, token))
       .then(fetchedIdea => {
         setIdeaState(fetchedIdea);
         return fetchedIdea;
@@ -178,15 +178,13 @@ export const Idea = (props) => {
 
   const deleteIdea = () => {
     AsyncStorage.getItem('authToken')
-      .then((token) => API.deleteIdea(moduleId, ideaState.pk, token))
+      .then((token) => API.deleteIdea(module.pk, ideaState.pk, token))
       .then((response) => {
         const {statusCode, data} = response;
         toggleDeleteModal();
         if (statusCode == 204) {
           Alert.alert('Your idea was deleted.', 'Thank you for participating!',  [{ text: 'Ok' }]);
-          props.navigation.navigate('IdeaProject', {
-            project: project
-          });
+          props.navigation.goBack();
         }
         else {
           const errorMessage = 'That did not work.';
@@ -272,7 +270,7 @@ export const Idea = (props) => {
         )}
         <View style={styles.infoContainer}>
           <TextSourceSans style={styles.creator}>
-            {ideaState.creator} {createdDate}
+            {ideaState.creator} {DateService(idea.created)}
           </TextSourceSans>
           <TextSourceSans style={styles.text}>
             Reference No.: {ideaState.reference_number || 'n/a'}
