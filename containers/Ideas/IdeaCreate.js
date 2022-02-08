@@ -22,8 +22,7 @@ import API from '../../BaseApi';
 
 export const IdeaCreate = props => {
 
-  const {idea, project, editing, descriptionText } = props.route.params;
-  const moduleId = project.single_agenda_setting_module;
+  const {idea, module, editing, descriptionText } = props.route.params;
   const arrowLeftIcon = (
     <IconSLI name='arrow-left' size={22} />
   );
@@ -41,29 +40,26 @@ export const IdeaCreate = props => {
   const [labelChoices, setLabelChoices] = useState([]);
   const [initialCategory, setInitialCategory] = useState('');
   const [initialLabels, setInitialLabels] = useState([]);
-  const [description, setDescription] = useState('');
+  const [description, setDescription] = useState(() => editing ? idea.description : '');
   const [prevValues, setPrevValues] = useState('');
 
   useEffect(() => {
     if (error) {
       Alert.alert('An error occured', error, [{ text: 'Ok' }]);
     }
-    else {
-      if (descriptionText) {
-        setDescription(descriptionText);
-      }
-      else {
-        if (editing) {
-          setDescription(idea.description);
-        }
-      }
-      setLabelsAndCategories();
+  }, [error]);
+
+  useEffect(() => {
+    if (descriptionText) {
+      setDescription(descriptionText);
     }
-  }, [error, project, descriptionText]);
+  }, [descriptionText]);
 
-  const setLabelsAndCategories = async() => {
-    const module = await API.getModule(moduleId);
+  useEffect(() => {
+    setLabelsAndCategories();
+  }, [module]);
 
+  const setLabelsAndCategories = () => {
     if (module.categories) {
       // map property names to format needed for formik
       // Example: [{value: 9, label: 'catname1'}]
@@ -109,10 +105,10 @@ export const IdeaCreate = props => {
     AsyncStorage.getItem('authToken')
       .then((token) => {
         if (editing) {
-          return API.editIdea(moduleId, idea.pk, formData, token);
+          return API.editIdea(module.pk, idea.pk, formData, token);
         }
         else {
-          return API.postIdea(moduleId, formData, token);
+          return API.postIdea(module.pk, formData, token);
         }
       })
       //error handling is provisional and should probably go somewhere else eventually
@@ -120,15 +116,14 @@ export const IdeaCreate = props => {
         const {statusCode, data} = response;
         if (statusCode == 201) {
           Alert.alert('Your idea was added.', 'Thank you for participating!',  [{ text: 'Ok' }]);
-          props.navigation.navigate('IdeaProject', {
-            project: project
-          });
+          props.navigation.goBack();
         }
         else if (editing && statusCode == 200) {
           Alert.alert('Your idea was updated.', '',  [{ text: 'Ok' }]);
-          props.navigation.navigate('IdeaDetail', {
-            idea: data,
-            project: project
+          props.navigation.navigate({
+            name: 'IdeaDetail',
+            params: { idea: data },
+            merge: true,
           });
         }
         else if (statusCode == 400) {
@@ -177,10 +172,7 @@ export const IdeaCreate = props => {
   const toDescription = (values) => {
     setPrevValues(values);
     props.navigation.navigate('IdeaCreateDescription', {
-      project: project,
       description: description,
-      editing: editing,
-      idea: idea
     });
   };
 
