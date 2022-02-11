@@ -162,7 +162,6 @@ export const IdeaCreate = props => {
         category: initialCategory,
         imageChecked: editing ? !!idea.image : false
       };
-
     if (prevValues.image) {
       initialValues.image = prevValues.image;
     }
@@ -196,6 +195,7 @@ export const IdeaCreate = props => {
         validationSchema={ideaValidationSchema}
         initialValues={getInitialValues()}
         onSubmit={values => handleSubmit(values)}
+        validateOnMount={true}
       >
         {({
           handleChange,
@@ -256,10 +256,11 @@ export const IdeaCreate = props => {
             }
             <ImageChoiceFormFieldContainer
               field='Add Image'
+              name='image'
               onSetImage={(img) => setFieldValue('image', img)}
               onIconPress={() => setFieldValue('imageChecked', !values.imageChecked)}
               checked={values.imageChecked}
-              image={idea && idea.image}
+              image={values.image ? values.image.uri : (idea && idea.image)}
             />
             <ButtonSubmit
               title='Submit'

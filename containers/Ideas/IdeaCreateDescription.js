@@ -51,6 +51,7 @@ export const IdeaCreateDescription = props => {
         validationSchema={ideaDescriptionValidationSchema}
         initialValues={{description: description}}
         onSubmit={values => handleSubmit(values)}
+        validateOnMount={true}
       >
         {({
           handleChange,
