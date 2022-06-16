@@ -1,6 +1,6 @@
 import React from 'react';
 import { View } from 'react-native';
-import { BottomSheet } from 'react-native-elements';
+import { BottomSheet } from '@rneui/themed';
 import { MenuItem } from './MenuItem';
 import { styles } from './Menu.styles';
 

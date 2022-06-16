@@ -1,6 +1,6 @@
 import React from 'react';
 import { TouchableWithoutFeedback } from 'react-native';
-import { ListItem } from 'react-native-elements';
+import { ListItem } from '@rneui/themed';
 import IconSLI from 'react-native-vector-icons/SimpleLineIcons';
 import { COLORS } from '../theme/colors';
 import { SIZES } from '../theme/fonts';

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Alert, View, Image, ScrollView, Platform, KeyboardAvoidingView } from 'react-native';
-import { Button } from 'react-native-elements';
+import { Button } from '@rneui/base';
 import { styles } from './Idea.styles';
 import IconSLI from 'react-native-vector-icons/SimpleLineIcons';
 import API from '../../BaseApi';
