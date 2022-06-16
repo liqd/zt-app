@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Platform, KeyboardAvoidingView } from 'react-native';
-import { Button } from 'react-native-elements';
+import { Button } from '@rneui/base';
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import IconSLI from 'react-native-vector-icons/SimpleLineIcons';

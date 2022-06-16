@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, ImageBackground, ScrollView } from 'react-native';
-import { Button } from 'react-native-elements';
+import { Button } from '@rneui/base';
 import { LinearGradient } from 'expo-linear-gradient';
 import { styles } from './IdeaProject.styles';
 import { IdeasList } from './IdeasList';

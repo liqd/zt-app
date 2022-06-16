@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { View, Image } from 'react-native';
-import { Button } from 'react-native-elements';
+import { Button } from '@rneui/base';
 import { styles } from './Comment.styles';
 import IconSLI from 'react-native-vector-icons/SimpleLineIcons';
 import { DateService } from '../../services/DateService';

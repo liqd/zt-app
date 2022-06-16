@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { TextInput, View } from 'react-native';
-import { CheckBox } from 'react-native-elements';
+import { CheckBox } from '@rneui/themed';
 import DropDownPicker from 'react-native-dropdown-picker';
 import { styles } from './formFields.styles';
 import { TextSourceSans } from './TextSourceSans';

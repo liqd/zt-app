@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, Alert, Image, Platform } from 'react-native';
-import { Button } from 'react-native-elements';
+import { Button } from '@rneui/base';
 import { CheckBoxFormField } from './formFields';
 import { styles } from './imageFormField.styles';
 import IconSLI from 'react-native-vector-icons/SimpleLineIcons';
