@@ -1,6 +1,6 @@
 import React from 'react';
 import { View } from 'react-native';
-import { Button } from 'react-native-elements';
+import { Button } from '@rneui/base';
 import { styles } from './ButtonSignOut.styles';
 import {useAuthorization} from '../containers/Auth/AuthProvider.js';
 

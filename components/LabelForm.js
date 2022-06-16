@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View } from 'react-native';
-import { CheckBox } from 'react-native-elements';
+import { CheckBox } from '@rneui/themed';
 import { styles } from './LabelForm.styles';
 import { TextSourceSans } from './TextSourceSans';
 import IconFA from 'react-native-vector-icons/FontAwesome';

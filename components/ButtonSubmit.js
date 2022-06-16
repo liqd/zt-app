@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from 'react-native-elements';
+import { Button } from '@rneui/base';
 import { styles } from './ButtonSubmit.styles';
 
 export const ButtonSubmit = (props) => {

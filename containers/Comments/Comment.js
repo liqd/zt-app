@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import { Alert, View, Image } from 'react-native';
-import { Button } from 'react-native-elements';
+import { Button } from '@rneui/base';
 import { styles } from './Comment.styles';
 import { TextSourceSans } from '../../components/TextSourceSans';
 import IconSLI from 'react-native-vector-icons/SimpleLineIcons';
