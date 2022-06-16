@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
+import { View } from 'react-native';
 import * as Sentry from 'sentry-expo';
 import { AuthProvider } from './containers/Auth/AuthProvider';
 import { IdeaNavigator } from './navigation/IdeaNavigator';
-import AppLoading from 'expo-app-loading';
+import * as SplashScreen from 'expo-splash-screen';
+import * as Font from 'expo-font';
 import {
-  useFonts,
   SourceSansPro_400Regular
 } from '@expo-google-fonts/source-sans-pro';
 
@@ -16,20 +17,42 @@ Sentry.init({
 });
 
 const App = () => {
-  const [fontsLoaded] = useFonts({
-    SourceSansPro_400Regular,
-  });
+  const [appIsReady, setAppIsReady] = useState(false);
+  useEffect(() => {
+    (async function () {
+      try {
+        await SplashScreen.preventAutoHideAsync();
+        await Font.loadAsync({ SourceSansPro_400Regular });
+      }
+      catch (e) {
+        console.warn(e);
+      }
+      finally {
+        // Tell the application to render
+        setAppIsReady(true);
+      }
+    })();
+  }, []);
 
-  if (!fontsLoaded) {
-    return <AppLoading />;
+  const onLayoutRootView = useCallback(async () => {
+    if (appIsReady) {
+      await SplashScreen.hideAsync();
+    }
+  }, [appIsReady]);
+
+  if (!appIsReady) {
+    return null;
   }
-  else {
-    return (
+  return (
+    <View
+    style={{ flex: 1 }} /* eslint-disable-line */
+      onLayout={onLayoutRootView}
+    >
       <AuthProvider>
         <IdeaNavigator />
       </AuthProvider>
-    );
-  }
+    </View>
+  );
 };
 
 export default App;
