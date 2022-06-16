@@ -14,9 +14,10 @@ Setup
 - If you do `npm start` now, a window will open in your browser. If you click "Run on Andoird" or "Run on iOS", it will tell you how set these up.
 
 Setup after Hibernation
-- Check correct Node version: 14.15.3 (27.12.21)
-- Update expo-cli - `npm install -g expo-cli`: 5.0.3 (27.12.21)
-- Pull latest zt:app repo and install dependencies
+- Check correct Node version: 18.3.0 (15.6.22) -> Note: expo-cli has not yet been tested against v18.3.0
+- Update expo-cli - `npm install -g expo-cli`: 5.4.9 (15.6.22)
+- Update Android Studio and/or XCode
+- Pull latest zt:app repo and install dependencies (see `Run with new deps` below)
 - Update expo go (app on virtual phone) - expo/metro should ask you
 
 Run
@@ -24,7 +25,7 @@ Run
 - `npm start`
 - enjoy coding ⌨️ !
 
-Run with new deps (node v14.15.3)
+Run with new deps (node v18.3.0)
 - Delete all deps `rm -rf node_modules`
 - Install fresh `npm install`
 - Start with cleared cache `expo start -c`
