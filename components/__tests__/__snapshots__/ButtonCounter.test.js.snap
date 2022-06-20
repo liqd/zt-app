@@ -2,7 +2,13 @@
 
 exports[`Test ButtonCounter 1`] = `
 <View
+  accessibilityState={
+    Object {
+      "disabled": false,
+    }
+  }
   accessible={true}
+  collapsable={false}
   focusable={false}
   onClick={[Function]}
   onResponderGrant={[Function]}
@@ -57,7 +63,13 @@ exports[`Test ButtonCounter 1`] = `
 
 exports[`Test ButtonCounter 10 1`] = `
 <View
+  accessibilityState={
+    Object {
+      "disabled": false,
+    }
+  }
   accessible={true}
+  collapsable={false}
   focusable={false}
   onClick={[Function]}
   onResponderGrant={[Function]}
@@ -107,6 +119,7 @@ exports[`Test ButtonCounter 10 1`] = `
   >
     <Text
       allowFontScaling={false}
+      selectable={false}
       style={
         Array [
           Object {
@@ -131,7 +144,13 @@ exports[`Test ButtonCounter 10 1`] = `
 
 exports[`Test ButtonCounter disabled 1`] = `
 <View
+  accessibilityState={
+    Object {
+      "disabled": true,
+    }
+  }
   accessible={true}
+  collapsable={false}
   focusable={false}
   onClick={[Function]}
   onResponderGrant={[Function]}
@@ -181,6 +200,7 @@ exports[`Test ButtonCounter disabled 1`] = `
   >
     <Text
       allowFontScaling={false}
+      selectable={false}
       style={
         Array [
           Object {
@@ -205,7 +225,13 @@ exports[`Test ButtonCounter disabled 1`] = `
 
 exports[`Test ButtonCounter highlight 1`] = `
 <View
+  accessibilityState={
+    Object {
+      "disabled": false,
+    }
+  }
   accessible={true}
+  collapsable={false}
   focusable={false}
   onClick={[Function]}
   onResponderGrant={[Function]}
@@ -257,6 +283,7 @@ exports[`Test ButtonCounter highlight 1`] = `
   >
     <Text
       allowFontScaling={false}
+      selectable={false}
       style={
         Array [
           Object {
@@ -281,7 +308,13 @@ exports[`Test ButtonCounter highlight 1`] = `
 
 exports[`Test ButtonCounter highlight 10 1`] = `
 <View
+  accessibilityState={
+    Object {
+      "disabled": false,
+    }
+  }
   accessible={true}
+  collapsable={false}
   focusable={false}
   onClick={[Function]}
   onResponderGrant={[Function]}
@@ -333,6 +366,7 @@ exports[`Test ButtonCounter highlight 10 1`] = `
   >
     <Text
       allowFontScaling={false}
+      selectable={false}
       style={
         Array [
           Object {
