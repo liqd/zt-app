@@ -11,17 +11,11 @@
     "test": "jest",
     "testDebug": "jest -o --coverage=false",
     "testNoCov": "jest --coverage=false",
-    "updateSnapshots": "jest -u --coverage=false"
+    "updateSnapshots": "jest -u --coverage=false",
+    "postinstall": "patch-package"
   },
   "jest": {
-    "projects": [
-      {
-        "preset": "jest-expo/ios"
-      },
-      {
-        "preset": "jest-expo/android"
-      }
-    ],
+    "preset": "jest-expo",
     "collectCoverage": true,
     "collectCoverageFrom": [
       "**/*.{js,jsx}",
@@ -32,10 +26,17 @@
       "!**/chrome/**"
     ],
     "transformIgnorePatterns": [
-      "node_modules/(?!(jest-)?react-native|react-clone-referenced-element|@react-native-community|expo(nent)?|@expo(nent)?/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base|@sentry/.*)"
+      "node_modules/(?!((jest-)?react-native|@react-native(-community)?)|expo(nent)?|@expo(nent)?/.*|@expo-google-fonts/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base|react-native-svg|@sentry/.*|@rneui/base|@rneui/themed)"
     ]
   },
   "dependencies": {
+    "@expo-google-fonts/source-sans-pro": "0.2.2",
+    "@react-native-async-storage/async-storage": "1.17.4",
+    "@react-native-community/masked-view": "0.1.11",
+    "@react-navigation/native": "6.0.6",
+    "@react-navigation/stack": "6.0.11",
+    "@rneui/base": "^4.0.0-rc.4",
+    "@rneui/themed": "^4.0.0-rc.4",
     "expo": "45.0.4",
     "expo-application": "4.1.0",
     "expo-constants": "13.1.1",
@@ -47,13 +48,6 @@
     "expo-splash-screen": "~0.15.1",
     "expo-status-bar": "1.3.0",
     "expo-updates": "0.13.2",
-    "@expo-google-fonts/source-sans-pro": "0.2.2",
-    "@react-native-async-storage/async-storage": "1.17.4",
-    "@react-native-community/masked-view": "0.1.11",
-    "@react-navigation/native": "6.0.6",
-    "@react-navigation/stack": "6.0.11",
-    "@rneui/base": "^4.0.0-rc.4",
-    "@rneui/themed": "^4.0.0-rc.4",
     "formik": "2.2.9",
     "mime": "^2.6.0",
     "react": "17.0.2",
@@ -70,19 +64,20 @@
     "yup": "0.32.11"
   },
   "devDependencies": {
+    "@babel/core": "7.17.10",
     "@babel/preset-env": "7.17.10",
     "@babel/preset-react": "7.16.7",
-    "eslint-plugin-jest": "25.7.0",
-    "@babel/core": "7.17.10",
     "@testing-library/jest-native": "4.0.4",
     "@testing-library/react-native": "9.0.0",
     "eslint": "8.15.0",
+    "eslint-plugin-jest": "25.7.0",
     "eslint-plugin-react": "7.29.4",
     "eslint-plugin-react-native": "4.0.0",
     "husky": "7.0.4",
     "jest": "28.1.0",
-    "jest-expo": "45.0.1",
-    "lint-staged": "12.1.7"
+    "jest-expo": "^45.0.1",
+    "lint-staged": "12.1.7",
+    "patch-package": "^6.4.7"
   },
   "private": true,
   "lint-staged": {
