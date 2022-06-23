@@ -13,8 +13,17 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
+    "runtimeVersion": {
+      "policy": "sdkVersion"
+    },
     "updates": {
+      "url": "https://u.expo.dev/c1f68c79-9a66-4062-86be-ae53af2a987c",
       "fallbackToCacheTimeout": 0
+    },
+    "extra": {
+      "eas": {
+        "projectId": "c1f68c79-9a66-4062-86be-ae53af2a987c"
+      }
     },
     "assetBundlePatterns": [
       "**/*"
@@ -23,11 +32,13 @@
       "supportsTablet": true
     },
     "android": {
+      "package": "net.liqd.zt",
+      "versionCode": 1,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-       "intentFilters": [
+      "intentFilters": [
         {
           "action": "VIEW",
           "data": [
@@ -37,10 +48,12 @@
               "pathPrefix": ""
             }
           ],
-          "category": ["BROWSABLE", "DEFAULT"]
+          "category": [
+            "BROWSABLE",
+            "DEFAULT"
+          ]
         }
-      ],
-      "package": "net.liqd.demo.app"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png"
