@@ -53,7 +53,7 @@ start-android:
 
 .PHONY: start-web
 start-web:
-	BROWSER="./chrome.sh"  npm start -- -w
+	BROWSER="./chrome.sh" NODE_OPTIONS=--openssl-legacy-provider npm start -- -w
 
 .PHONY: lint
 lint:
