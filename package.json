@@ -74,7 +74,7 @@
     "eslint-plugin-react": "7.29.4",
     "eslint-plugin-react-native": "4.0.0",
     "husky": "7.0.4",
-    "jest": "28.1.0",
+    "jest": "28.1.1",
     "jest-expo": "^45.0.1",
     "lint-staged": "12.1.7",
     "patch-package": "^6.4.7",
