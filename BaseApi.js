@@ -1,41 +1,43 @@
 import Constants from 'expo-constants';
 import * as Device from 'expo-device';
 
-const baseUrl = (() => {
+export const baseUrl = (() => {
   /*global __DEV__*/
   if (__DEV__) {
     if (Constants.manifest.extra.localAPI) {
-      if (Device.isDevice) {
-        return 'http://localhost:8004/api';
+      if (Device.isDevice && !Device.brand === 'google') {
+        return 'http://localhost:8004';
       }
-      return 'http://10.0.2.2:8004/api';
+      return 'http://10.0.2.2:8004';
     }
-    return 'https://aplus-dev.liqd.net/api';
+    return 'https://aplus-dev.liqd.net';
   }
   else {
     switch (Constants.manifest.releaseChannel) {
       case 'prod':
       case 'default':
-        return 'https://adhocracy.plus/api';
+        return 'https://adhocracy.plus';
       case 'stage':
-        return 'https://aplus-stage.liqd.net/api';
+        return 'https://aplus-stage.liqd.net';
       case 'dev':
       default:
-        return 'https://aplus-dev.liqd.net/api';
+        return 'https://aplus-dev.liqd.net';
     }
   }
 })();
 
+const baseApiUrl = baseUrl + '/api';
+
 const endpoints = {
-  ideas: baseUrl + '/modules/$moduleId/ideas/',
-  idea: baseUrl + '/modules/$moduleId/ideas/$ideaPk/',
-  login: baseUrl + '/login/',
-  projects: baseUrl + '/app-projects/',
-  module: baseUrl + '/app-modules/$moduleId/',
-  ratings: baseUrl + '/contenttypes/$contentTypeId/objects/$objectPk/ratings/',
-  rating: baseUrl + '/contenttypes/$contentTypeId/objects/$objectPk/ratings/$ratingId/',
-  comments: baseUrl + '/contenttypes/$contentTypeId/objects/$objectPk/comments/',
-  comment: baseUrl + '/contenttypes/$contentTypeId/objects/$objectPk/comments/$commentPk/',
+  ideas: baseApiUrl + '/modules/$moduleId/ideas/',
+  idea: baseApiUrl + '/modules/$moduleId/ideas/$ideaPk/',
+  login: baseApiUrl + '/login/',
+  projects: baseApiUrl + '/app-projects/',
+  module: baseApiUrl + '/app-modules/$moduleId/',
+  ratings: baseApiUrl + '/contenttypes/$contentTypeId/objects/$objectPk/ratings/',
+  rating: baseApiUrl + '/contenttypes/$contentTypeId/objects/$objectPk/ratings/$ratingId/',
+  comments: baseApiUrl + '/contenttypes/$contentTypeId/objects/$objectPk/comments/',
+  comment: baseApiUrl + '/contenttypes/$contentTypeId/objects/$objectPk/comments/$commentPk/',
 };
 
 const getHeaders = (token, isFormData = false) => {
