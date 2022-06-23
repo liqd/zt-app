@@ -294,7 +294,7 @@ export const Idea = (props) => {
   return (
     <KeyboardAvoidingView
       behavior={(Platform.OS === 'ios')? 'padding' : null}
-      style={{flex:1}}
+      style={styles.flexFullWidth}
     >
       <View style={styles.container}>
         <View style={styles.actionsContainer}>
