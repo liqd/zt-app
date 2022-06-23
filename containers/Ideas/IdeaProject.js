@@ -1,20 +1,23 @@
 import React, { useState, useEffect } from 'react';
-import { View, ImageBackground, ScrollView } from 'react-native';
+import { View, ImageBackground, ScrollView, useWindowDimensions } from 'react-native';
 import { Button } from '@rneui/base';
 import { LinearGradient } from 'expo-linear-gradient';
 import { styles } from './IdeaProject.styles';
 import { IdeasList } from './IdeasList';
 import IconSLI from 'react-native-vector-icons/SimpleLineIcons';
 import IconFA from 'react-native-vector-icons/FontAwesome';
-import API from '../../BaseApi';
+import API, { baseUrl } from '../../BaseApi';
 import { COLORS } from '../../theme/colors';
 import { DateService } from '../../services/DateService';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ButtonSubmit } from '../../components/ButtonSubmit';
 import { TextSourceSans } from '../../components/TextSourceSans';
+import RenderHTML from 'react-native-render-html';
 
 export const IdeaProject = (props) => {
   const {project} = props.route.params;
+  console.log('PROJECT: ', project);
+  const {width} = useWindowDimensions();
   const [ideas, setIdeas] = useState([]);
   const [module, setModule] = useState([]);
   const [activePhase, setActivePhase] = useState();
@@ -70,6 +73,20 @@ export const IdeaProject = (props) => {
     return DateService(dateTime, 'month d, y, h:m');
   };
 
+  const onElement = element => {
+    if (element.tagName === 'img') {
+      const img = {...element};
+      const imgSrc = img.attribs.src;
+      const newImgSrc = baseUrl + imgSrc;
+      element.attribs.src = newImgSrc;
+      console.log('img element new source: ', element.attribs.src);
+    }
+  };
+
+  const domVisitors = {
+    onElement: onElement
+  };
+
   return (
     <View style={styles.container}>
       <ScrollView>
@@ -106,6 +123,11 @@ export const IdeaProject = (props) => {
                   <TextSourceSans style={styles.tabsMenuItem}>Information</TextSourceSans>
                   <TextSourceSans style={styles.tabsMenuItem}>Results</TextSourceSans>
                 </View>
+                <RenderHTML
+                  contentWidth={width}
+                  source={{html: project.information}}
+                  domVisitors={domVisitors}
+                />
                 {activePhase ? (
                   <View style={styles.phaseContainer}>
                     <TextSourceSans style={styles.phaseText}>
