@@ -94,5 +94,8 @@ export const styles = StyleSheet.create({
   pressableEditing: {
     opacity: 0.25,
     backgroundColor: '#fff'
+  },
+  flexFullWidth: {
+    flex: 1
   }
 });
