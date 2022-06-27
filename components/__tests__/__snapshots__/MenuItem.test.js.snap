@@ -97,8 +97,13 @@ exports[`Test MenuItem isAllowed 1`] = `
           "warning": "#faad14",
           "white": "#ffffff",
         },
-        "mode": "light",
-        "spacing": undefined,
+        "spacing": Object {
+          "lg": 12,
+          "md": 8,
+          "sm": 4,
+          "xl": 24,
+          "xs": 2,
+        },
       }
     }
   >
@@ -215,8 +220,13 @@ exports[`Test MenuItem isAllowed isCancel 1`] = `
           "warning": "#faad14",
           "white": "#ffffff",
         },
-        "mode": "light",
-        "spacing": undefined,
+        "spacing": Object {
+          "lg": 12,
+          "md": 8,
+          "sm": 4,
+          "xl": 24,
+          "xs": 2,
+        },
       }
     }
   >
@@ -334,8 +344,13 @@ exports[`Test MenuItem isAllowed isFirst 1`] = `
           "warning": "#faad14",
           "white": "#ffffff",
         },
-        "mode": "light",
-        "spacing": undefined,
+        "spacing": Object {
+          "lg": 12,
+          "md": 8,
+          "sm": 4,
+          "xl": 24,
+          "xs": 2,
+        },
       }
     }
   >
@@ -455,8 +470,13 @@ exports[`Test MenuItem isAllowed isFirst and isLast 1`] = `
           "warning": "#faad14",
           "white": "#ffffff",
         },
-        "mode": "light",
-        "spacing": undefined,
+        "spacing": Object {
+          "lg": 12,
+          "md": 8,
+          "sm": 4,
+          "xl": 24,
+          "xs": 2,
+        },
       }
     }
   >
@@ -574,8 +594,13 @@ exports[`Test MenuItem isAllowed isLast 1`] = `
           "warning": "#faad14",
           "white": "#ffffff",
         },
-        "mode": "light",
-        "spacing": undefined,
+        "spacing": Object {
+          "lg": 12,
+          "md": 8,
+          "sm": 4,
+          "xl": 24,
+          "xs": 2,
+        },
       }
     }
   >
@@ -701,8 +726,13 @@ exports[`Test MenuItem isAllowed with Icon 1`] = `
           "warning": "#faad14",
           "white": "#ffffff",
         },
-        "mode": "light",
-        "spacing": undefined,
+        "spacing": Object {
+          "lg": 12,
+          "md": 8,
+          "sm": 4,
+          "xl": 24,
+          "xs": 2,
+        },
       }
     }
   >
