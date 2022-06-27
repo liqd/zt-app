@@ -10,8 +10,8 @@ Prerequisites
 Setup
 - Clone repo
 - Change directory into project folder `cd zt-app`
-- `npm install`
-- If you do `npm start` now, a window will open in your browser. If you click "Run on Andoird" or "Run on iOS", it will tell you how set these up.
+- `make install`
+- If you do `make start` now, a window will open in your browser. If you click "Run on Andoird" or "Run on iOS", it will tell you how set these up.
 
 Setup after Hibernation
 - Check correct Node version: 18.3.0 (15.6.22) -> Note: expo-cli has not yet been tested against v18.3.0
@@ -22,13 +22,15 @@ Setup after Hibernation
 
 Run
 - Start emulators (Android Studio or XCode)
-- `npm start`
+- `make start`
 - enjoy coding ⌨️ !
 
 Run with new deps (node v18.3.0)
-- Delete all deps `rm -rf node_modules`
-- Install fresh `npm install`
-- Start with cleared cache `expo start -c`
+- Delete all deps `make clean`
+- Install fresh `make install`
+- Start app `make start`
+- Start with cleared cache `make start-nocache`
+- Check `Makefile` for additional options
 
 Using local backend (adhocracy-plus)
 - App Repo --> BaseApi.js --> `const baseUrl = 'http://10.0.2.2:8004/api';`

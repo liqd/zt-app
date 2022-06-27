@@ -45,7 +45,7 @@ start-local:
 
 .PHONY: start-nocache
 start-nocache:
-	NODE_OPTIONS=--openssl-legacy-provider npm start -- --reset-cache
+	NODE_OPTIONS=--openssl-legacy-provider npm start -- -c
 
 .PHONY: start-android
 start-android:
