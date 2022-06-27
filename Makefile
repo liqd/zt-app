@@ -37,19 +37,19 @@ clean:
 
 .PHONY: start
 start:
-	npm start
+	NODE_OPTIONS=--openssl-legacy-provider npm start
 
 .PHONY: start-local
 start-local:
-	LOCAL_API=true npm run start
+	NODE_OPTIONS=--openssl-legacy-provider LOCAL_API=true npm run start
 
 .PHONY: start-nocache
 start-nocache:
-	npm start -- --reset-cache
+	NODE_OPTIONS=--openssl-legacy-provider npm start -- --reset-cache
 
 .PHONY: start-android
 start-android:
-	npm start -- -a
+	NODE_OPTIONS=--openssl-legacy-provider npm start -- -a
 
 .PHONY: start-web
 start-web:
