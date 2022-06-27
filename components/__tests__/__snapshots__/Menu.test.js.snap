@@ -114,8 +114,13 @@ exports[`Test Menu isVisible true 1`] = `
           "warning": "#faad14",
           "white": "#ffffff",
         },
-        "mode": "light",
-        "spacing": undefined,
+        "spacing": Object {
+          "lg": 12,
+          "md": 8,
+          "sm": 4,
+          "xl": 24,
+          "xs": 2,
+        },
       }
     }
   >
@@ -240,8 +245,13 @@ exports[`Test Menu with MenuItems 1`] = `
           "warning": "#faad14",
           "white": "#ffffff",
         },
-        "mode": "light",
-        "spacing": undefined,
+        "spacing": Object {
+          "lg": 12,
+          "md": 8,
+          "sm": 4,
+          "xl": 24,
+          "xs": 2,
+        },
       }
     }
   >
@@ -351,8 +361,13 @@ exports[`Test Menu with MenuItems 1`] = `
                       "warning": "#faad14",
                       "white": "#ffffff",
                     },
-                    "mode": "light",
-                    "spacing": undefined,
+                    "spacing": Object {
+                      "lg": 12,
+                      "md": 8,
+                      "sm": 4,
+                      "xl": 24,
+                      "xs": 2,
+                    },
                   }
                 }
               >
@@ -475,8 +490,13 @@ exports[`Test Menu with MenuItems 1`] = `
                       "warning": "#faad14",
                       "white": "#ffffff",
                     },
-                    "mode": "light",
-                    "spacing": undefined,
+                    "spacing": Object {
+                      "lg": 12,
+                      "md": 8,
+                      "sm": 4,
+                      "xl": 24,
+                      "xs": 2,
+                    },
                   }
                 }
               >

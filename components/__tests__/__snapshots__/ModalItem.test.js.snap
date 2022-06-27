@@ -99,8 +99,13 @@ exports[`Test ModalItem 1`] = `
           "warning": "#faad14",
           "white": "#ffffff",
         },
-        "mode": "light",
-        "spacing": undefined,
+        "spacing": Object {
+          "lg": 12,
+          "md": 8,
+          "sm": 4,
+          "xl": 24,
+          "xs": 2,
+        },
       }
     }
   >
@@ -220,8 +225,13 @@ exports[`Test ModalItem Action 1`] = `
           "warning": "#faad14",
           "white": "#ffffff",
         },
-        "mode": "light",
-        "spacing": undefined,
+        "spacing": Object {
+          "lg": 12,
+          "md": 8,
+          "sm": 4,
+          "xl": 24,
+          "xs": 2,
+        },
       }
     }
   >
@@ -339,8 +349,13 @@ exports[`Test ModalItem isCancel 1`] = `
           "warning": "#faad14",
           "white": "#ffffff",
         },
-        "mode": "light",
-        "spacing": undefined,
+        "spacing": Object {
+          "lg": 12,
+          "md": 8,
+          "sm": 4,
+          "xl": 24,
+          "xs": 2,
+        },
       }
     }
   >
@@ -460,8 +475,13 @@ exports[`Test ModalItem isCancel isText 1`] = `
           "warning": "#faad14",
           "white": "#ffffff",
         },
-        "mode": "light",
-        "spacing": undefined,
+        "spacing": Object {
+          "lg": 12,
+          "md": 8,
+          "sm": 4,
+          "xl": 24,
+          "xs": 2,
+        },
       }
     }
   >
@@ -581,8 +601,13 @@ exports[`Test ModalItem isText 1`] = `
           "warning": "#faad14",
           "white": "#ffffff",
         },
-        "mode": "light",
-        "spacing": undefined,
+        "spacing": Object {
+          "lg": 12,
+          "md": 8,
+          "sm": 4,
+          "xl": 24,
+          "xs": 2,
+        },
       }
     }
   >
