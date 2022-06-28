@@ -26,19 +26,19 @@ export const Comment = (props) => {
       icon: 'pencil',
       action: () => console.log('Edit comment'),
       isFirst: true,
-      isAllowed: comment.has_changing_permission
+      isAllowed: comment.user_info.has_changing_permission
     },
     {
       title: 'Delete',
       icon: 'trash',
       action: () => props.toggleDeleteModal(),
-      isAllowed: comment.has_deleting_permission
+      isAllowed: comment.user_info.has_deleting_permission
     },
     {
       title: 'Report',
       icon: 'flag',
       action: () => console.log('Report comment'),
-      isFirst: !comment.has_changing_permission && !comment.has_deleting_permission,
+      isFirst: !comment.user_info.has_changing_permission && !comment.user_info.has_deleting_permission,
       isLast: true,
       isAllowed: true
     },
@@ -240,7 +240,7 @@ export const Comment = (props) => {
               comment.ratings.current_user_rating_value === 1 &&
               comment.ratings.current_user_rating_value
             }
-            disabled={!comment.has_rating_permission}
+            disabled={!comment.user_info.has_rating_permission}
           />
           <ButtonCounter
             icon={arrowDownIcon}
@@ -251,7 +251,7 @@ export const Comment = (props) => {
               comment.ratings.current_user_rating_value === -1 &&
               comment.ratings.current_user_rating_value
             }
-            disabled={!comment.has_rating_permission}
+            disabled={!comment.user_info.has_rating_permission}
           />
         </View>
         <Button

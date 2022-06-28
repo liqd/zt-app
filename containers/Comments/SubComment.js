@@ -86,7 +86,7 @@ export const SubComment = (props) => {
               comment.ratings.current_user_rating_value === 1 &&
               comment.ratings.current_user_rating_value
             }
-            disabled={!comment.has_rating_permission}
+            disabled={!comment.user_info.has_rating_permission}
           />
           <ButtonCounter
             icon={arrowDownIcon}
@@ -97,7 +97,7 @@ export const SubComment = (props) => {
               comment.ratings.current_user_rating_value === -1 &&
               comment.ratings.current_user_rating_value
             }
-            disabled={!comment.has_rating_permission}
+            disabled={!comment.user_info.has_rating_permission}
           />
         </View>
         <Button
