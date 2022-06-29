@@ -51,7 +51,7 @@ export const SubComment = (props) => {
           <Button
             icon={optionsIcon}
             type='clear'
-            onPress={() => {props.setCommentBeingProcessed(comment); props.toggleMenu();}}
+            onPress={() => props.handleOptions(comment)}
           />
         </TextSourceSans>
         }

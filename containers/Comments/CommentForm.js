@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, TextInput, TouchableOpacity } from 'react-native';
 import { Formik } from 'formik';
 import * as yup from 'yup';
@@ -8,7 +8,6 @@ import { COLORS } from '../../theme/colors';
 import { SIZES } from '../../theme/fonts';
 
 export const CommentForm = (props) => {
-
   const commentValidationSchema = yup.object().shape({
     comment: yup
       .string()
@@ -33,31 +32,37 @@ export const CommentForm = (props) => {
         errors,
         touched,
         isValid,
-      }) => (
-        <View style={styles.submitContainer}>
-          <View style={styles.textInputContainer}>
-            <TextInput
-              name='comment'
-              ref={props.inputRef}
-              value={values.comment}
-              placeholder='Enter your comment'
-              onChangeText={handleChange('comment')}
-              onBlur={handleBlur('comment')}
-              error={errors.comment}
-              touched={touched.comment}
-              multiline
-            />
+        setFieldValue
+      }) => {
+        useEffect(() => {
+          setFieldValue('comment', props.value, false);
+        }, [props.isEdit]);
+        return (
+          <View style={styles.submitContainer}>
+            <View style={styles.textInputContainer}>
+              <TextInput
+                name='comment'
+                ref={props.inputRef}
+                value={values.comment}
+                placeholder='Enter your comment'
+                onChangeText={handleChange('comment')}
+                onBlur={handleBlur('comment')}
+                error={errors.comment}
+                touched={touched.comment}
+                multiline
+              />
+            </View>
+            <View style={styles.submitButton}>
+              <TouchableOpacity
+                onPress={handleSubmit}
+                disabled={!isValid}
+              >
+                {planeIcon}
+              </TouchableOpacity>
+            </View>
           </View>
-          <View style={styles.submitButton}>
-            <TouchableOpacity
-              onPress={handleSubmit}
-              disabled={!isValid}
-            >
-              {planeIcon}
-            </TouchableOpacity>
-          </View>
-        </View>
-      )}
+        );
+      }}
     </Formik>
   );
 };
