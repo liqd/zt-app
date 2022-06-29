@@ -1,14 +1,13 @@
 import { StyleSheet } from 'react-native';
 import { COLORS } from '../../theme/colors';
 import { SIZES, FONTWEIGHT } from '../../theme/fonts';
-import { SPACINGS, BORDERRADIUS } from '../../theme/spacings';
+import { SPACINGS } from '../../theme/spacings';
 
 export const styles = StyleSheet.create({
   fontColor: {
     color: COLORS.text.main,
   },
   container: {
-    paddingBottom: SPACINGS.multiplyBy(2),
     paddingHorizontal: SPACINGS.multiplyBy(.75),
     backgroundColor: COLORS.paper.main,
   },
@@ -23,8 +22,8 @@ export const styles = StyleSheet.create({
     justifyContent: 'flex-end'
   },
   actionsContainer: {
-    height: SPACINGS.multiplyBy(4),
     marginTop: SPACINGS.multiplyBy(2),
+    marginBottom: SPACINGS.multiplyBy(1),
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
