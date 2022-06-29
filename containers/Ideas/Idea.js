@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Alert, View, Image, ScrollView, Platform, KeyboardAvoidingView } from 'react-native';
+import { Alert, View, Image, ScrollView, Platform, KeyboardAvoidingView, Pressable } from 'react-native';
 import { Button } from '@rneui/base';
 import { styles } from './Idea.styles';
 import IconSLI from 'react-native-vector-icons/SimpleLineIcons';
@@ -320,76 +320,78 @@ export const Idea = (props) => {
         onScroll={handleScroll}
         contentContainerStyle={styles.contentContainer}
       >
-        <View style={styles.titleContainer}>
-          <TextSourceSans style={styles.title}>{ideaState.name}</TextSourceSans>
-        </View>
-        <View style={styles.descriptionContainer}>
-          {ideaState.image && (
-            <>
-              <Image source={{ uri: ideaState.image }} style={styles.ideaImage} />
-            </>
-          )}
-          <TextSourceSans style={styles.text}>{ideaState.description}</TextSourceSans>
-        </View>
-        {getLabels().length > 0 && (
-          <View style={styles.labelsContainer}>
-            {getLabels().map((label, idx) => (
-              <Label key={idx + label} title={label} />
-            ))}
+        <Pressable onPress={isEditing && toggleEditing} style={{
+          ...isEditing ? {opacity: 0.25, backgroundColor: '#fff'}: {}
+        }} disabled={!isEditing}>
+          <View style={styles.titleContainer}>
+            <TextSourceSans style={styles.title}>{ideaState.name}</TextSourceSans>
           </View>
-        )}
-        <View style={styles.infoContainer}>
-          <TextSourceSans style={styles.creator}>
-            {ideaState.creator} {DateService(idea.created)}
-          </TextSourceSans>
-          <TextSourceSans style={styles.text}>
+          <View style={styles.descriptionContainer}>
+            {ideaState.image && (
+              <>
+                <Image source={{ uri: ideaState.image }} style={styles.ideaImage} />
+              </>
+            )}
+            <TextSourceSans style={styles.text}>{ideaState.description}</TextSourceSans>
+          </View>
+          {getLabels().length > 0 && (
+            <View style={styles.labelsContainer}>
+              {getLabels().map((label, idx) => (
+                <Label key={idx + label} title={label} />
+              ))}
+            </View>
+          )}
+          <View style={styles.infoContainer}>
+            <TextSourceSans style={styles.creator}>
+              {ideaState.creator} {DateService(idea.created)}
+            </TextSourceSans>
+            <TextSourceSans style={styles.text}>
             Reference No.: {ideaState.reference_number || 'n/a'}
-          </TextSourceSans>
-        </View>
-        <View style={styles.bottomActionsContainer}>
-          <View style={styles.ratingButtons}>
-            <ButtonCounter
-              icon={arrowUpIcon}
-              counter={ideaState.positive_rating_count}
-              onPress={() => handleRate(1)}
-              highlight={
-                ideaState.user_rating &&
+            </TextSourceSans>
+          </View>
+          <View style={styles.bottomActionsContainer}>
+            <View style={styles.ratingButtons}>
+              <ButtonCounter
+                icon={arrowUpIcon}
+                counter={ideaState.positive_rating_count}
+                onPress={() => handleRate(1)}
+                highlight={
+                  ideaState.user_rating &&
                 ideaState.user_rating.value === 1 &&
                 ideaState.user_rating.value
-              }
-              disabled={!ideaState.has_rating_permission}
-            />
-            <ButtonCounter
-              icon={arrowDownIcon}
-              counter={ideaState.negative_rating_count}
-              onPress={() => handleRate(-1)}
-              highlight={
-                ideaState.user_rating &&
+                }
+                disabled={!ideaState.has_rating_permission}
+              />
+              <ButtonCounter
+                icon={arrowDownIcon}
+                counter={ideaState.negative_rating_count}
+                onPress={() => handleRate(-1)}
+                highlight={
+                  ideaState.user_rating &&
                 ideaState.user_rating.value === -1 &&
                 ideaState.user_rating.value
-              }
-              disabled={!ideaState.has_rating_permission}
+                }
+                disabled={!ideaState.has_rating_permission}
+              />
+            </View>
+            <View>
+              {commentIcon}
+            </View>
+          </View>
+          {comments && <View>
+            <Comments
+              comments={comments}
+              handleReply={handleCommentReply}
+              commentLastCommented={commentLastCommented}
+              setMenuItems={setMenuItems}
+              toggleMenu={toggleMenu}
+              toggleEditing={toggleEditing}
+              setDeleteModalItems={setDeleteModalItems}
+              toggleDeleteModal={toggleDeleteModal}
+              hasCommentingPermission={idea.has_commenting_permission}
             />
-          </View>
-          <View>
-            {commentIcon}
-          </View>
-        </View>
-        {comments && <View style={{
-          ...isEditing ? {opacity: 0.25, backgroundColor: '#fff'}: {}
-        }}>
-          <Comments
-            comments={comments}
-            handleReply={handleCommentReply}
-            commentLastCommented={commentLastCommented}
-            setMenuItems={setMenuItems}
-            toggleMenu={toggleMenu}
-            toggleEditing={toggleEditing}
-            setDeleteModalItems={setDeleteModalItems}
-            toggleDeleteModal={toggleDeleteModal}
-            hasCommentingPermission={idea.has_commenting_permission}
-          />
-        </View>}
+          </View>}
+        </Pressable>
       </ScrollView>
       {idea.has_commenting_permission && (
         <View>
