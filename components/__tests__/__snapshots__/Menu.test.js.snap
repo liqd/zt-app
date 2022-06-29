@@ -46,6 +46,14 @@ exports[`Test Menu isVisible true 1`] = `
     testID="RNE__Overlay__backdrop"
   />
   <RNCSafeAreaView
+    edges={
+      Array [
+        "bottom",
+        "left",
+        "right",
+        "top",
+      ]
+    }
     pointerEvents="box-none"
     style={
       Object {
@@ -177,6 +185,14 @@ exports[`Test Menu with MenuItems 1`] = `
     testID="RNE__Overlay__backdrop"
   />
   <RNCSafeAreaView
+    edges={
+      Array [
+        "bottom",
+        "left",
+        "right",
+        "top",
+      ]
+    }
     pointerEvents="box-none"
     style={
       Object {
