@@ -24,6 +24,8 @@ export const Idea = (props) => {
   const [contentObjectOfComment, setContentObjectOfComment] = useState({'contentType': idea.content_type, 'pk': idea.pk});
   const [commentLastCommented, setCommentLastCommented] = useState(-1);
   const [isScrolling, setIsScrolling] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+  const [editedComment, setEditedComment] = useState(undefined);
   const hasComments = comments.length !== 0;
   const commentInputRef = useRef(null);
   const ideaMenuItems = [
@@ -130,6 +132,18 @@ export const Idea = (props) => {
     return await fetchIdea();
   };
 
+  const toggleEditing= (comment) => {
+    if (isEditing){
+      setIsEditing(false);
+      setEditedComment(undefined);
+    }
+    else {
+      toggleMenu();
+      setIsEditing(true);
+      setEditedComment(comment);
+    }
+  };
+
   const handleCommentSubmit = (values) => {
     commentInputRef.current.blur();
     AsyncStorage.getItem('authToken')
@@ -163,13 +177,50 @@ export const Idea = (props) => {
 
   };
 
+  function handleCommentEdit(values) {
+    commentInputRef.current.blur();
+    AsyncStorage.getItem('authToken')
+      .then((token) => {
+        return API.editComment(editedComment.content_type, editedComment.object_pk, editedComment.id, values, token);
+      })
+      .then((response) => {
+        const {statusCode, data} = response;
+        if (statusCode == 200) {
+          toggleEditing();
+          if (data.content_type == data.comment_content_type) {
+            setCommentLastCommented(data.object_pk);
+          }
+          else {
+            setCommentLastCommented(-1);
+          }
+          fetchComments(idea.content_type, idea.pk);
+          setContentObjectOfComment({'contentType': idea.content_type, 'pk': idea.pk});
+        }
+        else {
+          const errorMessage = 'That did not work.';
+          let errorDetail;
+          if (statusCode==403) {
+            errorDetail = data.detail;
+          }
+          else if (statusCode == 400) {
+            errorDetail = ('comment' in data ? ('Comment: ' + data['comment']) : 'Bad request');
+          }
+          Alert.alert(errorMessage, errorDetail, [{ text: 'Ok', onPress: ()=> {toggleEditing();} }]);
+        }
+      });
+  }
+
   const handleCommentReply = (commentContentType, commentObjectPk) => {
     setContentObjectOfComment({'contentType': commentContentType, 'pk': commentObjectPk});
     commentInputRef.current.focus();
   };
 
   function handleBack() {
-    return props.navigation.goBack();
+    if (isEditing){
+      toggleEditing();
+    }
+    else
+      return props.navigation.goBack();
   }
 
   function handleScroll(event) {
@@ -255,7 +306,7 @@ export const Idea = (props) => {
             icon={arrowLeftIcon}
             onPress={handleBack}
           />
-          {!isScrolling &&
+          {(!isEditing && !isScrolling) &&
         <Button
           icon={optionsIcon}
           type='clear'
@@ -265,6 +316,7 @@ export const Idea = (props) => {
       </View>
       <ScrollView
         style={styles.container}
+        scrollEnabled={!isEditing}
         onScroll={handleScroll}
         contentContainerStyle={styles.contentContainer}
       >
@@ -323,13 +375,16 @@ export const Idea = (props) => {
             {commentIcon}
           </View>
         </View>
-        {comments && <View>
+        {comments && <View style={{
+          ...isEditing ? {opacity: 0.25, backgroundColor: '#fff'}: {}
+        }}>
           <Comments
             comments={comments}
             handleReply={handleCommentReply}
             commentLastCommented={commentLastCommented}
             setMenuItems={setMenuItems}
             toggleMenu={toggleMenu}
+            toggleEditing={toggleEditing}
             setDeleteModalItems={setDeleteModalItems}
             toggleDeleteModal={toggleDeleteModal}
             hasCommentingPermission={idea.has_commenting_permission}
@@ -340,7 +395,9 @@ export const Idea = (props) => {
         <View>
           <CommentForm
             inputRef={commentInputRef}
-            handleSubmit={handleCommentSubmit}
+            isEdit={isEditing}
+            handleSubmit={isEditing ? handleCommentEdit: handleCommentSubmit}
+            value={isEditing ? editedComment.comment : ''}
           />
         </View>)}
       <Menu menuItems={menuItems} isVisible={menuVisible} />

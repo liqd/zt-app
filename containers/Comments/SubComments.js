@@ -10,7 +10,7 @@ export const SubComments = (props) => {
           key={`comment-${comment.id}`}
           comment={comment}
           handleRate={props.handleRate}
-          setCommentBeingProcessed={props.setCommentBeingProcessed}
+          handleOptions={props.handleOptions}
           toggleMenu={props.toggleMenu}
           getCommentTextDisplay={props.getCommentTextDisplay}
           isDisplayed={props.isDisplayed}
