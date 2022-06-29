@@ -24,7 +24,7 @@ export const Comment = (props) => {
     {
       title: 'Edit',
       icon: 'pencil',
-      action: () => console.log('Edit comment'),
+      action: () => props.toggleEditing(commentBeingProcessed),
       isFirst: true,
       isAllowed: comment.user_info.has_changing_permission
     },
@@ -88,6 +88,18 @@ export const Comment = (props) => {
   const onTextLayout = useCallback(e => {
     setHasExcerpt(e.nativeEvent.lines.length > NUM_OF_LINES);
   }, []);
+
+  function handleOptions(subcomment) {
+    if (subcomment !== undefined){
+      setCommentBeingProcessed(subcomment);
+    }
+    else {
+      setCommentBeingProcessed(comment);
+    }
+    props.setDeleteModalItems(commentDeleteModalItems);
+    props.setMenuItems(commentMenuItems);
+    props.toggleMenu();
+  }
 
   const handleRate = async(ratingComment, value) => {
     if (processing) return;
@@ -198,7 +210,7 @@ export const Comment = (props) => {
           <Button
             icon={optionsIcon}
             type='clear'
-            onPress={() => {setCommentBeingProcessed(comment); props.toggleMenu();}}
+            onPress={() => handleOptions()}
           />
         </TextSourceSans>
         }
@@ -274,7 +286,7 @@ export const Comment = (props) => {
         <SubComments
           comments={comment.child_comments}
           handleRate={handleRate}
-          setCommentBeingProcessed={setCommentBeingProcessed}
+          handleOptions={handleOptions}
           toggleMenu={props.toggleMenu}
           getCommentTextDisplay={getCommentTextDisplay}
           isDisplayed={isDisplayed}

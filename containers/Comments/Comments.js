@@ -19,6 +19,7 @@ export const Comments = (props) => {
           openSubComments={(props.commentLastCommented==comment.id) ? true : false}
           setMenuItems={props.setMenuItems}
           toggleMenu={props.toggleMenu}
+          toggleEditing={props.toggleEditing}
           setDeleteModalItems={props.setDeleteModalItems}
           toggleDeleteModal={props.toggleDeleteModal}
           hasCommentingPermission={props.hasCommentingPermission}

@@ -177,6 +177,12 @@ const API = {
     const url = ct_url.replace('$objectPk', objectPk);
     return makePostRequest(url, data, token);
   },
+  editComment(contentTypeId, objectPk, commentPk, data, token = null) {
+    const ct_url = endpoints.comment.replace('$contentTypeId', contentTypeId);
+    const ct_obj_url = ct_url.replace('$objectPk', objectPk);
+    const url = ct_obj_url.replace('$commentPk', commentPk);
+    return makePutRequest(url, data, token);
+  },
   deleteComment(contentTypeId, objectPk, commentPk, token = null) {
     const ct_url = endpoints.comment.replace('$contentTypeId', contentTypeId);
     const ct_obj_url = ct_url.replace('$objectPk', objectPk);
