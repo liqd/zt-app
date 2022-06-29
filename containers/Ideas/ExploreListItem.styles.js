@@ -35,5 +35,8 @@ export const styles = StyleSheet.create({
   },
   progressText: {
     color: COLORS.grey.medium
+  },
+  progressBar: {
+    marginVertical: 10
   }
 });
