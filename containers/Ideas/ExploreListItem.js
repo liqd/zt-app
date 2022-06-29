@@ -4,6 +4,7 @@ import { COLORS } from '../../theme/colors';
 import { styles } from './ExploreListItem.styles';
 import IconSLI from 'react-native-vector-icons/SimpleLineIcons';
 import { TextSourceSans } from '../../components/TextSourceSans';
+import { LinearProgress } from '@rneui/themed';
 
 export const ExploreListItem = (props) => {
   const image = props.item.image
@@ -30,8 +31,19 @@ export const ExploreListItem = (props) => {
           </TextSourceSans>
         </View>
         <View style={styles.progressContainer}>
+          {props.item.module_running_progress && (
+            <>
+              <LinearProgress
+                style={styles.progressBar}
+                color={COLORS.primary}
+                trackColor={COLORS.grey.extralight}
+                value={props.item.module_running_progress/100}
+                variant='determinate'
+              />
+            </>
+          )}
           <TextSourceSans style={styles.progressText}>
-            {clockIcon} time remaining {props.item.module_running_time_left}
+            {clockIcon} {props.item.participation_time_display}
           </TextSourceSans>
         </View>
       </View>
