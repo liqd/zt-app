@@ -23,6 +23,7 @@ export const Idea = (props) => {
   const [comments, setComments] = useState([]);
   const [contentObjectOfComment, setContentObjectOfComment] = useState({'contentType': idea.content_type, 'pk': idea.pk});
   const [commentLastCommented, setCommentLastCommented] = useState(-1);
+  const [isScrolling, setIsScrolling] = useState(false);
   const hasComments = comments.length !== 0;
   const commentInputRef = useRef(null);
   const ideaMenuItems = [
@@ -167,6 +168,19 @@ export const Idea = (props) => {
     commentInputRef.current.focus();
   };
 
+  function handleBack() {
+    return props.navigation.goBack();
+  }
+
+  function handleScroll(event) {
+    if (isScrolling && event.nativeEvent.contentOffset.y < 75.0) {
+      setIsScrolling(false);
+    }
+    else if (!isScrolling && (event.nativeEvent.contentOffset.y >= 75.0) ) {
+      setIsScrolling(true);
+    }
+  }
+
   const fetchIdea = () => {
     return AsyncStorage.getItem('authToken')
       .then((token) => API.getIdea(module.pk, ideaState.pk, token))
@@ -231,10 +245,7 @@ export const Idea = (props) => {
       behavior={(Platform.OS === 'ios')? 'padding' : null}
       style={{flex:1}}
     >
-      <ScrollView
-        style={styles.container}
-        contentContainerStyle={styles.contentContainer}
-      >
+      <View style={styles.container}>
         <View style={styles.actionsContainer}>
           <Button
             buttonStyle={styles.backButton}
@@ -242,14 +253,21 @@ export const Idea = (props) => {
             title='Back'
             type='clear'
             icon={arrowLeftIcon}
-            onPress={() => props.navigation.goBack()}
+            onPress={handleBack}
           />
-          <Button
-            icon={optionsIcon}
-            type='clear'
-            onPress={() => {setMenuItems(ideaMenuItems); toggleMenu();}}
-          />
+          {!isScrolling &&
+        <Button
+          icon={optionsIcon}
+          type='clear'
+          onPress={() => {setMenuItems(ideaMenuItems); toggleMenu();}}
+        />}
         </View>
+      </View>
+      <ScrollView
+        style={styles.container}
+        onScroll={handleScroll}
+        contentContainerStyle={styles.contentContainer}
+      >
         <View style={styles.titleContainer}>
           <TextSourceSans style={styles.title}>{ideaState.name}</TextSourceSans>
         </View>
