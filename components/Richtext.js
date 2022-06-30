@@ -6,7 +6,7 @@ import { findAll } from 'domutils';
 import RenderHTML, {
   TRenderEngineProvider,
   RenderHTMLConfigProvider,
-  useAmbientTRenderEngine
+  useAmbientTRenderEngine, useInternalRenderer
 } from 'react-native-render-html';
 
 // The <Richtext /> component can be used as a container
@@ -26,15 +26,7 @@ import RenderHTML, {
 export const Richtext = ({ project: { information } }) => {
   const {width} = useWindowDimensions();
 
-  const isCollapsible = (node) => node.attribs.class === 'collapsible-item';
-  const isImage = (node) => node.name === 'img';
-
-  const getAbsoluteImageUrl = image => {
-    const img = {...image};
-    const imgSrc = img.attribs.src;
-    const newImgSrc = baseUrl + imgSrc;
-    image.attribs.src = newImgSrc;
-  };
+  const isCollapsible = (node) => node.domNode.attribs.class === 'collapsible-item';
 
   const extractCollapsibleData = (tnode) => {
     return {
@@ -44,54 +36,44 @@ export const Richtext = ({ project: { information } }) => {
   };
 
   const collapsibleRenderer = ({ TDefaultRenderer, tnode,  ...props }) => {
-    const { title, body } = extractCollapsibleData(tnode);
+    if (isCollapsible(tnode)){
+      const { title, body } = extractCollapsibleData(tnode);
+      return (
+        <TDefaultRenderer
+          tnode={tnode}
+          {...props}
+        >
+          <RichtextCollapsibleItem title={title} body={body} />
+        </TDefaultRenderer>
+      );
+    }
+    else {
+      return (
+        <TDefaultRenderer
+          tnode={tnode}
+          {...props}
+        />
+      );
+    }
+  };
+
+  const customImageRenderer = (props) => {
+    const { Renderer, rendererProps } = useInternalRenderer('img', props);
+    const uri = rendererProps.source.uri.replace('about:///', baseUrl + '/');
     return (
-      <TDefaultRenderer
-        tnode={tnode}
-        {...props}
-      >
-        <RichtextCollapsibleItem title={title} body={body} />
-      </TDefaultRenderer>
+      <Renderer {...rendererProps} source={{...rendererProps.source, uri:uri}}/>
     );
   };
 
   const renderers = {
-    article: collapsibleRenderer
-  };
-
-  const RenderRichtext = ({ html, renderers }) => {
-    const [isDomReady, setIsDomReady] = useState(false);
-
-    const engine = useAmbientTRenderEngine();
-    const dom = useMemo(() => engine.parseDocument(html), [html, engine]);
-
-    useEffect(function inspectDom(){
-
-      const collapsibles = findAll(isCollapsible, dom.children);
-      collapsibles.forEach(c => c.name = 'article');
-
-      const images = findAll(isImage, dom.children);
-      images.forEach(i => getAbsoluteImageUrl(i));
-
-      setIsDomReady(true);
-    },[dom]);
-    return isDomReady ?
-      <RenderHTML
-        contentWidth={width}
-        source={{ dom }}
-        renderers={renderers}
-      />
-      : null;
+    div: collapsibleRenderer,
+    img: customImageRenderer
   };
 
   return (
-    <TRenderEngineProvider>
-      <RenderHTMLConfigProvider>
-        <RenderRichtext
-          html={information}
-          renderers={renderers}
-        />
-      </RenderHTMLConfigProvider>
-    </TRenderEngineProvider>
-  );
+    <RenderHTML
+      source={{ html: information}}
+      contentWidth={width}
+      renderers={renderers}
+    />);
 };
