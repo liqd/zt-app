@@ -90,5 +90,9 @@ export const styles = StyleSheet.create({
   commentIcon: {
     fontSize: SIZES.md,
     marginVertical: SPACINGS.multiplyBy(.5),
+  },
+  pressableEditing: {
+    opacity: 0.25,
+    backgroundColor: '#fff'
   }
 });
