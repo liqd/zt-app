@@ -321,7 +321,7 @@ export const Idea = (props) => {
         contentContainerStyle={styles.contentContainer}
       >
         <Pressable onPress={isEditing && toggleEditing} style={{
-          ...isEditing ? {opacity: 0.25, backgroundColor: '#fff'}: {}
+          ...isEditing ? styles.pressableEditing : {}
         }} disabled={!isEditing}>
           <View style={styles.titleContainer}>
             <TextSourceSans style={styles.title}>{ideaState.name}</TextSourceSans>
