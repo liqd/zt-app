@@ -4,7 +4,6 @@ import { Button } from '@rneui/base';
 import { styles } from './Comment.styles';
 import { TextSourceSans } from '../../components/TextSourceSans';
 import IconSLI from 'react-native-vector-icons/SimpleLineIcons';
-import { DateService } from '../../services/DateService';
 import { TouchableWithoutFeedback } from 'react-native';
 import { ButtonCounter } from '../../components/ButtonCounter';
 import { SubComments } from './SubComments';
@@ -159,10 +158,10 @@ export const Comment = (props) => {
 
   const getCommentTextDisplay = (comment) => {
     if (comment.is_removed) {
-      return 'Deleted by creator on ' + DateService(comment.modified);
+      return 'Deleted by creator on ' + comment.modified;
     }
     else if (comment.is_censored || comment.is_blocked) {
-      return 'Deleted by moderation on '+ DateService(comment.modified);
+      return 'Deleted by moderation on '+ comment.modified;
     }
     else {
       return comment.comment;
@@ -189,7 +188,7 @@ export const Comment = (props) => {
           <View style={styles.author}>
             <TextSourceSans style={styles.username}>{comment.user_name}</TextSourceSans>
             {isDisplayed(comment) &&
-            <TextSourceSans style={styles.date}>{DateService(comment.created)}</TextSourceSans>
+            <TextSourceSans style={styles.date}>{comment.created}</TextSourceSans>
             }
           </View>
         </View>

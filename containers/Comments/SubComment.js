@@ -3,7 +3,6 @@ import { View, Image } from 'react-native';
 import { Button } from '@rneui/base';
 import { styles } from './Comment.styles';
 import IconSLI from 'react-native-vector-icons/SimpleLineIcons';
-import { DateService } from '../../services/DateService';
 import { TouchableWithoutFeedback } from 'react-native';
 import { ButtonCounter } from '../../components/ButtonCounter';
 import { TextSourceSans } from '../../components/TextSourceSans';
@@ -42,7 +41,7 @@ export const SubComment = (props) => {
           <View style={styles.author}>
             <TextSourceSans style={styles.username}>{comment.user_name}</TextSourceSans>
             {props.isDisplayed(comment) &&
-            <TextSourceSans style={styles.date}>{DateService(comment.created)}</TextSourceSans>
+            <TextSourceSans style={styles.date}>{comment.created}</TextSourceSans>
             }
           </View>
         </View>
