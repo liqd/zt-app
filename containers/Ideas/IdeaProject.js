@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { View, ImageBackground, ScrollView } from 'react-native';
+import { View, ImageBackground, ScrollView, Image } from 'react-native';
 import { Button } from '@rneui/base';
 import { LinearGradient } from 'expo-linear-gradient';
 import { styles } from './IdeaProject.styles';
 import { IdeasList } from './IdeasList';
 import IconSLI from 'react-native-vector-icons/SimpleLineIcons';
 import IconFA from 'react-native-vector-icons/FontAwesome';
-import API from '../../BaseApi';
+import API, { baseUrl } from '../../BaseApi';
 import { COLORS } from '../../theme/colors';
 import { DateService } from '../../services/DateService';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -99,7 +99,16 @@ export const IdeaProject = (props) => {
             <View style={styles.infoContainer}>
               <TextSourceSans style={styles.title}>{project.name}</TextSourceSans>
               <TextSourceSans style={styles.description}>{project.description}</TextSourceSans>
-              <TextSourceSans style={styles.organisation}>By {project.organisation}</TextSourceSans>
+              <View style={styles.organisationContainer}>
+                {project.organisation_logo && (
+                  <View style={styles.organisationLogoContainer}>
+                    <Image
+                      style={styles.organisationLogo}
+                      source={{ uri: baseUrl + project.organisation_logo }}
+                    />
+                  </View>)}
+                <TextSourceSans style={styles.organisationName}>{project.organisation}</TextSourceSans>
+              </View>
               <View>
                 <View style={styles.tabsMenu}>
                   <TextSourceSans style={styles.tabsMenuItemActive}>Participation</TextSourceSans>
