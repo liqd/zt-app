@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { Platform, StyleSheet } from 'react-native';
 import { COLORS } from '../../theme/colors';
 import { SIZES, FONTWEIGHT } from '../../theme/fonts';
 import { SPACINGS, BORDERRADIUS } from '../../theme/spacings';
@@ -47,9 +47,37 @@ export const styles = StyleSheet.create({
     marginTop: SPACINGS.multiplyBy(0.5),
     marginBottom: SPACINGS.base,
   },
-  organisation: {
+  organisationContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: SPACINGS.multiplyBy(1.5)
+  },
+  organisationName: {
     fontSize: SIZES.multiplyBy(0.9375),
-    marginBottom: SPACINGS.multiplyBy(2),
+  },
+  organisationLogoContainer: {
+    width: 40,
+    height: 40,
+    marginRight: SPACINGS.multiplyBy(0.75),
+    backgroundColor: 'white',
+    alignItems: 'center',
+    justifyContent: 'center',
+    ...Platform.select({
+      ios: {
+        shadowColor: COLORS.grey.light,
+        shadowOffset: {width: -2, height: 4},
+        shadowOpacity: 0.6,
+        shadowRadius: 10
+      },
+      android: {
+        elevation: 5
+      }
+    })
+  },
+  organisationLogo: {
+    width: 30,
+    height: 30,
+    resizeMode: 'cover'
   },
   tabsMenu: {
     flexDirection: 'row',
