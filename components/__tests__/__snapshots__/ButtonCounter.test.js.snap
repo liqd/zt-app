@@ -22,7 +22,6 @@ exports[`Test ButtonCounter 1`] = `
       "flex": 1,
       "flexDirection": "row",
       "opacity": 1,
-      "paddingVertical": 8,
     }
   }
 >
@@ -83,7 +82,6 @@ exports[`Test ButtonCounter 10 1`] = `
       "flex": 1,
       "flexDirection": "row",
       "opacity": 1,
-      "paddingVertical": 8,
     }
   }
 >
@@ -164,7 +162,6 @@ exports[`Test ButtonCounter disabled 1`] = `
       "flex": 1,
       "flexDirection": "row",
       "opacity": 1,
-      "paddingVertical": 8,
     }
   }
 >
@@ -245,7 +242,6 @@ exports[`Test ButtonCounter highlight 1`] = `
       "flex": 1,
       "flexDirection": "row",
       "opacity": 1,
-      "paddingVertical": 8,
     }
   }
 >
@@ -328,7 +324,6 @@ exports[`Test ButtonCounter highlight 10 1`] = `
       "flex": 1,
       "flexDirection": "row",
       "opacity": 1,
-      "paddingVertical": 8,
     }
   }
 >

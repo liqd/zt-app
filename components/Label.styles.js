@@ -12,7 +12,6 @@ export const styles = StyleSheet.create({
     paddingHorizontal: SPACINGS.multiplyBy(.6),
     borderRadius: BORDERRADIUS.base,
     marginRight: SPACINGS.multiplyBy(.5),
-    marginBottom: SPACINGS.multiplyBy(.5),
   },
   text: {
     color: COLORS.text.inverted,
