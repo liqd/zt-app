@@ -40,18 +40,24 @@ export const IdeasListItem = (props) => {
       <View style={styles.container}>
         <View style={styles.topContainer}>
           <TextSourceSans style={styles.title}>{name}</TextSourceSans>
-          {getCategory().length > 0 && (
+          {getCategory().length > 0 ? (
             <View style={styles.labelsContainer}>
               {getCategory().map((category, idx) => (
-                <Label key={idx + category} title={category} />
+                <View 
+                  key={idx + category}
+                  style={styles.labelWrapper}
+                >
+                  <Label  title={category} />
+                </View>
               ))}
             </View>
-          )}
+          ) : (
+            <View style={styles.noLabelSpacing}></View>)}
         </View>
         <View style={styles.bottomContainer}>
           <TextSourceSans style={styles.text}>{creator}</TextSourceSans>
           <View style={styles.infoContainer}>
-            <TextSourceSans style={styles.text}>
+            <TextSourceSans style={styles.date}>
               {DateService(created)}
             </TextSourceSans>
             <View style={styles.counters}>

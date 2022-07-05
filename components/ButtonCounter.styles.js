@@ -6,8 +6,7 @@ import { COLORS } from '../theme/colors';
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'row',
-    paddingVertical: SPACINGS.multiplyBy(.4),
+    flexDirection: 'row'
   },
   icon: {
     letterSpacing: SPACINGS.multiplyBy(.5),
