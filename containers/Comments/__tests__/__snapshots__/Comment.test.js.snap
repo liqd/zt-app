@@ -23,6 +23,7 @@ exports[`Test Comment Snapshot 1`] = `
     <View
       style={
         Object {
+          "flex": 1,
           "flexDirection": "row",
         }
       }
@@ -43,7 +44,13 @@ exports[`Test Comment Snapshot 1`] = `
           }
         }
       />
-      <View>
+      <View
+        style={
+          Object {
+            "flex": 1,
+          }
+        }
+      >
         <Text
           style={
             Array [
@@ -204,7 +211,6 @@ exports[`Test Comment Snapshot 1`] = `
             "flex": 1,
             "flexDirection": "row",
             "opacity": 1,
-            "paddingVertical": 8,
           }
         }
       >
@@ -262,7 +268,6 @@ exports[`Test Comment Snapshot 1`] = `
             "flex": 1,
             "flexDirection": "row",
             "opacity": 1,
-            "paddingVertical": 8,
           }
         }
       >

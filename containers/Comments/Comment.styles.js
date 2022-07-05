@@ -29,7 +29,11 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-between'
   },
   topLeft: {
+    flex: 1,
     flexDirection: 'row',
+  },
+  author: {
+    flex: 1
   },
   date: {
     color: COLORS.grey.medium,
