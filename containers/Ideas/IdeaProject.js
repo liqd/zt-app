@@ -97,8 +97,12 @@ export const IdeaProject = (props) => {
           </View>
           <View style={styles.overlayContainer}>
             <View style={styles.infoContainer}>
-              <TextSourceSans style={styles.title}>{project.name}</TextSourceSans>
-              <TextSourceSans style={styles.description}>{project.description}</TextSourceSans>
+              <TextSourceSans style={styles.title}>
+                {project.name}
+              </TextSourceSans>
+              <TextSourceSans style={styles.description}>
+                {project.description}
+              </TextSourceSans>
               <View style={styles.organisationContainer}>
                 {project.organisation_logo && (
                   <View style={styles.organisationLogoContainer}>
@@ -107,13 +111,21 @@ export const IdeaProject = (props) => {
                       source={{ uri: baseUrl + project.organisation_logo }}
                     />
                   </View>)}
-                <TextSourceSans style={styles.organisationName}>{project.organisation}</TextSourceSans>
+                <TextSourceSans style={styles.organisationName}>
+                  {project.organisation}
+                </TextSourceSans>
               </View>
               <View>
                 <View style={styles.tabsMenu}>
-                  <TextSourceSans style={styles.tabsMenuItemActive}>Participation</TextSourceSans>
-                  <TextSourceSans style={styles.tabsMenuItem}>Information</TextSourceSans>
-                  <TextSourceSans style={styles.tabsMenuItem}>Results</TextSourceSans>
+                  <TextSourceSans style={styles.tabsMenuItemActive}>
+                    Participation
+                  </TextSourceSans>
+                  <TextSourceSans style={styles.tabsMenuItem}>
+                    Information
+                  </TextSourceSans>
+                  <TextSourceSans style={styles.tabsMenuItem}>
+                    Results
+                  </TextSourceSans>
                 </View>
                 {activePhase ? (
                   <View style={styles.phaseContainer}>
@@ -129,7 +141,9 @@ export const IdeaProject = (props) => {
                   </View>
                 ) : (
                   <View style={styles.phaseContainer}>
-                    <TextSourceSans>No active phase found.</TextSourceSans>
+                    <TextSourceSans>
+                      No active phase found.
+                    </TextSourceSans>
                   </View>
                 )}
               </View>
