@@ -5,9 +5,13 @@ export const baseUrl = (() => {
   /*global __DEV__*/
   if (__DEV__) {
     if (Constants.manifest.extra.localAPI) {
+
       // current workaround as long as isDevice=true for emulators
       const isEmulator = Device.productName && Device.productName.includes('emulator');
-      if (Device.isDevice && !isEmulator) {
+      // in case of Apple, use localhost for physical device and simulator
+      const isApple = Device.manufacturer === 'Apple';
+
+      if ((Device.isDevice && !isEmulator) || isApple) {
         return 'http://localhost:8004';
       }
       return 'http://10.0.2.2:8004';
