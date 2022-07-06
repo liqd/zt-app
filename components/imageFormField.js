@@ -94,7 +94,7 @@ export const ImagePickerFormField = (props) => {
       >
         {!capturedImage && !image &&
         <Button
-          buttonStyle={styles.imageAddButton}
+          buttonStyle={[styles.imageAddButton, styles.imageAddButtonLeft]}
           title='Camera'
           onPress={captureImageHandler}
           icon={cameraIcon}
@@ -120,7 +120,7 @@ export const ImagePickerFormField = (props) => {
       <View style={capturedImage || image ? styles.formImagePickerFull : styles.formImagePicker}>
         {!capturedImage && !image &&
         <Button
-          buttonStyle={styles.imageAddButton}
+          buttonStyle={[styles.imageAddButton, styles.imageAddButtonRight]}
           title='Library'
           onPress={pickImage}
           type='clear'
