@@ -46,7 +46,9 @@ export const CheckBoxFormField = (props) => {
       titleProps={{}}
       checkedColor={COLORS.primary}
       uncheckedColor={COLORS.primary}
+      textStyle={styles.checkBoxText}
       containerStyle={styles.checkBoxContainer}
+      wrapperStyle={styles.checkBoxWrapper}
     >{props.children}</CheckBox>
   );
 };

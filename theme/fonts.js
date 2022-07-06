@@ -25,6 +25,7 @@ export const LINEHEIGHTS = {
 };
 
 export const FONTWEIGHT = {
+  base: '300',
   semiBold: '500',
   bold: '600',
   boldxl: '800',

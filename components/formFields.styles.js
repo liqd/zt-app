@@ -29,6 +29,15 @@ export const styles = StyleSheet.create({
   },
   checkBoxContainer: {
     backgroundColor: COLORS.text.inverted,
+    borderWidth: 0,
+  },
+  checkBoxText: {
+    fontSize: SIZES.xs,
+    fontWeight: FONTWEIGHT.base
+  },
+  checkBoxWrapper: {
+    alignItems: 'flex-start',
+    borderRadius: 0
   },
   dropdownFormField: {
     borderBottomColor: COLORS.grey.extralight,

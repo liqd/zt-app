@@ -22,6 +22,12 @@ export const styles = StyleSheet.create({
     borderWidth: BORDERWIDTH.base,
     borderRadius: BORDERRADIUS.none,
   },
+  imageAddButtonLeft: {
+    marginRight: -0.5,
+  },
+  imageAddButtonRight: {
+    marginLeft: -0.5,
+  },
   iconButton: {
     width: '100%',
     textAlign: 'center',
