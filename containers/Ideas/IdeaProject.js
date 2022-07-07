@@ -12,6 +12,8 @@ import { DateService } from '../../services/DateService';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ButtonSubmit } from '../../components/ButtonSubmit';
 import { TextSourceSans } from '../../components/TextSourceSans';
+import { NavigationContainer } from '@react-navigation/native';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
 export const IdeaProject = (props) => {
   const {project} = props.route.params;
@@ -70,6 +72,52 @@ export const IdeaProject = (props) => {
     return DateService(dateTime, 'month d, y, h:m');
   };
 
+  const ParticipationScreen = () => {
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <TextSourceSans>
+          {activePhase ? (
+            <View style={styles.phaseContainer}>
+              <TextSourceSans style={styles.phaseText}>
+                {activePhase.name + ' (active)'}
+              </TextSourceSans>
+              <TextSourceSans style={styles.phaseDate}>
+                {getDateTimeDisplay(activePhase.start_date)} – {getDateTimeDisplay(activePhase.end_date)}
+              </TextSourceSans>
+              <TextSourceSans style={styles.phaseText}>
+                {activePhase.description}
+              </TextSourceSans>
+            </View>
+          ) : (
+            <View style={styles.phaseContainer}>
+              <TextSourceSans>
+                No active phase found.
+              </TextSourceSans>
+            </View>
+          )}
+        </TextSourceSans>
+      </View>
+    );
+  }
+
+  const InformationScreen = () => {
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <TextSourceSans>Settings!</TextSourceSans>
+      </View>
+    );
+  }
+
+  const ResultsScreen = () => {
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <TextSourceSans>results</TextSourceSans>
+      </View>
+    );
+  }
+
+  const Tab = createMaterialTopTabNavigator();
+
   return (
     <View style={styles.container}>
       <ScrollView>
@@ -116,36 +164,13 @@ export const IdeaProject = (props) => {
                 </TextSourceSans>
               </View>
               <View>
-                <View style={styles.tabsMenu}>
-                  <TextSourceSans style={styles.tabsMenuItemActive}>
-                    Participation
-                  </TextSourceSans>
-                  <TextSourceSans style={styles.tabsMenuItem}>
-                    Information
-                  </TextSourceSans>
-                  <TextSourceSans style={styles.tabsMenuItem}>
-                    Results
-                  </TextSourceSans>
-                </View>
-                {activePhase ? (
-                  <View style={styles.phaseContainer}>
-                    <TextSourceSans style={styles.phaseText}>
-                      {activePhase.name + ' (active)'}
-                    </TextSourceSans>
-                    <TextSourceSans style={styles.phaseDate}>
-                      {getDateTimeDisplay(activePhase.start_date)} – {getDateTimeDisplay(activePhase.end_date)}
-                    </TextSourceSans>
-                    <TextSourceSans style={styles.phaseText}>
-                      {activePhase.description}
-                    </TextSourceSans>
-                  </View>
-                ) : (
-                  <View style={styles.phaseContainer}>
-                    <TextSourceSans>
-                      No active phase found.
-                    </TextSourceSans>
-                  </View>
-                )}
+                <NavigationContainer independent={true}>
+                  <Tab.Navigator style={styles.tabsMenu}>
+                    <Tab.Screen name="Participation" component={ParticipationScreen} />
+                    <Tab.Screen name="Information" component={InformationScreen} />
+                    <Tab.Screen name="Results" component={ResultsScreen} />
+                  </Tab.Navigator>
+                </NavigationContainer>
               </View>
             </View>
             {project.single_agenda_setting_module ? (
