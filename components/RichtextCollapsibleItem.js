@@ -7,16 +7,20 @@ import { styles } from './RichtextCollapsibleItem.styles';
 export const RichtextCollapsibleItem = ({ title, body }) => {
   const [collapsed, setCollapsed] = useState(true);
   const chevron = collapsed
-    ? <IconSLI name={'arrow-down'} size={12} color={COLORS.text.main} />
-    : <IconSLI name={'arrow-up'} size={12} color={COLORS.text.main} />;
+    ? <IconSLI name={'plus'} size={24} color={COLORS.text.main} />
+    : <IconSLI name={'minus'} size={24} color={COLORS.text.main} />;
 
   return (
     <TouchableOpacity onPress={() => setCollapsed(!collapsed)}>
       <View style={styles.collapsibleButton}>
         <Text>{title}</Text>
-        {chevron}
+        <View style={styles.collapsibleIcon}>{chevron}</View>
       </View>
-      {!collapsed && <Text>{body}</Text>}
+      {!collapsed && (
+        <View style={styles.collapsibleBody}>
+          <Text>{body}</Text>
+        </View>
+      )}
     </TouchableOpacity>
   );
 };
