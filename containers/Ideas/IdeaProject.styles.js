@@ -85,11 +85,11 @@ export const styles = StyleSheet.create({
   },
   tabsMenuItem: {
     fontSize: SIZES.multiplyBy(1.0625),
-    fontWeight: FONTWEIGHT.bold
+    fontWeight: FONTWEIGHT.boldxl
   },
   tabsMenuItemActive: {
     fontSize: SIZES.multiplyBy(1.0625),
-    fontWeight: FONTWEIGHT.bold,
+    fontWeight: FONTWEIGHT.boldxl,
     color: COLORS.primary
   },
   phaseContainer: {

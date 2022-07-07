@@ -12,6 +12,44 @@ import { DateService } from '../../services/DateService';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ButtonSubmit } from '../../components/ButtonSubmit';
 import { TextSourceSans } from '../../components/TextSourceSans';
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+
+function ParticipationScreen() {
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <TextSourceSans>Participation testing this </TextSourceSans>
+    </View>
+  );
+}
+
+function InformationScreen() {
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <TextSourceSans>Information</TextSourceSans>
+    </View>
+  );
+}
+
+function ResultsScreen() {
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <TextSourceSans>Results</TextSourceSans>
+    </View>
+  );
+}
+
+const Tab = createBottomTabNavigator();
+
+function MyTabs() {
+  return (
+    <Tab.Navigator>
+      <Tab.Screen name="Participation" component={ParticipationScreen} style={styles.tabsMenuItem} />
+      <Tab.Screen name="Information" component={InformationScreen} style={styles.tabsMenuItem} />
+      <Tab.Screen name="Results" component={ResultsScreen} style={styles.tabsMenuItem} />
+    </Tab.Navigator>
+  );
+}
 
 export const IdeaProject = (props) => {
   const {project} = props.route.params;
@@ -115,38 +153,9 @@ export const IdeaProject = (props) => {
                   {project.organisation}
                 </TextSourceSans>
               </View>
-              <View>
-                <View style={styles.tabsMenu}>
-                  <TextSourceSans style={styles.tabsMenuItemActive}>
-                    Participation
-                  </TextSourceSans>
-                  <TextSourceSans style={styles.tabsMenuItem}>
-                    Information
-                  </TextSourceSans>
-                  <TextSourceSans style={styles.tabsMenuItem}>
-                    Results
-                  </TextSourceSans>
-                </View>
-                {activePhase ? (
-                  <View style={styles.phaseContainer}>
-                    <TextSourceSans style={styles.phaseText}>
-                      {activePhase.name + ' (active)'}
-                    </TextSourceSans>
-                    <TextSourceSans style={styles.phaseDate}>
-                      {getDateTimeDisplay(activePhase.start_date)} – {getDateTimeDisplay(activePhase.end_date)}
-                    </TextSourceSans>
-                    <TextSourceSans style={styles.phaseText}>
-                      {activePhase.description}
-                    </TextSourceSans>
-                  </View>
-                ) : (
-                  <View style={styles.phaseContainer}>
-                    <TextSourceSans>
-                      No active phase found.
-                    </TextSourceSans>
-                  </View>
-                )}
-              </View>
+              <NavigationContainer independent={true}>
+                <MyTabs />
+              </NavigationContainer>
             </View>
             {project.single_agenda_setting_module ? (
               <View>
