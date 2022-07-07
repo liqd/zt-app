@@ -3,6 +3,7 @@ import { useWindowDimensions } from 'react-native';
 import { baseUrl } from '../BaseApi';
 import { RichtextCollapsibleItem } from './RichtextCollapsibleItem';
 import RenderHTML, { useInternalRenderer } from 'react-native-render-html';
+import { COLORS } from '../theme/colors';
 
 // The <Richtext /> component can be used as a container
 // for HTML input. It converts html to React Native with the
@@ -62,10 +63,20 @@ export const Richtext = ({ project: { information } }) => {
     img: customImageRenderer
   };
 
+  const tagsStyles = {
+    img: {
+      alignSelf: 'flex-start'
+    },
+    a: {
+      color: COLORS.text.main
+    }
+  };
+
   return (
     <RenderHTML
       source={{ html: information}}
       contentWidth={width}
       renderers={renderers}
+      tagsStyles={tagsStyles}
     />);
 };
