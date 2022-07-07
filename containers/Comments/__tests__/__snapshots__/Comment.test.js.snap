@@ -1,0 +1,447 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test Comment Snapshot 1`] = `
+<View
+  style={
+    Object {
+      "borderColor": "#c4c4c4",
+      "borderTopWidth": 1,
+      "marginVertical": 10,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "flex-start",
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+        "marginVertical": 20,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "flexDirection": "row",
+        }
+      }
+    >
+      <Image
+        source={
+          Object {
+            "uri": "",
+          }
+        }
+        style={
+          Object {
+            "backgroundColor": "#2d40cc",
+            "borderRadius": 20,
+            "height": 40,
+            "marginRight": 20,
+            "width": 40,
+          }
+        }
+      />
+      <View>
+        <Text
+          style={
+            Array [
+              Object {
+                "fontFamily": "SourceSansPro_400Regular",
+              },
+              Object {
+                "fontWeight": "800",
+              },
+            ]
+          }
+        >
+          test-user
+        </Text>
+        <Text
+          style={
+            Array [
+              Object {
+                "fontFamily": "SourceSansPro_400Regular",
+              },
+              Object {
+                "color": "#666",
+                "fontSize": 13.600000000000001,
+              },
+            ]
+          }
+        >
+          January 1, 2022
+        </Text>
+      </View>
+    </View>
+    <Text
+      style={
+        Object {
+          "fontFamily": "SourceSansPro_400Regular",
+        }
+      }
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "overflow": "hidden",
+            },
+            Object {
+              "borderRadius": 2,
+            },
+            undefined,
+            false,
+          ]
+        }
+        testID="RNE_BUTTON_WRAPPER"
+      >
+        <View
+          accessibilityRole="button"
+          accessibilityState={
+            Object {
+              "busy": false,
+              "disabled": false,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Object {
+              "opacity": 1,
+            }
+          }
+          testID="options_button_1"
+        >
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "transparent",
+                "borderColor": "#2089dc",
+                "borderRadius": 2,
+                "borderWidth": 0,
+                "flexDirection": "row",
+                "justifyContent": "center",
+                "padding": 8,
+                "paddingHorizontal": 10,
+              }
+            }
+          >
+            <Text />
+          </View>
+        </View>
+      </View>
+    </Text>
+  </View>
+  <View>
+    <Text
+      numberOfLines={2}
+      onTextLayout={[Function]}
+      style={
+        Object {
+          "fontFamily": "SourceSansPro_400Regular",
+        }
+      }
+    >
+      Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
+    </Text>
+  </View>
+  <View
+    style={
+      Object {
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+        "marginVertical": 20,
+      }
+    }
+  />
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+        "paddingBottom": 10,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "flexDirection": "row",
+          "width": 120,
+        }
+      }
+    >
+      <View
+        accessibilityState={
+          Object {
+            "disabled": true,
+          }
+        }
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "flex": 1,
+            "flexDirection": "row",
+            "opacity": 1,
+            "paddingVertical": 8,
+          }
+        }
+      >
+        <Text
+          style={
+            Array [
+              Object {
+                "fontFamily": "SourceSansPro_400Regular",
+              },
+              Object {
+                "color": "#c4c4c4",
+                "letterSpacing": 5,
+              },
+            ]
+          }
+        >
+          0
+        </Text>
+        <Text
+          style={
+            Array [
+              Object {
+                "fontFamily": "SourceSansPro_400Regular",
+              },
+              Object {
+                "color": "#c4c4c4",
+                "fontSize": 20.4,
+                "letterSpacing": 10,
+                "lineHeight": 24.200000000000003,
+              },
+            ]
+          }
+        >
+          <Text />
+        </Text>
+      </View>
+      <View
+        accessibilityState={
+          Object {
+            "disabled": true,
+          }
+        }
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "flex": 1,
+            "flexDirection": "row",
+            "opacity": 1,
+            "paddingVertical": 8,
+          }
+        }
+      >
+        <Text
+          style={
+            Array [
+              Object {
+                "fontFamily": "SourceSansPro_400Regular",
+              },
+              Object {
+                "color": "#c4c4c4",
+                "letterSpacing": 5,
+              },
+            ]
+          }
+        >
+          0
+        </Text>
+        <Text
+          style={
+            Array [
+              Object {
+                "fontFamily": "SourceSansPro_400Regular",
+              },
+              Object {
+                "color": "#c4c4c4",
+                "fontSize": 20.4,
+                "letterSpacing": 10,
+                "lineHeight": 24.200000000000003,
+              },
+            ]
+          }
+        >
+          <Text />
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        Array [
+          Object {
+            "overflow": "hidden",
+          },
+          Object {
+            "borderRadius": 2,
+          },
+          undefined,
+          false,
+        ]
+      }
+      testID="RNE_BUTTON_WRAPPER"
+    >
+      <View
+        accessibilityRole="button"
+        accessibilityState={
+          Object {
+            "busy": false,
+            "disabled": true,
+          }
+        }
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "opacity": 1,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "transparent",
+              "borderColor": "#2089dc",
+              "borderRadius": 2,
+              "borderWidth": 0,
+              "flexDirection": "row",
+              "justifyContent": "center",
+              "padding": 8,
+              "paddingHorizontal": 10,
+            }
+          }
+        >
+          <Text />
+          <Text
+            style={
+              Object {
+                "color": "hsl(208, 8%, 63%)",
+                "fontSize": 18,
+                "marginLeft": 8,
+                "paddingVertical": 1,
+                "textAlign": "center",
+              }
+            }
+          >
+            Reply
+          </Text>
+        </View>
+      </View>
+    </View>
+    <View
+      style={
+        Array [
+          Object {
+            "overflow": "hidden",
+          },
+          Object {
+            "borderRadius": 2,
+          },
+          undefined,
+          false,
+        ]
+      }
+      testID="RNE_BUTTON_WRAPPER"
+    >
+      <View
+        accessibilityRole="button"
+        accessibilityState={
+          Object {
+            "busy": false,
+            "disabled": false,
+          }
+        }
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "opacity": 1,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "transparent",
+              "borderColor": "#2089dc",
+              "borderRadius": 2,
+              "borderWidth": 0,
+              "flexDirection": "row",
+              "justifyContent": "center",
+              "padding": 8,
+              "paddingHorizontal": 10,
+            }
+          }
+        >
+          <Text />
+          <Text
+            style={
+              Object {
+                "color": "#464a4c",
+                "fontSize": 18,
+                "marginLeft": 8,
+                "paddingVertical": 1,
+                "textAlign": "center",
+              }
+            }
+          >
+            Share
+          </Text>
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;

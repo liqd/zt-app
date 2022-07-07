@@ -207,6 +207,7 @@ export const Comment = (props) => {
         {isDisplayed(comment) &&
         <TextSourceSans>
           <Button
+            testID={'options_button_' + comment.id}
             icon={optionsIcon}
             type='clear'
             onPress={() => handleOptions()}
