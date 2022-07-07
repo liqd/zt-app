@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback, useEffect, useRef } from 'react';
 import { Alert, View, Image } from 'react-native';
 import { Button } from '@rneui/base';
 import { styles } from './Comment.styles';
@@ -16,14 +16,14 @@ export const Comment = (props) => {
   const [showSubComments, setShowSubComments] = useState(false);
   const [showWholeComment, setShowWholeComment] = useState(false);
   const [hasExcerpt, setHasExcerpt] = useState(false);
-  const [processing, setProcessing] = useState(false);
   const [comment, setComment] = useState(props.comment);
-  const [commentBeingProcessed, setCommentBeingProcessed] = useState(props.comment);
+  const processing = useRef(false);
+  const commentBeingProcessed = useRef(props.comment);
   const commentMenuItems = [
     {
       title: 'Edit',
       icon: 'pencil',
-      action: () => props.toggleEditing(commentBeingProcessed),
+      action: () => props.toggleEditing(commentBeingProcessed.current),
       isFirst: true,
       isAllowed: comment.user_info.has_changing_permission
     },
@@ -71,11 +71,6 @@ export const Comment = (props) => {
     props.openSubComments && setShowSubComments(true);
   }, [props.openSubComments, props.comment]);
 
-  useEffect(() => {
-    props.setDeleteModalItems(commentDeleteModalItems);
-    props.setMenuItems(commentMenuItems);
-  }, [commentBeingProcessed]);
-
   const toggleSubComments = () => {
     setShowSubComments(!showSubComments);
   };
@@ -90,10 +85,10 @@ export const Comment = (props) => {
 
   function handleOptions(subcomment) {
     if (subcomment !== undefined){
-      setCommentBeingProcessed(subcomment);
+      commentBeingProcessed.current = subcomment;
     }
     else {
-      setCommentBeingProcessed(comment);
+      commentBeingProcessed.current = comment;
     }
     props.setDeleteModalItems(commentDeleteModalItems);
     props.setMenuItems(commentMenuItems);
@@ -101,11 +96,13 @@ export const Comment = (props) => {
   }
 
   const handleRate = async(ratingComment, value) => {
-    if (processing) return;
-    setProcessing(true);
+    if (processing.current) return;
+    processing.current = true;
     const token = await AsyncStorage.getItem('authToken');
     const newComment = await rate(ratingComment, value, token);
-    newComment && setProcessing(false);
+    if (newComment) {
+      processing.current = false;
+    }
   };
 
   const rate = async(ratingComment, value, token) => {
@@ -146,7 +143,7 @@ export const Comment = (props) => {
 
   const deleteComment = () => {
     AsyncStorage.getItem('authToken')
-      .then((token) => API.deleteComment(commentBeingProcessed.content_type, commentBeingProcessed.object_pk, commentBeingProcessed.id, token))
+      .then((token) => API.deleteComment(commentBeingProcessed.current.content_type, commentBeingProcessed.current.object_pk, commentBeingProcessed.current.id, token))
       .then((response) => {
         const {statusCode, data} = response;
         props.toggleDeleteModal();
