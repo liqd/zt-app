@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
 import { View, Image } from 'react-native';
 import { Button } from '@rneui/base';
 import { styles } from './Comment.styles';
@@ -10,13 +10,8 @@ import { TextSourceSans } from '../../components/TextSourceSans';
 const NUM_OF_LINES = 2;
 
 export const SubComment = (props) => {
-  const [comment, setComment] = useState(props.comment);
   const [showWholeComment, setShowWholeComment] = useState(false);
   const [hasExcerpt, setHasExcerpt] = useState(false);
-
-  useEffect(() => {
-    setComment(props.comment);
-  }, [props.comment]);
 
   const toggleWholeComment = () => {
     setShowWholeComment(!showWholeComment);
@@ -35,22 +30,22 @@ export const SubComment = (props) => {
     <View style={styles.subContainer}>
       <View style={styles.top}>
         <View style={styles.topLeft}>
-          {props.isDisplayed(comment) &&
-          <Image source={{ uri: comment.user_image }} style={styles.avatar} />
+          {props.isDisplayed(props.comment) &&
+          <Image source={{ uri: props.comment.user_image }} style={styles.avatar} />
           }
           <View style={styles.author}>
-            <TextSourceSans style={styles.username}>{comment.user_name}</TextSourceSans>
-            {props.isDisplayed(comment) &&
-            <TextSourceSans style={styles.date}>{comment.created}</TextSourceSans>
+            <TextSourceSans style={styles.username}>{props.comment.user_name}</TextSourceSans>
+            {props.isDisplayed(props.comment) &&
+            <TextSourceSans style={styles.date}>{props.comment.created}</TextSourceSans>
             }
           </View>
         </View>
-        {props.isDisplayed(comment) &&
+        {props.isDisplayed(props.comment) &&
         <TextSourceSans>
           <Button
             icon={optionsIcon}
             type='clear'
-            onPress={() => props.handleOptions(comment)}
+            onPress={() => props.handleOptions(props.comment)}
           />
         </TextSourceSans>
         }
@@ -61,12 +56,12 @@ export const SubComment = (props) => {
           numberOfLines={NUM_OF_LINES}
           onTextLayout={onTextLayout}
         >
-          {props.getCommentTextDisplay(comment)}
+          {props.getCommentTextDisplay(props.comment)}
         </TextSourceSans>
       }
       {showWholeComment &&
       <TextSourceSans style={styles.comment}>
-        {comment.comment}
+        {props.comment.comment}
       </TextSourceSans>
       }
       <View style={styles.linkSection}>
@@ -78,25 +73,25 @@ export const SubComment = (props) => {
         <View style={styles.ratingButtons}>
           <ButtonCounter
             icon={arrowUpIcon}
-            counter={comment.ratings.positive_ratings}
-            onPress={() => props.handleRate(comment, 1)}
+            counter={props.comment.ratings.positive_ratings}
+            onPress={() => props.handleRate(props.comment, 1)}
             highlight={
-              comment.ratings.current_user_rating_id &&
-              comment.ratings.current_user_rating_value === 1 &&
-              comment.ratings.current_user_rating_value
+              props.comment.ratings.current_user_rating_id &&
+              props.comment.ratings.current_user_rating_value === 1 &&
+              props.comment.ratings.current_user_rating_value
             }
-            disabled={!comment.user_info.has_rating_permission}
+            disabled={!props.comment.user_info.has_rating_permission}
           />
           <ButtonCounter
             icon={arrowDownIcon}
-            counter={comment.ratings.negative_ratings}
-            onPress={() => props.handleRate(comment, -1)}
+            counter={props.comment.ratings.negative_ratings}
+            onPress={() => props.handleRate(props.comment, -1)}
             highlight={
-              comment.ratings.current_user_rating_id &&
-              comment.ratings.current_user_rating_value === -1 &&
-              comment.ratings.current_user_rating_value
+              props.comment.ratings.current_user_rating_id &&
+              props.comment.ratings.current_user_rating_value === -1 &&
+              props.comment.ratings.current_user_rating_value
             }
-            disabled={!comment.user_info.has_rating_permission}
+            disabled={!props.comment.user_info.has_rating_permission}
           />
         </View>
         <Button
