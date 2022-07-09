@@ -18,6 +18,9 @@ export const IdeaProject = (props) => {
   const [ideas, setIdeas] = useState([]);
   const [module, setModule] = useState([]);
   const [activePhase, setActivePhase] = useState();
+  const [participationVisible, setParticipationVisible] = useState(true);
+  const [informationVisible, setInformationVisible] = useState(false);
+  const [resultsVisible, setResultsVisible] = useState(false);
   const bgImage = project.image
     ? project.image
     : null;
@@ -115,66 +118,94 @@ export const IdeaProject = (props) => {
                   {project.organisation}
                 </TextSourceSans>
               </View>
-              <View>
-                <View style={styles.tabsMenu}>
-                  <TextSourceSans style={styles.tabsMenuItemActive}>
-                    Participation
-                  </TextSourceSans>
-                  <TextSourceSans style={styles.tabsMenuItem}>
-                    Information
-                  </TextSourceSans>
-                  <TextSourceSans style={styles.tabsMenuItem}>
-                    Results
-                  </TextSourceSans>
-                </View>
-                {activePhase ? (
-                  <View style={styles.phaseContainer}>
-                    <TextSourceSans style={styles.phaseText}>
-                      {activePhase.name + ' (active)'}
-                    </TextSourceSans>
-                    <TextSourceSans style={styles.phaseDate}>
-                      {getDateTimeDisplay(activePhase.start_date)} – {getDateTimeDisplay(activePhase.end_date)}
-                    </TextSourceSans>
-                    <TextSourceSans style={styles.phaseText}>
-                      {activePhase.description}
-                    </TextSourceSans>
-                  </View>
-                ) : (
-                  <View style={styles.phaseContainer}>
+              <View style={styles.tabsMenu}>
+                <Button
+                  buttonStyle={styles.button}
+                  titleStyle={participationVisible ? styles.tabsMenuItemActive : styles.tabsMenuItem}
+                  title='Participation'
+                  type='clear'
+                  onPress={() => { setParticipationVisible(true); setInformationVisible(false); setResultsVisible(false);}}
+                />
+                <Button
+                  buttonStyle={styles.button}
+                  titleStyle={informationVisible ? styles.tabsMenuItemActive : styles.tabsMenuItem}
+                  title='Information'
+                  type='clear'
+                  onPress={() => { setInformationVisible(true); setResultsVisible(false); setParticipationVisible(false);}}
+                />
+                <Button
+                  buttonStyle={styles.button}
+                  titleStyle={resultsVisible ? styles.tabsMenuItemActive : styles.tabsMenuItem}
+                  title='Results'
+                  type='clear'
+                  onPress={() => { setResultsVisible(true); setInformationVisible(false); setParticipationVisible(false);}}
+                />
+              </View>
+              {participationVisible &&
+                <View>
+                  {activePhase ? (
+                    <View style={styles.phaseContainer}>
+                      <TextSourceSans style={styles.phaseText}>
+                        {activePhase.name + ' (active)'}
+                      </TextSourceSans>
+                      <TextSourceSans style={styles.phaseDate}>
+                        {getDateTimeDisplay(activePhase.start_date)} – {getDateTimeDisplay(activePhase.end_date)}
+                      </TextSourceSans>
+                      <TextSourceSans style={styles.phaseText}>
+                        {activePhase.description}
+                      </TextSourceSans>
+                    </View>
+                  ) : (
+                    <View style={styles.phaseContainer}>
+                      <TextSourceSans>
+                        No active phase found.
+                      </TextSourceSans>
+                    </View>
+                  )}
+                  {project.single_agenda_setting_module ? (
+                    <View style={styles.containerInner}>
+                      <View style={styles.listActions}>
+                        <Button icon={filterIcon} type='clear' />
+                        <Button icon={sortIcon} type='clear' />
+                      </View>
+                      <View style={styles.listContainer}>
+                        <IdeasList
+                          ideas={ideas}
+                          module={module}
+                          navigation={props.navigation}
+                        />
+                      </View>
+                      {module.has_idea_adding_permission && (
+                        <ButtonSubmit
+                          title='Submit Idea'
+                          onPress={pressHandler}
+                        >
+                        </ButtonSubmit>
+                      )}
+                    </View>
+                  ) : (
                     <TextSourceSans>
-                      No active phase found.
+                      Oops. Multiple module projects are not supported in adhocracy+
+                      app, yet! Please find them on adhocracy+ web.
                     </TextSourceSans>
-                  </View>
-                )}
-              </View>
+                  )}
+                </View>
+              }
+              {informationVisible &&
+                <View style={styles.container}>
+                  <TextSourceSans>
+                    This is the project information
+                  </TextSourceSans>
+                </View>
+              }
+              {resultsVisible &&
+                <View style={styles.container}>
+                  <TextSourceSans>
+                    This is the resuts infor whoop whoop!
+                  </TextSourceSans>
+                </View>
+              }
             </View>
-            {project.single_agenda_setting_module ? (
-              <View>
-                <View style={styles.listActions}>
-                  <Button icon={filterIcon} type='clear' />
-                  <Button icon={sortIcon} type='clear' />
-                </View>
-                <View style={styles.listContainer}>
-                  <IdeasList
-                    ideas={ideas}
-                    module={module}
-                    navigation={props.navigation}
-                  />
-                </View>
-                {module.has_idea_adding_permission && (
-                  <ButtonSubmit
-                    title='Submit Idea'
-                    onPress={pressHandler}
-                  >
-                  </ButtonSubmit>
-                )}
-              </View>
-            ) : (
-              <TextSourceSans>
-                Oops. Multiple module projects are not supported in adhocracy+
-                app, yet! Please find them on adhocracy+ web.
-              </TextSourceSans>
-            )}
           </View>
         </ImageBackground>
       </ScrollView>
