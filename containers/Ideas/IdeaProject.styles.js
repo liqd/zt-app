@@ -9,6 +9,9 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
+  containerInner: {
+    margin: SPACINGS.multiplyBy(-0.8),
+  },
   bgImage: {
     flex: 1,
     resizeMode: 'cover',
@@ -19,7 +22,7 @@ export const styles = StyleSheet.create({
     position: 'absolute',
     top: 0,
     width:'100%',
-    height: '15%',
+    height: 300,
     opacity: 0.5
   },
   overlayContainer: {
@@ -27,7 +30,7 @@ export const styles = StyleSheet.create({
     borderTopRightRadius: BORDERRADIUS.container,
     top: headerOffset,
     backgroundColor: COLORS.paper.main,
-    paddingBottom: headerOffset
+    paddingBottom: headerOffset,
   },
   infoContainer: {
     padding: SPACINGS.multiplyBy(0.8),
@@ -85,7 +88,8 @@ export const styles = StyleSheet.create({
   },
   tabsMenuItem: {
     fontSize: SIZES.multiplyBy(1.0625),
-    fontWeight: FONTWEIGHT.bold
+    fontWeight: FONTWEIGHT.bold,
+    color: COLORS.text.main
   },
   tabsMenuItemActive: {
     fontSize: SIZES.multiplyBy(1.0625),
@@ -117,6 +121,5 @@ export const styles = StyleSheet.create({
   listActions: {
     flexDirection: 'row',
     justifyContent: 'flex-end',
-    paddingHorizontal: SPACINGS.multiplyBy(0.8),
   }
 });
