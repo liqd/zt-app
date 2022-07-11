@@ -39,9 +39,11 @@ jobs:
           npx eslint .
           npm run testNoCov
       - name: Coverage
-        uses: artiomtr/jest-coverage-report-action@v2.0-rc.1
+        uses: artiomtr/jest-coverage-report-action@v2.0.8
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
+          annotations: failed-tests
+          skip-step: install
         if: github.event_name == 'pull_request'
       - name: Deploy
         if: github.ref == 'refs/heads/main'
