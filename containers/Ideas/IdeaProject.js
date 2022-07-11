@@ -14,13 +14,16 @@ import { ButtonSubmit } from '../../components/ButtonSubmit';
 import { TextSourceSans } from '../../components/TextSourceSans';
 
 export const IdeaProject = (props) => {
+  const tabs = {
+    participation: 0,
+    information: 1,
+    results: 2
+  };
   const {project} = props.route.params;
   const [ideas, setIdeas] = useState([]);
   const [module, setModule] = useState([]);
   const [activePhase, setActivePhase] = useState();
-  const [participationVisible, setParticipationVisible] = useState(true);
-  const [informationVisible, setInformationVisible] = useState(false);
-  const [resultsVisible, setResultsVisible] = useState(false);
+  const [visibleTab, setVisibleTab] = useState(tabs.participation);
   const bgImage = project.image
     ? project.image
     : null;
@@ -121,27 +124,27 @@ export const IdeaProject = (props) => {
               <View style={styles.tabsMenu}>
                 <Button
                   buttonStyle={styles.button}
-                  titleStyle={participationVisible ? styles.tabsMenuItemActive : styles.tabsMenuItem}
+                  titleStyle={visibleTab === tabs.participation ? styles.tabsMenuItemActive : styles.tabsMenuItem}
                   title='Participation'
                   type='clear'
-                  onPress={() => { setParticipationVisible(true); setInformationVisible(false); setResultsVisible(false);}}
+                  onPress={() => setVisibleTab(tabs.participation)}
                 />
                 <Button
                   buttonStyle={styles.button}
-                  titleStyle={informationVisible ? styles.tabsMenuItemActive : styles.tabsMenuItem}
+                  titleStyle={visibleTab === tabs.information ? styles.tabsMenuItemActive : styles.tabsMenuItem}
                   title='Information'
                   type='clear'
-                  onPress={() => { setInformationVisible(true); setResultsVisible(false); setParticipationVisible(false);}}
+                  onPress={() => setVisibleTab(tabs.information)}
                 />
                 <Button
                   buttonStyle={styles.button}
-                  titleStyle={resultsVisible ? styles.tabsMenuItemActive : styles.tabsMenuItem}
+                  titleStyle={visibleTab === tabs.results ? styles.tabsMenuItemActive : styles.tabsMenuItem}
                   title='Results'
                   type='clear'
-                  onPress={() => { setResultsVisible(true); setInformationVisible(false); setParticipationVisible(false);}}
+                  onPress={() => setVisibleTab(tabs.results)}
                 />
               </View>
-              {participationVisible &&
+              {visibleTab === tabs.participation &&
                 <View>
                   {activePhase ? (
                     <View style={styles.phaseContainer}>
@@ -191,14 +194,14 @@ export const IdeaProject = (props) => {
                   )}
                 </View>
               }
-              {informationVisible &&
+              {visibleTab === tabs.information &&
                 <View style={styles.container}>
                   <TextSourceSans>
                     This is the project information
                   </TextSourceSans>
                 </View>
               }
-              {resultsVisible &&
+              {visibleTab === tabs.results &&
                 <View style={styles.container}>
                   <TextSourceSans>
                     This is the resuts infor whoop whoop!
