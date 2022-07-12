@@ -3,7 +3,7 @@ import { COLORS } from '../../theme/colors';
 import { SIZES, FONTWEIGHT } from '../../theme/fonts';
 import { SPACINGS, BORDERRADIUS } from '../../theme/spacings';
 
-const headerOffset = 250;
+const headerOffset = 300;
 
 export const styles = StyleSheet.create({
   container: {
