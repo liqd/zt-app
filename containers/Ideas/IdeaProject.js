@@ -194,14 +194,10 @@ export const IdeaProject = (props) => {
                 </View>
               }
               {visibleTab === tabs.information &&
-                <Richtext project={project} />
+                <Richtext text={project.information} />
               }
               {visibleTab === tabs.results &&
-                <View style={styles.container}>
-                  <TextSourceSans>
-                    This is the resuts infor whoop whoop!
-                  </TextSourceSans>
-                </View>
+                <Richtext text={project.result} />
               }
             </View>
           </View>

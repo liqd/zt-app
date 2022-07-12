@@ -9,14 +9,14 @@ import { COLORS } from '../theme/colors';
 // for HTML input. It converts html to React Native with the
 // help of a package called react-native-render-html.
 //
-// 1. <Richtext> receives a html formatted prop called "information"
+// 1. <Richtext> receives a html formatted prop called "text"
 // 2. A Subcomponent <RenderRichtext> creates the dom and alters two things:
 //    a.) image sources: relative to absoulte url
 //    b.) collapsibles: converting div to article
 // 3. <RenderRichtext> uses <RenderHTML> to convert html into React Native code.
 // 4. While doing this it uses a custom renderer (collapsibleRenderer) and
 //    replaces all <article> elements with a custom component <RichtextCollapsibleItem>
-export const Richtext = ({ project: { information } }) => {
+export const Richtext = ({ text }) => {
   const {width} = useWindowDimensions();
 
   const isCollapsible = (node) => node.domNode.attribs.class === 'collapsible-item';
@@ -74,7 +74,7 @@ export const Richtext = ({ project: { information } }) => {
 
   return (
     <RenderHTML
-      source={{ html: information}}
+      source={{ html: text}}
       contentWidth={width}
       renderers={renderers}
       tagsStyles={tagsStyles}
