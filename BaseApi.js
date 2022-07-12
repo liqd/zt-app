@@ -44,6 +44,7 @@ const endpoints = {
   rating: baseApiUrl + '/contenttypes/$contentTypeId/objects/$objectPk/ratings/$ratingId/',
   comments: baseApiUrl + '/contenttypes/$contentTypeId/objects/$objectPk/comments/',
   comment: baseApiUrl + '/contenttypes/$contentTypeId/objects/$objectPk/comments/$commentPk/',
+  report: baseApiUrl + '/reports/',
 };
 
 const getHeaders = (token, isFormData = false) => {
@@ -143,6 +144,9 @@ const API = {
     const module_url = endpoints.idea.replace('$moduleId', moduleId);
     const url = module_url.replace('$ideaPk', ideaPk);
     return makePutRequest(url, data, token);
+  },
+  postReport(content_type, object_pk, description, token = null) {
+    return makePostRequest(endpoints.report, {content_type, object_pk, description}, token);
   },
   postLogin(data) {
     return makePostRequest(endpoints.login, data);
