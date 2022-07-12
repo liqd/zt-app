@@ -19,7 +19,7 @@ export const IdeaCreateDescription = props => {
   const ideaDescriptionValidationSchema = yup.object().shape({
     description: yup
       .string()
-      .max(10000, 'Description must be no longer then 100 characters')
+      .max(10000, 'Description must be no longer then 10000 characters')
       .required('Description is required'),
   });
 

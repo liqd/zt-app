@@ -48,7 +48,10 @@ export const Idea = (props) => {
     {
       title: 'Report',
       icon: 'flag',
-      action: () => console.log('Report'),
+      action: () => {
+        setMenuVisible(false);
+        props.navigation.navigate('ReportCreateMessage', {content_type: ideaState.content_type, object_pk: ideaState.pk});
+      },
       isFirst: !ideaState.has_changing_permission && !ideaState.has_deleting_permission,
       isLast: true,
       isAllowed: true
