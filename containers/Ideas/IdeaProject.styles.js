@@ -16,7 +16,6 @@ export const styles = StyleSheet.create({
     flex: 1,
     resizeMode: 'cover',
     backgroundColor: COLORS.primary,
-    paddingTop: SPACINGS.multiplyBy(1.5),
   },
   linearGradient: {
     position: 'absolute',
