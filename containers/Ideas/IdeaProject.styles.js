@@ -84,7 +84,7 @@ export const styles = StyleSheet.create({
   },
   tabsMenu: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'space-between'
   },
   tabsMenuItem: {
     fontSize: SIZES.multiplyBy(1.0625),
@@ -121,5 +121,8 @@ export const styles = StyleSheet.create({
   listActions: {
     flexDirection: 'row',
     justifyContent: 'flex-end',
+  },
+  tabButton: {
+    paddingHorizontal: 0
   }
 });
