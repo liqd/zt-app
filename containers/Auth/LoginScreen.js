@@ -22,7 +22,18 @@ export const LoginScreen = () => {
   const handleLogin = (values) => {
     API.postLogin(values).then((response) => {
       if (response.statusCode!==200) {
-        setError(response.data.non_field_errors[0]);
+        if (response.data.non_field_errors) {
+          setError(response.data.non_field_errors[0]);
+        }
+        else if (response.data.username) {
+          setError('Username: ' + response.data.username[0]);
+        }
+        else if (response.data.password) {
+          setError('Password: ' + response.data.password[0]);
+        }
+        else {
+          setError('Something went wrong, please try again.');
+        }
       }
       else {
         signIn(response.data.token);
