@@ -7,6 +7,9 @@ Prerequisites
 - Install via terminal/bash`expo (expo.io): npm install expo-cli --global`
 - Install an emulator, e.g. Android Studio (see https://docs.expo.dev/workflow/android-studio-emulator/ for setup)
 
+Technical Review (Updates)
+- Run `expo doctor --fix-dependencies`
+
 Setup
 - Clone repo
 - Change directory into project folder `cd zt-app`
