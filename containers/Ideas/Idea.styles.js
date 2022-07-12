@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 import { COLORS } from '../../theme/colors';
-import { SIZES, FONTWEIGHT } from '../../theme/fonts';
+import { SIZES, FONTWEIGHT, LINEHEIGHTS } from '../../theme/fonts';
 import { SPACINGS } from '../../theme/spacings';
 
 export const styles = StyleSheet.create({
@@ -22,11 +22,11 @@ export const styles = StyleSheet.create({
     justifyContent: 'flex-end'
   },
   actionsContainer: {
-    marginTop: SPACINGS.multiplyBy(2),
-    marginBottom: SPACINGS.multiplyBy(1),
+    height: SPACINGS.multiplyBy(4),
+    marginTop: SPACINGS.multiplyBy(1.5),
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   backButton: {
     padding: 0,
@@ -48,8 +48,8 @@ export const styles = StyleSheet.create({
     marginVertical: SPACINGS.multiplyBy(.75)
   },
   title: {
-    fontSize: SIZES.multiplyBy(1.375),
-    lineHeight: SPACINGS.multiplyBy(2),
+    fontSize: SIZES.md,
+    lineHeight: LINEHEIGHTS.base,
     fontWeight: FONTWEIGHT.bold
   },
   text: {
@@ -58,7 +58,7 @@ export const styles = StyleSheet.create({
   creator: {
     textTransform: 'capitalize',
     fontSize: SIZES.sm,
-    lineHeight: SPACINGS.multiplyBy(1.5),
+    lineHeight: LINEHEIGHTS.sm,
   },
   bottomActionsContainer: {
     flexDirection: 'row',
