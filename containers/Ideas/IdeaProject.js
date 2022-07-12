@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, ImageBackground, ScrollView, Image } from 'react-native';
-import { Button } from '@rneui/base';
+import { Button } from '@rneui/themed';
 import { LinearGradient } from 'expo-linear-gradient';
 import { styles } from './IdeaProject.styles';
 import { IdeasList } from './IdeasList';
@@ -87,7 +87,6 @@ export const IdeaProject = (props) => {
           />
           <View style={styles.actionsContainer}>
             <Button
-              buttonStyle={styles.button}
               titleStyle={styles.buttonText}
               title='Back'
               type='clear'
@@ -95,7 +94,6 @@ export const IdeaProject = (props) => {
               onPress={() => props.navigation.goBack()}
             />
             <Button
-              buttonStyle={styles.button}
               titleStyle={styles.buttonText}
               title='Follow'
               icon={plusIcon}
@@ -122,48 +120,23 @@ export const IdeaProject = (props) => {
                   {project.organisation}
                 </TextSourceSans>
               </View>
-              <View>
-                <View style={styles.tabsMenu}>
-                  <TextSourceSans style={styles.tabsMenuItemActive}>Participation</TextSourceSans>
-                  <TextSourceSans style={styles.tabsMenuItem}>Information</TextSourceSans>
-                  <TextSourceSans style={styles.tabsMenuItem}>Results</TextSourceSans>
-                </View>
-                <Richtext project={project} />
-                {activePhase ? (
-                  <View style={styles.phaseContainer}>
-                    <TextSourceSans style={styles.phaseText}>
-                      {activePhase.name + ' (active)'}
-                    </TextSourceSans>
-                    <TextSourceSans style={styles.phaseDate}>
-                      {getDateTimeDisplay(activePhase.start_date)} – {getDateTimeDisplay(activePhase.end_date)}
-                    </TextSourceSans>
-                    <TextSourceSans style={styles.phaseText}>
-                      {activePhase.description}
-                    </TextSourceSans>
-                  </View>
-                ) : (
-                  <View style={styles.phaseContainer}>
-                    <TextSourceSans>No active phase found.</TextSourceSans>
-                  </View>
-                )}
-              </View>
               <View style={styles.tabsMenu}>
                 <Button
-                  buttonStyle={styles.button}
+                  buttonStyle={styles.tabButton}
                   titleStyle={visibleTab === tabs.participation ? styles.tabsMenuItemActive : styles.tabsMenuItem}
                   title='Participation'
                   type='clear'
                   onPress={() => setVisibleTab(tabs.participation)}
                 />
                 <Button
-                  buttonStyle={styles.button}
+                  buttonStyle={styles.tabButton}
                   titleStyle={visibleTab === tabs.information ? styles.tabsMenuItemActive : styles.tabsMenuItem}
                   title='Information'
                   type='clear'
                   onPress={() => setVisibleTab(tabs.information)}
                 />
                 <Button
-                  buttonStyle={styles.button}
+                  buttonStyle={styles.tabButton}
                   titleStyle={visibleTab === tabs.results ? styles.tabsMenuItemActive : styles.tabsMenuItem}
                   title='Results'
                   type='clear'
@@ -221,11 +194,7 @@ export const IdeaProject = (props) => {
                 </View>
               }
               {visibleTab === tabs.information &&
-                <View style={styles.container}>
-                  <TextSourceSans>
-                    This is the project information
-                  </TextSourceSans>
-                </View>
+                <Richtext project={project} />
               }
               {visibleTab === tabs.results &&
                 <View style={styles.container}>
