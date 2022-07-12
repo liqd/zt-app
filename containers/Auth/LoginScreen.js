@@ -1,17 +1,21 @@
 import React, { useEffect, useState } from 'react';
-import { Alert, Button, StyleSheet, View } from 'react-native';
+import { Alert, Linking, ScrollView, View } from 'react-native';
 import { Formik } from 'formik';
 import * as yup from 'yup';
 
+import { styles } from './LoginScreen.styles';
 import {useAuthorization} from './AuthProvider.js';
-import API from '../../BaseApi';
+import API, { baseUrl } from '../../BaseApi';
+import { ButtonSubmit } from '../../components/ButtonSubmit';
+import { LinkTextSourceSans } from '../../components/LinkTextSourceSans';
 import { TextInputFormField } from '../../components/formFields';
-import { COLORS } from '../../theme/colors';
-import { SPACINGS } from '../../theme/spacings';
+import { TextSourceSans } from '../../components/TextSourceSans';
 
 export const LoginScreen = () => {
   const {signIn} = useAuthorization();
   const [error, setError] = useState();
+  const registerUrl = '/accounts/signup/?next=/';
+  const passwordResetUrl = '/accounts/password/reset/';
 
   useEffect(() => {
     if (error) {
@@ -26,7 +30,7 @@ export const LoginScreen = () => {
           setError(response.data.non_field_errors[0]);
         }
         else if (response.data.username) {
-          setError('Username: ' + response.data.username[0]);
+          setError('Username or E-mail address: ' + response.data.username[0]);
         }
         else if (response.data.password) {
           setError('Password: ' + response.data.password[0]);
@@ -65,45 +69,55 @@ export const LoginScreen = () => {
         touched,
         isValid
       }) => (
-        <View style={styles.loginContainer}>
-
-          <TextInputFormField
-            field='E-mail address:'
-            name='username'
-            value={values.username}
-            placeholder=''
-            returnKeyType='next'
-            returnKeyLabel='next'
-            onChangeText={handleChange('username')}
-            onBlur={handleBlur('username')}
-            error={errors.username}
-            touched={touched.username}
-          />
-          <TextInputFormField
-            field='Password:'
-            name='password'
-            value={values.password}
-            placeholder=''
-            returnKeyType='next'
-            returnKeyLabel='next'
-            onChangeText={handleChange('password')}
-            onBlur={handleBlur('password')}
-            error={errors.password}
-            touched={touched.password}
-            secureTextEntry
-          />
-          <Button onPress={handleSubmit} title="Login" disabled={!isValid} />
+        <View style={styles.flexContainer}>
+          <View style={styles.container}>
+            <ScrollView>
+              <TextSourceSans style={styles.title}>
+                Login
+              </TextSourceSans>
+              <TextSourceSans style={styles.registerText}>
+                If you have not created an account yet, then please <LinkTextSourceSans
+                  onPress={() => Linking.openURL(baseUrl + registerUrl)}
+                >register</LinkTextSourceSans> first.
+              </TextSourceSans>
+              <TextInputFormField
+                field='Username or E-mail address:'
+                name='username'
+                value={values.username}
+                placeholder=''
+                returnKeyType='next'
+                returnKeyLabel='next'
+                onChangeText={handleChange('username')}
+                onBlur={handleBlur('username')}
+                error={errors.username}
+                touched={touched.username}
+              />
+              <TextInputFormField
+                field='Password:'
+                name='password'
+                value={values.password}
+                placeholder=''
+                returnKeyType='next'
+                returnKeyLabel='next'
+                onChangeText={handleChange('password')}
+                onBlur={handleBlur('password')}
+                error={errors.password}
+                touched={touched.password}
+                secureTextEntry
+              />
+              <LinkTextSourceSans style={styles.forgotPassword}
+                onPress={() => Linking.openURL(baseUrl + passwordResetUrl)}
+              >Forgot Password?</LinkTextSourceSans>
+            </ScrollView>
+          </View>
+          <ButtonSubmit
+            title='Login'
+            onPress={handleSubmit}
+            disabled={!isValid}
+          >
+          </ButtonSubmit>
         </View>
-
       )}
     </Formik>
   );
 };
-
-export const styles = StyleSheet.create({
-  loginContainer: {
-    paddingVertical: SPACINGS.multiplyBy(2),
-    paddingHorizontal: SPACINGS.multiplyBy(2),
-    backgroundColor: COLORS.paper.main,
-  }
-});
