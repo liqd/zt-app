@@ -27,9 +27,9 @@ exports[`Test Idea Snapshot 1`] = `
         Object {
           "alignItems": "center",
           "flexDirection": "row",
+          "height": 80,
           "justifyContent": "space-between",
-          "marginBottom": 20,
-          "marginTop": 40,
+          "marginTop": 30,
         }
       }
     >
@@ -251,9 +251,9 @@ exports[`Test Idea Snapshot 1`] = `
                   "fontFamily": "SourceSansPro_400Regular",
                 },
                 Object {
-                  "fontSize": 23.375,
+                  "fontSize": 20.4,
                   "fontWeight": "600",
-                  "lineHeight": 40,
+                  "lineHeight": 22,
                 },
               ]
             }
@@ -301,7 +301,7 @@ exports[`Test Idea Snapshot 1`] = `
                 },
                 Object {
                   "fontSize": 14.45,
-                  "lineHeight": 30,
+                  "lineHeight": 20.9,
                   "textTransform": "capitalize",
                 },
               ]
