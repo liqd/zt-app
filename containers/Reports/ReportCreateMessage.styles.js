@@ -6,9 +6,7 @@ import { SPACINGS } from '../../theme/spacings';
 export const styles = StyleSheet.create({
   container: {
     backgroundColor: COLORS.paper.main,
-  },
-  containerInner: {
-    paddingHorizontal: SPACINGS.multiplyBy(0.75),
+    flex: 1,
   },
   actionsContainer: {
     height: SPACINGS.multiplyBy(4),
