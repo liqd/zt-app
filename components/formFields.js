@@ -26,7 +26,7 @@ export const TextInputFormField = (props) => {
 
 export const TextInputFullFormField = (props) => {
   return (
-    <View>
+    <View style={styles.textInputFullContainer}>
       <TextSourceSans style={styles.formLabel}>{props.field}</TextSourceSans>
       <TextInput
         style={styles.textInputFull}

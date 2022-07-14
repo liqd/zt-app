@@ -20,12 +20,16 @@ export const styles = StyleSheet.create({
     borderBottomColor: COLORS.grey.extralight,
     borderBottomWidth: BORDERWIDTH.base,
     height: SPACINGS.multiplyBy(2),
-    fontSize: SIZES.md,
+    fontSize: SIZES.md
   },
   textInputFull: {
     fontSize: SIZES.md,
     justifyContent: 'flex-start',
-    alignContent: 'flex-start'
+    alignContent: 'flex-start',
+    textAlignVertical: 'top',
+  },
+  textInputFullContainer: {
+    paddingHorizontal: SPACINGS.multiplyBy(0.75)
   },
   checkBoxContainer: {
     backgroundColor: COLORS.text.inverted,
