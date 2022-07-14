@@ -16,6 +16,7 @@ import { DateService } from '../../services/DateService';
 
 export const Idea = (props) => {
   const {idea, module} = props.route.params;
+  const { navigation } = props;
   const [ideaState, setIdeaState] = useState(idea);
   const [menuVisible, setMenuVisible] = useState(false);
   const [deleteModalVisible, setDeleteModalVisible] = useState(false);
@@ -392,6 +393,7 @@ export const Idea = (props) => {
               setDeleteModalItems={setDeleteModalItems}
               toggleDeleteModal={toggleDeleteModal}
               hasCommentingPermission={idea.has_commenting_permission}
+              navigation={navigation}
             />
           </View>}
         </Pressable>

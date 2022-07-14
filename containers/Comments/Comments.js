@@ -4,6 +4,8 @@ import { Comment } from './Comment';
 import { TextSourceSans } from '../../components/TextSourceSans';
 
 export const Comments = (props) => {
+  const { navigation } = props;
+
   return (
     <View>
       <TextSourceSans>
@@ -23,6 +25,7 @@ export const Comments = (props) => {
           setDeleteModalItems={props.setDeleteModalItems}
           toggleDeleteModal={props.toggleDeleteModal}
           hasCommentingPermission={props.hasCommentingPermission}
+          navigation={navigation}
         />)}
     </View>
   );
