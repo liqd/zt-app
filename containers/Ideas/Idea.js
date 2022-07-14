@@ -148,6 +148,7 @@ export const Idea = (props) => {
     commentInputRef.current.blur();
     AsyncStorage.getItem('authToken')
       .then((token) => {
+        values.agreed_terms_of_use = true;
         return API.addComment(contentObjectOfComment.contentType, contentObjectOfComment.pk, values, token);
       })
       .then((response) => {
@@ -181,6 +182,7 @@ export const Idea = (props) => {
     commentInputRef.current.blur();
     AsyncStorage.getItem('authToken')
       .then((token) => {
+        values.agreed_terms_of_use = true;
         return API.editComment(editedComment.content_type, editedComment.object_pk, editedComment.id, values, token);
       })
       .then((response) => {
