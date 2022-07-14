@@ -36,7 +36,10 @@ export const Comment = (props) => {
     {
       title: 'Report',
       icon: 'flag',
-      action: () => console.log('Report comment'),
+      action: () => {
+        props.toggleMenu();
+        props.navigation.navigate('ReportCreateMessage', {content_type: comment.comment_content_type, object_pk: comment.id});
+      },
       isFirst: !comment.user_info.has_changing_permission && !comment.user_info.has_deleting_permission,
       isLast: true,
       isAllowed: true
