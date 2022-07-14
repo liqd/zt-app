@@ -16,7 +16,7 @@ export const ButtonTextInputFieldContainer = (props) => {
 };
 
 export const ButtonTextInput = (props) => {
-  const arrowRightIcon = (<IconSLI name='arrow-right' size={22}/>);
+  const arrowRightIcon = <IconSLI name='arrow-right' size={22}/>;
 
   return (
     <TouchableOpacity

@@ -230,6 +230,9 @@ export const IdeaCreate = props => {
               <ButtonTextInput
                 title={description ? description : 'Enter your idea description'}
                 onPress={() => toDescription(values)}
+                textInputButtonTitle={description ?
+                  [styles.textInputButtonTitle, styles.textInputButtonTitleDark] :
+                  [styles.textInputButtonTitle, styles.textInputButtonTitleLight]}
               >
               </ButtonTextInput>
             </ButtonTextInputFieldContainer>
