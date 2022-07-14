@@ -1,16 +1,15 @@
 import React, {useState, useEffect} from 'react';
 import { Alert, View } from 'react-native';
-import { Button } from '@rneui/base';
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import IconSLI from 'react-native-vector-icons/SimpleLineIcons';
 import { ButtonSubmit } from '../../components/ButtonSubmit';
 import { ButtonTextInput, ButtonTextInputFieldContainer } from '../../components/ButtonTextInput';
+import { Header } from '../../components/Header';
 import { TextSourceSans } from '../../components/TextSourceSans';
 import { VirtualScrollView } from '../../components/VirtualScrollView';
 
-import { styles } from './Idea.styles';
+import { styles } from './IdeaCreate.styles';
 import {
   TextInputFormField,
   DropdownFormFieldContainer,
@@ -23,9 +22,6 @@ import API from '../../BaseApi';
 export const IdeaCreate = props => {
 
   const {idea, module, editing, descriptionText } = props.route.params;
-  const arrowLeftIcon = (
-    <IconSLI name='arrow-left' size={22} />
-  );
   const ideaValidationSchema = yup.object().shape({
     name: yup
       .string()
@@ -180,63 +176,58 @@ export const IdeaCreate = props => {
   };
 
   return (
-    <VirtualScrollView
-      style={styles.container}
-      contentContainerStyle={styles.contentContainer}
-    >
-      <View style={styles.actionsContainer}>
-        <Button
-          buttonStyle={styles.backButton}
-          titleStyle={styles.backButtonText}
-          title='Back'
-          type='clear'
-          icon={arrowLeftIcon}
-          onPress={() => props.navigation.goBack()}
-        />
+    <>
+      <View style={styles.header}>
+        <Header
+          navigation={props.navigation} />
       </View>
-      <TextSourceSans style={styles.title}>Submit a new idea for this project</TextSourceSans>
-      <Formik
-        validationSchema={ideaValidationSchema}
-        initialValues={getInitialValues()}
-        onSubmit={values => handleSubmit(values)}
-        validateOnMount={true}
+      <VirtualScrollView
+        style={styles.container}
+        contentContainerStyle={styles.contentContainer}
       >
-        {({
-          handleChange,
-          handleBlur,
-          handleSubmit,
-          values,
-          errors,
-          touched,
-          isValid,
-          setFieldValue
-        }) => (
-          <>
-            <TextInputFormField
-              field='Idea title'
-              name='name'
-              value={values.name}
-              placeholder='Enter your idea title'
-              returnKeyType='next'
-              returnKeyLabel='next'
-              onChangeText={handleChange('name')}
-              onBlur={handleBlur('name')}
-              error={errors.name}
-              touched={touched.name}
-            />
-            <ButtonTextInputFieldContainer
-              field='Idea Description'
-              name='description'>
-              <ButtonTextInput
-                title={description ? description : 'Enter your idea description'}
-                onPress={() => toDescription(values)}
-                textInputButtonTitle={description ?
-                  [styles.textInputButtonTitle, styles.textInputButtonTitleDark] :
-                  [styles.textInputButtonTitle, styles.textInputButtonTitleLight]}
-              >
-              </ButtonTextInput>
-            </ButtonTextInputFieldContainer>
-            {categories.length > 0 &&
+        <TextSourceSans style={styles.title}>Submit a new idea for this project</TextSourceSans>
+        <Formik
+          validationSchema={ideaValidationSchema}
+          initialValues={getInitialValues()}
+          onSubmit={values => handleSubmit(values)}
+          validateOnMount={true}
+        >
+          {({
+            handleChange,
+            handleBlur,
+            handleSubmit,
+            values,
+            errors,
+            touched,
+            isValid,
+            setFieldValue
+          }) => (
+            <>
+              <TextInputFormField
+                field='Idea title'
+                name='name'
+                value={values.name}
+                placeholder='Enter your idea title'
+                returnKeyType='next'
+                returnKeyLabel='next'
+                onChangeText={handleChange('name')}
+                onBlur={handleBlur('name')}
+                error={errors.name}
+                touched={touched.name}
+              />
+              <ButtonTextInputFieldContainer
+                field='Idea Description'
+                name='description'>
+                <ButtonTextInput
+                  title={description ? description : 'Enter your idea description'}
+                  onPress={() => toDescription(values)}
+                  textInputButtonTitle={description ?
+                    [styles.textInputButtonTitle, styles.textInputButtonTitleDark] :
+                    [styles.textInputButtonTitle, styles.textInputButtonTitleLight]}
+                >
+                </ButtonTextInput>
+              </ButtonTextInputFieldContainer>
+              {categories.length > 0 &&
               <DropdownFormFieldContainer
                 field='Idea Category'
                 name='category'>
@@ -248,8 +239,8 @@ export const IdeaCreate = props => {
                 >
                 </DropdownFormField>
               </DropdownFormFieldContainer>
-            }
-            {labelChoices.length > 0 && initialLabels &&
+              }
+              {labelChoices.length > 0 && initialLabels &&
               <LabelListContainer
                 field='Idea Labels'
                 name='labels'
@@ -260,25 +251,26 @@ export const IdeaCreate = props => {
                   onIconPress={(selectedLabels) => setFieldValue('labels', selectedLabels)}
                 />
               </LabelListContainer>
-            }
-            <ImageChoiceFormFieldContainer
-              field='Add Image'
-              name='image'
-              onSetImage={(img) => setFieldValue('image', img)}
-              onIconPress={() => setFieldValue('imageChecked', !values.imageChecked)}
-              checked={values.imageChecked}
-              image={values.image ? values.image.uri : (idea && idea.image)}
-            />
-            <ButtonSubmit
-              title='Submit'
-              onPress={handleSubmit}
-              disabled={!isValid}
-            >
-            </ButtonSubmit>
-          </>
-        )}
-      </Formik>
-    </VirtualScrollView>
+              }
+              <ImageChoiceFormFieldContainer
+                field='Add Image'
+                name='image'
+                onSetImage={(img) => setFieldValue('image', img)}
+                onIconPress={() => setFieldValue('imageChecked', !values.imageChecked)}
+                checked={values.imageChecked}
+                image={values.image ? values.image.uri : (idea && idea.image)}
+              />
+              <ButtonSubmit
+                title='Submit'
+                onPress={handleSubmit}
+                disabled={!isValid}
+              >
+              </ButtonSubmit>
+            </>
+          )}
+        </Formik>
+      </VirtualScrollView>
+    </>
   );
 };
 

@@ -6,23 +6,8 @@ import { SPACINGS } from '../../theme/spacings';
 export const styles = StyleSheet.create({
   container: {
     backgroundColor: COLORS.paper.main,
+    paddingTop: SPACINGS.multiplyBy(.25),
     flex: 1,
-  },
-  actionsContainer: {
-    height: SPACINGS.multiplyBy(4),
-    marginTop: SPACINGS.multiplyBy(1.5),
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  backButton: {
-    padding: 0,
-    marginVertical: 0,
-  },
-  backButtonText: {
-    fontSize: SIZES.md,
-    marginHorizontal: SPACINGS.multiplyBy(.25),
-    color: COLORS.text.main,
   },
   title: {
     fontSize: SIZES.md,

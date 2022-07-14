@@ -10,6 +10,7 @@ import IconFA from 'react-native-vector-icons/FontAwesome';
 import API from '../../BaseApi';
 import { COLORS } from '../../theme/colors';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Header } from '../../components/Header';
 import { ButtonSubmit } from '../../components/ButtonSubmit';
 import { LinkTextSourceSans } from '../../components/LinkTextSourceSans';
 import { TextSourceSans } from '../../components/TextSourceSans';
@@ -21,13 +22,11 @@ export const IdeaProject = (props) => {
     information: 1,
     results: 2
   };
-  const {project} = props.route.params;
+  const { project } = props.route.params;
   const [ideas, setIdeas] = useState([]);
   const [module, setModule] = useState([]);
   const [visibleTab, setVisibleTab] = useState(tabs.participation);
-  const bgImage = project.image
-    ? project.image
-    : null;
+  const bgImage = project.image ? project.image : null;
 
   const pressHandler = () =>
     props.navigation.navigate('IdeaCreate', {
@@ -39,8 +38,15 @@ export const IdeaProject = (props) => {
   const filterIcon = (
     <IconFA name='search' size={20} color={COLORS.grey.light} />
   );
-  const arrowLeftIcon = (
-    <IconSLI name='arrow-left' size={22} color={COLORS.paper.main} />
+
+  const followButton = (
+    <Button
+      buttonStyle={styles.button}
+      titleStyle={styles.buttonText}
+      title='Follow'
+      icon={plusIcon}
+      type='clear'
+    />
   );
 
   const fetchIdeas = () => {
@@ -79,21 +85,13 @@ export const IdeaProject = (props) => {
           colors={['rgba(0,0,0,0.80)', 'rgba(0,0,0,0.00)']}
           style={styles.linearGradient}
         />
-        <View style={styles.actionsContainer}>
-          <Button
-            titleStyle={styles.buttonText}
-            title='Back'
-            type='clear'
-            icon={arrowLeftIcon}
-            onPress={() => props.navigation.goBack()}
-          />
-          <Button
-            titleStyle={styles.buttonText}
-            title='Follow'
-            icon={plusIcon}
-            type='clear'
-          />
-        </View>
+        <Header
+          transparent={true}
+          arrowColor={COLORS.paper.main}
+          backButtonStyle={styles.button}
+          backButtonTextStyle={styles.buttonText}
+          rightButton={followButton}
+          navigation={props.navigation} />
         <View style={styles.overlayContainer}>
           <View style={styles.infoContainer}>
             <TextSourceSans style={styles.title}>

@@ -6,6 +6,7 @@ import IconSLI from 'react-native-vector-icons/SimpleLineIcons';
 import API from '../../BaseApi';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ButtonCounter } from '../../components/ButtonCounter';
+import { Header } from '../../components/Header';
 import { Label } from '../../components/Label';
 import { Menu } from '../../components/Menu';
 import { Modal } from '../../components/Modal';
@@ -221,14 +222,6 @@ export const Idea = (props) => {
     commentInputRef.current.focus();
   };
 
-  function handleBack() {
-    if (isEditing){
-      toggleEditing();
-    }
-    else
-      return props.navigation.goBack();
-  }
-
   function handleScroll(event) {
     if (isScrolling && event.nativeEvent.contentOffset.y < 75.0) {
       setIsScrolling(false);
@@ -271,7 +264,6 @@ export const Idea = (props) => {
       });
   };
 
-  const arrowLeftIcon = (<IconSLI name='arrow-left' size={22} />);
   const optionsIcon = (<IconSLI name='options-vertical' size={22} />);
   const arrowUpIcon = (<IconSLI name='arrow-up' size={18} />);
   const arrowDownIcon = (<IconSLI name='arrow-down' size={18} />);
@@ -297,29 +289,23 @@ export const Idea = (props) => {
     fetchComments(content_type, pk);
   }, [idea]);
 
+  const rightHeaderButton = (
+    (!isEditing && !isScrolling) &&
+        <Button
+          icon={optionsIcon}
+          type='clear'
+          onPress={() => {setMenuItems(ideaMenuItems); toggleMenu();}}
+        />);
+
   return (
     <KeyboardAvoidingView
       behavior={(Platform.OS === 'ios')? 'padding' : null}
       style={styles.flexFullWidth}
     >
-      <View style={styles.container}>
-        <View style={styles.actionsContainer}>
-          <Button
-            buttonStyle={styles.backButton}
-            titleStyle={styles.backButtonText}
-            title='Back'
-            type='clear'
-            icon={arrowLeftIcon}
-            onPress={handleBack}
-          />
-          {(!isEditing && !isScrolling) &&
-        <Button
-          icon={optionsIcon}
-          type='clear'
-          onPress={() => {setMenuItems(ideaMenuItems); toggleMenu();}}
-        />}
-        </View>
-      </View>
+      <Header
+        isEditing={isEditing}
+        rightButton={rightHeaderButton}
+        navigation={props.navigation} />
       <ScrollView
         style={styles.container}
         scrollEnabled={!isEditing}

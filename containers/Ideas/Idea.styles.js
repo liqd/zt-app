@@ -11,24 +11,6 @@ export const styles = StyleSheet.create({
     paddingHorizontal: SPACINGS.multiplyBy(.75),
     backgroundColor: COLORS.paper.main,
   },
-  actionsContainer: {
-    height: SPACINGS.multiplyBy(4),
-    marginTop: SPACINGS.multiplyBy(1.5),
-    marginHorizontal: SPACINGS.multiplyBy(-0.5),
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center'
-  },
-  backButton: {
-    padding: 0,
-    marginVertical: 0,
-    marginHorizontal: -5,
-  },
-  backButtonText: {
-    fontSize: SIZES.md,
-    marginHorizontal: SPACINGS.multiplyBy(.25),
-    color: COLORS.text.main,
-  },
   titleContainer: {
     marginTop: SPACINGS.multiplyBy(.25)
   },
@@ -85,20 +67,5 @@ export const styles = StyleSheet.create({
   },
   flexFullWidth: {
     flex: 1
-  },
-  textInputButtonTitle: {
-    fontSize: SIZES.md,
-    lineHeight: LINEHEIGHTS.sm,
-    paddingTop: SPACINGS.multiplyBy(.5),
-    paddingBottom: SPACINGS.multiplyBy(.25),
-    flexWrap: 'nowrap',
-    flexDirection: 'column',
-    justifyContent: 'space-between'
-  },
-  textInputButtonTitleLight: {
-    color: COLORS.grey.medium,
-  },
-  textInputButtonTitleDark: {
-    color: COLORS.text.main,
   },
 });
