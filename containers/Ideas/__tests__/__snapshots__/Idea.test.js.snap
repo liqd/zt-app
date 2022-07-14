@@ -29,6 +29,7 @@ exports[`Test Idea Snapshot 1`] = `
           "flexDirection": "row",
           "height": 80,
           "justifyContent": "space-between",
+          "marginHorizontal": -10,
           "marginTop": 30,
         }
       }

@@ -11,19 +11,10 @@ export const styles = StyleSheet.create({
     paddingHorizontal: SPACINGS.multiplyBy(.75),
     backgroundColor: COLORS.paper.main,
   },
-  descripContainer: {
-    paddingHorizontal: SPACINGS.multiplyBy(.75),
-    backgroundColor: COLORS.paper.main,
-    flex: 1,
-  },
-  descripBtnContainer: {
-    marginHorizontal: SPACINGS.multiplyBy(-.75),
-    flex: 1,
-    justifyContent: 'flex-end'
-  },
   actionsContainer: {
     height: SPACINGS.multiplyBy(4),
     marginTop: SPACINGS.multiplyBy(1.5),
+    marginHorizontal: SPACINGS.multiplyBy(-0.5),
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center'
@@ -84,9 +75,6 @@ export const styles = StyleSheet.create({
     marginVertical: SPACINGS.multiplyBy(.5),
     flexWrap: 'wrap',
   },
-  textLight: {
-    color: COLORS.text.inverted,
-  },
   commentIcon: {
     fontSize: SIZES.md,
     marginVertical: SPACINGS.multiplyBy(.5),
@@ -97,5 +85,20 @@ export const styles = StyleSheet.create({
   },
   flexFullWidth: {
     flex: 1
-  }
+  },
+  textInputButtonTitle: {
+    fontSize: SIZES.md,
+    lineHeight: LINEHEIGHTS.sm,
+    paddingTop: SPACINGS.multiplyBy(.5),
+    paddingBottom: SPACINGS.multiplyBy(.25),
+    flexWrap: 'nowrap',
+    flexDirection: 'column',
+    justifyContent: 'space-between'
+  },
+  textInputButtonTitleLight: {
+    color: COLORS.grey.medium,
+  },
+  textInputButtonTitleDark: {
+    color: COLORS.text.main,
+  },
 });
