@@ -3,22 +3,18 @@ import { Alert, View, ScrollView } from 'react-native';
 import { Button } from '@rneui/base';
 import { Formik } from 'formik';
 import * as yup from 'yup';
-import IconSLI from 'react-native-vector-icons/SimpleLineIcons';
 import { ButtonSubmit } from '../../components/ButtonSubmit';
+import { Header } from '../../components/Header';
 import { TextSourceSans } from '../../components/TextSourceSans';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import API from '../../BaseApi';
 
 import { styles } from './ReportCreateMessage.styles';
 import { TextInputFullFormField } from '../../components/formFields';
-import { VirtualScrollView } from '../../components/VirtualScrollView';
 
 export const ReportCreateMessage = props => {
   const {content_type, object_pk} = props.route.params;
 
-  const arrowLeftIcon = (
-    <IconSLI name='arrow-left' size={22} />
-  );
   const reportMessageValidationSchema = yup.object().shape({
     message: yup
       .string()
@@ -53,16 +49,7 @@ export const ReportCreateMessage = props => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.actionsContainer}>
-        <Button
-          buttonStyle={styles.backButton}
-          titleStyle={styles.backButtonText}
-          title='Back'
-          type='clear'
-          icon={arrowLeftIcon}
-          onPress={() => props.navigation.goBack()}
-        />
-      </View>
+      <Header navigation={props.navigation} />
       <Formik
         validationSchema={reportMessageValidationSchema}
         initialValues={{message: ''}}

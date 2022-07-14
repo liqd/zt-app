@@ -1,22 +1,17 @@
 import React from 'react';
 import { View, ScrollView } from 'react-native';
-import { Button } from '@rneui/base';
 import { Formik } from 'formik';
 import * as yup from 'yup';
-import IconSLI from 'react-native-vector-icons/SimpleLineIcons';
 import { ButtonSubmit } from '../../components/ButtonSubmit';
+import { Header } from '../../components/Header';
 import { TextSourceSans } from '../../components/TextSourceSans';
 
 import { styles } from '../Reports/ReportCreateMessage.styles';
 import { TextInputFullFormField } from '../../components/formFields';
-import { VirtualScrollView } from '../../components/VirtualScrollView';
 
 export const IdeaCreateDescription = props => {
 
   const description = props.route.params.description;
-  const arrowLeftIcon = (
-    <IconSLI name='arrow-left' size={22} />
-  );
   const ideaDescriptionValidationSchema = yup.object().shape({
     description: yup
       .string()
@@ -34,16 +29,7 @@ export const IdeaCreateDescription = props => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.actionsContainer}>
-        <Button
-          buttonStyle={styles.backButton}
-          titleStyle={styles.backButtonText}
-          title='Back'
-          type='clear'
-          icon={arrowLeftIcon}
-          onPress={() => props.navigation.goBack()}
-        />
-      </View>
+      <Header navigation={props.navigation} />
       <Formik
         validationSchema={ideaDescriptionValidationSchema}
         initialValues={{description: description}}
