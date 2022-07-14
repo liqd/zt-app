@@ -1,9 +1,7 @@
-
 import React from 'react';
 import { View } from 'react-native';
 import IconSLI from 'react-native-vector-icons/SimpleLineIcons';
 import { styles } from './ButtonTextInput.styles';
-import { COLORS } from '../theme/colors';
 
 import { TouchableOpacity } from 'react-native';
 import { TextSourceSans } from './TextSourceSans';
@@ -18,7 +16,7 @@ export const ButtonTextInputFieldContainer = (props) => {
 };
 
 export const ButtonTextInput = (props) => {
-  const arrowRightIcon = (<IconSLI name='arrow-right' size={22} color={COLORS.grey.light}/>);
+  const arrowRightIcon = (<IconSLI name='arrow-right' size={22}/>);
 
   return (
     <TouchableOpacity
@@ -26,10 +24,10 @@ export const ButtonTextInput = (props) => {
       style={styles.textInputButton}
       disabled={props.disabled}
     >
-      <TextSourceSans style={styles.textInputButtonTitle} numberOfLines={1}>
+      <TextSourceSans style={props.textInputButtonTitle} numberOfLines={1}>
         {props.title}
       </TextSourceSans>
-      <TextSourceSans style={styles.textInputButtonTitle}>
+      <TextSourceSans style={props.textInputButtonTitle}>
         {arrowRightIcon}
       </TextSourceSans>
     </TouchableOpacity>

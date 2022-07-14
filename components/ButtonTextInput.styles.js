@@ -16,16 +16,7 @@ export const styles = StyleSheet.create({
     borderLeftWidth: 0,
     borderBottomColor: COLORS.grey.extralight,
     borderBottomWidth: BORDERWIDTH.base,
-  },
-  textInputButtonTitle: {
-    color: COLORS.grey.light,
-    fontSize: SIZES.md,
-    lineHeight: LINEHEIGHTS.sm,
-    paddingTop: SPACINGS.multiplyBy(.5),
-    paddingBottom: SPACINGS.multiplyBy(.25),
-    flexWrap: 'nowrap',
-    flexDirection: 'column',
-    justifyContent: 'space-between'
+    color: COLORS.grey.light
   },
   formLabel: {
     fontSize: SIZES.sm,
