@@ -123,5 +123,18 @@ export const styles = StyleSheet.create({
   },
   tabButton: {
     paddingHorizontal: 0
+  },
+  contactHeadline: {
+    borderTopWidth: 1,
+    marginTop: SPACINGS.multiplyBy(1),
+    paddingTop: SPACINGS.multiplyBy(1),
+    fontSize: SIZES.md,
+    fontWeight: FONTWEIGHT.boldxl,
+  },
+  contactField: {
+    paddingTop: SPACINGS.multiplyBy(0.7),
+  },
+  contactLabel: {
+    fontWeight: FONTWEIGHT.boldxl,
   }
 });
