@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, ImageBackground, ScrollView, Image } from 'react-native';
+import { View, ImageBackground, Linking, ScrollView, Image } from 'react-native';
 import { Button } from '@rneui/themed';
 import { LinearGradient } from 'expo-linear-gradient';
 import { styles } from './IdeaProject.styles';
@@ -11,6 +11,7 @@ import { COLORS } from '../../theme/colors';
 import { DateService } from '../../services/DateService';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ButtonSubmit } from '../../components/ButtonSubmit';
+import { LinkTextSourceSans } from '../../components/LinkTextSourceSans';
 import { TextSourceSans } from '../../components/TextSourceSans';
 import { Richtext } from '../../components/Richtext';
 
@@ -194,7 +195,53 @@ export const IdeaProject = (props) => {
                 </View>
               }
               {visibleTab === tabs.information &&
-                <Richtext text={project.information} />
+                <View>
+                  <Richtext text={project.information} />
+                  {project.has_contact_info &&
+                  <>
+                    <TextSourceSans style={styles.contactHeadline}>
+                      Contact for Questions
+                    </TextSourceSans>
+                    {!!project.contact_name &&
+                      <TextSourceSans style={styles.contactField}>
+                        {project.contact_name}
+                      </TextSourceSans>
+                    }
+                    {!!project.contact_address_text &&
+                      <TextSourceSans style={styles.contactField}>
+                        {project.contact_address_text}
+                      </TextSourceSans>
+                    }
+                    {!!project.contact_phone &&
+                      <TextSourceSans style={styles.contactField}>
+                        <TextSourceSans style={styles.contactLabel}>
+                          Telephone: </TextSourceSans>
+                        {project.contact_phone}
+                      </TextSourceSans>
+                    }
+                    {!!project.contact_email &&
+                      <TextSourceSans style={styles.contactField}>
+                        <TextSourceSans style={styles.contactLabel}>
+                          Email: </TextSourceSans>
+                        <LinkTextSourceSans
+                          onPress={() => Linking.openURL(`mailto:${project.contact_email}`)}>
+                          {project.contact_email}
+                        </LinkTextSourceSans>
+                      </TextSourceSans>
+                    }
+                    {!!project.contact_url &&
+                      <TextSourceSans style={styles.contactField}>
+                        <TextSourceSans style={styles.contactLabel}>
+                          Website: </TextSourceSans>
+                        <LinkTextSourceSans
+                          onPress={() => Linking.openURL(project.contact_url)}>
+                          {project.contact_url}
+                        </LinkTextSourceSans>
+                      </TextSourceSans>
+                    }
+                  </>
+                  }
+                </View>
               }
               {visibleTab === tabs.results &&
                 <Richtext text={project.result} />
