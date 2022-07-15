@@ -45,9 +45,9 @@ export const IdeaProject = (props) => {
   );
 
   const fetchIdeas = () => {
-    project.single_agenda_setting_module &&
+    project.single_idea_collection_module &&
       AsyncStorage.getItem('authToken')
-        .then((token) => API.getIdeas(project.single_agenda_setting_module, token))
+        .then((token) => API.getIdeas(project.single_idea_collection_module, token))
         .then((ideaResponse) => {
           setIdeas(ideaResponse);
         });
@@ -55,7 +55,7 @@ export const IdeaProject = (props) => {
 
   const fetchModule = () => {
     AsyncStorage.getItem('authToken')
-      .then((token) => API.getModule(project.single_agenda_setting_module, token))
+      .then((token) => API.getModule(project.single_idea_collection_module, token))
       .then((moduleResponse) => {
         setModule(moduleResponse);
         const activePhase = moduleResponse.phases.find((phase) => phase.is_active);
@@ -165,7 +165,7 @@ export const IdeaProject = (props) => {
                     </TextSourceSans>
                   </View>
                 )}
-                {project.single_agenda_setting_module ? (
+                {project.single_idea_collection_module ? (
                   <View style={styles.containerInner}>
                     <View style={styles.listActions}>
                       <Button icon={filterIcon} type='clear' />
