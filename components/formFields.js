@@ -19,7 +19,7 @@ export const TextInputFormField = (props) => {
         style={styles.textInput}
         {...props}
       />
-      {props.touched && <TextSourceSans style={styles.formError}>{props.error}</TextSourceSans>}
+      {props.touched && props.error && <TextSourceSans style={styles.formError}>{props.error}</TextSourceSans>}
     </View>
   );
 };
