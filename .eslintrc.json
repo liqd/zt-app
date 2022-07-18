@@ -1,54 +1,52 @@
 {
-  "env": {
-      "browser": true,
-      "es6": true,
-      "node": true,
-      "jest/globals": true
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
   },
-  "extends": [
-      "eslint:recommended",
-      "plugin:react/recommended"
-    ],
+  "env": {
+    "browser": true,
+    "es6": true,
+    "node": true,
+    "jest/globals": true
+  },
+  "extends": ["eslint:recommended", "plugin:react/recommended"],
   "globals": {
-      "Atomics": "readonly",
-      "SharedArrayBuffer": "readonly"
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly"
   },
   "parserOptions": {
-      "ecmaFeatures": {
-          "jsx": true
-      },
-      "ecmaVersion": 2018,
-      "sourceType": "module"
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 2018,
+    "sourceType": "module"
   },
-  "plugins": [
-      "react",
-      "react-native",
-      "jest"
-  ],
+  "plugins": ["react", "react-native", "jest"],
   "ignorePatterns": ["**/__mocks__/*"],
   "rules": {
-      // General ESLINT rules
-      "indent": ["error", 2, {"SwitchCase": 1}],
-      "linebreak-style": ["error", "unix"],
-      "quotes": ["error", "single"],
-      "semi": ["error", "always"],
-      "no-unused-vars": ["warn", {"varsIgnorePattern": "(React)"}],
-      "eol-last": ["error", "always"],
-      "no-multiple-empty-lines": ["error", {"max": 1}],
-      "brace-style": ["error", "stroustrup", { "allowSingleLine": true}],
+    // General ESLINT rules
+    "indent": ["error", 2, { "SwitchCase": 1 }],
+    "linebreak-style": ["error", "unix"],
+    "quotes": ["error", "single"],
+    "semi": ["error", "always"],
+    "no-unused-vars": ["warn", { "varsIgnorePattern": "(React)" }],
+    "eol-last": ["error", "always"],
+    "no-multiple-empty-lines": ["error", { "max": 1 }],
+    "brace-style": ["error", "stroustrup", { "allowSingleLine": true }],
 
-      // Specific REACT rules
-      "react/jsx-uses-vars": "error",
-      "react/button-has-type": "warn",
-      "react/destructuring-assignment": "off",
-      "react/prop-types": "off",
+    // Specific REACT rules
+    "react/jsx-uses-vars": "error",
+    "react/button-has-type": "warn",
+    "react/destructuring-assignment": "off",
+    "react/prop-types": "off",
 
-      // Specific REACT NATIVE rules
-      "react-native/no-unused-styles": "error",
-      "react-native/split-platform-components": "off",
-      "react-native/no-inline-styles": "warn",
-      "react-native/no-color-literals": "off",
-      "react-native/no-raw-text": "off",
-      "react-native/no-single-element-style-arrays": "error"
+    // Specific REACT NATIVE rules
+    "react-native/no-unused-styles": "error",
+    "react-native/split-platform-components": "off",
+    "react-native/no-inline-styles": "warn",
+    "react-native/no-color-literals": "off",
+    "react-native/no-raw-text": "off",
+    "react-native/no-single-element-style-arrays": "error"
   }
 }
