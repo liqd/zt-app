@@ -4,32 +4,33 @@ import { styles } from './ButtonCounter.styles';
 import { TextSourceSans } from './TextSourceSans';
 
 export const ButtonCounter = (props) => {
+  const textStyles = props.disabled
+    ? [styles.text, styles.disableStyle]
+    : !props.highlight || props.highlight === 0
+      ? styles.text
+      : props.highlight === 1
+        ? [styles.text, styles.highlightUpStyle]
+        : [styles.text, styles.highlightDownStyle];
+
+  const iconStyles = props.disabled
+    ? [styles.icon, styles.disableStyle]
+    : !props.highlight || props.highlight === 0
+      ? styles.icon
+      : props.highlight === 1
+        ? [styles.icon, styles.highlightUpStyle]
+        : [styles.icon, styles.highlightDownStyle];
+
   return (
     <TouchableOpacity
       style={styles.container}
       onPress={props.onPress}
       disabled={props.disabled}
     >
-      <TextSourceSans style={
-        props.disabled
-          ? styles.textDisabled
-          : !props.highlight || props.highlight === 0
-            ? styles.text
-            : props.highlight === 1
-              ? styles.textUpHighlight
-              : styles.textDownHighlight
-      }>
+      <TextSourceSans style={textStyles}>
         {props.counter}
       </TextSourceSans>
-      <TextSourceSans style={
-        props.disabled
-          ? styles.iconDisabled
-          : !props.highlight || props.highlight === 0
-            ? styles.icon
-            : props.highlight === 1
-              ? styles.iconUpHighlight
-              : styles.iconDownHighlight
-      }>
+
+      <TextSourceSans style={iconStyles}>
         {props.icon}
       </TextSourceSans>
     </TouchableOpacity>
