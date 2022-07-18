@@ -31,9 +31,9 @@ export const IdeasListItem = (props) => {
     return categoryList;
   };
 
-  const arrowUpIcon = (<IconSLI name='arrow-up' size={18} />);
-  const arrowDownIcon = (<IconSLI name='arrow-down' size={18} />);
-  const commentIcon = (<IconSLI name='bubble' size={18} />);
+  const arrowUpIcon = <IconSLI name='arrow-up' size={18} />;
+  const arrowDownIcon = <IconSLI name='arrow-down' size={18} />;
+  const commentIcon = <IconSLI name='bubble' size={18} />;
 
   return (
     <TouchableOpacity onPress={pressHandler}>
@@ -43,7 +43,7 @@ export const IdeasListItem = (props) => {
           {getCategory().length > 0 ? (
             <View style={styles.labelsContainer}>
               {getCategory().map((category, idx) => (
-                <View 
+                <View
                   key={idx + category}
                   style={styles.labelWrapper}
                 >
@@ -61,9 +61,9 @@ export const IdeasListItem = (props) => {
               {DateService(created)}
             </TextSourceSans>
             <View style={styles.counters}>
-              <ButtonCounter icon={arrowUpIcon} counter={upCount} />
-              <ButtonCounter icon={arrowDownIcon} counter={downCount} />
-              <ButtonCounter icon={commentIcon} counter={commentCount} />
+              <ButtonCounter icon={arrowUpIcon} counter={upCount} disabled />
+              <ButtonCounter icon={arrowDownIcon} counter={downCount} disabled />
+              <ButtonCounter icon={commentIcon} counter={commentCount} disabled />
             </View>
           </View>
         </View>
