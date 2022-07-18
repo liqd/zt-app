@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 import { COLORS } from '../../theme/colors';
-import { SIZES, FONTWEIGHT } from '../../theme/fonts';
+import { SIZES, FONTWEIGHT, LINEHEIGHTS } from '../../theme/fonts';
 import { SPACINGS } from '../../theme/spacings';
 
 export const styles = StyleSheet.create({
@@ -62,7 +62,9 @@ export const styles = StyleSheet.create({
   },
   buttonTitle: {
     color: COLORS.grey.dark,
-    marginLeft: SPACINGS.multiplyBy(0.4)
+    marginLeft: SPACINGS.multiplyBy(0.4),
+    fontSize: SIZES.sm,
+    lineHeight: LINEHEIGHTS.sm,
   },
   commentButton: {
     paddingVertical: SPACINGS.multiplyBy(.4)

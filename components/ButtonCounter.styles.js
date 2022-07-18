@@ -12,44 +12,21 @@ export const styles = StyleSheet.create({
     letterSpacing: SPACINGS.multiplyBy(.5),
     fontSize: SIZES.md,
     lineHeight: LINEHEIGHTS.md,
-    color: COLORS.text.main
   },
   text: {
     letterSpacing: LETTERSPACING.iconbtn,
-    color: COLORS.text.main
+    fontSize: SIZES.sm,
+    lineHeight: LINEHEIGHTS.sm,
   },
-  iconDisabled: {
-    letterSpacing: SPACINGS.multiplyBy(.5),
-    fontSize: SIZES.md,
-    lineHeight: LINEHEIGHTS.md,
+  disableStyle: {
     color: COLORS.grey.light
   },
-  textDisabled: {
-    letterSpacing: LETTERSPACING.iconbtn,
-    color: COLORS.grey.light
-  },
-  textUpHighlight: {
-    letterSpacing: LETTERSPACING.iconbtn,
+  highlightUpStyle: {
     color: COLORS.primary,
     fontWeight: FONTWEIGHT.boldxxl
   },
-  iconUpHighlight: {
-    letterSpacing: SPACINGS.multiplyBy(.5),
-    fontSize: SIZES.md,
-    lineHeight: LINEHEIGHTS.md,
-    color: COLORS.primary,
-    fontWeight: FONTWEIGHT.boldxxl
-  },
-  textDownHighlight: {
-    letterSpacing: LETTERSPACING.iconbtn,
+  highlightDownStyle: {
     color: COLORS.danger,
     fontWeight: FONTWEIGHT.boldxxl
   },
-  iconDownHighlight: {
-    letterSpacing: SPACINGS.multiplyBy(.5),
-    fontSize: SIZES.md,
-    lineHeight: LINEHEIGHTS.md,
-    color: COLORS.danger,
-    fontWeight: FONTWEIGHT.boldxxl
-  }
 });
