@@ -6,7 +6,7 @@ import { styles } from './IdeaProject.styles';
 import { IdeasList } from './IdeasList';
 import IconSLI from 'react-native-vector-icons/SimpleLineIcons';
 import IconFA from 'react-native-vector-icons/FontAwesome';
-import API, { baseUrl } from '../../BaseApi';
+import API from '../../BaseApi';
 import { COLORS } from '../../theme/colors';
 import { DateService } from '../../services/DateService';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -114,7 +114,7 @@ export const IdeaProject = (props) => {
                   <View style={styles.organisationLogoContainer}>
                     <Image
                       style={styles.organisationLogo}
-                      source={{ uri: baseUrl + project.organisation_logo }}
+                      source={{ uri: project.organisation_logo }}
                     />
                   </View>)}
                 <TextSourceSans style={styles.organisationName}>
