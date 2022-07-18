@@ -376,8 +376,9 @@ exports[`Test Idea Snapshot 1`] = `
                       "fontFamily": "SourceSansPro_400Regular",
                     },
                     Object {
-                      "color": "#1a1a1a",
+                      "fontSize": 14.45,
                       "letterSpacing": 5,
+                      "lineHeight": 20.9,
                     },
                   ]
                 }
@@ -391,7 +392,6 @@ exports[`Test Idea Snapshot 1`] = `
                       "fontFamily": "SourceSansPro_400Regular",
                     },
                     Object {
-                      "color": "#1a1a1a",
                       "fontSize": 20.4,
                       "letterSpacing": 10,
                       "lineHeight": 24.200000000000003,
@@ -453,8 +453,9 @@ exports[`Test Idea Snapshot 1`] = `
                       "fontFamily": "SourceSansPro_400Regular",
                     },
                     Object {
-                      "color": "#1a1a1a",
+                      "fontSize": 14.45,
                       "letterSpacing": 5,
+                      "lineHeight": 20.9,
                     },
                   ]
                 }
@@ -468,7 +469,6 @@ exports[`Test Idea Snapshot 1`] = `
                       "fontFamily": "SourceSansPro_400Regular",
                     },
                     Object {
-                      "color": "#1a1a1a",
                       "fontSize": 20.4,
                       "letterSpacing": 10,
                       "lineHeight": 24.200000000000003,
@@ -779,10 +779,16 @@ exports[`Test Idea Snapshot 1`] = `
                           Object {
                             "fontFamily": "SourceSansPro_400Regular",
                           },
-                          Object {
-                            "color": "#c4c4c4",
-                            "letterSpacing": 5,
-                          },
+                          Array [
+                            Object {
+                              "fontSize": 14.45,
+                              "letterSpacing": 5,
+                              "lineHeight": 20.9,
+                            },
+                            Object {
+                              "color": "#c4c4c4",
+                            },
+                          ],
                         ]
                       }
                     >
@@ -794,12 +800,16 @@ exports[`Test Idea Snapshot 1`] = `
                           Object {
                             "fontFamily": "SourceSansPro_400Regular",
                           },
-                          Object {
-                            "color": "#c4c4c4",
-                            "fontSize": 20.4,
-                            "letterSpacing": 10,
-                            "lineHeight": 24.200000000000003,
-                          },
+                          Array [
+                            Object {
+                              "fontSize": 20.4,
+                              "letterSpacing": 10,
+                              "lineHeight": 24.200000000000003,
+                            },
+                            Object {
+                              "color": "#c4c4c4",
+                            },
+                          ],
                         ]
                       }
                     >
@@ -856,10 +866,16 @@ exports[`Test Idea Snapshot 1`] = `
                           Object {
                             "fontFamily": "SourceSansPro_400Regular",
                           },
-                          Object {
-                            "color": "#c4c4c4",
-                            "letterSpacing": 5,
-                          },
+                          Array [
+                            Object {
+                              "fontSize": 14.45,
+                              "letterSpacing": 5,
+                              "lineHeight": 20.9,
+                            },
+                            Object {
+                              "color": "#c4c4c4",
+                            },
+                          ],
                         ]
                       }
                     >
@@ -871,12 +887,16 @@ exports[`Test Idea Snapshot 1`] = `
                           Object {
                             "fontFamily": "SourceSansPro_400Regular",
                           },
-                          Object {
-                            "color": "#c4c4c4",
-                            "fontSize": 20.4,
-                            "letterSpacing": 10,
-                            "lineHeight": 24.200000000000003,
-                          },
+                          Array [
+                            Object {
+                              "fontSize": 20.4,
+                              "letterSpacing": 10,
+                              "lineHeight": 24.200000000000003,
+                            },
+                            Object {
+                              "color": "#c4c4c4",
+                            },
+                          ],
                         ]
                       }
                     >
@@ -983,7 +1003,8 @@ exports[`Test Idea Snapshot 1`] = `
                         style={
                           Object {
                             "color": "#464a4c",
-                            "fontSize": 18,
+                            "fontSize": 14.45,
+                            "lineHeight": 20.9,
                             "marginLeft": 8,
                             "paddingVertical": 1,
                             "textAlign": "center",
@@ -1074,7 +1095,8 @@ exports[`Test Idea Snapshot 1`] = `
                         style={
                           Object {
                             "color": "#464a4c",
-                            "fontSize": 18,
+                            "fontSize": 14.45,
+                            "lineHeight": 20.9,
                             "marginLeft": 8,
                             "paddingVertical": 1,
                             "textAlign": "center",
