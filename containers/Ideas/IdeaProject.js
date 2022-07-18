@@ -80,175 +80,174 @@ export const IdeaProject = (props) => {
 
   return (
     <View style={styles.container}>
+      <ImageBackground style={styles.bgImage} source={{ uri: bgImage }} />
       <ScrollView>
-        <ImageBackground style={styles.bgImage} source={{ uri: bgImage }}>
-          <LinearGradient
-            colors={['rgba(0,0,0,0.80)', 'rgba(0,0,0,0.00)']}
-            style={styles.linearGradient}
+        <LinearGradient
+          colors={['rgba(0,0,0,0.80)', 'rgba(0,0,0,0.00)']}
+          style={styles.linearGradient}
+        />
+        <View style={styles.actionsContainer}>
+          <Button
+            titleStyle={styles.buttonText}
+            title='Back'
+            type='clear'
+            icon={arrowLeftIcon}
+            onPress={() => props.navigation.goBack()}
           />
-          <View style={styles.actionsContainer}>
-            <Button
-              titleStyle={styles.buttonText}
-              title='Back'
-              type='clear'
-              icon={arrowLeftIcon}
-              onPress={() => props.navigation.goBack()}
-            />
-            <Button
-              titleStyle={styles.buttonText}
-              title='Follow'
-              icon={plusIcon}
-              type='clear'
-            />
-          </View>
-          <View style={styles.overlayContainer}>
-            <View style={styles.infoContainer}>
-              <TextSourceSans style={styles.title}>
-                {project.name}
+          <Button
+            titleStyle={styles.buttonText}
+            title='Follow'
+            icon={plusIcon}
+            type='clear'
+          />
+        </View>
+        <View style={styles.overlayContainer}>
+          <View style={styles.infoContainer}>
+            <TextSourceSans style={styles.title}>
+              {project.name}
+            </TextSourceSans>
+            <TextSourceSans style={styles.description}>
+              {project.description}
+            </TextSourceSans>
+            <View style={styles.organisationContainer}>
+              {project.organisation_logo && (
+                <View style={styles.organisationLogoContainer}>
+                  <Image
+                    style={styles.organisationLogo}
+                    source={{ uri: project.organisation_logo }}
+                  />
+                </View>)}
+              <TextSourceSans style={styles.organisationName}>
+                {project.organisation}
               </TextSourceSans>
-              <TextSourceSans style={styles.description}>
-                {project.description}
-              </TextSourceSans>
-              <View style={styles.organisationContainer}>
-                {project.organisation_logo && (
-                  <View style={styles.organisationLogoContainer}>
-                    <Image
-                      style={styles.organisationLogo}
-                      source={{ uri: project.organisation_logo }}
-                    />
-                  </View>)}
-                <TextSourceSans style={styles.organisationName}>
-                  {project.organisation}
-                </TextSourceSans>
-              </View>
-              <View style={styles.tabsMenu}>
-                <Button
-                  buttonStyle={styles.tabButton}
-                  titleStyle={visibleTab === tabs.participation ? styles.tabsMenuItemActive : styles.tabsMenuItem}
-                  title='Participation'
-                  type='clear'
-                  onPress={() => setVisibleTab(tabs.participation)}
-                />
-                <Button
-                  buttonStyle={styles.tabButton}
-                  titleStyle={visibleTab === tabs.information ? styles.tabsMenuItemActive : styles.tabsMenuItem}
-                  title='Information'
-                  type='clear'
-                  onPress={() => setVisibleTab(tabs.information)}
-                />
-                <Button
-                  buttonStyle={styles.tabButton}
-                  titleStyle={visibleTab === tabs.results ? styles.tabsMenuItemActive : styles.tabsMenuItem}
-                  title='Results'
-                  type='clear'
-                  onPress={() => setVisibleTab(tabs.results)}
-                />
-              </View>
-              {visibleTab === tabs.participation &&
-                <View>
-                  {activePhase ? (
-                    <View style={styles.phaseContainer}>
-                      <TextSourceSans style={styles.phaseText}>
-                        {activePhase.name + ' (active)'}
-                      </TextSourceSans>
-                      <TextSourceSans style={styles.phaseDate}>
-                        {getDateTimeDisplay(activePhase.start_date)} – {getDateTimeDisplay(activePhase.end_date)}
-                      </TextSourceSans>
-                      <TextSourceSans style={styles.phaseText}>
-                        {activePhase.description}
-                      </TextSourceSans>
-                    </View>
-                  ) : (
-                    <View style={styles.phaseContainer}>
-                      <TextSourceSans>
-                        No active phase found.
-                      </TextSourceSans>
-                    </View>
-                  )}
-                  {project.single_agenda_setting_module ? (
-                    <View style={styles.containerInner}>
-                      <View style={styles.listActions}>
-                        <Button icon={filterIcon} type='clear' />
-                        <Button icon={sortIcon} type='clear' />
-                      </View>
-                      <View style={styles.listContainer}>
-                        <IdeasList
-                          ideas={ideas}
-                          module={module}
-                          navigation={props.navigation}
-                        />
-                      </View>
-                      {module.has_idea_adding_permission && (
-                        <ButtonSubmit
-                          title='Submit Idea'
-                          onPress={pressHandler}
-                        >
-                        </ButtonSubmit>
-                      )}
-                    </View>
-                  ) : (
-                    <TextSourceSans>
-                      Oops. Multiple module projects are not supported in adhocracy+
-                      app, yet! Please find them on adhocracy+ web.
-                    </TextSourceSans>
-                  )}
-                </View>
-              }
-              {visibleTab === tabs.information &&
-                <View>
-                  <Richtext text={project.information} />
-                  {project.has_contact_info &&
-                  <>
-                    <TextSourceSans style={styles.contactHeadline}>
-                      Contact for Questions
-                    </TextSourceSans>
-                    {!!project.contact_name &&
-                      <TextSourceSans style={styles.contactField}>
-                        {project.contact_name}
-                      </TextSourceSans>
-                    }
-                    {!!project.contact_address_text &&
-                      <TextSourceSans style={styles.contactField}>
-                        {project.contact_address_text}
-                      </TextSourceSans>
-                    }
-                    {!!project.contact_phone &&
-                      <TextSourceSans style={styles.contactField}>
-                        <TextSourceSans style={styles.contactLabel}>
-                          Telephone: </TextSourceSans>
-                        {project.contact_phone}
-                      </TextSourceSans>
-                    }
-                    {!!project.contact_email &&
-                      <TextSourceSans style={styles.contactField}>
-                        <TextSourceSans style={styles.contactLabel}>
-                          Email: </TextSourceSans>
-                        <LinkTextSourceSans
-                          onPress={() => Linking.openURL(`mailto:${project.contact_email}`)}>
-                          {project.contact_email}
-                        </LinkTextSourceSans>
-                      </TextSourceSans>
-                    }
-                    {!!project.contact_url &&
-                      <TextSourceSans style={styles.contactField}>
-                        <TextSourceSans style={styles.contactLabel}>
-                          Website: </TextSourceSans>
-                        <LinkTextSourceSans
-                          onPress={() => Linking.openURL(project.contact_url)}>
-                          {project.contact_url}
-                        </LinkTextSourceSans>
-                      </TextSourceSans>
-                    }
-                  </>
-                  }
-                </View>
-              }
-              {visibleTab === tabs.results &&
-                <Richtext text={project.result} />
-              }
             </View>
+            <View style={styles.tabsMenu}>
+              <Button
+                buttonStyle={styles.tabButton}
+                titleStyle={visibleTab === tabs.participation ? styles.tabsMenuItemActive : styles.tabsMenuItem}
+                title='Participation'
+                type='clear'
+                onPress={() => setVisibleTab(tabs.participation)}
+              />
+              <Button
+                buttonStyle={styles.tabButton}
+                titleStyle={visibleTab === tabs.information ? styles.tabsMenuItemActive : styles.tabsMenuItem}
+                title='Information'
+                type='clear'
+                onPress={() => setVisibleTab(tabs.information)}
+              />
+              <Button
+                buttonStyle={styles.tabButton}
+                titleStyle={visibleTab === tabs.results ? styles.tabsMenuItemActive : styles.tabsMenuItem}
+                title='Results'
+                type='clear'
+                onPress={() => setVisibleTab(tabs.results)}
+              />
+            </View>
+            {visibleTab === tabs.participation &&
+              <View>
+                {activePhase ? (
+                  <View style={styles.phaseContainer}>
+                    <TextSourceSans style={styles.phaseText}>
+                      {activePhase.name + ' (active)'}
+                    </TextSourceSans>
+                    <TextSourceSans style={styles.phaseDate}>
+                      {getDateTimeDisplay(activePhase.start_date)} – {getDateTimeDisplay(activePhase.end_date)}
+                    </TextSourceSans>
+                    <TextSourceSans style={styles.phaseText}>
+                      {activePhase.description}
+                    </TextSourceSans>
+                  </View>
+                ) : (
+                  <View style={styles.phaseContainer}>
+                    <TextSourceSans>
+                      No active phase found.
+                    </TextSourceSans>
+                  </View>
+                )}
+                {project.single_agenda_setting_module ? (
+                  <View style={styles.containerInner}>
+                    <View style={styles.listActions}>
+                      <Button icon={filterIcon} type='clear' />
+                      <Button icon={sortIcon} type='clear' />
+                    </View>
+                    <View style={styles.listContainer}>
+                      <IdeasList
+                        ideas={ideas}
+                        module={module}
+                        navigation={props.navigation}
+                      />
+                    </View>
+                    {module.has_idea_adding_permission && (
+                      <ButtonSubmit
+                        title='Submit Idea'
+                        onPress={pressHandler}
+                      >
+                      </ButtonSubmit>
+                    )}
+                  </View>
+                ) : (
+                  <TextSourceSans>
+                    Oops. Multiple module projects are not supported in adhocracy+
+                    app, yet! Please find them on adhocracy+ web.
+                  </TextSourceSans>
+                )}
+              </View>
+            }
+            {visibleTab === tabs.information &&
+              <View>
+                <Richtext text={project.information} />
+                {project.has_contact_info &&
+                <>
+                  <TextSourceSans style={styles.contactHeadline}>
+                    Contact for Questions
+                  </TextSourceSans>
+                  {!!project.contact_name &&
+                    <TextSourceSans style={styles.contactField}>
+                      {project.contact_name}
+                    </TextSourceSans>
+                  }
+                  {!!project.contact_address_text &&
+                    <TextSourceSans style={styles.contactField}>
+                      {project.contact_address_text}
+                    </TextSourceSans>
+                  }
+                  {!!project.contact_phone &&
+                    <TextSourceSans style={styles.contactField}>
+                      <TextSourceSans style={styles.contactLabel}>
+                        Telephone: </TextSourceSans>
+                      {project.contact_phone}
+                    </TextSourceSans>
+                  }
+                  {!!project.contact_email &&
+                    <TextSourceSans style={styles.contactField}>
+                      <TextSourceSans style={styles.contactLabel}>
+                        Email: </TextSourceSans>
+                      <LinkTextSourceSans
+                        onPress={() => Linking.openURL(`mailto:${project.contact_email}`)}>
+                        {project.contact_email}
+                      </LinkTextSourceSans>
+                    </TextSourceSans>
+                  }
+                  {!!project.contact_url &&
+                    <TextSourceSans style={styles.contactField}>
+                      <TextSourceSans style={styles.contactLabel}>
+                        Website: </TextSourceSans>
+                      <LinkTextSourceSans
+                        onPress={() => Linking.openURL(project.contact_url)}>
+                        {project.contact_url}
+                      </LinkTextSourceSans>
+                    </TextSourceSans>
+                  }
+                </>
+                }
+              </View>
+            }
+            {visibleTab === tabs.results &&
+              <Richtext text={project.result} />
+            }
           </View>
-        </ImageBackground>
+        </View>
       </ScrollView>
     </View>
   );

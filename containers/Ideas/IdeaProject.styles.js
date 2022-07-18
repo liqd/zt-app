@@ -13,16 +13,17 @@ export const styles = StyleSheet.create({
     margin: SPACINGS.multiplyBy(-0.8),
   },
   bgImage: {
-    flex: 1,
-    resizeMode: 'cover',
+    width: '100%',
+    height: 435,
+    position: 'absolute',
     backgroundColor: COLORS.primary,
   },
   linearGradient: {
     position: 'absolute',
     top: 0,
     width:'100%',
-    height: 300,
-    opacity: 0.5
+    height: 175,
+    opacity: 0.75
   },
   overlayContainer: {
     borderTopLeftRadius: BORDERRADIUS.container,
