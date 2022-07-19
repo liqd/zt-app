@@ -245,6 +245,8 @@ export const Comment = (props) => {
         <View style={styles.ratingButtons}>
           <ButtonCounter
             icon={arrowUpIcon}
+            labelText="up-votes"
+            hintText="click to up vote"
             counter={comment.ratings.positive_ratings}
             onPress={() => handleRate(comment, 1)}
             highlight={
@@ -256,6 +258,8 @@ export const Comment = (props) => {
           />
           <ButtonCounter
             icon={arrowDownIcon}
+            labelText="down-votes"
+            hintText="click to down vote"
             counter={comment.ratings.negative_ratings}
             onPress={() => handleRate(comment, -1)}
             highlight={

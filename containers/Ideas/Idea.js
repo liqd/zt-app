@@ -359,6 +359,8 @@ export const Idea = (props) => {
             <View style={styles.ratingButtons}>
               <ButtonCounter
                 icon={arrowUpIcon}
+                labelText="up-votes"
+                hintText="click to up vote"
                 counter={ideaState.positive_rating_count}
                 onPress={() => handleRate(1)}
                 highlight={
@@ -370,6 +372,8 @@ export const Idea = (props) => {
               />
               <ButtonCounter
                 icon={arrowDownIcon}
+                labelText="down-votes"
+                hintText="click to down vote"
                 counter={ideaState.negative_rating_count}
                 onPress={() => handleRate(-1)}
                 highlight={
