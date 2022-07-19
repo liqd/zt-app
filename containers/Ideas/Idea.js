@@ -340,27 +340,31 @@ export const Idea = (props) => {
               </TextSourceSans>
               <TextSourceSans style={styles.text}>
             Reference No.: {ideaState.reference_number || 'n/a'}
-              </TextSourceSans>
-            </View>
-            <View style={styles.bottomActionsContainer}>
-              <View style={styles.ratingButtons}>
-                <ButtonCounter
-                  icon={arrowUpIcon}
-                  counter={ideaState.positive_rating_count}
-                  onPress={() => handleRate(1)}
-                  highlight={
-                    ideaState.user_rating &&
+            </TextSourceSans>
+          </View>
+          <View style={styles.bottomActionsContainer}>
+            <View style={styles.ratingButtons}>
+              <ButtonCounter
+                icon={arrowUpIcon}
+                labelText="up-votes"
+                hintText="click to up vote"
+                counter={ideaState.positive_rating_count}
+                onPress={() => handleRate(1)}
+                highlight={
+                  ideaState.user_rating &&
                 ideaState.user_rating.value === 1 &&
                 ideaState.user_rating.value
-                  }
-                  disabled={!ideaState.has_rating_permission}
-                />
-                <ButtonCounter
-                  icon={arrowDownIcon}
-                  counter={ideaState.negative_rating_count}
-                  onPress={() => handleRate(-1)}
-                  highlight={
-                    ideaState.user_rating &&
+                }
+                disabled={!ideaState.has_rating_permission}
+              />
+              <ButtonCounter
+                icon={arrowDownIcon}
+                labelText="down-votes"
+                hintText="click to down vote"
+                counter={ideaState.negative_rating_count}
+                onPress={() => handleRate(-1)}
+                highlight={
+                  ideaState.user_rating &&
                 ideaState.user_rating.value === -1 &&
                 ideaState.user_rating.value
                   }

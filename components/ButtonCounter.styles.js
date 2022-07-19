@@ -1,5 +1,4 @@
 import { StyleSheet } from 'react-native';
-import { SPACINGS } from '../theme/spacings';
 import { SIZES, LINEHEIGHTS, LETTERSPACING, FONTWEIGHT } from '../theme/fonts';
 import { COLORS } from '../theme/colors';
 
@@ -7,11 +6,6 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'row'
-  },
-  icon: {
-    letterSpacing: SPACINGS.multiplyBy(.5),
-    fontSize: SIZES.md,
-    lineHeight: LINEHEIGHTS.md,
   },
   text: {
     letterSpacing: LETTERSPACING.iconbtn,
