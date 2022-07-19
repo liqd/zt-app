@@ -43,8 +43,12 @@ export const styles = StyleSheet.create({
     alignItems: 'flex-start',
     borderRadius: 0
   },
+  dropdownContainer: {
+    zIndex: 1
+  },
   dropdownFormField: {
     borderBottomColor: COLORS.grey.extralight,
+    backgroundColor: COLORS.text.inverted,
     borderTopWidth: 0,
     borderRightWidth: 0,
     borderLeftWidth: 0,
