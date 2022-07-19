@@ -96,16 +96,6 @@ export const styles = StyleSheet.create({
     fontWeight: FONTWEIGHT.bold,
     color: COLORS.primary
   },
-  phaseContainer: {
-    marginVertical: SPACINGS.multiplyBy(1.5),
-  },
-  phaseDate: {
-    fontSize: SIZES.multiplyBy(0.9375),
-    fontWeight: FONTWEIGHT.boldxl,
-  },
-  phaseText: {
-    fontSize: SIZES.multiplyBy(0.9375),
-  },
   actionsContainer: {
     height: SPACINGS.multiplyBy(4),
     marginTop: SPACINGS.multiplyBy(1.5),

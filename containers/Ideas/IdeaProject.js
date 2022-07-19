@@ -4,11 +4,11 @@ import { Button } from '@rneui/themed';
 import { LinearGradient } from 'expo-linear-gradient';
 import { styles } from './IdeaProject.styles';
 import { IdeasList } from './IdeasList';
+import { Phase } from './Phase';
 import IconSLI from 'react-native-vector-icons/SimpleLineIcons';
 import IconFA from 'react-native-vector-icons/FontAwesome';
 import API from '../../BaseApi';
 import { COLORS } from '../../theme/colors';
-import { DateService } from '../../services/DateService';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ButtonSubmit } from '../../components/ButtonSubmit';
 import { LinkTextSourceSans } from '../../components/LinkTextSourceSans';
@@ -24,7 +24,6 @@ export const IdeaProject = (props) => {
   const {project} = props.route.params;
   const [ideas, setIdeas] = useState([]);
   const [module, setModule] = useState([]);
-  const [activePhase, setActivePhase] = useState();
   const [visibleTab, setVisibleTab] = useState(tabs.participation);
   const bgImage = project.image
     ? project.image
@@ -58,8 +57,6 @@ export const IdeaProject = (props) => {
       .then((token) => API.getModule(project.single_idea_collection_module, token))
       .then((moduleResponse) => {
         setModule(moduleResponse);
-        const activePhase = moduleResponse.phases.find((phase) => phase.is_active);
-        activePhase && setActivePhase(activePhase);
       });
   };
 
@@ -73,10 +70,6 @@ export const IdeaProject = (props) => {
   useEffect(() => {
     fetchModule();
   }, []);
-
-  const getDateTimeDisplay = (dateTime) => {
-    return DateService(dateTime, 'month d, y, h:m');
-  };
 
   return (
     <View style={styles.container}>
@@ -146,25 +139,11 @@ export const IdeaProject = (props) => {
             </View>
             {visibleTab === tabs.participation &&
               <View>
-                {activePhase ? (
-                  <View style={styles.phaseContainer}>
-                    <TextSourceSans style={styles.phaseText}>
-                      {activePhase.name + ' (active)'}
-                    </TextSourceSans>
-                    <TextSourceSans style={styles.phaseDate}>
-                      {getDateTimeDisplay(activePhase.start_date)} – {getDateTimeDisplay(activePhase.end_date)}
-                    </TextSourceSans>
-                    <TextSourceSans style={styles.phaseText}>
-                      {activePhase.description}
-                    </TextSourceSans>
-                  </View>
-                ) : (
-                  <View style={styles.phaseContainer}>
-                    <TextSourceSans>
-                      No active phase found.
-                    </TextSourceSans>
-                  </View>
-                )}
+                <Phase
+                  activePhase={module.active_phase}
+                  futurePhases={module.future_phases}
+                  pastPhases={module.past_phases}
+                />
                 {project.single_idea_collection_module ? (
                   <View style={styles.containerInner}>
                     <View style={styles.listActions}>
