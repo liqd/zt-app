@@ -91,6 +91,7 @@ export const LoginScreen = () => {
                 onBlur={handleBlur('username')}
                 error={errors.username}
                 touched={touched.username}
+                testID='username-input'
               />
               <TextInputFormField
                 field='Password:'
@@ -104,6 +105,7 @@ export const LoginScreen = () => {
                 error={errors.password}
                 touched={touched.password}
                 secureTextEntry
+                testID='password-input'
               />
               <LinkTextSourceSans style={styles.forgotPassword}
                 onPress={() => Linking.openURL(baseUrl + passwordResetUrl)}
@@ -114,7 +116,6 @@ export const LoginScreen = () => {
             title='Login'
             onPress={handleSubmit}
             disabled={!isValid}
-            testID='submit-button'
           >
           </ButtonSubmit>
         </View>
