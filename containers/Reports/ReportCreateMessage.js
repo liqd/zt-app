@@ -11,7 +11,6 @@ import API from '../../BaseApi';
 
 import { styles } from './ReportCreateMessage.styles';
 import { TextInputFullFormField } from '../../components/formFields';
-import { VirtualScrollView } from '../../components/VirtualScrollView';
 
 export const ReportCreateMessage = props => {
   const {content_type, object_pk} = props.route.params;
