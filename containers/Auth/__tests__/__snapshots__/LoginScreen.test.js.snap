@@ -1,0 +1,247 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test LoginScreen Snapshot 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "#fff",
+      "flex": 1,
+      "justifyContent": "space-between",
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "paddingHorizontal": 15,
+      }
+    }
+  >
+    <RCTScrollView>
+      <View>
+        <Text
+          style={
+            Array [
+              Object {
+                "fontFamily": "SourceSansPro_400Regular",
+              },
+              Object {
+                "fontSize": 34,
+                "fontWeight": "800",
+                "marginBottom": 15,
+                "marginTop": 80,
+              },
+            ]
+          }
+        >
+          Login
+        </Text>
+        <Text
+          style={
+            Array [
+              Object {
+                "fontFamily": "SourceSansPro_400Regular",
+              },
+              Object {
+                "fontSize": 17,
+                "marginBottom": 30,
+              },
+            ]
+          }
+        >
+          If you have not created an account yet, then please 
+          <Text
+            onPress={[Function]}
+            style={
+              Array [
+                Object {
+                  "fontFamily": "SourceSansPro_400Regular",
+                },
+                Object {
+                  "textDecorationLine": "underline",
+                },
+              ]
+            }
+          >
+            register
+          </Text>
+           first.
+        </Text>
+        <View>
+          <Text
+            style={
+              Array [
+                Object {
+                  "fontFamily": "SourceSansPro_400Regular",
+                },
+                Object {
+                  "fontSize": 14.45,
+                  "lineHeight": 20.9,
+                  "paddingBottom": 5,
+                  "paddingTop": 10,
+                  "width": "100%",
+                },
+              ]
+            }
+          >
+            Username or E-mail address:
+          </Text>
+          <TextInput
+            field="Username or E-mail address:"
+            name="username"
+            onBlur={[Function]}
+            onChangeText={[Function]}
+            placeholder=""
+            returnKeyLabel="next"
+            returnKeyType="next"
+            style={
+              Object {
+                "borderBottomColor": "#d8d8d8",
+                "borderBottomWidth": 1,
+                "fontSize": 20.4,
+                "height": 40,
+              }
+            }
+            testID="username-input"
+            value=""
+          />
+        </View>
+        <View>
+          <Text
+            style={
+              Array [
+                Object {
+                  "fontFamily": "SourceSansPro_400Regular",
+                },
+                Object {
+                  "fontSize": 14.45,
+                  "lineHeight": 20.9,
+                  "paddingBottom": 5,
+                  "paddingTop": 10,
+                  "width": "100%",
+                },
+              ]
+            }
+          >
+            Password:
+          </Text>
+          <TextInput
+            field="Password:"
+            name="password"
+            onBlur={[Function]}
+            onChangeText={[Function]}
+            placeholder=""
+            returnKeyLabel="next"
+            returnKeyType="next"
+            secureTextEntry={true}
+            style={
+              Object {
+                "borderBottomColor": "#d8d8d8",
+                "borderBottomWidth": 1,
+                "fontSize": 20.4,
+                "height": 40,
+              }
+            }
+            testID="password-input"
+            value=""
+          />
+        </View>
+        <Text
+          onPress={[Function]}
+          style={
+            Array [
+              Object {
+                "fontFamily": "SourceSansPro_400Regular",
+              },
+              Array [
+                Object {
+                  "textDecorationLine": "underline",
+                },
+                Object {
+                  "fontSize": 17,
+                  "marginTop": 60,
+                },
+              ],
+            ]
+          }
+        >
+          Forgot Password?
+        </Text>
+      </View>
+    </RCTScrollView>
+  </View>
+  <View
+    style={
+      Array [
+        Object {
+          "overflow": "hidden",
+        },
+        Object {
+          "borderRadius": 2,
+        },
+        undefined,
+        false,
+      ]
+    }
+    testID="RNE_BUTTON_WRAPPER"
+  >
+    <View
+      accessibilityRole="button"
+      accessibilityState={
+        Object {
+          "busy": false,
+          "disabled": false,
+        }
+      }
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "opacity": 1,
+        }
+      }
+      testID="submit-button"
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "#2d40cc",
+            "borderColor": "#2089dc",
+            "borderRadius": 0,
+            "borderWidth": 0,
+            "flexDirection": "row",
+            "fontSize": 17,
+            "height": 70,
+            "justifyContent": "center",
+            "padding": 8,
+            "paddingHorizontal": 10,
+            "width": "100%",
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 18,
+              "paddingVertical": 1,
+              "textAlign": "center",
+            }
+          }
+        >
+          Login
+        </Text>
+      </View>
+    </View>
+  </View>
+</View>
+`;

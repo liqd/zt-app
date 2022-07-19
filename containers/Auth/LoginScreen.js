@@ -114,6 +114,7 @@ export const LoginScreen = () => {
             title='Login'
             onPress={handleSubmit}
             disabled={!isValid}
+            testID='submit-button'
           >
           </ButtonSubmit>
         </View>
