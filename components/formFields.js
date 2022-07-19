@@ -55,7 +55,7 @@ export const CheckBoxFormField = (props) => {
 
 export const DropdownFormFieldContainer = (props) => {
   return (
-    <View>
+    <View style={styles.dropdownContainer}>
       <TextSourceSans style={styles.formLabel}>{props.field}</TextSourceSans>
       {props.children}
     </View>
@@ -66,18 +66,16 @@ export const DropdownFormField = (props) => {
   const [ open, setOpen ] = useState(false);
   const [ selected, setSelected ] = useState(props.value);
   return (
-    <View>
-      <DropDownPicker
-        style={styles.dropdownFormField}
-        open={open}
-        value={selected}
-        items={props.items}
-        setOpen={setOpen}
-        setItems={props.setItems}
-        setValue={setSelected}
-        onChangeValue={value => props.onChangeValue(value)}
-        containerStyle={{}}
-      />
-    </View>
+    <DropDownPicker
+      dropDownStyle={styles.dropdownFormField}
+      open={open}
+      value={selected}
+      items={props.items}
+      setOpen={setOpen}
+      setItems={props.setItems}
+      setValue={setSelected}
+      onChangeValue={value => props.onChangeValue(value)}
+      containerStyle={{}}
+    />
   );
 };
