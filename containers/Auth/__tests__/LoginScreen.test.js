@@ -1,6 +1,8 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react-native';
+import '@testing-library/jest-native/extend-expect';
+import { render, waitFor, screen, fireEvent } from '@testing-library/react-native';
 import { LoginScreen } from '../LoginScreen';
+import API from '../../../BaseApi';
 
 jest.mock('react-native/Libraries/Animated/NativeAnimatedHelper');
 
@@ -11,27 +13,29 @@ test('Test LoginScreen Snapshot', () => {
 
 test('Test Login, no credentials', async () => {
   render(<LoginScreen />);
-  const submitButton = screen.getByTestId('submit-button');
+  const submitButton = screen.getByRole('button');
   fireEvent(submitButton, 'press');
   const validationErrors = await screen.findAllByText(/Please enter your password/);
   expect(validationErrors).toBeTruthy();
 });
 
-// add TestIDs to the inputs in LoginScreen.js if you want to unskip
-// this Test
-test.skip('Test Login, correct credentials', async () => {
+test('Test Login, correct credentials', async () => {
+  API.postLogin = jest.fn(() => Promise.resolve({
+    statusCode: 200,
+    data: { token: 'test-token'}
+  }));
+
   render(<LoginScreen />);
-  const submitButton = screen.getByTestId('submit-button');
+  const submitButton = screen.getByRole('button');
   const nameInput = screen.getByTestId('username-input');
   const pwInput = screen.getByTestId('password-input');
+  const username = 'testuser';
+  const password = 'testPassword';
 
-  fireEvent(nameInput, 'changeText', 'admin');
-  fireEvent(pwInput, 'changeText', 'password');
-  fireEvent(submitButton, 'press');
-
-  // first two fireEvents seem to work
-  // submitting somehow does not work
-  screen.debug();
-  const explorePage = await screen.findByText(/Explore/);
-  expect(explorePage).toBeTruthy();
+  fireEvent(nameInput, 'changeText', username);
+  expect(nameInput).toHaveProp('value', username);
+  fireEvent(pwInput, 'changeText', password);
+  expect(pwInput).toHaveProp('value', password);
+  fireEvent.press(submitButton);
+  await waitFor(() => expect(API.postLogin).toHaveBeenCalledWith({password: password, username: username}));
 });
