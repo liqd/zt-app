@@ -9,7 +9,6 @@ export const ButtonSubmit = (props) => {
       onPress={props.onPress}
       buttonStyle={styles.submitButton}
       disabled={props.disabled}
-      testID={props.testID}
     />
   );
 };

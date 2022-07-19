@@ -208,7 +208,6 @@ exports[`Test LoginScreen Snapshot 1`] = `
           "opacity": 1,
         }
       }
-      testID="submit-button"
     >
       <View
         style={
