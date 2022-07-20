@@ -1,10 +1,10 @@
-import React from 'react';
-import { View } from 'react-native';
-import { Comment } from './Comment';
-import { TextSourceSans } from '../../components/TextSourceSans';
+import React from 'react'
+import { View } from 'react-native'
+import { Comment } from './Comment'
+import { TextSourceSans } from '../../components/TextSourceSans'
 
 export const Comments = (props) => {
-  const { navigation } = props;
+  const { navigation } = props
 
   return (
     <View>
@@ -18,7 +18,7 @@ export const Comments = (props) => {
           key={`comment-${comment.id}`}
           comment={comment}
           handleReply={props.handleReply}
-          openSubComments={(props.commentLastCommented==comment.id) ? true : false}
+          openSubComments={(props.commentLastCommented==comment.id)}
           setMenuItems={props.setMenuItems}
           toggleMenu={props.toggleMenu}
           toggleEditing={props.toggleEditing}
@@ -28,5 +28,5 @@ export const Comments = (props) => {
           navigation={navigation}
         />)}
     </View>
-  );
-};
+  )
+}

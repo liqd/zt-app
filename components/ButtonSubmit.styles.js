@@ -1,9 +1,9 @@
-import { StyleSheet } from 'react-native';
-import { COLORS } from '../theme/colors';
-import { SIZES } from '../theme/fonts';
-import { BORDERRADIUS } from '../theme/spacings';
+import { StyleSheet } from 'react-native'
+import { COLORS } from '../theme/colors'
+import { SIZES } from '../theme/fonts'
+import { BORDERRADIUS } from '../theme/spacings'
 
-const submitButtonHeight = 70;
+const submitButtonHeight = 70
 
 export const styles = StyleSheet.create({
   submitButton: {
@@ -14,4 +14,4 @@ export const styles = StyleSheet.create({
     fontSize: SIZES.base,
     borderRadius: BORDERRADIUS.none,
   },
-});
+})

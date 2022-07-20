@@ -1,52 +1,52 @@
-import React from 'react';
-import { Alert, View, ScrollView } from 'react-native';
-import { Button } from '@rneui/base';
-import { Formik } from 'formik';
-import * as yup from 'yup';
-import IconSLI from 'react-native-vector-icons/SimpleLineIcons';
-import { ButtonSubmit } from '../../components/ButtonSubmit';
-import { TextSourceSans } from '../../components/TextSourceSans';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import API from '../../BaseApi';
+import React from 'react'
+import { Alert, View, ScrollView } from 'react-native'
+import { Button } from '@rneui/base'
+import { Formik } from 'formik'
+import * as yup from 'yup'
+import IconSLI from 'react-native-vector-icons/SimpleLineIcons'
+import { ButtonSubmit } from '../../components/ButtonSubmit'
+import { TextSourceSans } from '../../components/TextSourceSans'
+import AsyncStorage from '@react-native-async-storage/async-storage'
+import API from '../../BaseApi'
 
-import { styles } from './ReportCreateMessage.styles';
-import { TextInputFullFormField } from '../../components/formFields';
+import { styles } from './ReportCreateMessage.styles'
+import { TextInputFullFormField } from '../../components/formFields'
 
 export const ReportCreateMessage = props => {
-  const {content_type, object_pk} = props.route.params;
+  const {content_type, object_pk} = props.route.params
 
   const arrowLeftIcon = (
     <IconSLI name='arrow-left' size={22} />
-  );
+  )
   const reportMessageValidationSchema = yup.object().shape({
     message: yup
       .string()
       .max(1024, 'Message must be no longer then 1024 characters')
-  });
+  })
 
   const handleSubmit = (values) => {
-    const description = values.message;
+    const description = values.message
     AsyncStorage.getItem('authToken')
       .then((token) => {
-        return API.postReport({content_type, object_pk, description}, token);
+        return API.postReport({content_type, object_pk, description}, token)
       })
       .then((response) => {
-        const {statusCode, data} = response;
+        const {statusCode, data} = response
         if (statusCode == 201) {
-          Alert.alert('Thank you! We are taking care of it.');
-          props.navigation.goBack();
+          Alert.alert('Thank you! We are taking care of it.')
+          props.navigation.goBack()
         } else {
-          const errorMessage = 'That did not work.';
-          let errorDetail;
+          const errorMessage = 'That did not work.'
+          let errorDetail
           if (statusCode==403) {
-            errorDetail = data.detail;
+            errorDetail = data.detail
           } else if (statusCode == 400) {
-            errorDetail = 'Bad request';
+            errorDetail = 'Bad request'
           }
-          Alert.alert(errorMessage, errorDetail);
+          Alert.alert(errorMessage, errorDetail)
         }
-      });
-  };
+      })
+  }
 
   return (
     <View style={styles.container}>
@@ -107,11 +107,11 @@ export const ReportCreateMessage = props => {
         )}
       </Formik>
     </View>
-  );
-};
+  )
+}
 
 ReportCreateMessage.navigationOptions = {
   headerTitle: 'Add your message',
   // headerBackTitle only for iOS
   headerBackTitle: 'Back'
-};
+}

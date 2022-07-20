@@ -1,86 +1,90 @@
-import React, { useState, useEffect } from 'react';
-import { View, ImageBackground, Linking, ScrollView, Image } from 'react-native';
-import { Button } from '@rneui/themed';
-import { LinearGradient } from 'expo-linear-gradient';
-import { styles } from './IdeaProject.styles';
-import { IdeasList } from './IdeasList';
-import IconSLI from 'react-native-vector-icons/SimpleLineIcons';
-import IconFA from 'react-native-vector-icons/FontAwesome';
-import API from '../../BaseApi';
-import { COLORS } from '../../theme/colors';
-import { DateService } from '../../services/DateService';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { ButtonSubmit } from '../../components/ButtonSubmit';
-import { LinkTextSourceSans } from '../../components/LinkTextSourceSans';
-import { TextSourceSans } from '../../components/TextSourceSans';
-import { Richtext } from '../../components/Richtext';
+import React, { useState, useEffect } from 'react'
+import { View, ImageBackground, Linking, ScrollView, Image } from 'react-native'
+import { Button } from '@rneui/themed'
+import { LinearGradient } from 'expo-linear-gradient'
+import { styles } from './IdeaProject.styles'
+import { IdeasList } from './IdeasList'
+import IconSLI from 'react-native-vector-icons/SimpleLineIcons'
+import IconFA from 'react-native-vector-icons/FontAwesome'
+import API from '../../BaseApi'
+import { COLORS } from '../../theme/colors'
+import { DateService } from '../../services/DateService'
+import AsyncStorage from '@react-native-async-storage/async-storage'
+import { ButtonSubmit } from '../../components/ButtonSubmit'
+import { LinkTextSourceSans } from '../../components/LinkTextSourceSans'
+import { TextSourceSans } from '../../components/TextSourceSans'
+import { Richtext } from '../../components/Richtext'
 
 export const IdeaProject = (props) => {
   const tabs = {
     participation: 0,
     information: 1,
     results: 2
-  };
-  const {project} = props.route.params;
-  const [ideas, setIdeas] = useState([]);
-  const [module, setModule] = useState([]);
-  const [activePhase, setActivePhase] = useState();
-  const [visibleTab, setVisibleTab] = useState(tabs.participation);
+  }
+  const {project} = props.route.params
+  const [ideas, setIdeas] = useState([])
+  const [module, setModule] = useState([])
+  const [activePhase, setActivePhase] = useState()
+  const [visibleTab, setVisibleTab] = useState(tabs.participation)
   const bgImage = project.image
     ? project.image
-    : null;
+    : null
 
   const pressHandler = () =>
     props.navigation.navigate('IdeaCreate', {
       module: module
-    });
+    })
 
-  const plusIcon = <IconSLI name='plus' size={24} color={COLORS.paper.main} />;
-  const sortIcon = <IconFA name='filter' size={20} color={COLORS.grey.light} />;
+  const plusIcon = <IconSLI name='plus' size={24} color={COLORS.paper.main} />
+  const sortIcon = <IconFA name='filter' size={20} color={COLORS.grey.light} />
   const filterIcon = (
     <IconFA name='search' size={20} color={COLORS.grey.light} />
-  );
+  )
   const arrowLeftIcon = (
     <IconSLI name='arrow-left' size={22} color={COLORS.paper.main} />
-  );
+  )
 
   const fetchIdeas = () => {
     project.single_agenda_setting_module &&
       AsyncStorage.getItem('authToken')
         .then((token) => API.getIdeas(project.single_agenda_setting_module, token))
         .then((ideaResponse) => {
-          setIdeas(ideaResponse);
-        });
-  };
+          setIdeas(ideaResponse)
+        })
+  }
 
   const fetchModule = () => {
     AsyncStorage.getItem('authToken')
       .then((token) => API.getModule(project.single_agenda_setting_module, token))
       .then((moduleResponse) => {
-        setModule(moduleResponse);
-        const activePhase = moduleResponse.phases.find((phase) => phase.is_active);
-        activePhase && setActivePhase(activePhase);
-      });
-  };
+        setModule(moduleResponse)
+        const activePhase = moduleResponse.phases.find((phase) => phase.is_active)
+        activePhase && setActivePhase(activePhase)
+      })
+  }
 
   useEffect(() => {
     const ideasListener = props.navigation.addListener('focus', () => {
-      fetchIdeas();
-    });
-    return ideasListener;
-  }, [ideas]);
+      fetchIdeas()
+    })
+    return ideasListener
+  }, [ideas])
 
   useEffect(() => {
-    fetchModule();
-  }, []);
+    fetchModule()
+  }, [])
 
   const getDateTimeDisplay = (dateTime) => {
-    return DateService(dateTime, 'month d, y, h:m');
-  };
+    return DateService(dateTime, 'month d, y, h:m')
+  }
 
   return (
     <View style={styles.container}>
-      <ImageBackground style={styles.bgImage} source={{ uri: bgImage }} />
+      <ImageBackground
+        style={styles.bgImage}
+        source={{ uri: bgImage }}
+        accessibilityIgnoresInvertColors={true}
+      />
       <ScrollView>
         <LinearGradient
           colors={['rgba(0,0,0,0.80)', 'rgba(0,0,0,0.00)']}
@@ -115,6 +119,7 @@ export const IdeaProject = (props) => {
                   <Image
                     style={styles.organisationLogo}
                     source={{ uri: project.organisation_logo }}
+                    accessibilityIgnoresInvertColors={true}
                   />
                 </View>)}
               <TextSourceSans style={styles.organisationName}>
@@ -250,5 +255,5 @@ export const IdeaProject = (props) => {
         </View>
       </ScrollView>
     </View>
-  );
-};
+  )
+}

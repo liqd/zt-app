@@ -1,23 +1,27 @@
-import React from 'react';
-import { View, Image, TouchableOpacity } from 'react-native';
-import { COLORS } from '../../theme/colors';
-import { styles } from './ExploreListItem.styles';
-import IconSLI from 'react-native-vector-icons/SimpleLineIcons';
-import { TextSourceSans } from '../../components/TextSourceSans';
-import { LinearProgress } from '@rneui/themed';
+import React from 'react'
+import { View, Image, TouchableOpacity } from 'react-native'
+import { COLORS } from '../../theme/colors'
+import { styles } from './ExploreListItem.styles'
+import IconSLI from 'react-native-vector-icons/SimpleLineIcons'
+import { TextSourceSans } from '../../components/TextSourceSans'
+import { LinearProgress } from '@rneui/themed'
 
 export const ExploreListItem = (props) => {
   const image = props.item.image
     ? props.item.image
-    : null;
+    : null
 
-  const clockIcon = (<IconSLI name='clock' color={COLORS.grey.medium} />);
+  const clockIcon = (<IconSLI name='clock' color={COLORS.grey.medium} />)
 
   return (
     <TouchableOpacity accessibilityRole="button" onPress={() => props.action(props.item)}>
       <View style={styles.container}>
         <View style={styles.imageContainer}>
-          <Image style={styles.image} source={{ uri: image }} />
+          <Image
+            style={styles.image}
+            source={{ uri: image }}
+            accessibilityIgnoresInvertColors={true}
+          />
         </View>
         <View style={styles.textContainer}>
           <TextSourceSans style={styles.text}>
@@ -48,5 +52,5 @@ export const ExploreListItem = (props) => {
         </View>
       </View>
     </TouchableOpacity>
-  );
-};
+  )
+}

@@ -1,10 +1,10 @@
-import React from 'react';
-import { View } from 'react-native';
-import IconSLI from 'react-native-vector-icons/SimpleLineIcons';
-import { styles } from './ButtonTextInput.styles';
+import React from 'react'
+import { View } from 'react-native'
+import IconSLI from 'react-native-vector-icons/SimpleLineIcons'
+import { styles } from './ButtonTextInput.styles'
 
-import { TouchableOpacity } from 'react-native';
-import { TextSourceSans } from './TextSourceSans';
+import { TouchableOpacity } from 'react-native'
+import { TextSourceSans } from './TextSourceSans'
 
 export const ButtonTextInputFieldContainer = (props) => {
   return (
@@ -12,11 +12,11 @@ export const ButtonTextInputFieldContainer = (props) => {
       <TextSourceSans style={styles.formLabel}>{props.field}</TextSourceSans>
       {props.children}
     </View>
-  );
-};
+  )
+}
 
 export const ButtonTextInput = (props) => {
-  const arrowRightIcon = <IconSLI name='arrow-right' size={22}/>;
+  const arrowRightIcon = <IconSLI name='arrow-right' size={22}/>
 
   return (
     <TouchableOpacity accessibilityRole="button"
@@ -31,5 +31,5 @@ export const ButtonTextInput = (props) => {
         {arrowRightIcon}
       </TextSourceSans>
     </TouchableOpacity>
-  );
-};
+  )
+}

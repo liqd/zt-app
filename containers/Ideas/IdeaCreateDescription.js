@@ -1,36 +1,35 @@
-import React from 'react';
-import { View, ScrollView } from 'react-native';
-import { Button } from '@rneui/base';
-import { Formik } from 'formik';
-import * as yup from 'yup';
-import IconSLI from 'react-native-vector-icons/SimpleLineIcons';
-import { ButtonSubmit } from '../../components/ButtonSubmit';
-import { TextSourceSans } from '../../components/TextSourceSans';
+import React from 'react'
+import { View, ScrollView } from 'react-native'
+import { Button } from '@rneui/base'
+import { Formik } from 'formik'
+import * as yup from 'yup'
+import IconSLI from 'react-native-vector-icons/SimpleLineIcons'
+import { ButtonSubmit } from '../../components/ButtonSubmit'
+import { TextSourceSans } from '../../components/TextSourceSans'
 
-import { styles } from '../Reports/ReportCreateMessage.styles';
-import { TextInputFullFormField } from '../../components/formFields';
-import { VirtualScrollView } from '../../components/VirtualScrollView';
+import { styles } from '../Reports/ReportCreateMessage.styles'
+import { TextInputFullFormField } from '../../components/formFields'
 
 export const IdeaCreateDescription = props => {
 
-  const description = props.route.params.description;
+  const description = props.route.params.description
   const arrowLeftIcon = (
     <IconSLI name='arrow-left' size={22} />
-  );
+  )
   const ideaDescriptionValidationSchema = yup.object().shape({
     description: yup
       .string()
       .max(10000, 'Description must be no longer then 10000 characters')
       .required('Description is required'),
-  });
+  })
 
   const handleSubmit = (values) => {
     props.navigation.navigate({
       name: 'IdeaCreate',
       params: { descriptionText: values.description },
       merge: true,
-    });
-  };
+    })
+  }
 
   return (
     <View style={styles.container}>
@@ -86,11 +85,11 @@ export const IdeaCreateDescription = props => {
         )}
       </Formik>
     </View>
-  );
-};
+  )
+}
 
 IdeaCreateDescription.navigationOptions = {
   headerTitle: 'Add your description',
   // headerBackTitle only for iOS
   headerBackTitle: 'Back'
-};
+}

@@ -1,9 +1,9 @@
-import React from 'react';
-import { useWindowDimensions } from 'react-native';
-import { baseUrl } from '../BaseApi';
-import { RichtextCollapsibleItem } from './RichtextCollapsibleItem';
-import RenderHTML, { useInternalRenderer } from 'react-native-render-html';
-import { COLORS } from '../theme/colors';
+import React from 'react'
+import { useWindowDimensions } from 'react-native'
+import { baseUrl } from '../BaseApi'
+import { RichtextCollapsibleItem } from './RichtextCollapsibleItem'
+import RenderHTML, { useInternalRenderer } from 'react-native-render-html'
+import { COLORS } from '../theme/colors'
 
 // The <Richtext /> component can be used as a container
 // for HTML input. It converts html to React Native with the
@@ -17,20 +17,20 @@ import { COLORS } from '../theme/colors';
 // 4. While doing this it uses a custom renderer (collapsibleRenderer) and
 //    replaces all <article> elements with a custom component <RichtextCollapsibleItem>
 export const Richtext = ({ text }) => {
-  const {width} = useWindowDimensions();
+  const {width} = useWindowDimensions()
 
-  const isCollapsible = (node) => node.domNode.attribs.class === 'collapsible-item';
+  const isCollapsible = (node) => node.domNode.attribs.class === 'collapsible-item'
 
   const extractCollapsibleData = (tnode) => {
     return {
       title: tnode.children[0].children[0].children[0].data,
       body: tnode.children[1].children[0].children[0].children[0].data
-    };
-  };
+    }
+  }
 
   const collapsibleRenderer = ({ TDefaultRenderer, tnode,  ...props }) => {
     if (isCollapsible(tnode)){
-      const { title, body } = extractCollapsibleData(tnode);
+      const { title, body } = extractCollapsibleData(tnode)
       return (
         <TDefaultRenderer
           tnode={tnode}
@@ -38,29 +38,29 @@ export const Richtext = ({ text }) => {
         >
           <RichtextCollapsibleItem title={title} body={body} />
         </TDefaultRenderer>
-      );
+      )
     } else {
       return (
         <TDefaultRenderer
           tnode={tnode}
           {...props}
         />
-      );
+      )
     }
-  };
+  }
 
   const customImageRenderer = (props) => {
-    const { Renderer, rendererProps } = useInternalRenderer('img', props);
-    const uri = rendererProps.source.uri.replace('about:///', baseUrl + '/');
+    const { Renderer, rendererProps } = useInternalRenderer('img', props)
+    const uri = rendererProps.source.uri.replace('about:///', baseUrl + '/')
     return (
       <Renderer {...rendererProps} source={{...rendererProps.source, uri:uri}}/>
-    );
-  };
+    )
+  }
 
   const renderers = {
     div: collapsibleRenderer,
     img: customImageRenderer
-  };
+  }
 
   const tagsStyles = {
     img: {
@@ -69,7 +69,7 @@ export const Richtext = ({ text }) => {
     a: {
       color: COLORS.text.main
     }
-  };
+  }
 
   return (
     <RenderHTML
@@ -77,5 +77,5 @@ export const Richtext = ({ text }) => {
       contentWidth={width}
       renderers={renderers}
       tagsStyles={tagsStyles}
-    />);
-};
+    />)
+}

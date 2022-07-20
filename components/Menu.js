@@ -1,8 +1,8 @@
-import React from 'react';
-import { View } from 'react-native';
-import { BottomSheet } from '@rneui/themed';
-import { MenuItem } from './MenuItem';
-import { styles } from './Menu.styles';
+import React from 'react'
+import { View } from 'react-native'
+import { BottomSheet } from '@rneui/themed'
+import { MenuItem } from './MenuItem'
+import { styles } from './Menu.styles'
 
 export const Menu = (props) => {
   return (
@@ -15,5 +15,5 @@ export const Menu = (props) => {
           <MenuItem key={idx} item={menuitem} />)}
       </View>
     </BottomSheet>
-  );
-};
+  )
+}

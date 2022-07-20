@@ -1,7 +1,7 @@
-import { StyleSheet } from 'react-native';
-import { COLORS } from '../../theme/colors';
-import { SIZES, FONTWEIGHT } from '../../theme/fonts';
-import { SPACINGS } from '../../theme/spacings';
+import { StyleSheet } from 'react-native'
+import { COLORS } from '../../theme/colors'
+import { SIZES, FONTWEIGHT } from '../../theme/fonts'
+import { SPACINGS } from '../../theme/spacings'
 
 export const styles = StyleSheet.create({
   container: {
@@ -39,4 +39,4 @@ export const styles = StyleSheet.create({
   progressBar: {
     marginVertical: 10
   }
-});
+})

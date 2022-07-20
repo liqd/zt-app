@@ -1,6 +1,6 @@
-import React from 'react';
-import { View } from 'react-native';
-import { SubComment } from './SubComment';
+import React from 'react'
+import { View } from 'react-native'
+import { SubComment } from './SubComment'
 
 export const SubComments = (props) => {
   return (
@@ -16,5 +16,5 @@ export const SubComments = (props) => {
           isDisplayed={props.isDisplayed}
         />)}
     </View>
-  );
-};
+  )
+}

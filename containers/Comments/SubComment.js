@@ -1,37 +1,41 @@
-import React, { useState, useCallback } from 'react';
-import { View, Image } from 'react-native';
-import { Button } from '@rneui/base';
-import { styles } from './Comment.styles';
-import IconSLI from 'react-native-vector-icons/SimpleLineIcons';
-import { TouchableWithoutFeedback } from 'react-native';
-import { ButtonCounter } from '../../components/ButtonCounter';
-import { TextSourceSans } from '../../components/TextSourceSans';
+import React, { useState, useCallback } from 'react'
+import { View, Image } from 'react-native'
+import { Button } from '@rneui/base'
+import { styles } from './Comment.styles'
+import IconSLI from 'react-native-vector-icons/SimpleLineIcons'
+import { TouchableWithoutFeedback } from 'react-native'
+import { ButtonCounter } from '../../components/ButtonCounter'
+import { TextSourceSans } from '../../components/TextSourceSans'
 
-const NUM_OF_LINES = 2;
+const NUM_OF_LINES = 2
 
 export const SubComment = (props) => {
-  const [showWholeComment, setShowWholeComment] = useState(false);
-  const [hasExcerpt, setHasExcerpt] = useState(false);
+  const [showWholeComment, setShowWholeComment] = useState(false)
+  const [hasExcerpt, setHasExcerpt] = useState(false)
 
   const toggleWholeComment = () => {
-    setShowWholeComment(!showWholeComment);
-  };
+    setShowWholeComment(!showWholeComment)
+  }
 
   const onTextLayout = useCallback(e => {
-    setHasExcerpt(e.nativeEvent.lines.length > NUM_OF_LINES);
-  }, []);
+    setHasExcerpt(e.nativeEvent.lines.length > NUM_OF_LINES)
+  }, [])
 
-  const optionsIcon = (<IconSLI name='options-vertical' size={22} />);
-  const arrowUpIcon = (<IconSLI name='arrow-up' size={18} />);
-  const arrowDownIcon = (<IconSLI name='arrow-down' size={18} />);
-  const redoIcon = (<IconSLI name='action-redo' size={18} />);
+  const optionsIcon = (<IconSLI name='options-vertical' size={22} />)
+  const arrowUpIcon = (<IconSLI name='arrow-up' size={18} />)
+  const arrowDownIcon = (<IconSLI name='arrow-down' size={18} />)
+  const redoIcon = (<IconSLI name='action-redo' size={18} />)
 
   return (
     <View style={styles.subContainer}>
       <View style={styles.top}>
         <View style={styles.topLeft}>
           {props.isDisplayed(props.comment) &&
-          <Image source={{ uri: props.comment.user_image }} style={styles.avatar} />
+          <Image
+            source={{ uri: props.comment.user_image }}
+            style={styles.avatar}
+            accessibilityIgnoresInvertColors={true}
+          />
           }
           <View style={styles.author}>
             <TextSourceSans style={styles.username}>{props.comment.user_name}</TextSourceSans>
@@ -102,5 +106,5 @@ export const SubComment = (props) => {
         />
       </View>
     </View>
-  );
-};
+  )
+}

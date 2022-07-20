@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import { View } from 'react-native';
-import { CheckBox } from '@rneui/themed';
-import { styles } from './LabelForm.styles';
-import { TextSourceSans } from './TextSourceSans';
-import IconFA from 'react-native-vector-icons/FontAwesome';
-import { COLORS } from '../theme/colors';
+import React, { useState } from 'react'
+import { View } from 'react-native'
+import { CheckBox } from '@rneui/themed'
+import { styles } from './LabelForm.styles'
+import { TextSourceSans } from './TextSourceSans'
+import IconFA from 'react-native-vector-icons/FontAwesome'
+import { COLORS } from '../theme/colors'
 
 export const LabelListContainer = (props) => {
   return (
@@ -13,14 +13,14 @@ export const LabelListContainer = (props) => {
       {props.children}
       {props.children.touched && <TextSourceSans style={styles.formError}>{props.error}</TextSourceSans>}
     </View>
-  );
-};
+  )
+}
 
 export const LabelList = props => {
-  const [ selectedLabels, setSelectedLabels ] = useState(props.selectedLabels);
+  const [ selectedLabels, setSelectedLabels ] = useState(props.selectedLabels)
 
   const handleItemPressed = selectedLabel => {
-    let selectedLabelsCopy = [...selectedLabels];
+    let selectedLabelsCopy = [...selectedLabels]
     /* the following code might be hard to read. It is comparing if the newly
      selected label was selected before or not. If yes, then it removes the label,
      if not it adds to the list. Then updating the state and sending to its parent
@@ -28,14 +28,14 @@ export const LabelList = props => {
      the actual state (FIXME). */
     const labelIndex = selectedLabels.findIndex(sl => sl.id === selectedLabel.id);
     (labelIndex === -1) && (selectedLabelsCopy = [...selectedLabels, selectedLabel]);
-    (labelIndex !== -1) && [...selectedLabelsCopy.splice(labelIndex, 1)];
-    setSelectedLabels([...selectedLabelsCopy]);
-    props.onIconPress(selectedLabelsCopy);
-  };
+    (labelIndex !== -1) && [...selectedLabelsCopy.splice(labelIndex, 1)]
+    setSelectedLabels([...selectedLabelsCopy])
+    props.onIconPress(selectedLabelsCopy)
+  }
 
   const getCheckState = (choice) => {
-    return !!props.selectedLabels.find(sl => sl.id === choice.id);
-  };
+    return !!props.selectedLabels.find(sl => sl.id === choice.id)
+  }
 
   return props.labelChoices.map(choice => (
     <LabelFormField
@@ -44,20 +44,20 @@ export const LabelList = props => {
       checked={getCheckState(choice)}
       onIconPress={selectedLabel => handleItemPressed(selectedLabel)}
     />
-  ));
-};
+  ))
+}
 
 export const LabelFormField = props => {
-  const [ checkState, setCheckState ] = useState(props.checked);
-  const plusIcon = <IconFA name="plus" size={16} color={COLORS.text.main} />;
+  const [ checkState, setCheckState ] = useState(props.checked)
+  const plusIcon = <IconFA name="plus" size={16} color={COLORS.text.main} />
   const checkIcon = (
-    <IconFA name='check' size={16} color={COLORS.text.inverted} />
-  );
+    <IconFA name='check' size={16} color={COLORS.paper.main} />
+  )
 
   const toggleCheckState = () => {
-    setCheckState(!checkState);
-    props.onIconPress(props.label);
-  };
+    setCheckState(!checkState)
+    props.onIconPress(props.label)
+  }
 
   return (
     <CheckBox
@@ -83,6 +83,6 @@ export const LabelFormField = props => {
         )
       }
     />
-  );
-};
+  )
+}
 
