@@ -1,7 +1,7 @@
-import { StyleSheet } from 'react-native';
-import { COLORS } from '../theme/colors';
-import { SPACINGS, BORDERWIDTH } from '../theme/spacings';
-import { SIZES, LINEHEIGHTS, FONTWEIGHT } from '../theme/fonts';
+import { StyleSheet } from 'react-native'
+import { COLORS } from '../theme/colors'
+import { SPACINGS, BORDERWIDTH } from '../theme/spacings'
+import { SIZES, LINEHEIGHTS, FONTWEIGHT } from '../theme/fonts'
 
 export const styles = StyleSheet.create({
   formTitle: {
@@ -32,7 +32,7 @@ export const styles = StyleSheet.create({
     paddingHorizontal: SPACINGS.multiplyBy(0.75)
   },
   checkBoxContainer: {
-    backgroundColor: COLORS.text.inverted,
+    backgroundColor: COLORS.paper.main,
     borderWidth: 0,
   },
   checkBoxText: {
@@ -66,4 +66,4 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-around',
     alignItems: 'center'
   }
-});
+})

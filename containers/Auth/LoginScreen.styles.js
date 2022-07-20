@@ -1,7 +1,7 @@
-import { StyleSheet } from 'react-native';
-import { COLORS } from '../../theme/colors';
-import { SIZES, FONTWEIGHT } from '../../theme/fonts';
-import { SPACINGS } from '../../theme/spacings';
+import { StyleSheet } from 'react-native'
+import { COLORS } from '../../theme/colors'
+import { SIZES, FONTWEIGHT } from '../../theme/fonts'
+import { SPACINGS } from '../../theme/spacings'
 
 export const styles = StyleSheet.create({
   flexContainer: {
@@ -26,4 +26,4 @@ export const styles = StyleSheet.create({
     fontSize: SIZES.base,
     marginTop: SPACINGS.multiplyBy(3)
   },
-});
+})

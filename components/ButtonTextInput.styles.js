@@ -1,7 +1,7 @@
-import { StyleSheet } from 'react-native';
-import { COLORS } from '../theme/colors';
-import { SIZES, LINEHEIGHTS, FONTWEIGHT } from '../theme/fonts';
-import { SPACINGS, BORDERRADIUS, BORDERWIDTH } from '../theme/spacings';
+import { StyleSheet } from 'react-native'
+import { COLORS } from '../theme/colors'
+import { SIZES, LINEHEIGHTS, FONTWEIGHT } from '../theme/fonts'
+import { SPACINGS, BORDERRADIUS, BORDERWIDTH } from '../theme/spacings'
 
 export const styles = StyleSheet.create({
   textInputButton: {
@@ -25,4 +25,4 @@ export const styles = StyleSheet.create({
     paddingBottom: SPACINGS.multiplyBy(.25),
     width: '100%'
   },
-});
+})

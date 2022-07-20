@@ -1,20 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import { View, ImageBackground, Linking, ScrollView, Image } from 'react-native';
-import { Button } from '@rneui/themed';
-import { LinearGradient } from 'expo-linear-gradient';
-import { styles } from './IdeaProject.styles';
-import { IdeasList } from './IdeasList';
-import { Phase } from './Phase';
-import IconSLI from 'react-native-vector-icons/SimpleLineIcons';
-import IconFA from 'react-native-vector-icons/FontAwesome';
-import API from '../../BaseApi';
-import { COLORS } from '../../theme/colors';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Header } from '../../components/Header';
-import { ButtonSubmit } from '../../components/ButtonSubmit';
-import { LinkTextSourceSans } from '../../components/LinkTextSourceSans';
-import { TextSourceSans } from '../../components/TextSourceSans';
-import { Richtext } from '../../components/Richtext';
+import React, { useState, useEffect } from 'react'
+import { View, ImageBackground, Linking, ScrollView, Image } from 'react-native'
+import { Button } from '@rneui/themed'
+import { LinearGradient } from 'expo-linear-gradient'
+import { styles } from './IdeaProject.styles'
+import { IdeasList } from './IdeasList'
+import IconSLI from 'react-native-vector-icons/SimpleLineIcons'
+import IconFA from 'react-native-vector-icons/FontAwesome'
+import API from '../../BaseApi'
+import { COLORS } from '../../theme/colors'
+import { DateService } from '../../services/DateService'
+import AsyncStorage from '@react-native-async-storage/async-storage'
+import { ButtonSubmit } from '../../components/ButtonSubmit'
+import { LinkTextSourceSans } from '../../components/LinkTextSourceSans'
+import { TextSourceSans } from '../../components/TextSourceSans'
+import { Richtext } from '../../components/Richtext'
 
 export const IdeaProject = (props) => {
   const tabs = {
@@ -31,10 +30,10 @@ export const IdeaProject = (props) => {
   const pressHandler = () =>
     props.navigation.navigate('IdeaCreate', {
       module: module
-    });
+    })
 
-  const plusIcon = <IconSLI name='plus' size={24} color={COLORS.paper.main} />;
-  const sortIcon = <IconFA name='filter' size={20} color={COLORS.grey.light} />;
+  const plusIcon = <IconSLI name='plus' size={24} color={COLORS.paper.main} />
+  const sortIcon = <IconFA name='filter' size={20} color={COLORS.grey.light} />
   const filterIcon = (
     <IconFA name='search' size={20} color={COLORS.grey.light} />
   );
@@ -54,9 +53,9 @@ export const IdeaProject = (props) => {
       AsyncStorage.getItem('authToken')
         .then((token) => API.getIdeas(project.single_idea_collection_module, token))
         .then((ideaResponse) => {
-          setIdeas(ideaResponse);
-        });
-  };
+          setIdeas(ideaResponse)
+        })
+  }
 
   const fetchModule = () => {
     AsyncStorage.getItem('authToken')
@@ -68,18 +67,22 @@ export const IdeaProject = (props) => {
 
   useEffect(() => {
     const ideasListener = props.navigation.addListener('focus', () => {
-      fetchIdeas();
-    });
-    return ideasListener;
-  }, [ideas]);
+      fetchIdeas()
+    })
+    return ideasListener
+  }, [ideas])
 
   useEffect(() => {
-    fetchModule();
-  }, []);
+    fetchModule()
+  }, [])
 
   return (
     <View style={styles.container}>
-      <ImageBackground style={styles.bgImage} source={{ uri: bgImage }} />
+      <ImageBackground
+        style={styles.bgImage}
+        source={{ uri: bgImage }}
+        accessibilityIgnoresInvertColors={true}
+      />
       <ScrollView>
         <LinearGradient
           colors={['rgba(0,0,0,0.80)', 'rgba(0,0,0,0.00)']}
@@ -106,6 +109,7 @@ export const IdeaProject = (props) => {
                   <Image
                     style={styles.organisationLogo}
                     source={{ uri: project.organisation_logo }}
+                    accessibilityIgnoresInvertColors={true}
                   />
                 </View>)}
               <TextSourceSans style={styles.organisationName}>
@@ -227,5 +231,5 @@ export const IdeaProject = (props) => {
         </View>
       </ScrollView>
     </View>
-  );
-};
+  )
+}

@@ -1,18 +1,18 @@
-import { StyleSheet } from 'react-native';
-import { COLORS } from '../theme/colors';
-import { BORDERRADIUS } from '../theme/spacings';
-import { SPACINGS } from '../theme/spacings';
-import { SIZES, LINEHEIGHTS } from '../theme/fonts';
+import { StyleSheet } from 'react-native'
+import { COLORS } from '../theme/colors'
+import { BORDERRADIUS } from '../theme/spacings'
+import { SPACINGS } from '../theme/spacings'
+import { SIZES, LINEHEIGHTS } from '../theme/fonts'
 
 export const styles = StyleSheet.create({
   labelTitle: {
     color: COLORS.text.main
   },
   labelTitleChecked: {
-    color: COLORS.text.inverted
+    color: COLORS.paper.main
   },
   labelButton: {
-    backgroundColor: COLORS.text.inverted,
+    backgroundColor: COLORS.paper.main,
     width: '30%',
     flexDirection: 'row',
     flexWrap: 'wrap',
@@ -20,7 +20,7 @@ export const styles = StyleSheet.create({
     borderRadius: BORDERRADIUS.lg
   },
   labelButtonChecked: {
-    color: COLORS.text.inverted,
+    color: COLORS.paper.main,
     backgroundColor: COLORS.primary,
     width: '30%',
     flexDirection: 'row',
@@ -40,4 +40,4 @@ export const styles = StyleSheet.create({
     width: '100%'
   },
 
-});
+})

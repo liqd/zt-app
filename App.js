@@ -1,45 +1,45 @@
-import React, { useEffect, useState, useCallback } from 'react';
-import { View } from 'react-native';
-import * as Sentry from 'sentry-expo';
-import { AuthProvider } from './containers/Auth/AuthProvider';
-import { IdeaNavigator } from './navigation/IdeaNavigator';
-import * as SplashScreen from 'expo-splash-screen';
-import * as Font from 'expo-font';
+import React, { useEffect, useState, useCallback } from 'react'
+import { View } from 'react-native'
+import * as Sentry from 'sentry-expo'
+import { AuthProvider } from './containers/Auth/AuthProvider'
+import { IdeaNavigator } from './navigation/IdeaNavigator'
+import * as SplashScreen from 'expo-splash-screen'
+import * as Font from 'expo-font'
 import {
   SourceSansPro_400Regular
-} from '@expo-google-fonts/source-sans-pro';
+} from '@expo-google-fonts/source-sans-pro'
 
 Sentry.init({
   url: 'https://sentry.liqd.net',
   dsn: '',
   enableInExpoDevelopment: false,
   debug: false,
-});
+})
 
 const App = () => {
-  const [appIsReady, setAppIsReady] = useState(false);
+  const [appIsReady, setAppIsReady] = useState(false)
   useEffect(() => {
     (async function () {
       try {
-        await SplashScreen.preventAutoHideAsync();
-        await Font.loadAsync({ SourceSansPro_400Regular });
+        await SplashScreen.preventAutoHideAsync()
+        await Font.loadAsync({ SourceSansPro_400Regular })
       } catch (e) {
-        console.warn(e);
+        console.warn(e)
       } finally {
         // Tell the application to render
-        setAppIsReady(true);
+        setAppIsReady(true)
       }
-    })();
-  }, []);
+    })()
+  }, [])
 
   const onLayoutRootView = useCallback(async () => {
     if (appIsReady) {
-      await SplashScreen.hideAsync();
+      await SplashScreen.hideAsync()
     }
-  }, [appIsReady]);
+  }, [appIsReady])
 
   if (!appIsReady) {
-    return null;
+    return null
   }
   return (
     <View
@@ -50,7 +50,7 @@ const App = () => {
         <IdeaNavigator />
       </AuthProvider>
     </View>
-  );
-};
+  )
+}
 
-export default App;
+export default App

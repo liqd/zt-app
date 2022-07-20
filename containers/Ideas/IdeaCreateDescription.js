@@ -17,15 +17,15 @@ export const IdeaCreateDescription = props => {
       .string()
       .max(10000, 'Description must be no longer then 10000 characters')
       .required('Description is required'),
-  });
+  })
 
   const handleSubmit = (values) => {
     props.navigation.navigate({
       name: 'IdeaCreate',
       params: { descriptionText: values.description },
       merge: true,
-    });
-  };
+    })
+  }
 
   return (
     <View style={styles.container}>
@@ -72,11 +72,11 @@ export const IdeaCreateDescription = props => {
         )}
       </Formik>
     </View>
-  );
-};
+  )
+}
 
 IdeaCreateDescription.navigationOptions = {
   headerTitle: 'Add your description',
   // headerBackTitle only for iOS
   headerBackTitle: 'Back'
-};
+}

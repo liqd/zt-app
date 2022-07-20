@@ -1,20 +1,20 @@
-import React, { useEffect } from 'react';
-import { View, TextInput, TouchableOpacity } from 'react-native';
-import { Formik } from 'formik';
-import * as yup from 'yup';
-import { styles } from './CommentForm.styles';
-import IconFA from 'react-native-vector-icons/FontAwesome';
-import { COLORS } from '../../theme/colors';
-import { SIZES } from '../../theme/fonts';
+import React, { useEffect } from 'react'
+import { View, TextInput, TouchableOpacity } from 'react-native'
+import { Formik } from 'formik'
+import * as yup from 'yup'
+import { styles } from './CommentForm.styles'
+import IconFA from 'react-native-vector-icons/FontAwesome'
+import { COLORS } from '../../theme/colors'
+import { SIZES } from '../../theme/fonts'
 
 export const CommentForm = (props) => {
   const commentValidationSchema = yup.object().shape({
     comment: yup
       .string()
       .max(4000, 'Comment must be no longer than 4000 characters.')
-  });
+  })
 
-  const planeIcon = (<IconFA name="paper-plane" color={COLORS.text.inverted} size={SIZES.md} />);
+  const planeIcon = (<IconFA name="paper-plane" color={COLORS.paper.main} size={SIZES.md} />)
 
   return (
     <Formik
@@ -22,7 +22,7 @@ export const CommentForm = (props) => {
       initialValues={{
         comment: '',
       }}
-      onSubmit={(values, {resetForm}) => {props.handleSubmit(values); resetForm({comment: ''});}}
+      onSubmit={(values, {resetForm}) => {props.handleSubmit(values); resetForm({comment: ''})}}
     >
       {({
         handleChange,
@@ -35,12 +35,14 @@ export const CommentForm = (props) => {
         setFieldValue
       }) => {
         useEffect(() => {
-          setFieldValue('comment', props.value, false);
-        }, [props.isEdit]);
+          setFieldValue('comment', props.value, false)
+        }, [props.isEdit])
         return (
           <View style={styles.submitContainer}>
             <View style={styles.textInputContainer}>
-              <TextInput accessibilityLabel="Text input field"
+              <TextInput
+                accessibilityLabel="Comment input"
+                accessibilityHint="Type your comment here"
                 name='comment'
                 ref={props.inputRef}
                 value={values.comment}
@@ -61,8 +63,8 @@ export const CommentForm = (props) => {
               </TouchableOpacity>
             </View>
           </View>
-        );
+        )
       }}
     </Formik>
-  );
-};
+  )
+}

@@ -1,26 +1,26 @@
-import React from 'react';
-import { TouchableWithoutFeedback } from 'react-native';
-import { ListItem } from '@rneui/themed';
-import IconSLI from 'react-native-vector-icons/SimpleLineIcons';
-import { COLORS } from '../theme/colors';
-import { SIZES } from '../theme/fonts';
-import { styles } from './MenuItem.styles';
+import React from 'react'
+import { TouchableWithoutFeedback } from 'react-native'
+import { ListItem } from '@rneui/themed'
+import IconSLI from 'react-native-vector-icons/SimpleLineIcons'
+import { COLORS } from '../theme/colors'
+import { SIZES } from '../theme/fonts'
+import { styles } from './MenuItem.styles'
 
 export const MenuItem = (props) => {
-  const {item: { isCancel, isFirst, isLast, isAllowed }} = props;
+  const {item: { isCancel, isFirst, isLast, isAllowed }} = props
   const getContainerStyle = () => {
     if (isCancel) {
-      return styles.cancelButton;
+      return styles.cancelButton
     } else if ( isFirst && isLast ) {
-      return styles.listButtonOnly;
+      return styles.listButtonOnly
     } else if ( isFirst ) {
-      return styles.listButtonFirst;
+      return styles.listButtonFirst
     } else if ( isLast ) {
-      return styles.listButtonLast;
+      return styles.listButtonLast
     } else {
-      return styles.listButton;
+      return styles.listButton
     }
-  };
+  }
 
   if (isAllowed) {
     return (
@@ -44,8 +44,8 @@ export const MenuItem = (props) => {
           </ListItem.Title>
         </ListItem.Content>
       </ListItem>
-    );
+    )
   } else {
-    return null;
+    return null
   }
-};
+}
