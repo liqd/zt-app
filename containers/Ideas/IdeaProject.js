@@ -7,25 +7,26 @@ import { IdeasList } from './IdeasList'
 import IconSLI from 'react-native-vector-icons/SimpleLineIcons'
 import IconFA from 'react-native-vector-icons/FontAwesome'
 import API from '../../BaseApi'
+import { Phase } from './Phase'
 import { COLORS } from '../../theme/colors'
-import { DateService } from '../../services/DateService'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { ButtonSubmit } from '../../components/ButtonSubmit'
 import { LinkTextSourceSans } from '../../components/LinkTextSourceSans'
 import { TextSourceSans } from '../../components/TextSourceSans'
 import { Richtext } from '../../components/Richtext'
+import { Header } from '../../components/Header'
 
 export const IdeaProject = (props) => {
   const tabs = {
     participation: 0,
     information: 1,
     results: 2
-  };
-  const { project } = props.route.params;
-  const [ideas, setIdeas] = useState([]);
-  const [module, setModule] = useState([]);
-  const [visibleTab, setVisibleTab] = useState(tabs.participation);
-  const bgImage = project.image ? project.image : null;
+  }
+  const { project } = props.route.params
+  const [ideas, setIdeas] = useState([])
+  const [module, setModule] = useState([])
+  const [visibleTab, setVisibleTab] = useState(tabs.participation)
+  const bgImage = project.image ? project.image : null
 
   const pressHandler = () =>
     props.navigation.navigate('IdeaCreate', {
@@ -36,7 +37,7 @@ export const IdeaProject = (props) => {
   const sortIcon = <IconFA name='filter' size={20} color={COLORS.grey.light} />
   const filterIcon = (
     <IconFA name='search' size={20} color={COLORS.grey.light} />
-  );
+  )
 
   const followButton = (
     <Button
@@ -46,7 +47,7 @@ export const IdeaProject = (props) => {
       icon={plusIcon}
       type='clear'
     />
-  );
+  )
 
   const fetchIdeas = () => {
     project.single_idea_collection_module &&
@@ -61,9 +62,9 @@ export const IdeaProject = (props) => {
     AsyncStorage.getItem('authToken')
       .then((token) => API.getModule(project.single_idea_collection_module, token))
       .then((moduleResponse) => {
-        setModule(moduleResponse);
-      });
-  };
+        setModule(moduleResponse)
+      })
+  }
 
   useEffect(() => {
     const ideasListener = props.navigation.addListener('focus', () => {

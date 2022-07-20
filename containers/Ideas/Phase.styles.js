@@ -1,6 +1,6 @@
-import { StyleSheet } from 'react-native';
-import { SIZES, FONTWEIGHT } from '../../theme/fonts';
-import { SPACINGS } from '../../theme/spacings';
+import { StyleSheet } from 'react-native'
+import { SIZES, FONTWEIGHT } from '../../theme/fonts'
+import { SPACINGS } from '../../theme/spacings'
 
 export const styles = StyleSheet.create({
   phaseContainer: {
@@ -13,4 +13,4 @@ export const styles = StyleSheet.create({
   phaseText: {
     fontSize: SIZES.multiplyBy(0.9375),
   }
-});
+})
