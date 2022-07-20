@@ -9,8 +9,18 @@ export const Phase = props => {
   const startDate = futurePhases ? futurePhases[0].start_date : null
   const endDate = pastPhases ? pastPhases[pastPhases.length-1].end_date : null
 
+  function getInactivePhaseText() {
+    if(!pastPhases){
+      return `It starts on ${startDate}`
+    }
+    if(futurePhases){
+      return `It continues on ${startDate}.`
+    }
+    return `It ended on ${endDate}.`
+  }
+
   return (
-    activePhase ?  (
+    activePhase ? (
       <View style={styles.phaseContainer}>
         <TextSourceSans style={styles.phaseText}>
           {activePhase.name + ' (active)'}
@@ -27,25 +37,11 @@ export const Phase = props => {
         <TextSourceSans>
           Participation is not possible at the moment.
         </TextSourceSans>
-        {pastPhases ? (
-          <View>
-            {futurePhases ? (
-              <TextSourceSans>
-                It continues on {startDate}.
-              </TextSourceSans>
-            ) : (
-              <TextSourceSans>
-                  It ended on {endDate}.
-              </TextSourceSans>
-            )}
-          </View>
-        ) : (
-          <View>
-            <TextSourceSans>
-              It starts on {startDate}.
-            </TextSourceSans>
-          </View>
-        )}
+        <View>
+          <TextSourceSans>
+            {getInactivePhaseText()}
+          </TextSourceSans>
+        </View>
       </View>
     )
   )
