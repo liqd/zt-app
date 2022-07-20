@@ -39,8 +39,7 @@ export const Richtext = ({ text }) => {
           <RichtextCollapsibleItem title={title} body={body} />
         </TDefaultRenderer>
       );
-    }
-    else {
+    } else {
       return (
         <TDefaultRenderer
           tnode={tnode}
