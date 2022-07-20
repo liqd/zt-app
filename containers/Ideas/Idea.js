@@ -51,7 +51,10 @@ export const Idea = (props) => {
       icon: 'flag',
       action: () => {
         setMenuVisible(false)
-        props.navigation.navigate('ReportCreateMessage', {content_type: ideaState.content_type, object_pk: ideaState.pk})
+        props.navigation.navigate(
+          'ReportCreateMessage',
+          {content_type: ideaState.content_type, object_pk: ideaState.pk}
+        )
       },
       isFirst: !ideaState.has_changing_permission && !ideaState.has_deleting_permission,
       isLast: true,
@@ -150,7 +153,12 @@ export const Idea = (props) => {
     AsyncStorage.getItem('authToken')
       .then((token) => {
         values.agreed_terms_of_use = true
-        return API.addComment(contentObjectOfComment.contentType, contentObjectOfComment.pk, values, token)
+        return API.addComment(
+          contentObjectOfComment.contentType,
+          contentObjectOfComment.pk,
+          values,
+          token
+        )
       })
       .then((response) => {
         const {statusCode, data} = response
@@ -181,7 +189,13 @@ export const Idea = (props) => {
     AsyncStorage.getItem('authToken')
       .then((token) => {
         values.agreed_terms_of_use = true
-        return API.editComment(editedComment.content_type, editedComment.object_pk, editedComment.id, values, token)
+        return API.editComment(
+          editedComment.content_type,
+          editedComment.object_pk,
+          editedComment.id,
+          values,
+          token
+        )
       })
       .then((response) => {
         const {statusCode, data} = response
@@ -251,10 +265,10 @@ export const Idea = (props) => {
       })
   }
 
-  const arrowLeftIcon = (<IconSLI name='arrow-left' size={22} />)
-  const optionsIcon = (<IconSLI name='options-vertical' size={22} />)
-  const arrowUpIcon = (<IconSLI name='arrow-up' size={18} />)
-  const arrowDownIcon = (<IconSLI name='arrow-down' size={18} />)
+  const arrowLeftIcon = <IconSLI name='arrow-left' size={22} />
+  const optionsIcon = <IconSLI name='options-vertical' size={22} />
+  const arrowUpIcon = <IconSLI name='arrow-up' size={18} />
+  const arrowDownIcon = <IconSLI name='arrow-down' size={18} />
   const commentIcon = (
     <IconSLI name='bubble' size={18}
       color={!hasComments

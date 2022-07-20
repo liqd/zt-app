@@ -15,8 +15,13 @@ test('Test Comment Toggle Menu', () => {
   const setMenuItems = jest.fn((m) => {
     menuItems = m
   })
-  const { getByTestId } = render(<Comment comment={testComment} toggleMenu={toggleMenu} setMenuItems={setMenuItems}
-    setDeleteModalItems={setDeleteModalItems} />)
+  const { getByTestId } = render(
+    <Comment
+      comment={testComment}
+      toggleMenu={toggleMenu}
+      setMenuItems={setMenuItems}
+      setDeleteModalItems={setDeleteModalItems}
+    />)
   const menuButton = getByTestId('options_button_' + testComment.id)
   fireEvent.press(menuButton)
   expect(setDeleteModalItems).toBeCalledTimes(1)
@@ -36,15 +41,23 @@ test('Test Comment Toggle Menu', () => {
 })
 
 test('Test Comment Toggle Menu has_changing_permission', () => {
-  const canChangeComment = { ...testComment, user_info: { ...testComment.user_info, has_changing_permission: true } }
+  const canChangeComment = {
+    ...testComment,
+    user_info: { ...testComment.user_info, has_changing_permission: true }
+  }
   let menuItems = null
   const toggleMenu = jest.fn()
   const setDeleteModalItems = jest.fn()
   const setMenuItems = jest.fn((m) => {
     menuItems = m
   })
-  const { getByTestId } = render(<Comment comment={canChangeComment} toggleMenu={toggleMenu} setMenuItems={setMenuItems}
-    setDeleteModalItems={setDeleteModalItems} />)
+  const { getByTestId } = render(
+    <Comment
+      comment={canChangeComment}
+      toggleMenu={toggleMenu}
+      setMenuItems={setMenuItems}
+      setDeleteModalItems={setDeleteModalItems}
+    />)
   const menuButton = getByTestId('options_button_' + testComment.id)
   fireEvent.press(menuButton)
   expect(setDeleteModalItems).toBeCalledTimes(1)
@@ -76,4 +89,3 @@ test('Test Comment Censored', () => {
   expect(getByText(/Deleted by moderation on/)).toBeTruthy()
   expect(queryByText(/January 1, 2022/)).toBeFalsy()
 })
-

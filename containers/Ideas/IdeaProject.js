@@ -119,21 +119,27 @@ export const IdeaProject = (props) => {
             <View style={styles.tabsMenu}>
               <Button
                 buttonStyle={styles.tabButton}
-                titleStyle={visibleTab === tabs.participation ? styles.tabsMenuItemActive : styles.tabsMenuItem}
+                titleStyle={visibleTab === tabs.participation ?
+                  styles.tabsMenuItemActive : styles.tabsMenuItem
+                }
                 title='Participation'
                 type='clear'
                 onPress={() => setVisibleTab(tabs.participation)}
               />
               <Button
                 buttonStyle={styles.tabButton}
-                titleStyle={visibleTab === tabs.information ? styles.tabsMenuItemActive : styles.tabsMenuItem}
+                titleStyle={visibleTab === tabs.information ?
+                  styles.tabsMenuItemActive : styles.tabsMenuItem
+                }
                 title='Information'
                 type='clear'
                 onPress={() => setVisibleTab(tabs.information)}
               />
               <Button
                 buttonStyle={styles.tabButton}
-                titleStyle={visibleTab === tabs.results ? styles.tabsMenuItemActive : styles.tabsMenuItem}
+                titleStyle={visibleTab === tabs.results ?
+                  styles.tabsMenuItemActive : styles.tabsMenuItem
+                }
                 title='Results'
                 type='clear'
                 onPress={() => setVisibleTab(tabs.results)}

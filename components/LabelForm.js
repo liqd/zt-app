@@ -11,7 +11,9 @@ export const LabelListContainer = (props) => {
     <View style={styles.labelContainer}>
       <TextSourceSans style={styles.formLabel}>{props.field}</TextSourceSans>
       {props.children}
-      {props.children.touched && <TextSourceSans style={styles.formError}>{props.error}</TextSourceSans>}
+      {props.children.touched &&
+        <TextSourceSans style={styles.formError}>{props.error}</TextSourceSans>
+      }
     </View>
   )
 }
@@ -85,4 +87,3 @@ export const LabelFormField = props => {
     />
   )
 }
-
