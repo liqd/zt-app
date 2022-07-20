@@ -15,7 +15,8 @@ exports[`Snapshot Default Header 1`] = `
         "alignItems": "center",
         "flexDirection": "row",
         "justifyContent": "space-between",
-        "marginBottom": 20,
+        "paddingBottom": 20,
+        "paddingTop": 10,
       }
     }
   >
@@ -110,7 +111,8 @@ exports[`Snapshot Default Header Custom Style 1`] = `
         "alignItems": "center",
         "flexDirection": "row",
         "justifyContent": "space-between",
-        "marginBottom": 20,
+        "paddingBottom": 20,
+        "paddingTop": 10,
       }
     }
   >
@@ -224,7 +226,8 @@ exports[`Snapshot Default Header Transparent White Arrow 1`] = `
         "alignItems": "center",
         "flexDirection": "row",
         "justifyContent": "space-between",
-        "marginBottom": 20,
+        "paddingBottom": 20,
+        "paddingTop": 10,
       }
     }
   >
