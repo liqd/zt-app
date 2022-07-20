@@ -89,8 +89,7 @@ export const Comment = (props) => {
   function handleOptions(subcomment) {
     if (subcomment !== undefined){
       commentBeingProcessed.current = subcomment;
-    }
-    else {
+    } else {
       commentBeingProcessed.current = comment;
     }
     props.setDeleteModalItems(commentDeleteModalItems);
@@ -118,8 +117,7 @@ export const Comment = (props) => {
           {value: value},
           token
         );
-      }
-      else {
+      } else {
         await API.changeRating(
           ratingComment.comment_content_type,
           ratingComment.id,
@@ -128,8 +126,7 @@ export const Comment = (props) => {
           token
         );
       }
-    }
-    else {
+    } else {
       await API.postRating(ratingComment.comment_content_type, ratingComment.id, {value: value}, token);
     }
     return await fetchComment();
@@ -153,14 +150,12 @@ export const Comment = (props) => {
         if (statusCode == 200) {
           Alert.alert('Your comment was deleted.', 'Thank you for participating!',  [{ text: 'Ok' }]);
           fetchComment();
-        }
-        else {
+        } else {
           const errorMessage = 'That did not work.';
           let errorDetail;
           if (statusCode==403) {
             errorDetail = data.detail;
-          }
-          else if (statusCode == 400) {
+          } else if (statusCode == 400) {
             errorDetail = 'Bad request';
           }
           Alert.alert(errorMessage, errorDetail, [{ text: 'Ok' }]);
@@ -171,11 +166,9 @@ export const Comment = (props) => {
   const getCommentTextDisplay = (comment) => {
     if (comment.is_removed) {
       return 'Deleted by creator on ' + comment.modified;
-    }
-    else if (comment.is_censored || comment.is_blocked) {
+    } else if (comment.is_censored || comment.is_blocked) {
       return 'Deleted by moderation on '+ comment.modified;
-    }
-    else {
+    } else {
       return comment.comment;
     }
   };

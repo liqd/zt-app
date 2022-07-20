@@ -23,11 +23,9 @@ const App = () => {
       try {
         await SplashScreen.preventAutoHideAsync();
         await Font.loadAsync({ SourceSansPro_400Regular });
-      }
-      catch (e) {
+      } catch (e) {
         console.warn(e);
-      }
-      finally {
+      } finally {
         // Tell the application to render
         setAppIsReady(true);
       }
