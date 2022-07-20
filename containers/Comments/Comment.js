@@ -38,7 +38,10 @@ export const Comment = (props) => {
       icon: 'flag',
       action: () => {
         props.toggleMenu()
-        props.navigation.navigate('ReportCreateMessage', {content_type: comment.comment_content_type, object_pk: comment.id})
+        props.navigation.navigate('ReportCreateMessage', {
+          content_type: comment.comment_content_type,
+          object_pk: comment.id
+        })
       },
       isFirst: !comment.user_info.has_changing_permission && !comment.user_info.has_deleting_permission,
       isLast: true,
@@ -127,14 +130,24 @@ export const Comment = (props) => {
         )
       }
     } else {
-      await API.postRating(ratingComment.comment_content_type, ratingComment.id, {value: value}, token)
+      await API.postRating(
+        ratingComment.comment_content_type,
+        ratingComment.id,
+        {value: value},
+        token
+      )
     }
     return await fetchComment()
   }
 
   const fetchComment = () => {
     return AsyncStorage.getItem('authToken')
-      .then((token) => API.getComment(comment.content_type, comment.object_pk, comment.id, token))
+      .then((token) => API.getComment(
+        comment.content_type,
+        comment.object_pk,
+        comment.id,
+        token
+      ))
       .then(fetchedComment => {
         setComment(fetchedComment)
         return fetchedComment
@@ -143,12 +156,21 @@ export const Comment = (props) => {
 
   const deleteComment = () => {
     AsyncStorage.getItem('authToken')
-      .then((token) => API.deleteComment(commentBeingProcessed.current.content_type, commentBeingProcessed.current.object_pk, commentBeingProcessed.current.id, token))
+      .then((token) => API.deleteComment(
+        commentBeingProcessed.current.content_type,
+        commentBeingProcessed.current.object_pk,
+        commentBeingProcessed.current.id,
+        token
+      ))
       .then((response) => {
         const {statusCode, data} = response
         props.toggleDeleteModal()
         if (statusCode == 200) {
-          Alert.alert('Your comment was deleted.', 'Thank you for participating!',  [{ text: 'Ok' }])
+          Alert.alert(
+            'Your comment was deleted.',
+            'Thank you for participating!',
+            [{ text: 'Ok' }]
+          )
           fetchComment()
         } else {
           const errorMessage = 'That did not work.'
@@ -195,9 +217,13 @@ export const Comment = (props) => {
           />
           }
           <View style={styles.author}>
-            <TextSourceSans style={styles.username}>{comment.user_name}</TextSourceSans>
+            <TextSourceSans style={styles.username}>
+              {comment.user_name}
+            </TextSourceSans>
             {isDisplayed(comment) &&
-            <TextSourceSans style={styles.date}>{comment.created}</TextSourceSans>
+            <TextSourceSans style={styles.date}>
+              {comment.created}
+            </TextSourceSans>
             }
           </View>
         </View>
@@ -227,16 +253,27 @@ export const Comment = (props) => {
           {comment.comment}
         </TextSourceSans>
         }
-        {hasExcerpt && <TouchableWithoutFeedback accessibilityRole="button" onPress={toggleWholeComment}>
-          <TextSourceSans style={styles.linkButton}>{showWholeComment ? 'Read Less' : 'Read More'}</TextSourceSans>
-        </TouchableWithoutFeedback>}
+        {hasExcerpt &&
+          <TouchableWithoutFeedback
+            accessibilityRole="button"
+            onPress={toggleWholeComment}
+          >
+            <TextSourceSans style={styles.linkButton}>
+              {showWholeComment ? 'Read Less' : 'Read More'}
+            </TextSourceSans>
+          </TouchableWithoutFeedback>}
       </View>
       <View style={styles.linkSection}>
-        {comment.child_comments.length !== 0 && <TouchableWithoutFeedback accessibilityRole="button" onPress={toggleSubComments}>
-          <TextSourceSans style={styles.linkButton}>
-            {showSubComments ? 'Hide' : 'Show'} {comment.child_comments.length} answers
-          </TextSourceSans>
-        </TouchableWithoutFeedback>}
+        {comment.child_comments.length !== 0 &&
+          <TouchableWithoutFeedback
+            accessibilityRole="button"
+            onPress={toggleSubComments}
+          >
+            <TextSourceSans style={styles.linkButton}>
+              {showSubComments ? 'Hide' : 'Show'} {comment.child_comments.length} answers
+            </TextSourceSans>
+          </TouchableWithoutFeedback>
+        }
       </View>
       <View style={styles.bottomActionsContainer}>
         <View style={styles.ratingButtons}>

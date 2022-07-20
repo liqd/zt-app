@@ -9,7 +9,9 @@ test('Test <Richtext>', () => {
 })
 
 test('Test <Richtext> with collapsibles', () => {
-  const testHtml = '<div class="collapsible-item"><div class="collapsible-title">test title</div><div class="collapsible-body"><p>test body</p></div></div>'
+  const testHtml = '<div class="collapsible-item">'
+  + '<div class="collapsible-title">test title</div>'
+  + '<div class="collapsible-body"><p>test body</p></div></div>'
   render(<Richtext text={testHtml} />)
   expect(screen.getByText('test title')).toBeTruthy()
 })
