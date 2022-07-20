@@ -29,21 +29,21 @@
   "plugins": ["react", "react-native", "jest"],
   "ignorePatterns": ["**/__mocks__/*"],
   "rules": {
-      // General ESLINT rules
-      "indent": ["error", 2, {"SwitchCase": 1}],
-      "linebreak-style": ["error", "unix"],
-      "quotes": ["error", "single"],
-      "semi": ["error", "never"],
-      "no-unused-vars": ["error", {"varsIgnorePattern": "(React)"}],
-      "eol-last": ["error", "always"],
-      "no-multiple-empty-lines": ["error", {"max": 1}],
-      "brace-style": ["error", "1tbs", { "allowSingleLine": true}],
-      "max-len": ["warn", 100, 2, {
-        "ignoreUrls": true,
-        "ignorePattern": "^import\\s.+\\sfrom\\s.+;$"
-      }],
-      "no-unneeded-ternary": "error",
-      "no-nested-ternary": "error",
+    // General ESLINT rules
+    "indent": ["error", 2, {"SwitchCase": 1}],
+    "linebreak-style": ["error", "unix"],
+    "quotes": ["error", "single"],
+    "semi": ["error", "never"],
+    "no-unused-vars": ["error", {"varsIgnorePattern": "(React)"}],
+    "eol-last": ["error", "always"],
+    "no-multiple-empty-lines": ["error", {"max": 1}],
+    "brace-style": ["error", "1tbs", { "allowSingleLine": true}],
+    "max-len": ["warn", 100, 2, {
+      "ignoreUrls": true,
+      "ignorePattern": "^import\\s.+\\sfrom\\s.+;$"
+    }],
+    "no-unneeded-ternary": "error",
+    "no-nested-ternary": "error",
 
     // Specific REACT rules
     "react/jsx-uses-vars": "error",
