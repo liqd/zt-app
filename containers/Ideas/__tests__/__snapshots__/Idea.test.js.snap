@@ -218,6 +218,7 @@ Array [
     >
       <View>
         <View
+          accessibilityRole="button"
           accessibilityState={
             Object {
               "disabled": true,
@@ -345,6 +346,8 @@ Array [
               }
             >
               <View
+                accessibilityHint="click to up vote"
+                accessibilityLabel="up-votes"
                 accessibilityState={
                   Object {
                     "disabled": false,
@@ -391,9 +394,9 @@ Array [
                         "fontFamily": "SourceSansPro_400Regular",
                       },
                       Object {
-                        "fontSize": 20.4,
-                        "letterSpacing": 10,
-                        "lineHeight": 24.200000000000003,
+                        "fontSize": 14.45,
+                        "letterSpacing": 5,
+                        "lineHeight": 20.9,
                       },
                     ]
                   }
@@ -422,6 +425,8 @@ Array [
                 </Text>
               </View>
               <View
+                accessibilityHint="click to down vote"
+                accessibilityLabel="down-votes"
                 accessibilityState={
                   Object {
                     "disabled": false,
@@ -468,9 +473,9 @@ Array [
                         "fontFamily": "SourceSansPro_400Regular",
                       },
                       Object {
-                        "fontSize": 20.4,
-                        "letterSpacing": 10,
-                        "lineHeight": 24.200000000000003,
+                        "fontSize": 14.45,
+                        "letterSpacing": 5,
+                        "lineHeight": 20.9,
                       },
                     ]
                   }
@@ -567,6 +572,7 @@ Array [
                     }
                   >
                     <Image
+                      accessibilityIgnoresInvertColors={true}
                       source={
                         Object {
                           "uri": "",
@@ -749,6 +755,8 @@ Array [
                     }
                   >
                     <View
+                      accessibilityHint="click to up vote"
+                      accessibilityLabel="up-votes"
                       accessibilityState={
                         Object {
                           "disabled": true,
@@ -801,9 +809,9 @@ Array [
                             },
                             Array [
                               Object {
-                                "fontSize": 20.4,
-                                "letterSpacing": 10,
-                                "lineHeight": 24.200000000000003,
+                                "fontSize": 14.45,
+                                "letterSpacing": 5,
+                                "lineHeight": 20.9,
                               },
                               Object {
                                 "color": "#c4c4c4",
@@ -836,6 +844,8 @@ Array [
                       </Text>
                     </View>
                     <View
+                      accessibilityHint="click to down vote"
+                      accessibilityLabel="down-votes"
                       accessibilityState={
                         Object {
                           "disabled": true,
@@ -888,9 +898,9 @@ Array [
                             },
                             Array [
                               Object {
-                                "fontSize": 20.4,
-                                "letterSpacing": 10,
-                                "lineHeight": 24.200000000000003,
+                                "fontSize": 14.45,
+                                "letterSpacing": 5,
+                                "lineHeight": 20.9,
                               },
                               Object {
                                 "color": "#c4c4c4",
@@ -1136,6 +1146,8 @@ Array [
           }
         >
           <TextInput
+            accessibilityHint="Type your comment here"
+            accessibilityLabel="Comment input"
             multiline={true}
             name="comment"
             onBlur={[Function]}
@@ -1156,6 +1168,7 @@ Array [
           }
         >
           <View
+            accessibilityRole="button"
             accessibilityState={
               Object {
                 "disabled": false,
