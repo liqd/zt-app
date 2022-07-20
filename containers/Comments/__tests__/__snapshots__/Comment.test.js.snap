@@ -29,6 +29,7 @@ exports[`Test Comment Snapshot 1`] = `
       }
     >
       <Image
+        accessibilityIgnoresInvertColors={true}
         source={
           Object {
             "uri": "",
@@ -191,6 +192,8 @@ exports[`Test Comment Snapshot 1`] = `
       }
     >
       <View
+        accessibilityHint="click to up vote"
+        accessibilityLabel="up-votes"
         accessibilityState={
           Object {
             "disabled": true,
@@ -243,9 +246,9 @@ exports[`Test Comment Snapshot 1`] = `
               },
               Array [
                 Object {
-                  "fontSize": 20.4,
-                  "letterSpacing": 10,
-                  "lineHeight": 24.200000000000003,
+                  "fontSize": 14.45,
+                  "letterSpacing": 5,
+                  "lineHeight": 20.9,
                 },
                 Object {
                   "color": "#c4c4c4",
@@ -258,6 +261,8 @@ exports[`Test Comment Snapshot 1`] = `
         </Text>
       </View>
       <View
+        accessibilityHint="click to down vote"
+        accessibilityLabel="down-votes"
         accessibilityState={
           Object {
             "disabled": true,
@@ -310,9 +315,9 @@ exports[`Test Comment Snapshot 1`] = `
               },
               Array [
                 Object {
-                  "fontSize": 20.4,
-                  "letterSpacing": 10,
-                  "lineHeight": 24.200000000000003,
+                  "fontSize": 14.45,
+                  "letterSpacing": 5,
+                  "lineHeight": 20.9,
                 },
                 Object {
                   "color": "#c4c4c4",
