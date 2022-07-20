@@ -19,7 +19,7 @@ export const ButtonTextInput = (props) => {
   const arrowRightIcon = <IconSLI name='arrow-right' size={22}/>;
 
   return (
-    <TouchableOpacity
+    <TouchableOpacity accessibilityRole="button"
       onPress={props.onPress}
       style={styles.textInputButton}
       disabled={props.disabled}

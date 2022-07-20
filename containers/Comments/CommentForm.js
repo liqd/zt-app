@@ -40,7 +40,7 @@ export const CommentForm = (props) => {
         return (
           <View style={styles.submitContainer}>
             <View style={styles.textInputContainer}>
-              <TextInput
+              <TextInput accessibilityLabel="Text input field"
                 name='comment'
                 ref={props.inputRef}
                 value={values.comment}
@@ -53,7 +53,7 @@ export const CommentForm = (props) => {
               />
             </View>
             <View style={styles.submitButton}>
-              <TouchableOpacity
+              <TouchableOpacity accessibilityRole="button"
                 onPress={handleSubmit}
                 disabled={!isValid}
               >
