@@ -11,7 +11,7 @@ export const RichtextCollapsibleItem = ({ title, body }) => {
     : <IconSLI name={'minus'} size={24} color={COLORS.text.main} />;
 
   return (
-    <TouchableOpacity onPress={() => setCollapsed(!collapsed)}>
+    <TouchableOpacity accessibilityRole="button" onPress={() => setCollapsed(!collapsed)}>
       <View style={styles.collapsibleButton}>
         <Text>{title}</Text>
         <View style={styles.collapsibleIcon}>{chevron}</View>

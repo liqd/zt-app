@@ -18,6 +18,7 @@ help:
 	@echo "  make start-android   -- run expo and launch the android app"
 	@echo "  make start-web       -- run expo and launch the web app"
 	@echo "  make lint            -- run the linter"
+	@echo "  make lint-fix        -- run the linter and fix simple errors"
 	@echo "  make test            -- run tests with coverage"
 	@echo "  make test-nocov      -- run tests without coverage"
 	@echo "  make test-debug      -- run changed tests only, no coverage"
