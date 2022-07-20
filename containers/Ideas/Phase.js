@@ -1,13 +1,13 @@
-import React from 'react';
-import {View} from 'react-native';
+import React from 'react'
+import {View} from 'react-native'
 
-import {TextSourceSans} from '../../components/TextSourceSans';
-import { styles } from './Phase.styles';
+import {TextSourceSans} from '../../components/TextSourceSans'
+import { styles } from './Phase.styles'
 
 export const Phase = props => {
-  const {activePhase, futurePhases, pastPhases} = props;
-  const startDate = futurePhases ? futurePhases[0].start_date : null;
-  const endDate = pastPhases ? pastPhases[pastPhases.length-1].end_date : null;
+  const {activePhase, futurePhases, pastPhases} = props
+  const startDate = futurePhases ? futurePhases[0].start_date : null
+  const endDate = pastPhases ? pastPhases[pastPhases.length-1].end_date : null
 
   return (
     activePhase ?  (
@@ -48,5 +48,5 @@ export const Phase = props => {
         )}
       </View>
     )
-  );
-};
+  )
+}

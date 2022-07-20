@@ -45,7 +45,6 @@
       "no-unneeded-ternary": "error",
       "no-nested-ternary": "error",
 
-
     // Specific REACT rules
     "react/jsx-uses-vars": "error",
     "react/button-has-type": "warn",

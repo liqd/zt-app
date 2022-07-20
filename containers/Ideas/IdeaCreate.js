@@ -1,14 +1,13 @@
 import React, {useState, useEffect} from 'react'
 import { Alert, View } from 'react-native'
-import { Button } from '@rneui/base'
 import { Formik } from 'formik'
 import * as yup from 'yup'
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import IconSLI from 'react-native-vector-icons/SimpleLineIcons'
 import { ButtonSubmit } from '../../components/ButtonSubmit'
 import { ButtonTextInput, ButtonTextInputFieldContainer } from '../../components/ButtonTextInput'
 import { TextSourceSans } from '../../components/TextSourceSans'
 import { VirtualScrollView } from '../../components/VirtualScrollView'
+import { Header } from '../../components/Header'
 
 import { styles } from './Idea.styles'
 import {
@@ -22,7 +21,7 @@ import API from '../../BaseApi'
 
 export const IdeaCreate = props => {
 
-  const {idea, module, editing, descriptionText } = props.route.params;
+  const {idea, module, editing, descriptionText } = props.route.params
   const ideaValidationSchema = yup.object().shape({
     name: yup
       .string()
@@ -244,25 +243,26 @@ export const IdeaCreate = props => {
                   onIconPress={(selectedLabels) => setFieldValue('labels', selectedLabels)}
                 />
               </LabelListContainer>
-            }
-            <ImageChoiceFormFieldContainer
-              field='Add Image'
-              name='image'
-              onSetImage={(img) => setFieldValue('image', img)}
-              onIconPress={() => setFieldValue('imageChecked', !values.imageChecked)}
-              checked={values.imageChecked}
-              image={values.image ? values.image.uri : (idea && idea.image)}
-            />
-            <ButtonSubmit
-              title='Submit'
-              onPress={handleSubmit}
-              disabled={!isValid}
-            >
-            </ButtonSubmit>
-          </>
-        )}
-      </Formik>
-    </VirtualScrollView>
+              }
+              <ImageChoiceFormFieldContainer
+                field='Add Image'
+                name='image'
+                onSetImage={(img) => setFieldValue('image', img)}
+                onIconPress={() => setFieldValue('imageChecked', !values.imageChecked)}
+                checked={values.imageChecked}
+                image={values.image ? values.image.uri : (idea && idea.image)}
+              />
+              <ButtonSubmit
+                title='Submit'
+                onPress={handleSubmit}
+                disabled={!isValid}
+              >
+              </ButtonSubmit>
+            </>
+          )}
+        </Formik>
+      </VirtualScrollView>
+    </>
   )
 }
 
