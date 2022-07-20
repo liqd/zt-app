@@ -6,6 +6,7 @@ import IconSLI from 'react-native-vector-icons/SimpleLineIcons'
 import API from '../../BaseApi'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { ButtonCounter } from '../../components/ButtonCounter'
+import { Header } from '../../components/Header'
 import { Label } from '../../components/Label'
 import { Menu } from '../../components/Menu'
 import { Modal } from '../../components/Modal'
@@ -265,7 +266,6 @@ export const Idea = (props) => {
       })
   }
 
-  const arrowLeftIcon = <IconSLI name='arrow-left' size={22} />
   const optionsIcon = <IconSLI name='options-vertical' size={22} />
   const arrowUpIcon = <IconSLI name='arrow-up' size={18} />
   const arrowDownIcon = <IconSLI name='arrow-down' size={18} />
@@ -296,8 +296,8 @@ export const Idea = (props) => {
         <Button
           icon={optionsIcon}
           type='clear'
-          onPress={() => {setMenuItems(ideaMenuItems); toggleMenu();}}
-        />);
+          onPress={() => {setMenuItems(ideaMenuItems); toggleMenu()}}
+        />)
 
   return (
     <>
@@ -324,7 +324,11 @@ export const Idea = (props) => {
             <View style={styles.descriptionContainer}>
               {ideaState.image && (
                 <>
-                  <Image source={{ uri: ideaState.image }} style={styles.ideaImage} />
+                  <Image
+                    accessibilityIgnoresInvertColors={true}
+                    source={{ uri: ideaState.image }}
+                    style={styles.ideaImage}
+                  />
                 </>
               )}
               <TextSourceSans style={styles.text}>{ideaState.description}</TextSourceSans>
@@ -342,31 +346,31 @@ export const Idea = (props) => {
               </TextSourceSans>
               <TextSourceSans style={styles.text}>
             Reference No.: {ideaState.reference_number || 'n/a'}
-            </TextSourceSans>
-          </View>
-          <View style={styles.bottomActionsContainer}>
-            <View style={styles.ratingButtons}>
-              <ButtonCounter
-                icon={arrowUpIcon}
-                labelText="up-votes"
-                hintText="click to up vote"
-                counter={ideaState.positive_rating_count}
-                onPress={() => handleRate(1)}
-                highlight={
-                  ideaState.user_rating &&
+              </TextSourceSans>
+            </View>
+            <View style={styles.bottomActionsContainer}>
+              <View style={styles.ratingButtons}>
+                <ButtonCounter
+                  icon={arrowUpIcon}
+                  labelText="up-votes"
+                  hintText="click to up vote"
+                  counter={ideaState.positive_rating_count}
+                  onPress={() => handleRate(1)}
+                  highlight={
+                    ideaState.user_rating &&
                 ideaState.user_rating.value === 1 &&
                 ideaState.user_rating.value
-                }
-                disabled={!ideaState.has_rating_permission}
-              />
-              <ButtonCounter
-                icon={arrowDownIcon}
-                labelText="down-votes"
-                hintText="click to down vote"
-                counter={ideaState.negative_rating_count}
-                onPress={() => handleRate(-1)}
-                highlight={
-                  ideaState.user_rating &&
+                  }
+                  disabled={!ideaState.has_rating_permission}
+                />
+                <ButtonCounter
+                  icon={arrowDownIcon}
+                  labelText="down-votes"
+                  hintText="click to down vote"
+                  counter={ideaState.negative_rating_count}
+                  onPress={() => handleRate(-1)}
+                  highlight={
+                    ideaState.user_rating &&
                 ideaState.user_rating.value === -1 &&
                 ideaState.user_rating.value
                   }
@@ -409,5 +413,5 @@ export const Idea = (props) => {
         />
       </KeyboardAvoidingView>
     </>
-  );
-};
+  )
+}

@@ -68,4 +68,4 @@ export const styles = StyleSheet.create({
   flexFullWidth: {
     flex: 1
   },
-});
+})

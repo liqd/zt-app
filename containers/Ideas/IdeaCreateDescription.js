@@ -1,17 +1,17 @@
-import React from 'react';
-import { View, ScrollView } from 'react-native';
-import { Formik } from 'formik';
-import * as yup from 'yup';
-import { ButtonSubmit } from '../../components/ButtonSubmit';
-import { Header } from '../../components/Header';
-import { TextSourceSans } from '../../components/TextSourceSans';
+import React from 'react'
+import { View, ScrollView } from 'react-native'
+import { Formik } from 'formik'
+import * as yup from 'yup'
+import { ButtonSubmit } from '../../components/ButtonSubmit'
+import { Header } from '../../components/Header'
+import { TextSourceSans } from '../../components/TextSourceSans'
 
-import { styles } from '../Reports/ReportCreateMessage.styles';
-import { TextInputFullFormField } from '../../components/formFields';
+import { styles } from '../Reports/ReportCreateMessage.styles'
+import { TextInputFullFormField } from '../../components/formFields'
 
 export const IdeaCreateDescription = props => {
 
-  const description = props.route.params.description;
+  const description = props.route.params.description
   const ideaDescriptionValidationSchema = yup.object().shape({
     description: yup
       .string()
