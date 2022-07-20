@@ -1,10 +1,10 @@
-import { StyleSheet } from 'react-native';
-import { COLORS } from '../theme/colors';
-import { SPACINGS } from '../theme/spacings';
+import { StyleSheet } from 'react-native'
+import { COLORS } from '../theme/colors'
+import { SPACINGS } from '../theme/spacings'
 
 export const styles = StyleSheet.create({
   collapsibleButton: {
-    backgroundColor: COLORS.text.inverted,
+    backgroundColor: COLORS.paper.main,
     width: '100%',
     flexDirection: 'row',
     alignItems: 'center',
@@ -23,4 +23,4 @@ export const styles = StyleSheet.create({
     marginBottom: SPACINGS.multiplyBy(0.5),
     borderBottomWidth: 1
   }
-});
+})

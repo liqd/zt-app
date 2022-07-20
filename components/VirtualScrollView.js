@@ -1,5 +1,5 @@
-import React from 'react';
-import {FlatList} from 'react-native';
+import React from 'react'
+import {FlatList} from 'react-native'
 
 export const VirtualScrollView = props => {
   return (
@@ -14,5 +14,5 @@ export const VirtualScrollView = props => {
         <>{props.children}</>
       )}
     />
-  );
-};
+  )
+}

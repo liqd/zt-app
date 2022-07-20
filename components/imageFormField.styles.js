@@ -1,7 +1,7 @@
-import { StyleSheet } from 'react-native';
-import { COLORS } from '../theme/colors';
-import { SPACINGS, BORDERWIDTH, BORDERRADIUS } from '../theme/spacings';
-import { SIZES, LINEHEIGHTS } from '../theme/fonts';
+import { StyleSheet } from 'react-native'
+import { COLORS } from '../theme/colors'
+import { SPACINGS, BORDERWIDTH, BORDERRADIUS } from '../theme/spacings'
+import { SIZES, LINEHEIGHTS } from '../theme/fonts'
 
 export const styles = StyleSheet.create({
   formImagePicker: {
@@ -39,7 +39,7 @@ export const styles = StyleSheet.create({
   },
   iconRemoveButton: {
     fontSize: SIZES.lg,
-    backgroundColor: COLORS.text.inverted,
+    backgroundColor: COLORS.paper.main,
     borderRadius: BORDERRADIUS.container,
   },
   formImagePreview: {
@@ -71,7 +71,7 @@ export const styles = StyleSheet.create({
   },
   imageButton: {
     minWidth: '100%',
-    color: COLORS.text.inverted,
+    color: COLORS.paper.main,
     backgroundColor: COLORS.text.main,
     paddingVertical: SPACINGS.multiplyBy(0.75),
     borderColor: COLORS.text.main,
@@ -81,6 +81,6 @@ export const styles = StyleSheet.create({
     marginBottom: SPACINGS.multiplyBy(1)
   },
   textLight: {
-    color: COLORS.text.inverted
+    color: COLORS.paper.main
   }
-});
+})

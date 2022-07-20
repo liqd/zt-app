@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
-import { TextInput, View } from 'react-native';
-import { CheckBox } from '@rneui/themed';
-import DropDownPicker from 'react-native-dropdown-picker';
-import { styles } from './formFields.styles';
-import { TextSourceSans } from './TextSourceSans';
-import { COLORS } from '../theme/colors';
+import React, { useState } from 'react'
+import { TextInput, View } from 'react-native'
+import { CheckBox } from '@rneui/themed'
+import DropDownPicker from 'react-native-dropdown-picker'
+import { styles } from './formFields.styles'
+import { TextSourceSans } from './TextSourceSans'
+import { COLORS } from '../theme/colors'
 
 /*  Setting list mode to scrollview globally
 FIXME: to be checked if we want this */
-DropDownPicker.setListMode('SCROLLVIEW');
+DropDownPicker.setListMode('SCROLLVIEW')
 
 export const TextInputFormField = (props) => {
   return (
@@ -21,8 +21,8 @@ export const TextInputFormField = (props) => {
       />
       {props.touched && props.error && <TextSourceSans style={styles.formError}>{props.error}</TextSourceSans>}
     </View>
-  );
-};
+  )
+}
 
 export const TextInputFullFormField = (props) => {
   return (
@@ -34,8 +34,8 @@ export const TextInputFullFormField = (props) => {
       />
       {props.touched && <TextSourceSans style={styles.formError}>{props.error}</TextSourceSans>}
     </View>
-  );
-};
+  )
+}
 
 export const CheckBoxFormField = (props) => {
   return (
@@ -50,8 +50,8 @@ export const CheckBoxFormField = (props) => {
       containerStyle={styles.checkBoxContainer}
       wrapperStyle={styles.checkBoxWrapper}
     >{props.children}</CheckBox>
-  );
-};
+  )
+}
 
 export const DropdownFormFieldContainer = (props) => {
   return (
@@ -59,23 +59,25 @@ export const DropdownFormFieldContainer = (props) => {
       <TextSourceSans style={styles.formLabel}>{props.field}</TextSourceSans>
       {props.children}
     </View>
-  );
-};
+  )
+}
 
 export const DropdownFormField = (props) => {
-  const [ open, setOpen ] = useState(false);
-  const [ selected, setSelected ] = useState(props.value);
+  const [ open, setOpen ] = useState(false)
+  const [ selected, setSelected ] = useState(props.value)
   return (
-    <DropDownPicker
-      dropDownStyle={styles.dropdownFormField}
-      open={open}
-      value={selected}
-      items={props.items}
-      setOpen={setOpen}
-      setItems={props.setItems}
-      setValue={setSelected}
-      onChangeValue={value => props.onChangeValue(value)}
-      containerStyle={{}}
-    />
-  );
-};
+    <View>
+      <DropDownPicker
+        style={styles.dropdownFormField}
+        open={open}
+        value={selected}
+        items={props.items}
+        setOpen={setOpen}
+        setItems={props.setItems}
+        setValue={setSelected}
+        onChangeValue={value => props.onChangeValue(value)}
+        containerStyle={{}}
+      />
+    </View>
+  )
+}

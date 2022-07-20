@@ -1,33 +1,33 @@
-import React, { useState, useEffect } from 'react';
-import { View, FlatList } from 'react-native';
-import API from '../../BaseApi';
-import { ExploreListItem } from './ExploreListItem';
-import { styles } from './ExplorePage.styles';
-import { ButtonSignOut } from '../../components/ButtonSignOut';
-import { TextSourceSans } from '../../components/TextSourceSans';
+import React, { useState, useEffect } from 'react'
+import { View, FlatList } from 'react-native'
+import API from '../../BaseApi'
+import { ExploreListItem } from './ExploreListItem'
+import { styles } from './ExplorePage.styles'
+import { ButtonSignOut } from '../../components/ButtonSignOut'
+import { TextSourceSans } from '../../components/TextSourceSans'
 
 export const ExplorePage = (props) => {
-  const [projects, setProjects] = useState([]);
+  const [projects, setProjects] = useState([])
 
   const fetchProjects = () => {
     API.getProjects()
       .then(response => response && setProjects(response))
-      .catch(error => console.warn(error));
-  };
+      .catch(error => console.warn(error))
+  }
 
   const pressHandler = (project) =>
-    props.navigation.navigate('IdeaProject', { project: project });
+    props.navigation.navigate('IdeaProject', { project: project })
 
   const projectItem = ({ item }) => (
     <ExploreListItem item={item} action={(project) => pressHandler(project)} />
-  );
+  )
 
   useEffect(() => {
     const projectsListener = props.navigation.addListener('focus', () => {
-      fetchProjects();
-    });
-    return projectsListener;
-  }, []);
+      fetchProjects()
+    })
+    return projectsListener
+  }, [])
 
   return (
     <View style={styles.container}>
@@ -40,5 +40,5 @@ export const ExplorePage = (props) => {
         renderItem={projectItem}
       />
     </View>
-  );
-};
+  )
+}
