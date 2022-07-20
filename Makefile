@@ -58,11 +58,11 @@ start-web:
 
 .PHONY: lint
 lint:
-	npx eslint *.js containers/ components/ navigation/
+	npx eslint *.js containers/ components/ navigation/ services/ tests/ theme/
 
 .PHONY: lint-fix
 lint-fix:
-	npx eslint --fix *.js containers/ components/ navigation/
+	npx eslint --fix *.js containers/ components/ navigation/ services/ tests/ theme/
 
 .PHONY: test
 test:

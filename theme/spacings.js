@@ -1,13 +1,13 @@
-const baseGutter = 20;
+const baseGutter = 20
 
 export const SPACINGS = {
   base: baseGutter,
   multiplyBy: times => times * baseGutter
-};
+}
 
 export const BORDERWIDTH = {
   base: 1,
-};
+}
 
 export const BORDERRADIUS = {
   none: 0,
@@ -15,4 +15,4 @@ export const BORDERRADIUS = {
   md: 12,
   lg: 18,
   container: 24
-};
+}

@@ -11,18 +11,16 @@ const MONTHSTRINGS = {
   9: 'October',
   10: 'November',
   11: 'December',
-};
+}
 
 export const DateService = (dateInput, format = 'month d,y') => {
-  const d = new Date(dateInput);
+  const d = new Date(dateInput)
   if (format === 'month d,y') {
-    return `${MONTHSTRINGS[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`;
+    return `${MONTHSTRINGS[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`
+  } else if (format === 'month d, y, h:m') {
+    const hasMinutes = d.getMinutes() ? ':' + d.getMinutes() : ':00'
+    return `${MONTHSTRINGS[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}, ${d.getHours()}${hasMinutes}`
+  } else {
+    return 'date format unknown.'
   }
-  else if (format === 'month d, y, h:m') {
-    const hasMinutes = d.getMinutes() ? ':' + d.getMinutes() : ':00';
-    return `${MONTHSTRINGS[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}, ${d.getHours()}${hasMinutes}`;
-  }
-  else {
-    return 'date format unknown.';
-  }
-};
+}
