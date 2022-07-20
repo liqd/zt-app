@@ -120,8 +120,7 @@ export const Idea = (props) => {
           {value: value},
           token
         );
-      }
-      else {
+      } else {
         await API.changeRating(
           content_type,
           pk,
@@ -130,8 +129,7 @@ export const Idea = (props) => {
           token
         );
       }
-    }
-    else {
+    } else {
       await API.postRating(content_type, pk, {value: value}, token);
     }
     return await fetchIdea();
@@ -141,8 +139,7 @@ export const Idea = (props) => {
     if (isEditing){
       setIsEditing(false);
       setEditedComment(undefined);
-    }
-    else {
+    } else {
       toggleMenu();
       setIsEditing(true);
       setEditedComment(comment);
@@ -161,20 +158,17 @@ export const Idea = (props) => {
         if (statusCode == 201) {
           if (data.content_type == data.comment_content_type) {
             setCommentLastCommented(data.object_pk);
-          }
-          else {
+          } else {
             setCommentLastCommented(-1);
           }
           fetchComments(idea.content_type, idea.pk);
           setContentObjectOfComment({'contentType': idea.content_type, 'pk': idea.pk});
-        }
-        else {
+        } else {
           const errorMessage = 'That did not work.';
           let errorDetail;
           if (statusCode==403) {
             errorDetail = data.detail;
-          }
-          else if (statusCode == 400) {
+          } else if (statusCode == 400) {
             errorDetail = ('comment' in data ? ('Comment: ' + data['comment']) : 'Bad request');
           }
           Alert.alert(errorMessage, errorDetail, [{ text: 'Ok' }]);
@@ -196,20 +190,17 @@ export const Idea = (props) => {
           toggleEditing();
           if (data.content_type == data.comment_content_type) {
             setCommentLastCommented(data.object_pk);
-          }
-          else {
+          } else {
             setCommentLastCommented(-1);
           }
           fetchComments(idea.content_type, idea.pk);
           setContentObjectOfComment({'contentType': idea.content_type, 'pk': idea.pk});
-        }
-        else {
+        } else {
           const errorMessage = 'That did not work.';
           let errorDetail;
           if (statusCode==403) {
             errorDetail = data.detail;
-          }
-          else if (statusCode == 400) {
+          } else if (statusCode == 400) {
             errorDetail = ('comment' in data ? ('Comment: ' + data['comment']) : 'Bad request');
           }
           Alert.alert(errorMessage, errorDetail, [{ text: 'Ok', onPress: ()=> {toggleEditing();} }]);
@@ -225,8 +216,7 @@ export const Idea = (props) => {
   function handleScroll(event) {
     if (isScrolling && event.nativeEvent.contentOffset.y < 75.0) {
       setIsScrolling(false);
-    }
-    else if (!isScrolling && (event.nativeEvent.contentOffset.y >= 75.0) ) {
+    } else if (!isScrolling && (event.nativeEvent.contentOffset.y >= 75.0) ) {
       setIsScrolling(true);
     }
   }
@@ -249,14 +239,12 @@ export const Idea = (props) => {
         if (statusCode == 204) {
           Alert.alert('Your idea was deleted.', 'Thank you for participating!',  [{ text: 'Ok' }]);
           props.navigation.goBack();
-        }
-        else {
+        } else {
           const errorMessage = 'That did not work.';
           let errorDetail;
           if (statusCode==403) {
             errorDetail = data.detail;
-          }
-          else if (statusCode == 400) {
+          } else if (statusCode == 400) {
             errorDetail = 'Bad request';
           }
           Alert.alert(errorMessage, errorDetail, [{ text: 'Ok' }]);
