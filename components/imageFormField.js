@@ -90,7 +90,9 @@ export const ImagePickerFormField = (props) => {
   return (
     <>
       <View
-        style={capturedImage || image ? styles.formImagePickerFull : styles.formImagePicker}
+        style={capturedImage || image ?
+          styles.formImagePickerFull : styles.formImagePicker
+        }
       >
         {!capturedImage && !image &&
         <Button
@@ -119,7 +121,9 @@ export const ImagePickerFormField = (props) => {
           </>
         }
       </View>
-      <View style={capturedImage || image ? styles.formImagePickerFull : styles.formImagePicker}>
+      <View style={capturedImage || image ?
+        styles.formImagePickerFull : styles.formImagePicker
+      }>
         {!capturedImage && !image &&
         <Button
           buttonStyle={[styles.imageAddButton, styles.imageAddButtonRight]}
@@ -153,7 +157,9 @@ export const ImagePickerFormField = (props) => {
 
 export const ImageChoiceFormFieldContainer = (props) => {
   const cloudUploadIcon = (
-    <IconSLI name='cloud-upload' style={[styles.imageButtonIcon, styles.textLight]} />
+    <IconSLI
+      name='cloud-upload'
+      style={[styles.imageButtonIcon, styles.textLight]} />
   )
 
   const [clicked, setClicked] = useState(false)
@@ -174,7 +180,9 @@ export const ImageChoiceFormFieldContainer = (props) => {
                 />
       }
       <TextSourceSans style={styles.imageInfo}>
-                Visualize your idea. It must be min. 600 pixel wide and 400 pixel tall. Allowed file formats are png, jpeg, gif. The file size should be max. 5 MB.
+        Visualize your idea. It must be min. 600 pixel wide and 400 pixel tall.
+        Allowed file formats are png, jpeg, gif. The file size should be
+        max. 5 MB.
       </TextSourceSans>
       {(clicked || props.image) &&
         <>
@@ -187,7 +195,10 @@ export const ImageChoiceFormFieldContainer = (props) => {
             name='imageCopyrightChecked'
             onIconPress={props.onIconPress}
             checked={props.checked}
-            title='I hereby confirm that the copyrights for this photo are with me or that I have received rights of use from the author. I also confirm that the privacy rights of depicted third persons are not violated.'
+            title='I hereby confirm that the copyrights for this photo are with
+            me or that I have received rights of use from the author.
+            I also confirm that the privacy rights of depicted third persons
+            are not violated.'
           />
         </>
       }
