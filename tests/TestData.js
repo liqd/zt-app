@@ -19,7 +19,7 @@ export const testComment = {
     has_deleting_permission: false
   },
   user_name: 'test-user'
-};
+}
 
 export const testIdeaAdmin = {
   'category': null,
@@ -43,7 +43,7 @@ export const testIdeaAdmin = {
   'positive_rating_count': 0,
   'reference_number': '2022-00006',
   'user_rating': null
-};
+}
 
 export const testModule = {
   'categories': false,
@@ -68,4 +68,4 @@ export const testModule = {
     }
   ],
   'pk': 7
-};
+}
