@@ -1,9 +1,9 @@
-import { Platform, StyleSheet } from 'react-native';
-import { COLORS } from '../../theme/colors';
-import { SIZES, FONTWEIGHT } from '../../theme/fonts';
-import { SPACINGS, BORDERRADIUS } from '../../theme/spacings';
+import { Platform, StyleSheet } from 'react-native'
+import { COLORS } from '../../theme/colors'
+import { SIZES, FONTWEIGHT } from '../../theme/fonts'
+import { SPACINGS, BORDERRADIUS } from '../../theme/spacings'
 
-const headerOffset = 300;
+const headerOffset = 300
 
 export const styles = StyleSheet.create({
   container: {
@@ -106,7 +106,7 @@ export const styles = StyleSheet.create({
   buttonText: {
     fontSize: SIZES.md,
     marginHorizontal: SPACINGS.multiplyBy(.4),
-    color: COLORS.text.inverted,
+    color: COLORS.paper.main,
   },
   listActions: {
     flexDirection: 'row',
@@ -128,4 +128,4 @@ export const styles = StyleSheet.create({
   contactLabel: {
     fontWeight: FONTWEIGHT.boldxl,
   }
-});
+})

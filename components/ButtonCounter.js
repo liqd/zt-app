@@ -1,20 +1,20 @@
-import React from 'react';
-import { TouchableOpacity } from 'react-native';
-import { styles } from './ButtonCounter.styles';
-import { TextSourceSans } from './TextSourceSans';
+import React from 'react'
+import { TouchableOpacity } from 'react-native'
+import { styles } from './ButtonCounter.styles'
+import { TextSourceSans } from './TextSourceSans'
 
 export const ButtonCounter = (props) => {
-  let btnStyle;
+  let btnStyle
   if (props.disabled) {
-    btnStyle = [styles.text, styles.disableStyle];
+    btnStyle = [styles.text, styles.disableStyle]
   } else {
     if (!props.highlight) {
-      btnStyle = styles.text;
+      btnStyle = styles.text
     } else {
       if (props.highlight === 1) {
-        btnStyle = [styles.text, styles.highlightUpStyle];
+        btnStyle = [styles.text, styles.highlightUpStyle]
       } else {
-        btnStyle = [styles.text, styles.highlightDownStyle];
+        btnStyle = [styles.text, styles.highlightDownStyle]
       }
     }
   }
@@ -35,5 +35,5 @@ export const ButtonCounter = (props) => {
         {props.icon}
       </TextSourceSans>
     </TouchableOpacity>
-  );
-};
+  )
+}

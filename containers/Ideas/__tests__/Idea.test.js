@@ -1,36 +1,36 @@
-import React from 'react';
-import '@testing-library/jest-native/extend-expect';
-import { fireEvent, render, waitFor, act } from '@testing-library/react-native';
-import { Idea } from '../Idea';
-import { testComment as mockComment, testIdeaAdmin, testModule } from '../../../tests/TestData';
-import API from '../../../BaseApi';
+import React from 'react'
+import '@testing-library/jest-native/extend-expect'
+import { fireEvent, render, waitFor, act } from '@testing-library/react-native'
+import { Idea } from '../Idea'
+import { testComment as mockComment, testIdeaAdmin, testModule } from '../../../tests/TestData'
+import API from '../../../BaseApi'
 
 jest.mock('../../../BaseApi', () => ({
   __esModule: true,
   default: { getComments: jest.fn(() => Promise.resolve({ results: [mockComment] })) }
-}));
+}))
 
 test('Test Idea Snapshot', async () => {
-  const route = { params: { idea: testIdeaAdmin, module: testModule } };
-  const { toJSON, queryByText } = render(<Idea route={route} />);
+  const route = { params: { idea: testIdeaAdmin, module: testModule } }
+  const { toJSON, queryByText } = render(<Idea route={route} />)
   await waitFor(() => {
-    expect(queryByText(/Lorem ipsum/)).toBeTruthy();
-  });
-  expect(toJSON()).toMatchSnapshot();
-});
+    expect(queryByText(/Lorem ipsum/)).toBeTruthy()
+  })
+  expect(toJSON()).toMatchSnapshot()
+})
 
 test('Test Idea Comment Menu No Permissions', async () => {
-  const route = { params: { idea: testIdeaAdmin, module: testModule } };
-  const { getByTestId, queryByText } = render(<Idea route={route} />);
+  const route = { params: { idea: testIdeaAdmin, module: testModule } }
+  const { getByTestId, queryByText } = render(<Idea route={route} />)
   await waitFor(() => {
-    expect(queryByText(/Lorem ipsum/)).toBeTruthy();
-  });
-  const menuButton = getByTestId('options_button_' + mockComment.id);
-  fireEvent.press(menuButton);
-  expect(queryByText('Edit')).toBeFalsy();
-  expect(queryByText('Report')).toBeTruthy();
-  expect(queryByText('Delete')).toBeFalsy();
-});
+    expect(queryByText(/Lorem ipsum/)).toBeTruthy()
+  })
+  const menuButton = getByTestId('options_button_' + mockComment.id)
+  fireEvent.press(menuButton)
+  expect(queryByText('Edit')).toBeFalsy()
+  expect(queryByText('Report')).toBeTruthy()
+  expect(queryByText('Delete')).toBeFalsy()
+})
 
 test('Test Idea Comment Menu Edit Permissions', async () => {
   API.getComments = jest.fn(() => Promise.resolve({
@@ -38,18 +38,18 @@ test('Test Idea Comment Menu Edit Permissions', async () => {
       ...mockComment,
       user_info: { ...mockComment.user_info, has_changing_permission: true }
     }]
-  }));
-  const route = { params: { idea: testIdeaAdmin, module: testModule } };
-  const { getByTestId, queryByText } = render(<Idea route={route} />);
+  }))
+  const route = { params: { idea: testIdeaAdmin, module: testModule } }
+  const { getByTestId, queryByText } = render(<Idea route={route} />)
   await waitFor(() => {
-    expect(queryByText(/Lorem ipsum/)).toBeTruthy();
-  });
-  const menuButton = getByTestId('options_button_' + mockComment.id);
-  fireEvent.press(menuButton);
-  expect(queryByText('Edit')).toBeTruthy();
-  expect(queryByText('Report')).toBeTruthy();
-  expect(queryByText('Delete')).toBeFalsy();
-});
+    expect(queryByText(/Lorem ipsum/)).toBeTruthy()
+  })
+  const menuButton = getByTestId('options_button_' + mockComment.id)
+  fireEvent.press(menuButton)
+  expect(queryByText('Edit')).toBeTruthy()
+  expect(queryByText('Report')).toBeTruthy()
+  expect(queryByText('Delete')).toBeFalsy()
+})
 
 test('Test Idea Comment Edit', async () => {
   API.getComments = jest.fn(() => Promise.resolve({
@@ -57,33 +57,33 @@ test('Test Idea Comment Edit', async () => {
       ...mockComment,
       user_info: { ...mockComment.user_info, has_changing_permission: true }
     }]
-  }));
-  const route = { params: { idea: testIdeaAdmin, module: testModule } };
+  }))
+  const route = { params: { idea: testIdeaAdmin, module: testModule } }
   const {
     findByText,
     getByPlaceholderText,
     getByTestId,
     getByText,
     queryByText
-  } = render(<Idea route={route} />);
+  } = render(<Idea route={route} />)
   // wait till hooks finished
-  const comment = await findByText(/Lorem ipsum/);
-  expect(comment).toBeTruthy();
-  const commentFormInput = getByPlaceholderText('Enter your comment');
+  const comment = await findByText(/Lorem ipsum/)
+  expect(comment).toBeTruthy()
+  const commentFormInput = getByPlaceholderText('Enter your comment')
   // text input empty
-  expect(commentFormInput).toHaveProp('value', '');
-  const menuButton = getByTestId('options_button_' + mockComment.id);
-  fireEvent.press(menuButton);
+  expect(commentFormInput).toHaveProp('value', '')
+  const menuButton = getByTestId('options_button_' + mockComment.id)
+  fireEvent.press(menuButton)
   // menu should be visible
-  expect(queryByText('Edit')).toBeTruthy();
-  const editButton = getByText('Edit');
-  fireEvent.press(editButton);
+  expect(queryByText('Edit')).toBeTruthy()
+  const editButton = getByText('Edit')
+  fireEvent.press(editButton)
   // menu should be gone
-  expect(queryByText('Edit')).toBeFalsy();
+  expect(queryByText('Edit')).toBeFalsy()
   // text input filled with comment
-  expect(commentFormInput).toHaveProp('value', mockComment.comment);
+  expect(commentFormInput).toHaveProp('value', mockComment.comment)
   await act(async () => {
-    fireEvent.changeText(commentFormInput, 'This is an edited comment');
-  });
-  expect(commentFormInput).toHaveProp('value', 'This is an edited comment');
-});
+    fireEvent.changeText(commentFormInput, 'This is an edited comment')
+  })
+  expect(commentFormInput).toHaveProp('value', 'This is an edited comment')
+})

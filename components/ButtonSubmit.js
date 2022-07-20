@@ -1,6 +1,6 @@
-import React from 'react';
-import { Button } from '@rneui/base';
-import { styles } from './ButtonSubmit.styles';
+import React from 'react'
+import { Button } from '@rneui/base'
+import { styles } from './ButtonSubmit.styles'
 
 export const ButtonSubmit = (props) => {
   return (
@@ -10,5 +10,5 @@ export const ButtonSubmit = (props) => {
       buttonStyle={styles.submitButton}
       disabled={props.disabled}
     />
-  );
-};
+  )
+}

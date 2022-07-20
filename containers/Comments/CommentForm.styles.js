@@ -1,6 +1,6 @@
-import { StyleSheet } from 'react-native';
-import { SPACINGS, BORDERRADIUS } from '../../theme/spacings';
-import { COLORS } from '../../theme/colors';
+import { StyleSheet } from 'react-native'
+import { SPACINGS, BORDERRADIUS } from '../../theme/spacings'
+import { COLORS } from '../../theme/colors'
 
 export const styles = StyleSheet.create({
   submitContainer: {
@@ -11,7 +11,7 @@ export const styles = StyleSheet.create({
   },
   textInputContainer: {
     flex: 2,
-    backgroundColor: COLORS.text.inverted,
+    backgroundColor: COLORS.paper.main,
     borderRadius: BORDERRADIUS.lg,
     padding: SPACINGS.multiplyBy(0.5),
   },
@@ -22,4 +22,4 @@ export const styles = StyleSheet.create({
     backgroundColor: COLORS.primary,
     borderRadius: BORDERRADIUS.lg
   }
-});
+})

@@ -13,11 +13,9 @@ export const COLORS = {
   // utility
   text: {
     main: '#1a1a1a',
-    inverted: '#fff',
   },
   paper: {
     main: '#fff',
-    inverted: '#1a1a1a'
   },
   grey: {
     extralight: '#d8d8d8',
@@ -26,4 +24,4 @@ export const COLORS = {
     dark: '#464a4c',
   },
   overlay: 'rgba(77, 77, 77, 0.9)'
-};
+}

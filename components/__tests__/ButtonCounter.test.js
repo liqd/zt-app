@@ -1,7 +1,7 @@
-import React from 'react';
-import { render } from '@testing-library/react-native';
-import { ButtonCounter } from '../ButtonCounter';
-import Icon from 'react-native-vector-icons/SimpleLineIcons';
+import React from 'react'
+import { render } from '@testing-library/react-native'
+import { ButtonCounter } from '../ButtonCounter'
+import Icon from 'react-native-vector-icons/SimpleLineIcons'
 
 test('Test ButtonCounter', () => {
   const { getByText, toJSON } = render(
@@ -11,10 +11,10 @@ test('Test ButtonCounter', () => {
       counter={0}
       icon={<Icon name="check" />}
     />
-  );
-  expect(toJSON()).toMatchSnapshot();
-  expect(getByText('0')).toBeTruthy();
-});
+  )
+  expect(toJSON()).toMatchSnapshot()
+  expect(getByText('0')).toBeTruthy()
+})
 
 test('Test ButtonCounter 10', () => {
   const { getByText, toJSON } = render(
@@ -24,13 +24,13 @@ test('Test ButtonCounter 10', () => {
       counter={10}
       icon={<Icon name="check" />}
     />
-  );
-  expect(toJSON()).toMatchSnapshot();
-  expect(getByText('10')).toBeTruthy();
-});
+  )
+  expect(toJSON()).toMatchSnapshot()
+  expect(getByText('10')).toBeTruthy()
+})
 
 test('Test ButtonCounter random value', () => {
-  const rand = Math.floor(Math.random() * 100);
+  const rand = Math.floor(Math.random() * 100)
   const { getByText } = render(
     <ButtonCounter
       disabled={false}
@@ -38,9 +38,9 @@ test('Test ButtonCounter random value', () => {
       counter={rand}
       icon={<Icon name="check" />}
     />
-  );
-  expect(getByText(`${rand}`)).toBeTruthy();
-});
+  )
+  expect(getByText(`${rand}`)).toBeTruthy()
+})
 
 test('Test ButtonCounter disabled', () => {
   const { getByText, toJSON } = render(
@@ -50,10 +50,10 @@ test('Test ButtonCounter disabled', () => {
       counter={0}
       icon={<Icon name="check" />}
     />
-  );
-  expect(toJSON()).toMatchSnapshot();
-  expect(getByText('0')).toBeTruthy();
-});
+  )
+  expect(toJSON()).toMatchSnapshot()
+  expect(getByText('0')).toBeTruthy()
+})
 
 test('Test ButtonCounter highlight', () => {
   const { getByText, toJSON } = render(
@@ -63,10 +63,10 @@ test('Test ButtonCounter highlight', () => {
       counter={0}
       icon={<Icon name="check" />}
     />
-  );
-  expect(toJSON()).toMatchSnapshot();
-  expect(getByText('0')).toBeTruthy();
-});
+  )
+  expect(toJSON()).toMatchSnapshot()
+  expect(getByText('0')).toBeTruthy()
+})
 
 test('Test ButtonCounter highlight 10', () => {
   const { getByText, toJSON } = render(
@@ -76,7 +76,7 @@ test('Test ButtonCounter highlight 10', () => {
       counter={0}
       icon={<Icon name="check" />}
     />
-  );
-  expect(toJSON()).toMatchSnapshot();
-  expect(getByText('0')).toBeTruthy();
-});
+  )
+  expect(toJSON()).toMatchSnapshot()
+  expect(getByText('0')).toBeTruthy()
+})

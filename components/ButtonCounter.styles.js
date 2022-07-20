@@ -1,6 +1,6 @@
-import { StyleSheet } from 'react-native';
-import { SIZES, LINEHEIGHTS, LETTERSPACING, FONTWEIGHT } from '../theme/fonts';
-import { COLORS } from '../theme/colors';
+import { StyleSheet } from 'react-native'
+import { SIZES, LINEHEIGHTS, LETTERSPACING, FONTWEIGHT } from '../theme/fonts'
+import { COLORS } from '../theme/colors'
 
 export const styles = StyleSheet.create({
   container: {
@@ -23,4 +23,4 @@ export const styles = StyleSheet.create({
     color: COLORS.danger,
     fontWeight: FONTWEIGHT.boldxxl
   },
-});
+})

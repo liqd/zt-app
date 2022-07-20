@@ -1,12 +1,12 @@
-import React from 'react';
-import { View, TouchableOpacity } from 'react-native';
-import { styles } from './IdeasListItem.styles';
-import IconSLI from 'react-native-vector-icons/SimpleLineIcons';
+import React from 'react'
+import { View, TouchableOpacity } from 'react-native'
+import { styles } from './IdeasListItem.styles'
+import IconSLI from 'react-native-vector-icons/SimpleLineIcons'
 
-import { ButtonCounter } from '../../components/ButtonCounter';
-import { DateService } from '../../services/DateService';
-import { Label } from '../../components/Label';
-import { TextSourceSans } from '../../components/TextSourceSans';
+import { ButtonCounter } from '../../components/ButtonCounter'
+import { DateService } from '../../services/DateService'
+import { Label } from '../../components/Label'
+import { TextSourceSans } from '../../components/TextSourceSans'
 
 export const IdeasListItem = (props) => {
   const {
@@ -17,23 +17,23 @@ export const IdeasListItem = (props) => {
     comment_count: commentCount,
     positive_rating_count: upCount,
     negative_rating_count: downCount,
-  } = props.idea;
+  } = props.idea
 
   const pressHandler = () =>
     props.navigation.navigate('IdeaDetail', {
       idea: props.idea,
       module: props.module,
-    });
+    })
 
   const getCategory = () => {
-    let categoryList = [];
-    category && categoryList.push(category.name);
-    return categoryList;
-  };
+    let categoryList = []
+    category && categoryList.push(category.name)
+    return categoryList
+  }
 
-  const arrowUpIcon = <IconSLI name='arrow-up' size={18} />;
-  const arrowDownIcon = <IconSLI name='arrow-down' size={18} />;
-  const commentIcon = <IconSLI name='bubble' size={18} />;
+  const arrowUpIcon = <IconSLI name='arrow-up' size={18} />
+  const arrowDownIcon = <IconSLI name='arrow-down' size={18} />
+  const commentIcon = <IconSLI name='bubble' size={18} />
 
   return (
     <TouchableOpacity accessibilityRole="button" onPress={pressHandler}>
@@ -69,5 +69,5 @@ export const IdeasListItem = (props) => {
         </View>
       </View>
     </TouchableOpacity>
-  );
-};
+  )
+}

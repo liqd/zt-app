@@ -1,5 +1,5 @@
-import { StyleSheet } from 'react-native';
-import { SPACINGS } from '../theme/spacings';
+import { StyleSheet } from 'react-native'
+import { SPACINGS } from '../theme/spacings'
 
 export const styles = StyleSheet.create({
   logoutContainer: {
@@ -8,4 +8,4 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-end',
   },
-});
+})
