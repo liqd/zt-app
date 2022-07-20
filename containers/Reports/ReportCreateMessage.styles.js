@@ -6,7 +6,6 @@ import { SPACINGS } from '../../theme/spacings';
 export const styles = StyleSheet.create({
   container: {
     backgroundColor: COLORS.paper.main,
-    paddingTop: SPACINGS.multiplyBy(.25),
     flex: 1,
   },
   title: {

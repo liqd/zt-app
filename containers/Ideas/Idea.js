@@ -298,108 +298,110 @@ export const Idea = (props) => {
         />);
 
   return (
-    <KeyboardAvoidingView
-      behavior={(Platform.OS === 'ios')? 'padding' : null}
-      style={styles.flexFullWidth}
-    >
+    <>
       <Header
         isEditing={isEditing}
         rightButton={rightHeaderButton}
         navigation={props.navigation} />
-      <ScrollView
-        style={styles.container}
-        scrollEnabled={!isEditing}
-        onScroll={handleScroll}
-        contentContainerStyle={styles.contentContainer}
+      <KeyboardAvoidingView
+        behavior={(Platform.OS === 'ios')? 'padding' : null}
+        style={styles.flexFullWidth}
       >
-        <Pressable onPress={isEditing && toggleEditing} style={{
-          ...isEditing ? styles.pressableEditing : {}
-        }} disabled={!isEditing}>
-          <View style={styles.titleContainer}>
-            <TextSourceSans style={styles.title}>{ideaState.name}</TextSourceSans>
-          </View>
-          <View style={styles.descriptionContainer}>
-            {ideaState.image && (
-              <>
-                <Image source={{ uri: ideaState.image }} style={styles.ideaImage} />
-              </>
-            )}
-            <TextSourceSans style={styles.text}>{ideaState.description}</TextSourceSans>
-          </View>
-          {getLabels().length > 0 && (
-            <View style={styles.labelsContainer}>
-              {getLabels().map((label, idx) => (
-                <Label key={idx + label} title={label} />
-              ))}
+        <ScrollView
+          style={styles.container}
+          scrollEnabled={!isEditing}
+          onScroll={handleScroll}
+          contentContainerStyle={styles.contentContainer}
+        >
+          <Pressable onPress={isEditing && toggleEditing} style={{
+            ...isEditing ? styles.pressableEditing : {}
+          }} disabled={!isEditing}>
+            <View style={styles.titleContainer}>
+              <TextSourceSans style={styles.title}>{ideaState.name}</TextSourceSans>
             </View>
-          )}
-          <View style={styles.infoContainer}>
-            <TextSourceSans style={styles.creator}>
-              {ideaState.creator} {DateService(idea.created)}
-            </TextSourceSans>
-            <TextSourceSans style={styles.text}>
+            <View style={styles.descriptionContainer}>
+              {ideaState.image && (
+                <>
+                  <Image source={{ uri: ideaState.image }} style={styles.ideaImage} />
+                </>
+              )}
+              <TextSourceSans style={styles.text}>{ideaState.description}</TextSourceSans>
+            </View>
+            {getLabels().length > 0 && (
+              <View style={styles.labelsContainer}>
+                {getLabels().map((label, idx) => (
+                  <Label key={idx + label} title={label} />
+                ))}
+              </View>
+            )}
+            <View style={styles.infoContainer}>
+              <TextSourceSans style={styles.creator}>
+                {ideaState.creator} {DateService(idea.created)}
+              </TextSourceSans>
+              <TextSourceSans style={styles.text}>
             Reference No.: {ideaState.reference_number || 'n/a'}
-            </TextSourceSans>
-          </View>
-          <View style={styles.bottomActionsContainer}>
-            <View style={styles.ratingButtons}>
-              <ButtonCounter
-                icon={arrowUpIcon}
-                counter={ideaState.positive_rating_count}
-                onPress={() => handleRate(1)}
-                highlight={
-                  ideaState.user_rating &&
+              </TextSourceSans>
+            </View>
+            <View style={styles.bottomActionsContainer}>
+              <View style={styles.ratingButtons}>
+                <ButtonCounter
+                  icon={arrowUpIcon}
+                  counter={ideaState.positive_rating_count}
+                  onPress={() => handleRate(1)}
+                  highlight={
+                    ideaState.user_rating &&
                 ideaState.user_rating.value === 1 &&
                 ideaState.user_rating.value
-                }
-                disabled={!ideaState.has_rating_permission}
-              />
-              <ButtonCounter
-                icon={arrowDownIcon}
-                counter={ideaState.negative_rating_count}
-                onPress={() => handleRate(-1)}
-                highlight={
-                  ideaState.user_rating &&
+                  }
+                  disabled={!ideaState.has_rating_permission}
+                />
+                <ButtonCounter
+                  icon={arrowDownIcon}
+                  counter={ideaState.negative_rating_count}
+                  onPress={() => handleRate(-1)}
+                  highlight={
+                    ideaState.user_rating &&
                 ideaState.user_rating.value === -1 &&
                 ideaState.user_rating.value
-                }
-                disabled={!ideaState.has_rating_permission}
+                  }
+                  disabled={!ideaState.has_rating_permission}
+                />
+              </View>
+              <View>
+                {commentIcon}
+              </View>
+            </View>
+            {comments && <View>
+              <Comments
+                comments={comments}
+                handleReply={handleCommentReply}
+                commentLastCommented={commentLastCommented}
+                setMenuItems={setMenuItems}
+                toggleMenu={toggleMenu}
+                toggleEditing={toggleEditing}
+                setDeleteModalItems={setDeleteModalItems}
+                toggleDeleteModal={toggleDeleteModal}
+                hasCommentingPermission={idea.has_commenting_permission}
+                navigation={navigation}
               />
-            </View>
-            <View>
-              {commentIcon}
-            </View>
-          </View>
-          {comments && <View>
-            <Comments
-              comments={comments}
-              handleReply={handleCommentReply}
-              commentLastCommented={commentLastCommented}
-              setMenuItems={setMenuItems}
-              toggleMenu={toggleMenu}
-              toggleEditing={toggleEditing}
-              setDeleteModalItems={setDeleteModalItems}
-              toggleDeleteModal={toggleDeleteModal}
-              hasCommentingPermission={idea.has_commenting_permission}
-              navigation={navigation}
+            </View>}
+          </Pressable>
+        </ScrollView>
+        {idea.has_commenting_permission && (
+          <View>
+            <CommentForm
+              inputRef={commentInputRef}
+              isEdit={isEditing}
+              handleSubmit={isEditing ? handleCommentEdit: handleCommentSubmit}
+              value={isEditing ? editedComment.comment : ''}
             />
-          </View>}
-        </Pressable>
-      </ScrollView>
-      {idea.has_commenting_permission && (
-        <View>
-          <CommentForm
-            inputRef={commentInputRef}
-            isEdit={isEditing}
-            handleSubmit={isEditing ? handleCommentEdit: handleCommentSubmit}
-            value={isEditing ? editedComment.comment : ''}
-          />
-        </View>)}
-      <Menu menuItems={menuItems} isVisible={menuVisible} />
-      <Modal
-        modalItems={deleteModalItems}
-        isVisible={deleteModalVisible}
-      />
-    </KeyboardAvoidingView>
+          </View>)}
+        <Menu menuItems={menuItems} isVisible={menuVisible} />
+        <Modal
+          modalItems={deleteModalItems}
+          isVisible={deleteModalVisible}
+        />
+      </KeyboardAvoidingView>
+    </>
   );
 };

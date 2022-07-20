@@ -8,9 +8,6 @@ export const styles = StyleSheet.create({
     paddingHorizontal: SPACINGS.multiplyBy(0.75),
     backgroundColor: COLORS.paper.main
   },
-  header: {
-    paddingTop: SPACINGS.multiplyBy(0.25)
-  },
   title: {
     fontSize: SIZES.multiplyBy(1.375),
     lineHeight: SPACINGS.multiplyBy(2),
