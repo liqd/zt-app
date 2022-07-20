@@ -230,12 +230,12 @@ export const Comment = (props) => {
           {comment.comment}
         </TextSourceSans>
         }
-        {hasExcerpt && <TouchableWithoutFeedback onPress={toggleWholeComment}>
+        {hasExcerpt && <TouchableWithoutFeedback accessibilityRole="button" onPress={toggleWholeComment}>
           <TextSourceSans style={styles.linkButton}>{showWholeComment ? 'Read Less' : 'Read More'}</TextSourceSans>
         </TouchableWithoutFeedback>}
       </View>
       <View style={styles.linkSection}>
-        {comment.child_comments.length !== 0 && <TouchableWithoutFeedback onPress={toggleSubComments}>
+        {comment.child_comments.length !== 0 && <TouchableWithoutFeedback accessibilityRole="button" onPress={toggleSubComments}>
           <TextSourceSans style={styles.linkButton}>
             {showSubComments ? 'Hide' : 'Show'} {comment.child_comments.length} answers
           </TextSourceSans>

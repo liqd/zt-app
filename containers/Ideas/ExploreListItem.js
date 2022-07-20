@@ -14,7 +14,7 @@ export const ExploreListItem = (props) => {
   const clockIcon = (<IconSLI name='clock' color={COLORS.grey.medium} />);
 
   return (
-    <TouchableOpacity onPress={() => props.action(props.item)}>
+    <TouchableOpacity accessibilityRole="button" onPress={() => props.action(props.item)}>
       <View style={styles.container}>
         <View style={styles.imageContainer}>
           <Image style={styles.image} source={{ uri: image }} />

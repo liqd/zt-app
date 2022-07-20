@@ -326,7 +326,7 @@ export const Idea = (props) => {
         onScroll={handleScroll}
         contentContainerStyle={styles.contentContainer}
       >
-        <Pressable onPress={isEditing && toggleEditing} style={{
+        <Pressable accessibilityRole="button" onPress={isEditing && toggleEditing} style={{
           ...isEditing ? styles.pressableEditing : {}
         }} disabled={!isEditing}>
           <View style={styles.titleContainer}>
