@@ -35,14 +35,12 @@ export const ReportCreateMessage = props => {
         if (statusCode == 201) {
           Alert.alert('Thank you! We are taking care of it.');
           props.navigation.goBack();
-        }
-        else {
+        } else {
           const errorMessage = 'That did not work.';
           let errorDetail;
           if (statusCode==403) {
             errorDetail = data.detail;
-          }
-          else if (statusCode == 400) {
+          } else if (statusCode == 400) {
             errorDetail = 'Bad request';
           }
           Alert.alert(errorMessage, errorDetail);

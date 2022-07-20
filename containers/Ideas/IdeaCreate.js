@@ -66,8 +66,7 @@ export const IdeaCreate = props => {
       setCategories(module.categories.map(category => ({value: category.id, label: category.name})));
       if (editing && idea.category) {
         setInitialCategory(idea.category.id);
-      }
-      else {
+      } else {
         setInitialCategory(module.categories[0].id);
       }
     }
@@ -76,8 +75,7 @@ export const IdeaCreate = props => {
 
       if (editing) {
         setInitialLabels(idea.labels);
-      }
-      else {
+      } else {
         setInitialLabels([]);
       }
     }
@@ -110,8 +108,7 @@ export const IdeaCreate = props => {
       .then((token) => {
         if (editing) {
           return API.editIdea(module.pk, idea.pk, formData, token);
-        }
-        else {
+        } else {
           return API.postIdea(module.pk, formData, token);
         }
       })
@@ -121,30 +118,25 @@ export const IdeaCreate = props => {
         if (statusCode == 201) {
           Alert.alert('Your idea was added.', 'Thank you for participating!',  [{ text: 'Ok' }]);
           props.navigation.goBack();
-        }
-        else if (editing && statusCode == 200) {
+        } else if (editing && statusCode == 200) {
           Alert.alert('Your idea was updated.', '',  [{ text: 'Ok' }]);
           props.navigation.navigate({
             name: 'IdeaDetail',
             params: { idea: data },
             merge: true,
           });
-        }
-        else if (statusCode == 400) {
+        } else if (statusCode == 400) {
           if (data && data.image) {
             const errorString = data.image.reduce((acc, curr) => {
               return `${acc}\n${curr}`;
             }, 'Please try again.\n');
             setError(errorString);
-          }
-          else {
+          } else {
             setError('Required fields are missing.');
           }
-        }
-        else if (response.statusCode == 403) {
+        } else if (response.statusCode == 403) {
           setError(response.data.detail);
-        }
-        else {
+        } else {
           setError('Try again.');
         }
       });

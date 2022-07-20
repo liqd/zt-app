@@ -17,8 +17,7 @@ export const baseUrl = (() => {
       return 'http://10.0.2.2:8004';
     }
     return 'https://aplus-dev.liqd.net';
-  }
-  else {
+  } else {
     switch (Constants.manifest.releaseChannel) {
       case 'prod':
       case 'default':

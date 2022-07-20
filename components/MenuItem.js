@@ -11,17 +11,13 @@ export const MenuItem = (props) => {
   const getContainerStyle = () => {
     if (isCancel) {
       return styles.cancelButton;
-    }
-    else if ( isFirst && isLast ) {
+    } else if ( isFirst && isLast ) {
       return styles.listButtonOnly;
-    }
-    else if ( isFirst ) {
+    } else if ( isFirst ) {
       return styles.listButtonFirst;
-    }
-    else if ( isLast ) {
+    } else if ( isLast ) {
       return styles.listButtonLast;
-    }
-    else {
+    } else {
       return styles.listButton;
     }
   };
@@ -49,8 +45,7 @@ export const MenuItem = (props) => {
         </ListItem.Content>
       </ListItem>
     );
-  }
-  else {
+  } else {
     return null;
   }
 };

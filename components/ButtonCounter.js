@@ -7,16 +7,13 @@ export const ButtonCounter = (props) => {
   let btnStyle;
   if (props.disabled) {
     btnStyle = [styles.text, styles.disableStyle];
-  }
-  else {
+  } else {
     if (!props.highlight) {
       btnStyle = styles.text;
-    }
-    else {
+    } else {
       if (props.highlight === 1) {
         btnStyle = [styles.text, styles.highlightUpStyle];
-      }
-      else {
+      } else {
         btnStyle = [styles.text, styles.highlightDownStyle];
       }
     }
