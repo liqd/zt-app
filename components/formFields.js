@@ -19,7 +19,9 @@ export const TextInputFormField = (props) => {
         style={styles.textInput}
         {...props}
       />
-      {props.touched && props.error && <TextSourceSans style={styles.formError}>{props.error}</TextSourceSans>}
+      {props.touched && props.error &&
+        <TextSourceSans style={styles.formError}>{props.error}</TextSourceSans>
+      }
     </View>
   )
 }
@@ -32,7 +34,9 @@ export const TextInputFullFormField = (props) => {
         style={styles.textInputFull}
         {...props}
       />
-      {props.touched && <TextSourceSans style={styles.formError}>{props.error}</TextSourceSans>}
+      {props.touched &&
+        <TextSourceSans style={styles.formError}>{props.error}</TextSourceSans>
+      }
     </View>
   )
 }
