@@ -35,9 +35,10 @@ Run with new deps (node v18.3.0)
 - Start with cleared cache `make start-nocache`
 - Check `Makefile` for additional options
 
-Using local backend (adhocracy-plus)
-- App Repo --> BaseApi.js --> `const baseUrl = 'http://10.0.2.2:8004/api';`
-- Aplus Repo --> Add or Edit `local.py` --> `ALLOWED_HOSTS = [u'10.0.2.2', u'localhost']`
+Using local api (adhocracy-plus)
+- For Android phones, emulators & simulators just `make start-local`
+- For Apple iphones set your local ip in BaseApi.js, then `make start-local`
+- In Aplus Repo --> Add or Edit `local.py` --> `ALLOWED_HOSTS = ['10.0.2.2', 'localhost']`
 
 Publishing to expo
 - Add the sentry dsn for the dev or prod project in App.js

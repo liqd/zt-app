@@ -8,10 +8,16 @@ export const baseUrl = (() => {
 
       // current workaround as long as isDevice=true for emulators
       const isEmulator = Device.productName && Device.productName.includes('emulator')
-      // in case of Apple, use localhost for physical device and simulator
+      // In case of Apple real device or simulator
       const isApple = Device.manufacturer === 'Apple'
+      // In case of Apple Simulator
+      const isSimulator = isApple && !Device.isDevice
 
       if ((Device.isDevice && !isEmulator) || isApple) {
+        if (!isSimulator) {
+          // In case of Apple Iphone (physical) use your local IP
+          return 'http://192.168.2.174:8004'
+        }
         return 'http://localhost:8004'
       }
       return 'http://10.0.2.2:8004'
