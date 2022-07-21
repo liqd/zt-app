@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useCallback, useEffect } from 'react'
+import { CommonActions } from '@react-navigation/native'
 import { View, FlatList } from 'react-native'
+import { useFocusEffect } from '@react-navigation/native'
 import API from '../../BaseApi'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { ExploreListItem } from './ExploreListItem'
@@ -12,6 +14,7 @@ export const ExplorePage = (props) => {
   const [user, setUser] = useState()
   const [projects, setProjects] = useState([])
   const {signOut} = useAuthorization()
+  const { deepLink, setDeepLink } = useAuthorization()
 
   const fetchProjects = () => {
     AsyncStorage.getItem('authToken')
@@ -41,6 +44,17 @@ export const ExplorePage = (props) => {
       .catch(error => console.warn(error))
   }
 
+  const fetchProject = () => {
+    return AsyncStorage.getItem('authToken').then((token) =>
+      API.getProject(token, deepLink))
+      .then((result) => {
+        if (result.statusCode === 200) {
+          return result.data
+        }
+        return null
+      })
+  }
+
   const pressHandler = (project) =>
     props.navigation.navigate('IdeaProject', { project: project })
 
@@ -48,12 +62,33 @@ export const ExplorePage = (props) => {
     <ExploreListItem item={item} action={(project) => pressHandler(project)} />
   )
 
-  useEffect(() => {
-    const projectsListener = props.navigation.addListener('focus', () => {
-      fetchProjects()
-    })
-    return projectsListener
-  }, [])
+  useFocusEffect(
+    useCallback(() => {
+      if (deepLink !== null){
+        fetchProject().then((project) => {
+          setDeepLink(null)
+          if(project === null){
+            // TODO show toast/alert
+            console.log('deep link project not found')
+          } else{
+            props.navigation.dispatch(
+              CommonActions.reset({
+                index: 1,
+                routes: [
+                  { name: 'ExplorePage' },
+                  { name: 'IdeaProject',
+                    params: { project: project },
+                  },
+                ],
+              })
+            )
+          }
+        })
+      } else {
+        fetchProjects()
+      }
+    }, [])
+  )
 
   useEffect(() => {
     fetchAuthenticatedUser()
