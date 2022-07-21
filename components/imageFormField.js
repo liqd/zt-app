@@ -7,10 +7,12 @@ import IconSLI from 'react-native-vector-icons/SimpleLineIcons'
 import * as ImagePicker from 'expo-image-picker'
 import { TextSourceSans } from './TextSourceSans'
 import mime from 'mime'
+import * as Device from 'expo-device'
 
 export const ImagePickerFormField = (props) => {
   const [capturedImage, setCapturedImage] = useState(null)
   const [image, setImage] = useState(props.initialImage)
+  const isSimulator = Device.brand === 'Apple' && !Device.isDevice
 
   const mutateImageProps = (imageObj) => {
     // eslint-disable-next-line
@@ -97,12 +99,13 @@ export const ImagePickerFormField = (props) => {
         {!capturedImage && !image &&
         <Button
           buttonStyle={[styles.imageAddButton, styles.imageAddButtonLeft]}
-          title='Camera'
+          title={isSimulator ? 'Camera - not available' : 'Camera'}
           onPress={captureImageHandler}
           icon={cameraIcon}
           type='clear'
           titleStyle={styles.textDark}
           imageUri={capturedImage}
+          disabled={isSimulator}
         />}
         {capturedImage &&
           <>
