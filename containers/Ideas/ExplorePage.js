@@ -5,14 +5,26 @@ import { ExploreListItem } from './ExploreListItem'
 import { styles } from './ExplorePage.styles'
 import { ButtonSignOut } from '../../components/ButtonSignOut'
 import { TextSourceSans } from '../../components/TextSourceSans'
+import {useAuthorization} from '../Auth/AuthProvider.js'
 
 export const ExplorePage = (props) => {
   const [projects, setProjects] = useState([])
+  const { signOut } = useAuthorization()
 
   const fetchProjects = () => {
     API.getProjects()
-      .then(response => response && setProjects(response))
-      .catch(error => console.warn(error))
+      .then(response => {
+        if (response) {
+          if(response.statusCode === 200){
+            setProjects(response)
+          } else if (response.statusCode === 401){
+            console.warn('Unauthorized, wrong login?')
+            signOut()
+          } else {
+            console.warn('fetchProjects returned ' + response.statusCode)
+          }
+        }
+      }).catch(error => console.warn(error))
   }
 
   const pressHandler = (project) =>
