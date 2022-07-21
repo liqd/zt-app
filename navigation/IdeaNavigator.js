@@ -1,6 +1,7 @@
 import React from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
+import * as Linking from 'expo-linking'
 import { ExplorePage } from '../containers/Ideas/ExplorePage'
 import { Idea } from '../containers/Ideas/Idea'
 import { IdeaCreate } from '../containers/Ideas/IdeaCreate'
@@ -13,8 +14,18 @@ import { ReportCreateMessage } from '../containers/Reports/ReportCreateMessage'
 import { ProfileScreen } from '../containers/User/ProfileScreen'
 import { SettingsOverview } from '../containers/User/SettingsOverview'
 import { SettingsProfile } from '../containers/User/SettingsProfile'
+import { DeepLinking } from './DeepLinking.js'
 
 const Stack = createStackNavigator()
+const prefix = Linking.createURL('/')
+const linking = {
+  prefixes: [prefix, 'https://aplus-dev.liqd.net/'],
+  config: {
+    screens: {
+      DeepLinking: '/:organisation/projects/:projectSlug/',
+    }
+  }
+}
 
 export const IdeaNavigator = () => {
   const { loading, token } = useAuthorization()
@@ -41,12 +52,13 @@ export const IdeaNavigator = () => {
   }
 
   return (
-    <NavigationContainer>
+    <NavigationContainer linking={linking}>
       <Stack.Navigator
         initialRouteName="StartUp"
         screenOptions={{ gestureEnabled: false, headerShown: false }}
       >
         {stackScreen}
+        <Stack.Screen name="DeepLinking" component={DeepLinking} />
       </Stack.Navigator>
     </NavigationContainer>
   )

@@ -46,6 +46,7 @@ const endpoints = {
   ideas: baseApiUrl + '/modules/$moduleId/ideas/',
   idea: baseApiUrl + '/modules/$moduleId/ideas/$ideaPk/',
   login: baseApiUrl + '/login/',
+  project: baseApiUrl + '/app-projects/$project',
   module: baseApiUrl + '/app-modules/$moduleId/',
   projects: baseApiUrl + '/app-projects/',
   ratings: baseApiUrl + '/contenttypes/$contentTypeId/objects/$objectPk/ratings/',
@@ -166,6 +167,10 @@ const API = {
   },
   getProjects(token = null) {
     return makeGetRequest(endpoints.projects, token)
+  },
+  getProject(token, project) {
+    const url = endpoints.project.replace('$project', project)
+    return makeGetRequest(url, token)
   },
   getModule(moduleId, token = null) {
     const url = endpoints.module.replace('$moduleId', moduleId)
