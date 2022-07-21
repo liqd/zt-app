@@ -24,10 +24,10 @@ export const ButtonTextInput = (props) => {
       style={styles.textInputButton}
       disabled={props.disabled}
     >
-      <TextSourceSans style={props.textInputButtonTitle} numberOfLines={1}>
+      <TextSourceSans style={[props.textInputButtonTitle, styles.textInputButtonTitleBase]} numberOfLines={1}>
         {props.title}
       </TextSourceSans>
-      <TextSourceSans style={props.textInputButtonTitle}>
+      <TextSourceSans style={[props.textInputButtonTitle, styles.textInputButtonTitleBase]}>
         {arrowRightIcon}
       </TextSourceSans>
     </TouchableOpacity>

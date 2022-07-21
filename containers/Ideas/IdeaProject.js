@@ -33,7 +33,7 @@ export const IdeaProject = (props) => {
       module: module
     })
 
-  const plusIcon = <IconSLI name='plus' size={24} color={COLORS.paper.main} />
+  const plusIcon = <IconSLI name='plus' size={24} color={COLORS.paper} />
   const sortIcon = <IconFA name='filter' size={20} color={COLORS.grey.light} />
   const filterIcon = (
     <IconFA name='search' size={20} color={COLORS.grey.light} />
@@ -91,7 +91,7 @@ export const IdeaProject = (props) => {
         />
         <Header
           transparent={true}
-          arrowColor={COLORS.paper.main}
+          arrowColor={COLORS.paper}
           backButtonStyle={styles.button}
           backButtonTextStyle={styles.buttonText}
           rightButton={followButton}
@@ -121,7 +121,8 @@ export const IdeaProject = (props) => {
               <Button
                 buttonStyle={styles.tabButton}
                 titleStyle={visibleTab === tabs.participation ?
-                  styles.tabsMenuItemActive : styles.tabsMenuItem
+                  [ styles.tabsMenuItem, styles.tabsMenuItemActive ] :
+                  styles.tabsMenuItem
                 }
                 title='Participation'
                 type='clear'
@@ -130,7 +131,8 @@ export const IdeaProject = (props) => {
               <Button
                 buttonStyle={styles.tabButton}
                 titleStyle={visibleTab === tabs.information ?
-                  styles.tabsMenuItemActive : styles.tabsMenuItem
+                  [ styles.tabsMenuItem, styles.tabsMenuItemActive ] :
+                  styles.tabsMenuItem
                 }
                 title='Information'
                 type='clear'
@@ -139,7 +141,8 @@ export const IdeaProject = (props) => {
               <Button
                 buttonStyle={styles.tabButton}
                 titleStyle={visibleTab === tabs.results ?
-                  styles.tabsMenuItemActive : styles.tabsMenuItem
+                  [ styles.tabsMenuItem, styles.tabsMenuItemActive ] :
+                  styles.tabsMenuItem
                 }
                 title='Results'
                 type='clear'

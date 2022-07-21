@@ -51,9 +51,9 @@ export const LabelList = props => {
 
 export const LabelFormField = props => {
   const [ checkState, setCheckState ] = useState(props.checked)
-  const plusIcon = <IconFA name="plus" size={16} color={COLORS.text.main} />
+  const plusIcon = <IconFA name="plus" size={16} color={COLORS.text} />
   const checkIcon = (
-    <IconFA name='check' size={16} color={COLORS.paper.main} />
+    <IconFA name='check' size={16} color={COLORS.paper} />
   )
 
   const toggleCheckState = () => {

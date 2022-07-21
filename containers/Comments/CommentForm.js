@@ -14,7 +14,7 @@ export const CommentForm = (props) => {
       .max(4000, 'Comment must be no longer than 4000 characters.')
   })
 
-  const planeIcon = (<IconFA name="paper-plane" color={COLORS.paper.main} size={SIZES.md} />)
+  const planeIcon = (<IconFA name="paper-plane" color={COLORS.paper} size={SIZES.md} />)
 
   return (
     <Formik

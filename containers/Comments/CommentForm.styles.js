@@ -11,7 +11,7 @@ export const styles = StyleSheet.create({
   },
   textInputContainer: {
     flex: 2,
-    backgroundColor: COLORS.paper.main,
+    backgroundColor: COLORS.paper,
     borderRadius: BORDERRADIUS.lg,
     padding: SPACINGS.multiplyBy(0.5),
   },

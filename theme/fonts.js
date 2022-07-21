@@ -1,18 +1,18 @@
-const baseFontSize = 17
-const baseLineHeight = 22
+const baseFontSize = 16
+const baseLineHeight = 20
 
 export const FONTS = {
   familySans: 'SourceSansPro_400Regular',
 }
 
 export const SIZES = {
-  xs: baseFontSize * 0.8,
-  sm: baseFontSize * 0.85,
+  xs: baseFontSize * 0.8125, // (13)
+  sm: baseFontSize * 0.9375, // (15)
   base: baseFontSize,
-  md: baseFontSize * 1.2,
-  lg: baseFontSize * 1.65,
-  xl: baseFontSize * 2,
-  multiplyBy: times => times * baseFontSize
+  md: baseFontSize * 1.0625, // (17)
+  lg: baseFontSize * 1.25, // sub-title (20)
+  xl: baseFontSize * 1.375, // small title (22)
+  xxl: baseFontSize * 1.75, // title (28)
 }
 
 export const LINEHEIGHTS = {
@@ -27,9 +27,7 @@ export const LINEHEIGHTS = {
 export const FONTWEIGHT = {
   base: '300',
   semiBold: '500',
-  bold: '600',
-  boldxl: '800',
-  boldxxl: 'bold'
+  bold: '800',
 }
 
 export const LETTERSPACING = {

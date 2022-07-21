@@ -7,7 +7,7 @@ export const styles = StyleSheet.create({
   flexContainer: {
     flex: 1,
     justifyContent: 'space-between',
-    backgroundColor: COLORS.paper.main,
+    backgroundColor: COLORS.paper,
   },
   container: {
     paddingHorizontal: SPACINGS.multiplyBy(.75),
@@ -15,8 +15,8 @@ export const styles = StyleSheet.create({
   title: {
     marginTop: SPACINGS.multiplyBy(4),
     marginBottom: SPACINGS.multiplyBy(0.75),
-    fontSize: SIZES.xl,
-    fontWeight: FONTWEIGHT.boldxl
+    fontSize: SIZES.xxl,
+    fontWeight: FONTWEIGHT.bold
   },
   registerText: {
     fontSize: SIZES.base,
