@@ -3,6 +3,7 @@
     "name": "liqd-demo",
     "owner": "liquiddemocracyev",
     "slug": "liqd-demo",
+    "scheme": "liqd",
     "version": "1.0.0",
     "privacy": "unlisted",
     "orientation": "portrait",
@@ -25,7 +26,21 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+       "intentFilters": [
+        {
+          "action": "VIEW",
+          "data": [
+            {
+              "scheme": "https",
+              "host": "aplus-dev.liqd.net",
+              "pathPrefix": ""
+            }
+          ],
+          "category": ["BROWSABLE", "DEFAULT"]
+        }
+      ],
+      "package": "net.liqd.demo.app"
     },
     "web": {
       "favicon": "./assets/favicon.png"

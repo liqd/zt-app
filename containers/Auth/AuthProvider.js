@@ -4,6 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 const AuthContext = React.createContext({
   loading: true,
   token: null,
+  deepLink: null,
   signIn: () => {},
   signOut: () => {},
 })
@@ -42,6 +43,9 @@ export const AuthProvider = (props) => {
       AsyncStorage.removeItem('authToken')
       setState({ ...state, loading: false, token: null })
     },
+    setDeepLink: (project) => {
+      setState({...state, deepLink: project})
+    }
   }))
   return (
     <AuthContext.Provider value={{ ...state, ...actions }}>

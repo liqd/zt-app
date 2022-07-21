@@ -37,6 +37,7 @@ const endpoints = {
   ideas: baseApiUrl + '/modules/$moduleId/ideas/',
   idea: baseApiUrl + '/modules/$moduleId/ideas/$ideaPk/',
   login: baseApiUrl + '/login/',
+  project: baseApiUrl + '/app-projects/?organisation=$org&project=$project',
   projects: baseApiUrl + '/app-projects/',
   module: baseApiUrl + '/app-modules/$moduleId/',
   ratings: baseApiUrl + '/contenttypes/$contentTypeId/objects/$objectPk/ratings/',
@@ -149,6 +150,10 @@ const API = {
   },
   postLogin(data) {
     return makePostRequest(endpoints.login, data)
+  },
+  getProject(org, project) {
+    const url = endpoints.project.replace('$org', org).replace('$project', project)
+    return makeGetRequest(url)
   },
   getProjects() {
     return makeGetRequest(endpoints.projects)

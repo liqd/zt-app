@@ -5,9 +5,11 @@ import { ExploreListItem } from './ExploreListItem'
 import { styles } from './ExplorePage.styles'
 import { ButtonSignOut } from '../../components/ButtonSignOut'
 import { TextSourceSans } from '../../components/TextSourceSans'
+import { useAuthorization } from '../Auth/AuthProvider.js'
 
 export const ExplorePage = (props) => {
   const [projects, setProjects] = useState([])
+  const { deepLink, setDeepLink } = useAuthorization()
 
   const fetchProjects = () => {
     API.getProjects()
@@ -23,10 +25,16 @@ export const ExplorePage = (props) => {
   )
 
   useEffect(() => {
-    const projectsListener = props.navigation.addListener('focus', () => {
-      fetchProjects()
-    })
-    return projectsListener
+    if (deepLink !== undefined && deepLink !== null ){
+      const project = deepLink
+      setDeepLink(null)
+      props.navigation.navigate('IdeaProject', { project: project })
+    } else {
+      const projectsListener = props.navigation.addListener('focus', () => {
+        fetchProjects()
+      })
+      return projectsListener
+    }
   }, [])
 
   return (
