@@ -10,6 +10,7 @@ import { LoginScreen } from '../containers/Auth/LoginScreen'
 import { StartUpScreen } from '../containers/Auth/StartUpScreen'
 import { useAuthorization } from '../containers/Auth/AuthProvider.js'
 import { ReportCreateMessage } from '../containers/Reports/ReportCreateMessage'
+import { ProfileScreen } from '../containers/User/ProfileScreen'
 
 const Stack = createStackNavigator()
 
@@ -30,6 +31,7 @@ export const IdeaNavigator = () => {
         <Stack.Screen name="IdeaCreate" component={IdeaCreate} />
         <Stack.Screen name="IdeaCreateDescription" component={IdeaCreateDescription} />
         <Stack.Screen name="ReportCreateMessage" component={ReportCreateMessage} />
+        <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
       </>
     }
   }
