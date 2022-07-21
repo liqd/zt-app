@@ -3,7 +3,7 @@ import { View, FlatList } from 'react-native'
 import API from '../../BaseApi'
 import { ExploreListItem } from './ExploreListItem'
 import { styles } from './ExplorePage.styles'
-import { ButtonSignOut } from '../../components/ButtonSignOut'
+import { ButtonAvatar } from '../../components/ButtonAvatar'
 import { TextSourceSans } from '../../components/TextSourceSans'
 
 export const ExplorePage = (props) => {
@@ -29,9 +29,17 @@ export const ExplorePage = (props) => {
     return projectsListener
   }, [])
 
+  const toProfile = () => {
+    props.navigation.navigate('ProfileScreen', {name: 'Bob'})
+  }
+
   return (
     <View style={styles.container}>
-      <ButtonSignOut></ButtonSignOut>
+      <ButtonAvatar
+        labelText="profile"
+        hintText="click to go to profile and settings"
+        onPress={() => toProfile()}
+      ></ButtonAvatar>
       <TextSourceSans style={styles.title}>Explore</TextSourceSans>
       <TextSourceSans style={styles.subtitle}>Recently Added</TextSourceSans>
       <FlatList

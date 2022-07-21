@@ -11,8 +11,8 @@ export const styles = StyleSheet.create({
     backgroundColor: COLORS.paper.main,
   },
   title: {
-    fontSize: SIZES.multiplyBy(1.75),
-    fontWeight: FONTWEIGHT.bold,
+    fontSize: SIZES.lg,
+    fontWeight: FONTWEIGHT.boldxl,
     marginVertical: SPACINGS.multiplyBy(.5)
   },
   subtitle: {
