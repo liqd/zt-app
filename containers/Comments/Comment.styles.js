@@ -40,7 +40,7 @@ export const styles = StyleSheet.create({
     fontSize: SIZES.xs
   },
   username: {
-    fontWeight: FONTWEIGHT.boldxl
+    fontWeight: FONTWEIGHT.bold
   },
   linkSection: {
     flexDirection: 'row',

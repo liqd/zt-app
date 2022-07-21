@@ -11,12 +11,8 @@ export const COLORS = {
   danger: '#a72b1e',
 
   // utility
-  text: {
-    main: '#1a1a1a',
-  },
-  paper: {
-    main: '#fff',
-  },
+  text: '#1a1a1a',
+  paper: '#fff',
   grey: {
     extralight: '#d8d8d8',
     light: '#c4c4c4',

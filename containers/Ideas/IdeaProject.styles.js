@@ -14,7 +14,7 @@ export const styles = StyleSheet.create({
   },
   bgImage: {
     width: '100%',
-    height: 435,
+    height: 445,
     position: 'absolute',
     backgroundColor: COLORS.primary,
   },
@@ -29,7 +29,7 @@ export const styles = StyleSheet.create({
     borderTopLeftRadius: BORDERRADIUS.container,
     borderTopRightRadius: BORDERRADIUS.container,
     top: headerOffset,
-    backgroundColor: COLORS.paper.main,
+    backgroundColor: COLORS.paper,
     paddingBottom: headerOffset,
   },
   infoContainer: {
@@ -89,7 +89,7 @@ export const styles = StyleSheet.create({
   tabsMenuItem: {
     fontSize: SIZES.multiplyBy(1.0625),
     fontWeight: FONTWEIGHT.bold,
-    color: COLORS.text.main
+    color: COLORS.text
   },
   tabsMenuItemActive: {
     fontSize: SIZES.multiplyBy(1.0625),
@@ -106,7 +106,7 @@ export const styles = StyleSheet.create({
   buttonText: {
     fontSize: SIZES.md,
     marginHorizontal: SPACINGS.multiplyBy(.4),
-    color: COLORS.paper.main,
+    color: COLORS.paper,
   },
   listActions: {
     flexDirection: 'row',
@@ -120,12 +120,12 @@ export const styles = StyleSheet.create({
     marginTop: SPACINGS.multiplyBy(1),
     paddingTop: SPACINGS.multiplyBy(1),
     fontSize: SIZES.md,
-    fontWeight: FONTWEIGHT.boldxl,
+    fontWeight: FONTWEIGHT.bold,
   },
   contactField: {
     paddingTop: SPACINGS.multiplyBy(0.7),
   },
   contactLabel: {
-    fontWeight: FONTWEIGHT.boldxl,
+    fontWeight: FONTWEIGHT.bold,
   }
 })

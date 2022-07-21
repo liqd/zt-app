@@ -7,14 +7,14 @@ export const styles = StyleSheet.create({
   label: {
     alignItems: 'center',
     alignSelf: 'flex-start',
-    backgroundColor: COLORS.text.main,
+    backgroundColor: COLORS.text,
     paddingVertical: SPACINGS.multiplyBy(.2),
     paddingHorizontal: SPACINGS.multiplyBy(.6),
     borderRadius: BORDERRADIUS.base,
     marginRight: SPACINGS.multiplyBy(.5),
   },
   text: {
-    color: COLORS.paper.main,
-    fontSize: SIZES.multiplyBy(.9375)
+    color: COLORS.paper,
+    fontSize: SIZES.sm
   }
 })

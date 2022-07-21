@@ -6,13 +6,13 @@ import { SIZES, LINEHEIGHTS } from '../theme/fonts'
 
 export const styles = StyleSheet.create({
   labelTitle: {
-    color: COLORS.text.main
+    color: COLORS.text
   },
   labelTitleChecked: {
-    color: COLORS.paper.main
+    color: COLORS.paper
   },
   labelButton: {
-    backgroundColor: COLORS.paper.main,
+    backgroundColor: COLORS.paper,
     width: '30%',
     flexDirection: 'row',
     flexWrap: 'wrap',
@@ -20,7 +20,7 @@ export const styles = StyleSheet.create({
     borderRadius: BORDERRADIUS.lg
   },
   labelButtonChecked: {
-    color: COLORS.paper.main,
+    color: COLORS.paper,
     backgroundColor: COLORS.primary,
     width: '30%',
     flexDirection: 'row',

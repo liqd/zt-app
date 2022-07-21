@@ -33,6 +33,6 @@ export const styles = StyleSheet.create({
     marginBottom: SPACINGS.multiplyBy(2),
   },
   cancelButtonText: {
-    color: COLORS.paper.main,
+    color: COLORS.paper,
   }
 })

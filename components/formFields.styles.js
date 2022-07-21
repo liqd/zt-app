@@ -32,7 +32,7 @@ export const styles = StyleSheet.create({
     paddingHorizontal: SPACINGS.multiplyBy(0.75)
   },
   checkBoxContainer: {
-    backgroundColor: COLORS.paper.main,
+    backgroundColor: COLORS.paper,
     borderWidth: 0,
   },
   checkBoxText: {
