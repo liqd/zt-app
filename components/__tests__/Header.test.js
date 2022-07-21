@@ -15,7 +15,7 @@ test('Snapshot Default Header', () => {
 })
 
 test('Snapshot Default Header Transparent White Arrow', () => {
-  const { toJSON } = render(<Header transparent={true} arrowColor={COLORS.paper.main} />)
+  const { toJSON } = render(<Header transparent={true} arrowColor={COLORS.paper} />)
   expect(toJSON()).toMatchSnapshot()
 })
 
@@ -28,7 +28,7 @@ test('Snapshot Default Header Custom Style', () => {
     backButtonText: {
       fontSize: SIZES.md,
       marginHorizontal: SPACINGS.multiplyBy(.25),
-      color: COLORS.text.main,
+      color: COLORS.text,
     }
   })
   const { toJSON } = render(<Header backButtonStyle={diffStyles.backButton} backButtonTextStyle={diffStyles.backButtonText} />)
@@ -36,7 +36,7 @@ test('Snapshot Default Header Custom Style', () => {
 })
 
 test('Test Custom Header Follow Button Left', () => {
-  const plusIcon = <IconSLI name='plus' size={24} color={COLORS.paper.main} />
+  const plusIcon = <IconSLI name='plus' size={24} color={COLORS.paper} />
   const followButton = (
     <Button
       buttonStyle={styles.button}
@@ -54,7 +54,7 @@ test('Test Custom Header Follow Button Left', () => {
 })
 
 test('Test Custom Header Follow Button Right', () => {
-  const plusIcon = <IconSLI name='plus' size={24} color={COLORS.paper.main} />
+  const plusIcon = <IconSLI name='plus' size={24} color={COLORS.paper} />
   const followButton = (
     <Button
       buttonStyle={styles.button}
@@ -88,7 +88,7 @@ test('Test Header Back Button Editing', async () => {
 })
 
 test('Test Custom Header Follow Button Right', async () => {
-  const plusIcon = <IconSLI name='plus' size={24} color={COLORS.paper.main} />
+  const plusIcon = <IconSLI name='plus' size={24} color={COLORS.paper} />
   const handleFollow = jest.fn()
   const followButton = (
     <Button

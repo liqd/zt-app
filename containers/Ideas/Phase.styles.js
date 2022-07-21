@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
   },
   phaseDate: {
     fontSize: SIZES.multiplyBy(0.9375),
-    fontWeight: FONTWEIGHT.boldxl,
+    fontWeight: FONTWEIGHT.bold,
   },
   phaseText: {
     fontSize: SIZES.multiplyBy(0.9375),

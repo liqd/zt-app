@@ -5,11 +5,11 @@ import { SPACINGS } from '../../theme/spacings'
 
 export const styles = StyleSheet.create({
   fontColor: {
-    color: COLORS.text.main,
+    color: COLORS.text,
   },
   container: {
     paddingHorizontal: SPACINGS.multiplyBy(.75),
-    backgroundColor: COLORS.paper.main,
+    backgroundColor: COLORS.paper,
   },
   titleContainer: {
     marginTop: SPACINGS.multiplyBy(.25)

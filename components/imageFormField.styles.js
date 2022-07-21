@@ -39,7 +39,7 @@ export const styles = StyleSheet.create({
   },
   iconRemoveButton: {
     fontSize: SIZES.lg,
-    backgroundColor: COLORS.paper.main,
+    backgroundColor: COLORS.paper,
     borderRadius: BORDERRADIUS.container,
   },
   formImagePreview: {
@@ -63,7 +63,7 @@ export const styles = StyleSheet.create({
     width: '100%'
   },
   textDark: {
-    color: COLORS.text.main,
+    color: COLORS.text,
   },
   imageButtonIcon: {
     marginHorizontal: SPACINGS.multiplyBy(0.25),
@@ -71,16 +71,16 @@ export const styles = StyleSheet.create({
   },
   imageButton: {
     minWidth: '100%',
-    color: COLORS.paper.main,
-    backgroundColor: COLORS.text.main,
+    color: COLORS.paper,
+    backgroundColor: COLORS.text,
     paddingVertical: SPACINGS.multiplyBy(0.75),
-    borderColor: COLORS.text.main,
+    borderColor: COLORS.text,
     borderRadius: BORDERRADIUS.none
   },
   imageInfo: {
     marginBottom: SPACINGS.multiplyBy(1)
   },
   textLight: {
-    color: COLORS.paper.main
+    color: COLORS.paper
   }
 })
