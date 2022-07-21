@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native'
-import { SIZES, FONTWEIGHT } from '../../theme/fonts'
+import { FONTS, SIZES } from '../../theme/fonts'
 import { SPACINGS } from '../../theme/spacings'
 
 export const styles = StyleSheet.create({
@@ -7,10 +7,10 @@ export const styles = StyleSheet.create({
     marginVertical: SPACINGS.multiplyBy(1.5),
   },
   phaseDate: {
-    fontSize: SIZES.multiplyBy(0.9375),
-    fontWeight: FONTWEIGHT.boldxl,
+    fontSize: SIZES.sm,
+    fontFamily: FONTS.familySemiBold,
   },
   phaseText: {
-    fontSize: SIZES.multiplyBy(0.9375),
+    fontSize: SIZES.sm,
   }
 })

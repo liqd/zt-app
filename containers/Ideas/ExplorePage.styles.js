@@ -8,15 +8,15 @@ export const styles = StyleSheet.create({
     flex: 1,
     padding: SPACINGS.multiplyBy(0.8),
     paddingTop: SPACINGS.multiplyBy(1.25),
-    backgroundColor: COLORS.paper.main,
+    backgroundColor: COLORS.paper,
   },
   title: {
-    fontSize: SIZES.multiplyBy(1.75),
+    fontSize: SIZES.xxl,
     fontWeight: FONTWEIGHT.bold,
     marginVertical: SPACINGS.multiplyBy(.5)
   },
   subtitle: {
-    fontSize: SIZES.multiplyBy(1.25),
+    fontSize: SIZES.lg,
     fontWeight: FONTWEIGHT.semiBold,
     marginVertical: SPACINGS.multiplyBy(.25)
   }

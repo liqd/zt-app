@@ -67,7 +67,7 @@ export const Richtext = ({ text }) => {
       alignSelf: 'flex-start'
     },
     a: {
-      color: COLORS.text.main
+      color: COLORS.text
     }
   }
 

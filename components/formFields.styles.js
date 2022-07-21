@@ -12,9 +12,9 @@ export const styles = StyleSheet.create({
   formLabel: {
     fontSize: SIZES.sm,
     lineHeight: LINEHEIGHTS.sm,
+    width: '100%',
     paddingTop: SPACINGS.multiplyBy(.5),
     paddingBottom: SPACINGS.multiplyBy(.25),
-    width: '100%'
   },
   textInput: {
     borderBottomColor: COLORS.grey.extralight,
@@ -32,7 +32,7 @@ export const styles = StyleSheet.create({
     paddingHorizontal: SPACINGS.multiplyBy(0.75)
   },
   checkBoxContainer: {
-    backgroundColor: COLORS.paper.main,
+    backgroundColor: COLORS.paper,
     borderWidth: 0,
   },
   checkBoxText: {
@@ -48,7 +48,7 @@ export const styles = StyleSheet.create({
   },
   dropdownFormField: {
     borderBottomColor: COLORS.grey.extralight,
-    backgroundColor: COLORS.text.inverted,
+    backgroundColor: COLORS.text,
     borderTopWidth: 0,
     borderRightWidth: 0,
     borderLeftWidth: 0,
