@@ -7,8 +7,8 @@ import { styles } from './RichtextCollapsibleItem.styles'
 export const RichtextCollapsibleItem = ({ title, body }) => {
   const [collapsed, setCollapsed] = useState(true)
   const chevron = collapsed
-    ? <IconSLI name={'plus'} size={24} color={COLORS.text.main} />
-    : <IconSLI name={'minus'} size={24} color={COLORS.text.main} />
+    ? <IconSLI name={'plus'} size={24} color={COLORS.text} />
+    : <IconSLI name={'minus'} size={24} color={COLORS.text} />
 
   return (
     <TouchableOpacity accessibilityRole="button" onPress={() => setCollapsed(!collapsed)}>

@@ -4,7 +4,7 @@ import { SPACINGS } from '../theme/spacings'
 
 export const styles = StyleSheet.create({
   collapsibleButton: {
-    backgroundColor: COLORS.paper.main,
+    backgroundColor: COLORS.paper,
     width: '100%',
     flexDirection: 'row',
     alignItems: 'center',

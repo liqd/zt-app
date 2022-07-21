@@ -25,4 +25,13 @@ export const styles = StyleSheet.create({
     paddingBottom: SPACINGS.multiplyBy(.25),
     width: '100%'
   },
+  textInputButtonTitleBase: {
+    fontSize: SIZES.md,
+    lineHeight: LINEHEIGHTS.base,
+    paddingTop: SPACINGS.multiplyBy(.5),
+    paddingBottom: SPACINGS.multiplyBy(.25),
+    flexWrap: 'nowrap',
+    flexDirection: 'column',
+    justifyContent: 'space-between'
+  },
 })

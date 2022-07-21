@@ -24,6 +24,6 @@ export const styles = StyleSheet.create({
     paddingBottom: SPACINGS.multiplyBy(3),
   },
   cancelButtonText: {
-    color: COLORS.paper.main
+    color: COLORS.paper
   }
 })

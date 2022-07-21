@@ -9,7 +9,7 @@ import { TextSourceSans } from '../../components/TextSourceSans'
 import { VirtualScrollView } from '../../components/VirtualScrollView'
 import { Header } from '../../components/Header'
 
-import { styles } from './Idea.styles'
+import { styles } from './IdeaCreate.styles'
 import {
   TextInputFormField,
   DropdownFormFieldContainer,
@@ -213,9 +213,7 @@ export const IdeaCreate = props => {
                 <ButtonTextInput
                   title={description ? description : 'Enter your idea description'}
                   onPress={() => toDescription(values)}
-                  textInputButtonTitle={description ?
-                    [styles.textInputButtonTitle, styles.textInputButtonTitleDark] :
-                    [styles.textInputButtonTitle, styles.textInputButtonTitleLight]}
+                  textInputButtonTitle={description ? styles.textInputButtonTitleDark : styles.textInputButtonTitleLight}
                 >
                 </ButtonTextInput>
               </ButtonTextInputFieldContainer>

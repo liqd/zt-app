@@ -5,7 +5,7 @@ import { SPACINGS } from '../../theme/spacings'
 
 export const styles = StyleSheet.create({
   container: {
-    backgroundColor: COLORS.paper.main,
+    backgroundColor: COLORS.paper,
     flex: 1,
   },
   title: {

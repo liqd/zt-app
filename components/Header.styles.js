@@ -5,7 +5,7 @@ import { SPACINGS } from '../theme/spacings'
 
 export const styles = StyleSheet.create({
   container: {
-    backgroundColor: COLORS.paper.main,
+    backgroundColor: COLORS.paper,
   },
   actionsContainer: {
     paddingTop: SPACINGS.multiplyBy(0.5),
@@ -21,6 +21,6 @@ export const styles = StyleSheet.create({
   backButtonText: {
     fontSize: SIZES.md,
     marginHorizontal: SPACINGS.multiplyBy(.25),
-    color: COLORS.text.main,
+    color: COLORS.text,
   }
 })

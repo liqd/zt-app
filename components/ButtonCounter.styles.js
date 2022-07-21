@@ -17,10 +17,10 @@ export const styles = StyleSheet.create({
   },
   highlightUpStyle: {
     color: COLORS.primary,
-    fontWeight: FONTWEIGHT.boldxxl
+    fontWeight: FONTWEIGHT.bold
   },
   highlightDownStyle: {
     color: COLORS.danger,
-    fontWeight: FONTWEIGHT.boldxxl
+    fontWeight: FONTWEIGHT.bold
   },
 })
