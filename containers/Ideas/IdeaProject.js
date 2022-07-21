@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { View, ImageBackground, Linking, ScrollView, Image } from 'react-native'
+import { View, ImageBackground, Linking, ScrollView, Image, Alert } from 'react-native'
 import { Button } from '@rneui/themed'
 import { LinearGradient } from 'expo-linear-gradient'
 import { styles } from './IdeaProject.styles'
@@ -50,19 +50,23 @@ export const IdeaProject = (props) => {
   )
 
   const fetchIdeas = () => {
-    project.single_idea_collection_module &&
-      AsyncStorage.getItem('authToken')
-        .then((token) => API.getIdeas(project.single_idea_collection_module, token))
-        .then((ideaResponse) => {
-          setIdeas(ideaResponse)
-        })
+    AsyncStorage.getItem('authToken')
+      .then((token) => API.getIdeas(project.single_idea_collection_module, token))
+      .then((ideaResponse) => {
+        setIdeas(ideaResponse)
+      })
   }
 
   const fetchModule = () => {
     AsyncStorage.getItem('authToken')
       .then((token) => API.getModule(project.single_idea_collection_module, token))
       .then((moduleResponse) => {
-        setModule(moduleResponse)
+        // workaround in case of wrong credentials being used
+        if ('pk' in moduleResponse) {
+          setModule(moduleResponse)
+        } else {
+          Alert.alert('Fetching module failed: wrong login data?')
+        }
       })
   }
 
