@@ -1,9 +1,10 @@
-import React, {useEffect, useMemo } from 'react'
+import React from 'react'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
 const AuthContext = React.createContext({
   loading: true,
   token: null,
+  deepLink: null,
   signIn: () => {},
   signOut: () => {},
 })
@@ -20,8 +21,9 @@ export const AuthProvider = (props) => {
   const [state, setState] = React.useState({
     loading: true,
     token: null,
+    deepLink: null
   })
-  useEffect(() => {
+  React.useEffect(() => {
     const tryLogin = async () => {
       const authToken = await AsyncStorage.getItem('authToken')
       setState({
@@ -33,7 +35,7 @@ export const AuthProvider = (props) => {
     tryLogin()
   }, [])
 
-  const actions = useMemo(() => ({
+  const actions = React.useMemo(() => ({
     signIn: async (authToken) => {
       AsyncStorage.setItem('authToken', authToken)
       setState({ ...state, loading: false, token: authToken })
@@ -42,6 +44,9 @@ export const AuthProvider = (props) => {
       AsyncStorage.removeItem('authToken')
       setState({ ...state, loading: false, token: null })
     },
+    setDeepLink: (projectSlug) => {
+      setState({...state, deepLink: projectSlug})
+    }
   }))
   return (
     <AuthContext.Provider value={{ ...state, ...actions }}>
