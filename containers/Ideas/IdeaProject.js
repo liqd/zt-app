@@ -52,17 +52,17 @@ export const IdeaProject = (props) => {
   const fetchIdeas = () => {
     project.single_idea_collection_module &&
       AsyncStorage.getItem('authToken')
-        .then((token) => API.getIdeas(project.single_idea_collection_module, token))
-        .then((ideaResponse) => {
-          setIdeas(ideaResponse)
+        .then(token => API.getIdeas(project.single_idea_collection_module, token))
+        .then(ideaResponse => {
+          setIdeas(ideaResponse.data)
         })
   }
 
   const fetchModule = () => {
     AsyncStorage.getItem('authToken')
-      .then((token) => API.getModule(project.single_idea_collection_module, token))
-      .then((moduleResponse) => {
-        setModule(moduleResponse)
+      .then(token => API.getModule(project.single_idea_collection_module, token))
+      .then(moduleResponse => {
+        setModule(moduleResponse.data)
       })
   }
 
