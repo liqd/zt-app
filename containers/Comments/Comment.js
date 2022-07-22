@@ -148,9 +148,9 @@ export const Comment = (props) => {
         comment.id,
         token
       ))
-      .then(fetchedComment => {
-        setComment(fetchedComment)
-        return fetchedComment
+      .then(response => {
+        setComment(response.data)
+        return response.data
       })
   }
 
