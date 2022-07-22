@@ -7,7 +7,7 @@ import API from '../../../BaseApi'
 
 jest.mock('../../../BaseApi', () => ({
   __esModule: true,
-  default: { getComments: jest.fn(() => Promise.resolve({ results: [mockComment] })) }
+  default: { getComments: jest.fn(() => Promise.resolve({ statusCode: 200, data: {results: [mockComment] }})) }
 }))
 
 test('Test Idea Snapshot', async () => {
@@ -34,10 +34,13 @@ test('Test Idea Comment Menu No Permissions', async () => {
 
 test('Test Idea Comment Menu Edit Permissions', async () => {
   API.getComments = jest.fn(() => Promise.resolve({
-    results: [{
-      ...mockComment,
-      user_info: { ...mockComment.user_info, has_changing_permission: true }
-    }]
+    statusCode: 200,
+    data: {
+      results: [{
+        ...mockComment,
+        user_info: { ...mockComment.user_info, has_changing_permission: true }
+      }]
+    }
   }))
   const route = { params: { idea: testIdeaAdmin, module: testModule } }
   const { getByTestId, queryByText } = render(<Idea route={route} />)
@@ -53,10 +56,13 @@ test('Test Idea Comment Menu Edit Permissions', async () => {
 
 test('Test Idea Comment Edit', async () => {
   API.getComments = jest.fn(() => Promise.resolve({
-    results: [{
-      ...mockComment,
-      user_info: { ...mockComment.user_info, has_changing_permission: true }
-    }]
+    statusCode: 200,
+    data: {
+      results: [{
+        ...mockComment,
+        user_info: { ...mockComment.user_info, has_changing_permission: true }
+      }]
+    }
   }))
   const route = { params: { idea: testIdeaAdmin, module: testModule } }
   const {

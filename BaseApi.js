@@ -68,8 +68,14 @@ const makeGetRequest = (url, token = null) => {
     method: 'GET',
     headers: getHeaders(token)
   })
-    .then(response => response.json())
-    .then(unpackedData => unpackedData)
+    .then(response => {
+      const statusCode = response.status
+      const data = response.json()
+      return Promise.all([ statusCode, data ])
+    })
+    .then(values => {
+      return {statusCode: values[0], data: values[1]}
+    })
     .catch(error => console.error(error))
 }
 
@@ -156,8 +162,8 @@ const API = {
   postLogin(data) {
     return makePostRequest(endpoints.login, data)
   },
-  getProjects() {
-    return makeGetRequest(endpoints.projects)
+  getProjects(token = null) {
+    return makeGetRequest(endpoints.projects, token)
   },
   getModule(moduleId, token = null) {
     const url = endpoints.module.replace('$moduleId', moduleId)

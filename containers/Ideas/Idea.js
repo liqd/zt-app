@@ -237,10 +237,10 @@ export const Idea = (props) => {
 
   const fetchIdea = () => {
     return AsyncStorage.getItem('authToken')
-      .then((token) => API.getIdea(module.pk, ideaState.pk, token))
-      .then(fetchedIdea => {
-        setIdeaState(fetchedIdea)
-        return fetchedIdea
+      .then(token => API.getIdea(module.pk, ideaState.pk, token))
+      .then(response => {
+        setIdeaState(response.data)
+        return response.data
       })
   }
 
@@ -281,8 +281,8 @@ export const Idea = (props) => {
 
   const fetchComments = (ideaContentType, ideaPk) => {
     AsyncStorage.getItem('authToken')
-      .then((token) => API.getComments(ideaContentType, ideaPk, token))
-      .then(({results}) => setComments(results))
+      .then(token => API.getComments(ideaContentType, ideaPk, token))
+      .then(response => setComments(response.data.results))
   }
 
   useEffect(() => {
