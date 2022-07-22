@@ -29,6 +29,13 @@ export const IdeaCreate = props => {
     description: yup
       .string()
       .required('Description is required'),
+    imageChecked: yup
+      .boolean()
+      .when('image', {
+        is: (image) => image !== null,
+        then: yup.boolean()
+          .oneOf([true], 'Please confirm the copyright')
+      })
   })
 
   const [error, setError] = useState()
@@ -146,17 +153,16 @@ export const IdeaCreate = props => {
         labels: prevValues.labels ? prevValues.labels : initialLabels,
         category: prevValues.category ? prevValues.category : initialCategory,
         imageChecked: prevValues.imageChecked ? prevValues.imageChecked : false,
+        image: prevValues.image ? prevValues.image : null
       }
       : {
         name: editing ? idea.name : '',
         description: editing ? idea.description : '',
         labels: initialLabels,
         category: initialCategory,
-        imageChecked: editing ? !!idea.image : false
+        imageChecked: editing ? !!idea.image : false,
+        image: (editing && idea.image) ? idea.image.uri : null
       }
-    if (prevValues.image) {
-      initialValues.image = prevValues.image
-    }
     return initialValues
   }
 
@@ -247,7 +253,10 @@ export const IdeaCreate = props => {
               <ImageChoiceFormFieldContainer
                 field='Add Image'
                 name='image'
-                onSetImage={(img) => setFieldValue('image', img)}
+                onSetImage={(img) => {
+                  setFieldValue('image', img)
+                  img && setFieldValue('imageChecked', false)
+                }}
                 onIconPress={() => setFieldValue('imageChecked', !values.imageChecked)}
                 checked={values.imageChecked}
                 image={values.image ? values.image.uri : (idea && idea.image)}
