@@ -32,9 +32,9 @@ exports[`Test ButtonCounter 1`] = `
           "fontFamily": "SourceSansPro_400Regular",
         },
         Object {
-          "fontSize": 14.45,
+          "fontSize": 15,
           "letterSpacing": 5,
-          "lineHeight": 20.9,
+          "lineHeight": 19,
         },
       ]
     }
@@ -48,9 +48,9 @@ exports[`Test ButtonCounter 1`] = `
           "fontFamily": "SourceSansPro_400Regular",
         },
         Object {
-          "fontSize": 14.45,
+          "fontSize": 15,
           "letterSpacing": 5,
-          "lineHeight": 20.9,
+          "lineHeight": 19,
         },
       ]
     }
@@ -92,9 +92,9 @@ exports[`Test ButtonCounter 10 1`] = `
           "fontFamily": "SourceSansPro_400Regular",
         },
         Object {
-          "fontSize": 14.45,
+          "fontSize": 15,
           "letterSpacing": 5,
-          "lineHeight": 20.9,
+          "lineHeight": 19,
         },
       ]
     }
@@ -108,9 +108,9 @@ exports[`Test ButtonCounter 10 1`] = `
           "fontFamily": "SourceSansPro_400Regular",
         },
         Object {
-          "fontSize": 14.45,
+          "fontSize": 15,
           "letterSpacing": 5,
-          "lineHeight": 20.9,
+          "lineHeight": 19,
         },
       ]
     }
@@ -173,9 +173,9 @@ exports[`Test ButtonCounter disabled 1`] = `
         },
         Array [
           Object {
-            "fontSize": 14.45,
+            "fontSize": 15,
             "letterSpacing": 5,
-            "lineHeight": 20.9,
+            "lineHeight": 19,
           },
           Object {
             "color": "#c4c4c4",
@@ -194,9 +194,9 @@ exports[`Test ButtonCounter disabled 1`] = `
         },
         Array [
           Object {
-            "fontSize": 14.45,
+            "fontSize": 15,
             "letterSpacing": 5,
-            "lineHeight": 20.9,
+            "lineHeight": 19,
           },
           Object {
             "color": "#c4c4c4",
@@ -263,13 +263,13 @@ exports[`Test ButtonCounter highlight 1`] = `
         },
         Array [
           Object {
-            "fontSize": 14.45,
+            "fontSize": 15,
             "letterSpacing": 5,
-            "lineHeight": 20.9,
+            "lineHeight": 19,
           },
           Object {
             "color": "#2d40cc",
-            "fontWeight": "bold",
+            "fontWeight": "800",
           },
         ],
       ]
@@ -285,13 +285,13 @@ exports[`Test ButtonCounter highlight 1`] = `
         },
         Array [
           Object {
-            "fontSize": 14.45,
+            "fontSize": 15,
             "letterSpacing": 5,
-            "lineHeight": 20.9,
+            "lineHeight": 19,
           },
           Object {
             "color": "#2d40cc",
-            "fontWeight": "bold",
+            "fontWeight": "800",
           },
         ],
       ]
@@ -355,13 +355,13 @@ exports[`Test ButtonCounter highlight 10 1`] = `
         },
         Array [
           Object {
-            "fontSize": 14.45,
+            "fontSize": 15,
             "letterSpacing": 5,
-            "lineHeight": 20.9,
+            "lineHeight": 19,
           },
           Object {
             "color": "#a72b1e",
-            "fontWeight": "bold",
+            "fontWeight": "800",
           },
         ],
       ]
@@ -377,13 +377,13 @@ exports[`Test ButtonCounter highlight 10 1`] = `
         },
         Array [
           Object {
-            "fontSize": 14.45,
+            "fontSize": 15,
             "letterSpacing": 5,
-            "lineHeight": 20.9,
+            "lineHeight": 19,
           },
           Object {
             "color": "#a72b1e",
-            "fontWeight": "bold",
+            "fontWeight": "800",
           },
         ],
       ]
