@@ -40,16 +40,18 @@ export const baseUrl = (() => {
 const baseApiUrl = baseUrl + '/api'
 
 const endpoints = {
+  account: baseApiUrl + '/account/',
+  comments: baseApiUrl + '/contenttypes/$contentTypeId/objects/$objectPk/comments/',
+  comment: baseApiUrl + '/contenttypes/$contentTypeId/objects/$objectPk/comments/$commentPk/',
   ideas: baseApiUrl + '/modules/$moduleId/ideas/',
   idea: baseApiUrl + '/modules/$moduleId/ideas/$ideaPk/',
   login: baseApiUrl + '/login/',
-  projects: baseApiUrl + '/app-projects/',
   module: baseApiUrl + '/app-modules/$moduleId/',
+  projects: baseApiUrl + '/app-projects/',
   ratings: baseApiUrl + '/contenttypes/$contentTypeId/objects/$objectPk/ratings/',
   rating: baseApiUrl + '/contenttypes/$contentTypeId/objects/$objectPk/ratings/$ratingId/',
-  comments: baseApiUrl + '/contenttypes/$contentTypeId/objects/$objectPk/comments/',
-  comment: baseApiUrl + '/contenttypes/$contentTypeId/objects/$objectPk/comments/$commentPk/',
   report: baseApiUrl + '/reports/',
+  user: baseApiUrl + '/users/$userPk/'
 }
 
 const getHeaders = (token, isFormData = false) => {
@@ -207,6 +209,14 @@ const API = {
     const ct_obj_url = ct_url.replace('$objectPk', objectPk)
     const url = ct_obj_url.replace('$commentPk', commentPk)
     return makeDeleteRequest(url, token)
+  },
+  getUser(userPk, token = null) {
+    const url = endpoints.user.replace('$userPk', userPk)
+    return makeGetRequest(url, token)
+  },
+  getAuthenticatedUser(token = null) {
+    const url = endpoints.account
+    return makeGetRequest(url, token)
   }
 }
 

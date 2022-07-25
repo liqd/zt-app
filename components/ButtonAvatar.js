@@ -22,7 +22,9 @@ export const ButtonAvatar = (props) => {
       accessibilityRole="button"
       disabled={props.disabled}
     >
-      <AvatarCircle/>
+      <AvatarCircle
+        imgSource={props.imgSource}
+      />
     </TouchableOpacity>
   )
 }
