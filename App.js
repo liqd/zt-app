@@ -6,7 +6,8 @@ import { IdeaNavigator } from './navigation/IdeaNavigator'
 import * as SplashScreen from 'expo-splash-screen'
 import * as Font from 'expo-font'
 import {
-  SourceSansPro_400Regular
+  SourceSansPro_400Regular,
+  SourceSansPro_600SemiBold,
 } from '@expo-google-fonts/source-sans-pro'
 
 Sentry.init({
@@ -23,6 +24,7 @@ const App = () => {
       try {
         await SplashScreen.preventAutoHideAsync()
         await Font.loadAsync({ SourceSansPro_400Regular })
+        await Font.loadAsync({ SourceSansPro_600SemiBold })
       } catch (e) {
         console.warn(e)
       } finally {

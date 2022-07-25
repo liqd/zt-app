@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native'
 import { COLORS } from '../theme/colors'
-import { SIZES, LINEHEIGHTS, FONTWEIGHT } from '../theme/fonts'
+import { FONTS, SIZES, LINEHEIGHTS } from '../theme/fonts'
 import { SPACINGS, BORDERRADIUS, BORDERWIDTH } from '../theme/spacings'
 
 export const styles = StyleSheet.create({
@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    fontWeight: FONTWEIGHT.semiBold,
+    fontFamily: FONTS.familySemiBold,
     width: '100%',
     borderRadius: BORDERRADIUS.none,
     borderTopWidth: 0,

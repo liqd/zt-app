@@ -1,6 +1,6 @@
 import { Platform, StyleSheet } from 'react-native'
 import { COLORS } from '../../theme/colors'
-import { SIZES, FONTWEIGHT } from '../../theme/fonts'
+import { FONTS, SIZES, FONTWEIGHT } from '../../theme/fonts'
 import { SPACINGS, BORDERRADIUS } from '../../theme/spacings'
 
 const headerOffset = 300
@@ -88,12 +88,10 @@ export const styles = StyleSheet.create({
   },
   tabsMenuItem: {
     fontSize: SIZES.md,
-    fontWeight: FONTWEIGHT.bold,
+    fontFamily: FONTS.familySemiBold,
     color: COLORS.text
   },
   tabsMenuItemActive: {
-    fontSize: SIZES.md,
-    fontWeight: FONTWEIGHT.bold,
     color: COLORS.primary
   },
   actionsContainer: {
