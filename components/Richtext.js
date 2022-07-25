@@ -1,9 +1,14 @@
 import React from 'react'
-import { useWindowDimensions } from 'react-native'
+import { useWindowDimensions, Linking } from 'react-native'
 import { baseUrl } from '../BaseApi'
 import { RichtextCollapsibleItem } from './RichtextCollapsibleItem'
-import RenderHTML, { useInternalRenderer } from 'react-native-render-html'
+import RenderHTML, {
+  useInternalRenderer,
+  HTMLElementModel,
+  HTMLContentModel
+} from 'react-native-render-html'
 import { COLORS } from '../theme/colors'
+import { LinkTextSourceSans } from './LinkTextSourceSans'
 
 // The <Richtext /> component can be used as a container
 // for HTML input. It converts html to React Native with the
@@ -19,8 +24,6 @@ import { COLORS } from '../theme/colors'
 export const Richtext = ({ text }) => {
   const {width} = useWindowDimensions()
 
-  const isCollapsible = (node) => node.domNode.attribs.class === 'collapsible-item'
-
   const extractCollapsibleData = (tnode) => {
     return {
       title: tnode.children[0].children[0].children[0].data,
@@ -29,7 +32,9 @@ export const Richtext = ({ text }) => {
   }
 
   const collapsibleRenderer = ({ TDefaultRenderer, tnode,  ...props }) => {
-    if (isCollapsible(tnode)){
+    const isCollapsible = tnode.domNode.attribs.class === 'collapsible-item'
+
+    if (isCollapsible){
       const { title, body } = extractCollapsibleData(tnode)
       return (
         <TDefaultRenderer
@@ -57,9 +62,41 @@ export const Richtext = ({ text }) => {
     )
   }
 
+  const extractIframeData = (tnode) => {
+    const url = tnode.domNode.attribs.src
+    const isYoutube = url.match(/(youtube)/)
+    const platform = isYoutube ? 'Youtube.com' : 'Vimeo.com'
+    return {platform, url}
+  }
+
+  const customIframeRenderer = ({ TDefaultRenderer, tnode, ...props }) => {
+    // Interim: for now we convert media embeds to external links
+    const {platform, url} = extractIframeData(tnode)
+    return (
+      <TDefaultRenderer
+        tnode={tnode}
+        {...props}
+      >
+        <LinkTextSourceSans
+          onPress={() => Linking.openURL(url)}
+        >
+          Watch video on {platform}
+        </LinkTextSourceSans>
+      </TDefaultRenderer>
+    )
+  }
+
+  const customHTMLElementModels = {
+    'iframe': HTMLElementModel.fromCustomModel({
+      tagName: 'iframe',
+      contentModel: HTMLContentModel.mixed
+    })
+  }
+
   const renderers = {
     div: collapsibleRenderer,
-    img: customImageRenderer
+    img: customImageRenderer,
+    iframe: customIframeRenderer
   }
 
   const tagsStyles = {
@@ -77,5 +114,6 @@ export const Richtext = ({ text }) => {
       contentWidth={width}
       renderers={renderers}
       tagsStyles={tagsStyles}
+      customHTMLElementModels={customHTMLElementModels}
     />)
 }
