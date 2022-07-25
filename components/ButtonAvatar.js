@@ -2,8 +2,17 @@ import React from 'react'
 import { TouchableOpacity, Image } from 'react-native'
 import { styles } from './ButtonAvatar.styles'
 
-export const ButtonAvatar = (props) => {
+export const AvatarCircle = (props) => {
+  return (
+    <Image
+      accessibilityIgnoresInvertColors={true}
+      style={[styles.imageCircle, props.avatarSize]}
+      source={props.imgSource}
+    />
+  )
+}
 
+export const ButtonAvatar = (props) => {
   return (
     <TouchableOpacity
       style={styles.container}
@@ -13,11 +22,7 @@ export const ButtonAvatar = (props) => {
       accessibilityRole="button"
       disabled={props.disabled}
     >
-      <Image
-        accessibilityIgnoresInvertColors={true}
-        style={styles.imageCircle}
-        source={props.imgSource}
-      />
+      <AvatarCircle/>
     </TouchableOpacity>
   )
 }
