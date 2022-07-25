@@ -50,6 +50,7 @@ const endpoints = {
   comments: baseApiUrl + '/contenttypes/$contentTypeId/objects/$objectPk/comments/',
   comment: baseApiUrl + '/contenttypes/$contentTypeId/objects/$objectPk/comments/$commentPk/',
   report: baseApiUrl + '/reports/',
+  user: baseApiUrl + '/users/$userPk/'
 }
 
 const getHeaders = (token, isFormData = false) => {
@@ -207,6 +208,10 @@ const API = {
     const ct_obj_url = ct_url.replace('$objectPk', objectPk)
     const url = ct_obj_url.replace('$commentPk', commentPk)
     return makeDeleteRequest(url, token)
+  },
+  getUser(userPk, token = null) {
+    const url = endpoints.user.replace('$userPk', userPk)
+    return makeGetRequest(url, token)
   }
 }
 
