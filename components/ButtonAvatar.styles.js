@@ -9,9 +9,9 @@ export const styles = StyleSheet.create({
     backgroundColor: COLORS.paper
   },
   imageCircle: {
-    borderRadius: 40,
     width: 40,
     height: 40,
+    borderRadius: 100,
     marginTop: SPACINGS.base,
     backgroundColor: COLORS.primary,
   },
