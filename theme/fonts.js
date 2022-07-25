@@ -22,7 +22,6 @@ export const LINEHEIGHTS = {
   md: baseLineHeight * 1.1,
   lg: baseLineHeight * 1.3,
   xl: baseLineHeight * 1.9,
-  multiplyBy: times => times * baseLineHeight
 }
 
 export const FONTWEIGHT = {
