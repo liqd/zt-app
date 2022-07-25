@@ -9,6 +9,7 @@ import { TextSourceSans } from '../../components/TextSourceSans'
 import {useAuthorization} from '../../containers/Auth/AuthProvider.js'
 
 export const ExplorePage = (props) => {
+  const [user, setUser] = useState()
   const [projects, setProjects] = useState([])
   const {signOut} = useAuthorization()
 
@@ -27,6 +28,19 @@ export const ExplorePage = (props) => {
       }).catch(error => console.warn(error))
   }
 
+  const fetchAuthenticatedUser = () => {
+    AsyncStorage.getItem('authToken')
+      .then((token) => API.getAuthenticatedUser(token))
+      .then((response) => {
+        if(response.statusCode === 200) {
+          setUser(response.data)
+        } else {
+          return Promise.reject(new Error('fetchAuthenticatedUser returned ' + response.statusCode))
+        }
+      })
+      .catch(error => console.warn(error))
+  }
+
   const pressHandler = (project) =>
     props.navigation.navigate('IdeaProject', { project: project })
 
@@ -41,17 +55,24 @@ export const ExplorePage = (props) => {
     return projectsListener
   }, [])
 
+  useEffect(() => {
+    fetchAuthenticatedUser()
+  }, [])
+
   const toProfile = () => {
-    props.navigation.navigate('ProfileScreen', {name: 'Bob'})
+    props.navigation.navigate('ProfileScreen', {userId: user.pk})
   }
 
   return (
     <View style={styles.container}>
-      <ButtonAvatar
-        labelText="profile"
-        hintText="click to go to profile and settings"
-        onPress={toProfile}
-      ></ButtonAvatar>
+      {user &&
+        <ButtonAvatar
+          imgSource={{ uri: user._avatar }}
+          labelText="profile"
+          hintText="click to go to profile and settings"
+          onPress={toProfile}
+        />
+      }
       <TextSourceSans style={styles.title}>Explore</TextSourceSans>
       <TextSourceSans style={styles.subtitle}>Recently Added</TextSourceSans>
       {projects.length > 0 &&
