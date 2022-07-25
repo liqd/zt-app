@@ -15,3 +15,10 @@ test('Test <Richtext> with collapsibles', () => {
   render(<Richtext text={testHtml} />)
   expect(screen.getByText('test title')).toBeTruthy()
 })
+
+test('Test <Richtext> with embeds', () => {
+  const testHtml = '<div>'
+  + '<iframe src="fakeurl"></iframe>'
+  render(<Richtext text={testHtml} />)
+  expect(screen.getByText(/Watch video on/)).toBeTruthy()
+})
