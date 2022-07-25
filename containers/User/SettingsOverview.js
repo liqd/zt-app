@@ -14,7 +14,7 @@ export const SettingsOverview = (props) => {
     <View>
       <Header
         navigation={props.navigation} />
-      <TextSourceSans></TextSourceSans>
+      <TextSourceSans />
       <ButtonSubmit
         title='Profile settings'
         onPress={toProfileSettings}
