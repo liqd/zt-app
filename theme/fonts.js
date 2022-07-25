@@ -3,6 +3,7 @@ const baseLineHeight = 20
 
 export const FONTS = {
   familySans: 'SourceSansPro_400Regular',
+  familySemiBold: 'SourceSansPro_600SemiBold',
 }
 
 export const SIZES = {
@@ -25,8 +26,7 @@ export const LINEHEIGHTS = {
 }
 
 export const FONTWEIGHT = {
-  base: '300',
-  semiBold: '500',
+  base: '400',
   bold: '800',
 }
 
