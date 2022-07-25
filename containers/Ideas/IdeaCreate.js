@@ -45,6 +45,7 @@ export const IdeaCreate = props => {
   const [initialLabels, setInitialLabels] = useState([])
   const [description, setDescription] = useState(() => editing ? idea.description : '')
   const [prevValues, setPrevValues] = useState('')
+  const [submitPending, setSubmitPending] = useState(false)
 
   useEffect(() => {
     if (error) {
@@ -105,6 +106,7 @@ export const IdeaCreate = props => {
   }
 
   const handleSubmit = (values) => {
+    setSubmitPending(true)
     values.description = description
     const formData = makeFormData(values)
     AsyncStorage.getItem('authToken')
@@ -116,32 +118,37 @@ export const IdeaCreate = props => {
         }
       })
       //error handling is provisional and should probably go somewhere else eventually
-      .then((response) => {
+      .then(response => {
         const {statusCode, data} = response
-        if (statusCode == 201) {
+        if (statusCode === 201) {
           Alert.alert('Your idea was added.', 'Thank you for participating!',  [{ text: 'Ok' }])
           props.navigation.goBack()
-        } else if (editing && statusCode == 200) {
+        } else if (editing && statusCode === 200) {
           Alert.alert('Your idea was updated.', '',  [{ text: 'Ok' }])
           props.navigation.navigate({
             name: 'IdeaDetail',
             params: { idea: data },
             merge: true,
           })
-        } else if (statusCode == 400) {
+        } else if (statusCode === 400) {
+          let errorMsg
           if (data && data.image) {
-            const errorString = data.image.reduce((acc, curr) => {
+            errorMsg = data.image.reduce((acc, curr) => {
               return `${acc}\n${curr}`
             }, 'Please try again.\n')
-            setError(errorString)
           } else {
-            setError('Required fields are missing.')
+            errorMsg = ('Required fields are missing.')
           }
-        } else if (response.statusCode == 403) {
-          setError(response.data.detail)
+          return Promise.reject(errorMsg)
+        } else if (statusCode === 403) {
+          return Promise.reject(data.detail)
         } else {
-          setError('Try again.')
+          return Promise.reject('Try again.')
         }
+      })
+      .catch(error => {
+        setError(error)
+        setSubmitPending(false)
       })
   }
 
@@ -264,7 +271,7 @@ export const IdeaCreate = props => {
               <ButtonSubmit
                 title='Submit'
                 onPress={handleSubmit}
-                disabled={!isValid}
+                disabled={!isValid || submitPending}
               >
               </ButtonSubmit>
             </>
