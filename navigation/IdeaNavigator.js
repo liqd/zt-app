@@ -11,6 +11,8 @@ import { StartUpScreen } from '../containers/Auth/StartUpScreen'
 import { useAuthorization } from '../containers/Auth/AuthProvider.js'
 import { ReportCreateMessage } from '../containers/Reports/ReportCreateMessage'
 import { ProfileScreen } from '../containers/User/ProfileScreen'
+import { SettingsOverview } from '../containers/User/SettingsOverview'
+import { SettingsProfile } from '../containers/User/SettingsProfile'
 
 const Stack = createStackNavigator()
 
@@ -32,6 +34,8 @@ export const IdeaNavigator = () => {
         <Stack.Screen name="IdeaCreateDescription" component={IdeaCreateDescription} />
         <Stack.Screen name="ReportCreateMessage" component={ReportCreateMessage} />
         <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
+        <Stack.Screen name="SettingsOverview" component={SettingsOverview} />
+        <Stack.Screen name="SettingsProfile" component={SettingsProfile} />
       </>
     }
   }
