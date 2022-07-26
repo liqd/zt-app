@@ -1,3 +1,4 @@
+import 'react-native-gesture-handler'
 import React, { useEffect, useState, useCallback } from 'react'
 import { View } from 'react-native'
 import * as Sentry from 'sentry-expo'
