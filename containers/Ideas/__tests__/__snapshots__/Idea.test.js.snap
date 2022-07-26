@@ -207,6 +207,7 @@ Array [
     }
   >
     <RCTScrollView
+      keyboardShouldPersistTaps="handled"
       onScroll={[Function]}
       scrollEnabled={true}
       style={
