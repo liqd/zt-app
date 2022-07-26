@@ -50,7 +50,7 @@ export const ExplorePage = (props) => {
       <ButtonAvatar
         labelText="profile"
         hintText="click to go to profile and settings"
-        onPress={() => toProfile()}
+        onPress={toProfile}
       ></ButtonAvatar>
       <TextSourceSans style={styles.title}>Explore</TextSourceSans>
       <TextSourceSans style={styles.subtitle}>Recently Added</TextSourceSans>
