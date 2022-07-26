@@ -44,7 +44,7 @@ export const IdeaNavigator = () => {
     <NavigationContainer>
       <Stack.Navigator
         initialRouteName="StartUp"
-        screenOptions={{ gestureEnabled: false, headerShown: false }}
+        screenOptions={{ headerShown: false }}
       >
         {stackScreen}
       </Stack.Navigator>
