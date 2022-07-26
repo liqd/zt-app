@@ -43,12 +43,14 @@ export const CommentForm = (props) => {
           <View style={styles.submitContainer}>
             <View style={styles.textInputContainer}>
               <TextInput
+                style={styles.textInput}
                 accessibilityLabel="Comment input"
                 accessibilityHint="Type your comment here"
                 name='comment'
                 ref={props.inputRef}
                 value={values.comment}
                 placeholder='Enter your comment'
+                placeholderTextColor={COLORS.grey.medium}
                 onChangeText={handleChange('comment')}
                 onBlur={handleBlur('comment')}
                 error={errors.comment}

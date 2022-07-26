@@ -8,13 +8,20 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     paddingHorizontal: SPACINGS.multiplyBy(1),
-    paddingVertical: SPACINGS.multiplyBy(0.75),
+    paddingTop: SPACINGS.multiplyBy(0.75),
+    paddingBottom: SPACINGS.multiplyBy(2)
   },
   textInputContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
     flex: 2,
     backgroundColor: COLORS.paper,
     borderRadius: BORDERRADIUS.lg,
     padding: SPACINGS.multiplyBy(0.5),
+  },
+  textInput: {
+    paddingTop: 0,
+    paddingBottom: 0
   },
   submitButton: {
     padding: SPACINGS.multiplyBy(0.25),
