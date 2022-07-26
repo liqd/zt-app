@@ -3,81 +3,73 @@
 exports[`Test ButtonSignOut 1`] = `
 <View
   style={
-    Object {
-      "flexDirection": "row",
-      "height": 40,
-      "justifyContent": "flex-end",
-      "marginTop": 20,
-    }
+    Array [
+      Object {
+        "overflow": "hidden",
+      },
+      Object {
+        "borderRadius": 2,
+      },
+      undefined,
+      false,
+    ]
   }
+  testID="RNE_BUTTON_WRAPPER"
 >
   <View
-    style={
-      Array [
-        Object {
-          "overflow": "hidden",
-        },
-        Object {
-          "borderRadius": 2,
-        },
-        undefined,
-        false,
-      ]
+    accessibilityRole="button"
+    accessibilityState={
+      Object {
+        "busy": false,
+        "disabled": false,
+      }
     }
-    testID="RNE_BUTTON_WRAPPER"
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "opacity": 1,
+      }
+    }
   >
     <View
-      accessibilityRole="button"
-      accessibilityState={
-        Object {
-          "busy": false,
-          "disabled": false,
-        }
-      }
-      accessible={true}
-      collapsable={false}
-      focusable={true}
-      onClick={[Function]}
-      onResponderGrant={[Function]}
-      onResponderMove={[Function]}
-      onResponderRelease={[Function]}
-      onResponderTerminate={[Function]}
-      onResponderTerminationRequest={[Function]}
-      onStartShouldSetResponder={[Function]}
       style={
         Object {
-          "opacity": 1,
+          "alignItems": "center",
+          "backgroundColor": "#1a1a1a",
+          "borderColor": "#2089dc",
+          "borderRadius": 0,
+          "borderWidth": 0,
+          "flexDirection": "row",
+          "fontSize": 16,
+          "height": 70,
+          "justifyContent": "center",
+          "padding": 8,
+          "paddingHorizontal": 10,
+          "width": "100%",
         }
       }
     >
-      <View
+      <Text
         style={
           Object {
-            "alignItems": "center",
-            "backgroundColor": "transparent",
-            "borderColor": "#2089dc",
-            "borderRadius": 2,
-            "borderWidth": 0,
-            "flexDirection": "row",
-            "justifyContent": "center",
-            "padding": 8,
-            "paddingHorizontal": 10,
+            "color": "white",
+            "fontSize": 18,
+            "paddingVertical": 1,
+            "textAlign": "center",
           }
         }
       >
-        <Text
-          style={
-            Object {
-              "color": "#2089dc",
-              "fontSize": 18,
-              "paddingVertical": 1,
-              "textAlign": "center",
-            }
-          }
-        >
-          Sign out
-        </Text>
-      </View>
+        Sign out
+      </Text>
     </View>
   </View>
 </View>
