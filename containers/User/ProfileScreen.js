@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import AsyncStorage from '@react-native-async-storage/async-storage'
+import IconSLI from 'react-native-vector-icons/SimpleLineIcons'
+import { Button } from '@rneui/base'
 import { View } from 'react-native'
 
 import API from '../../BaseApi'
@@ -29,9 +31,24 @@ export const ProfileScreen = (props) => {
     fetchUser()
   }, [])
 
+  const toSettingsOverview = () => {
+    props.navigation.navigate('SettingsOverview', {name: 'Bob'})
+  }
+
+  const settingsIcon = <IconSLI name='settings' size={22} />
+  const rightHeaderButton = (
+    <Button
+      icon={settingsIcon}
+      type='clear'
+      onPress={toSettingsOverview}
+    />)
+
   return (
     <View style={styles.container}>
-      <Header navigation={props.navigation} />
+      <Header
+        navigation={props.navigation}
+        rightButton={rightHeaderButton}
+      />
       <View style={styles.containerInner}>
         <AvatarCircle
           imgSource={user && {uri: user._avatar}}

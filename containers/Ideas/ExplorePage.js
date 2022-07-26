@@ -70,7 +70,7 @@ export const ExplorePage = (props) => {
           imgSource={{ uri: user._avatar }}
           labelText="profile"
           hintText="click to go to profile and settings"
-          onPress={() => toProfile()}
+          onPress={toProfile}
         />
       }
       <TextSourceSans style={styles.title}>Explore</TextSourceSans>
