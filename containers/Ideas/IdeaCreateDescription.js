@@ -1,5 +1,5 @@
 import React from 'react'
-import { ScrollView,View } from 'react-native'
+import { KeyboardAvoidingView, Platform, ScrollView, View } from 'react-native'
 import { Formik } from 'formik'
 import * as yup from 'yup'
 
@@ -45,9 +45,20 @@ export const IdeaCreateDescription = props => {
           touched,
           isValid,
         }) => (
-          <>
-            <ScrollView>
-              <TextSourceSans style={styles.title}>Add description</TextSourceSans>
+          <KeyboardAvoidingView
+            behavior={
+              Platform.OS === 'ios'
+                ? 'padding'
+                : 'null'
+            }
+            style={styles.keyboardContainer}
+          >
+            <ScrollView
+              style={styles.scrollContainer}
+            >
+              <TextSourceSans style={styles.title}>
+                Add description
+              </TextSourceSans>
               <TextInputFullFormField
                 name='description'
                 value={values.description}
@@ -60,6 +71,7 @@ export const IdeaCreateDescription = props => {
                 touched={touched.description}
                 numberOfLines={10}
                 multiline={true}
+                autoFocus
               />
             </ScrollView>
             <ButtonSubmit
@@ -68,7 +80,7 @@ export const IdeaCreateDescription = props => {
               disabled={!isValid}
             >
             </ButtonSubmit>
-          </>
+          </KeyboardAvoidingView>
         )}
       </Formik>
     </View>
