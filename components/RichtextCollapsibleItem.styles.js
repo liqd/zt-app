@@ -1,6 +1,7 @@
 import { StyleSheet } from 'react-native'
 import { COLORS } from '../theme/colors'
 import { SPACINGS } from '../theme/spacings'
+import { FONTWEIGHT, SIZES } from '../theme/fonts'
 
 export const styles = StyleSheet.create({
   collapsibleButton: {
@@ -13,6 +14,10 @@ export const styles = StyleSheet.create({
     paddingVertical: SPACINGS.multiplyBy(0.25),
     borderTopWidth: 1,
     borderBottomWidth: 1
+  },
+  collapsibleButtonTitle: {
+    fontSize: SIZES.md,
+    fontWeight: FONTWEIGHT.bold
   },
   collapsibleIcon: {
     marginHorizontal: SPACINGS.multiplyBy(0.75)
