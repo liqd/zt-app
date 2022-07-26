@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { Alert, View, Image, ScrollView, Platform, KeyboardAvoidingView, Pressable } from 'react-native'
+import { Alert, View, Image, ScrollView,
+  Platform, KeyboardAvoidingView, Pressable } from 'react-native'
 import { Button } from '@rneui/base'
 import { styles } from './Idea.styles'
 import IconSLI from 'react-native-vector-icons/SimpleLineIcons'
@@ -23,7 +24,9 @@ export const Idea = (props) => {
   const [deleteModalVisible, setDeleteModalVisible] = useState(false)
   const [processing, setProcessing] = useState(false)
   const [comments, setComments] = useState([])
-  const [contentObjectOfComment, setContentObjectOfComment] = useState({'contentType': idea.content_type, 'pk': idea.pk})
+  const [contentObjectOfComment, setContentObjectOfComment] = useState(
+    {'contentType': idea.content_type, 'pk': idea.pk}
+  )
   const [commentLastCommented, setCommentLastCommented] = useState(-1)
   const [isScrolling, setIsScrolling] = useState(false)
   const [isEditing, setIsEditing] = useState(false)
@@ -140,6 +143,7 @@ export const Idea = (props) => {
 
   const toggleEditing= (comment) => {
     if (isEditing){
+      commentInputRef.current.blur()
       setIsEditing(false)
       setEditedComment(undefined)
     } else {
@@ -291,6 +295,15 @@ export const Idea = (props) => {
     fetchComments(content_type, pk)
   }, [idea])
 
+  useEffect(() => {
+    if(isEditing) {
+      const timer = setTimeout(()=>{
+        commentInputRef.current.focus()
+      }, 100)
+      return () => {clearTimeout(timer)}
+    }
+  }, [isEditing])
+
   const rightHeaderButton = (
     (!isEditing && !isScrolling) &&
         <Button
@@ -304,6 +317,7 @@ export const Idea = (props) => {
       <Header
         isEditing={isEditing}
         rightButton={rightHeaderButton}
+        toggleEditing={toggleEditing}
         navigation={props.navigation} />
       <KeyboardAvoidingView
         behavior={(Platform.OS === 'ios')? 'padding' : null}
@@ -312,6 +326,7 @@ export const Idea = (props) => {
         <ScrollView
           style={styles.container}
           scrollEnabled={!isEditing}
+          keyboardShouldPersistTaps='handled'
           onScroll={handleScroll}
           contentContainerStyle={styles.contentContainer}
         >
