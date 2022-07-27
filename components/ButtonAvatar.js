@@ -7,7 +7,7 @@ export const AvatarCircle = (props) => {
   return (
     <Image
       accessibilityIgnoresInvertColors={true}
-      style={[styles.imageCircle, props.avatarSize]}
+      style={[styles.imageCircle, props.avatarStyles]}
       source={props.imgSource}
     />
   )

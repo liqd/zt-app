@@ -13,7 +13,6 @@ export const styles = StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: 100,
-    marginTop: SPACINGS.base,
     backgroundColor: COLORS.primary,
   },
 })
