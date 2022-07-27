@@ -2,8 +2,8 @@ import React from 'react'
 import { View } from 'react-native'
 
 import { ButtonSubmit } from '../../components/ButtonSubmit'
+import { ListContainer, ListLink } from '../../components/List'
 import { Header } from '../../components/Header'
-import { TextSourceSans } from '../../components/TextSourceSans'
 
 export const SettingsOverview = (props) => {
 
@@ -15,11 +15,15 @@ export const SettingsOverview = (props) => {
     <View>
       <Header
         navigation={props.navigation} />
-      <TextSourceSans />
-      <ButtonSubmit
-        title='Profile settings'
-        onPress={toProfileSettings}
-      />
+      <ListContainer
+        title='Profile'>
+        <ListLink
+          linkTitle='Edit Profile'
+          onPress={toProfileSettings}/>
+        <ListLink
+          linkTitle='Dummy Settings'
+          onPress={toProfileSettings}/>
+      </ListContainer>
     </View>
   )
 }
