@@ -21,10 +21,11 @@ export const CommentForm = (props) => {
   return (
     <Formik
       validationSchema={commentValidationSchema}
-      initialValues={{
-        comment: '',
+      initialValues={{ comment: '' }}
+      onSubmit={(values, {resetForm}) => {
+        props.handleSubmit(values)
+        resetForm({comment: ''})
       }}
-      onSubmit={(values, {resetForm}) => {props.handleSubmit(values); resetForm({comment: ''})}}
     >
       {({
         handleChange,

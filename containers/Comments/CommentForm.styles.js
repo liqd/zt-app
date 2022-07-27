@@ -8,8 +8,7 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     paddingHorizontal: SPACINGS.multiplyBy(1),
-    paddingTop: SPACINGS.multiplyBy(0.75),
-    paddingBottom: SPACINGS.multiplyBy(2)
+    paddingVertical: SPACINGS.multiplyBy(1)
   },
   textInputContainer: {
     flexDirection: 'row',
