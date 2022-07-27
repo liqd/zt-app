@@ -8,7 +8,6 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: SPACINGS.multiplyBy(0.8),
-    paddingTop: SPACINGS.multiplyBy(1.25),
   },
   title: {
     fontSize: SIZES.xxl,

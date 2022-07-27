@@ -13,7 +13,7 @@ export const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center'
   },
-  avatarSize: {
+  avatarStyles: {
     width: 112,
     height: 112,
     marginTop: SPACINGS.multiplyBy(5),

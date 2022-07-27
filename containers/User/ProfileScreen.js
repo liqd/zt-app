@@ -17,7 +17,7 @@ export const ProfileScreen = (props) => {
     props.navigation.navigate('SettingsOverview', {name: 'Bob'})
   }
 
-  const settingsIcon = <IconSLI name='settings' size={22} />
+  const settingsIcon = <IconSLI name='settings' size={30} />
   const rightHeaderButton = (
     <Button
       icon={settingsIcon}
@@ -53,7 +53,7 @@ export const ProfileScreen = (props) => {
       <View style={styles.containerInner}>
         <AvatarCircle
           imgSource={user && {uri: user._avatar}}
-          avatarSize={styles.avatarSize}
+          avatarStyles={styles.avatarStyles}
         />
         <TextSourceSans>
           {user && user.username}

@@ -9,6 +9,7 @@ import API from '../../BaseApi'
 import { ButtonAvatar } from '../../components/ButtonAvatar'
 import { TextSourceSans } from '../../components/TextSourceSans'
 import {useAuthorization} from '../../containers/Auth/AuthProvider.js'
+import { Header } from '../../components/Header'
 
 import { ExploreListItem } from './ExploreListItem'
 import { styles } from './ExplorePage.styles'
@@ -101,18 +102,29 @@ export const ExplorePage = (props) => {
     props.navigation.navigate('ProfileScreen', {userId: user.pk})
   }
 
+  const rightHeaderButton = (
+    <ButtonAvatar
+      imgSource={ user && { uri: user._avatar }}
+      labelText="profile"
+      hintText="click to go to profile and settings"
+      onPress={toProfile}
+    />
+  )
+
+  const leftHeaderButton = (
+    <View/>
+  )
+
   return (
     <SafeAreaView
       style={styles.flexContainer}
     >
       <View style={styles.container}>
         {user &&
-          <ButtonAvatar
-            imgSource={{ uri: user._avatar }}
-            labelText="profile"
-            hintText="click to go to profile and settings"
-            onPress={toProfile}
-          />
+          <Header
+            leftButton={leftHeaderButton}
+            rightButton={rightHeaderButton}
+            navigation={props.navigation} />
         }
         <TextSourceSans style={styles.title}>Explore</TextSourceSans>
         <TextSourceSans style={styles.subtitle}>Recently Added</TextSourceSans>
