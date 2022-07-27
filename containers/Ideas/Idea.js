@@ -11,6 +11,7 @@ import {
 import IconSLI from 'react-native-vector-icons/SimpleLineIcons'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { Button } from '@rneui/base'
+import { SafeAreaView } from 'react-native-safe-area-context'
 
 import API from '../../BaseApi'
 import { ButtonCounter } from '../../components/ButtonCounter'
@@ -322,7 +323,9 @@ export const Idea = (props) => {
         />)
 
   return (
-    <>
+    <SafeAreaView
+      style={styles.flexFullWidth}
+    >
       <Header
         isEditing={isEditing}
         rightButton={rightHeaderButton}
@@ -337,7 +340,6 @@ export const Idea = (props) => {
           scrollEnabled={!isEditing}
           keyboardShouldPersistTaps='handled'
           onScroll={handleScroll}
-          contentContainerStyle={styles.contentContainer}
         >
           <Pressable accessibilityRole="button" onPress={isEditing && toggleEditing} style={{
             ...isEditing ? styles.pressableEditing : {}
@@ -422,20 +424,25 @@ export const Idea = (props) => {
           </Pressable>
         </ScrollView>
         {idea.has_commenting_permission && (
-          <View>
-            <CommentForm
-              inputRef={commentInputRef}
-              isEdit={isEditing}
-              handleSubmit={isEditing ? handleCommentEdit: handleCommentSubmit}
-              value={isEditing ? editedComment.comment : ''}
-            />
-          </View>)}
+          <CommentForm
+            inputRef={commentInputRef}
+            isEdit={isEditing}
+            handleSubmit={isEditing 
+              ? handleCommentEdit
+              : handleCommentSubmit
+            }
+            value={isEditing 
+              ? editedComment.comment 
+              : ''
+            }
+          />
+        )}
         <Menu menuItems={menuItems} isVisible={menuVisible} />
         <Modal
           modalItems={deleteModalItems}
           isVisible={deleteModalVisible}
         />
       </KeyboardAvoidingView>
-    </>
+    </SafeAreaView>
   )
 }
