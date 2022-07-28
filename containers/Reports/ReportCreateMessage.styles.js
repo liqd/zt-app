@@ -14,11 +14,5 @@ export const styles = StyleSheet.create({
     lineHeight: LINEHEIGHTS.base,
     fontWeight: FONTWEIGHT.bold,
     paddingHorizontal: SPACINGS.multiplyBy(0.75),
-  },
-  keyboardContainer: {
-    flex: 1
-  },
-  scrollContainer: {
-    flex: 1
   }
 })
