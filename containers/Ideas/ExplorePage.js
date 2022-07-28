@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import { FlatList,View } from 'react-native'
+import { SafeAreaView } from 'react-native-safe-area-context'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { CommonActions } from '@react-navigation/native'
 import { useFocusEffect } from '@react-navigation/native'
@@ -101,24 +102,28 @@ export const ExplorePage = (props) => {
   }
 
   return (
-    <View style={styles.container}>
-      {user &&
-        <ButtonAvatar
-          imgSource={{ uri: user._avatar }}
-          labelText="profile"
-          hintText="click to go to profile and settings"
-          onPress={toProfile}
-        />
-      }
-      <TextSourceSans style={styles.title}>Explore</TextSourceSans>
-      <TextSourceSans style={styles.subtitle}>Recently Added</TextSourceSans>
-      {projects.length > 0 &&
-        <FlatList
-          keyExtractor={(i) => `pk${i.pk}`}
-          data={projects.filter(p => p.single_idea_collection_module)}
-          renderItem={projectItem}
-        />
-      }
-    </View>
+    <SafeAreaView
+      style={styles.flexContainer}
+    >
+      <View style={styles.container}>
+        {user &&
+          <ButtonAvatar
+            imgSource={{ uri: user._avatar }}
+            labelText="profile"
+            hintText="click to go to profile and settings"
+            onPress={toProfile}
+          />
+        }
+        <TextSourceSans style={styles.title}>Explore</TextSourceSans>
+        <TextSourceSans style={styles.subtitle}>Recently Added</TextSourceSans>
+        {projects.length > 0 &&
+          <FlatList
+            keyExtractor={(i) => `pk${i.pk}`}
+            data={projects.filter(p => p.single_idea_collection_module)}
+            renderItem={projectItem}
+          />
+        }
+      </View>
+    </SafeAreaView>
   )
 }
