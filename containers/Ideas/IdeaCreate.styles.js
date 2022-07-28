@@ -20,4 +20,7 @@ export const styles = StyleSheet.create({
   textInputButtonTitleDark: {
     color: COLORS.text,
   },
+  flexContainer: {
+    flex: 1
+  }
 })
