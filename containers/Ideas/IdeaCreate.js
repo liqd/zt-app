@@ -6,7 +6,6 @@ import { Formik } from 'formik'
 import * as yup from 'yup'
 
 import API from '../../BaseApi'
-import { ButtonSubmit } from '../../components/ButtonSubmit'
 import { ButtonTextInput, ButtonTextInputFieldContainer } from '../../components/ButtonTextInput'
 import {
   DropdownFormField,  DropdownFormFieldContainer,
@@ -14,7 +13,8 @@ import {
 import { Header } from '../../components/Header'
 import {
   ImageChoiceFormFieldContainer } from '../../components/imageFormField'
-import { LabelList, LabelListContainer } from '../../components/LabelForm'
+import { KeyboardScrollView } from '../../components/KeyboardScrollView'
+import { LabelList,LabelListContainer } from '../../components/LabelForm'
 import { TextSourceSans } from '../../components/TextSourceSans'
 import { VirtualScrollView } from '../../components/VirtualScrollView'
 
@@ -219,7 +219,11 @@ export const IdeaCreate = props => {
             isValid,
             setFieldValue
           }) => (
-            <>
+            <KeyboardScrollView
+              handleSubmit={handleSubmit}
+              isValid={isValid && !submitPending}
+              buttonText='Submit'
+            >
               <TextInputFormField
                 field='Idea title'
                 name='name'
@@ -278,15 +282,11 @@ export const IdeaCreate = props => {
                 }}
                 onIconPress={() => setFieldValue('imageChecked', !values.imageChecked)}
                 checked={values.imageChecked}
-                image={(values.image && values.image.uri) ? values.image.uri : (values.image && values.image)}
+                image={(values.image && values.image.uri)
+                  ? values.image.uri
+                  : (values.image && values.image)}
               />
-              <ButtonSubmit
-                title='Submit'
-                onPress={handleSubmit}
-                disabled={!isValid || submitPending}
-              >
-              </ButtonSubmit>
-            </>
+            </KeyboardScrollView>
           )}
         </Formik>
       </VirtualScrollView>

@@ -1,11 +1,11 @@
 import React from 'react'
-import { KeyboardAvoidingView, Platform, ScrollView, View } from 'react-native'
+import { SafeAreaView } from 'react-native-safe-area-context'
 import { Formik } from 'formik'
 import * as yup from 'yup'
 
-import { ButtonSubmit } from '../../components/ButtonSubmit'
 import { TextInputFullFormField } from '../../components/formFields'
 import { Header } from '../../components/Header'
+import { KeyboardScrollView } from '../../components/KeyboardScrollView'
 import { TextSourceSans } from '../../components/TextSourceSans'
 import { styles } from '../Reports/ReportCreateMessage.styles'
 
@@ -28,7 +28,7 @@ export const IdeaCreateDescription = props => {
   }
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Header navigation={props.navigation} />
       <Formik
         validationSchema={ideaDescriptionValidationSchema}
@@ -45,45 +45,31 @@ export const IdeaCreateDescription = props => {
           touched,
           isValid,
         }) => (
-          <KeyboardAvoidingView
-            behavior={
-              Platform.OS === 'ios'
-                ? 'padding'
-                : 'null'
-            }
-            style={styles.keyboardContainer}
+          <KeyboardScrollView
+            handleSubmit={handleSubmit}
+            isValid={isValid}
           >
-            <ScrollView
-              style={styles.scrollContainer}
-            >
-              <TextSourceSans style={styles.title}>
-                Add description
-              </TextSourceSans>
-              <TextInputFullFormField
-                name='description'
-                value={values.description}
-                placeholder='Enter your idea description'
-                returnKeyType='next'
-                returnKeyLabel='next'
-                onChangeText={handleChange('description')}
-                onBlur={handleBlur('description')}
-                error={errors.description}
-                touched={touched.description}
-                numberOfLines={10}
-                multiline={true}
-                autoFocus
-              />
-            </ScrollView>
-            <ButtonSubmit
-              title='Add'
-              onPress={handleSubmit}
-              disabled={!isValid}
-            >
-            </ButtonSubmit>
-          </KeyboardAvoidingView>
+            <TextSourceSans style={styles.title}>
+              Add description
+            </TextSourceSans>
+            <TextInputFullFormField
+              name='description'
+              value={values.description}
+              placeholder='Enter your idea description'
+              returnKeyType='next'
+              returnKeyLabel='next'
+              onChangeText={handleChange('description')}
+              onBlur={handleBlur('description')}
+              error={errors.description}
+              touched={touched.description}
+              numberOfLines={10}
+              multiline={true}
+              autoFocus
+            />
+          </KeyboardScrollView>
         )}
       </Formik>
-    </View>
+    </SafeAreaView>
   )
 }
 

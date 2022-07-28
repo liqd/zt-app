@@ -4,8 +4,8 @@ import { Formik } from 'formik'
 import * as yup from 'yup'
 
 import API, { baseUrl } from '../../BaseApi'
-import { ButtonSubmit } from '../../components/ButtonSubmit'
 import { TextInputFormField } from '../../components/formFields'
+import { KeyboardScrollView } from '../../components/KeyboardScrollView'
 import { LinkTextSourceSans } from '../../components/LinkTextSourceSans'
 import { TextSourceSans } from '../../components/TextSourceSans'
 
@@ -66,7 +66,12 @@ export const LoginScreen = () => {
         touched,
         isValid
       }) => (
-        <View style={styles.flexContainer}>
+        <KeyboardScrollView
+          handleSubmit={handleSubmit}
+          isValid={isValid}
+          buttonText='Login'
+          style={styles.flexContainer}
+        >
           <View style={styles.container}>
             <ScrollView>
               <TextSourceSans style={styles.title}>
@@ -109,13 +114,7 @@ export const LoginScreen = () => {
               >Forgot Password?</LinkTextSourceSans>
             </ScrollView>
           </View>
-          <ButtonSubmit
-            title='Login'
-            onPress={handleSubmit}
-            disabled={!isValid}
-          >
-          </ButtonSubmit>
-        </View>
+        </KeyboardScrollView>
       )}
     </Formik>
   )
