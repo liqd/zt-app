@@ -52,7 +52,7 @@ const endpoints = {
   ratings: baseApiUrl + '/contenttypes/$contentTypeId/objects/$objectPk/ratings/',
   rating: baseApiUrl + '/contenttypes/$contentTypeId/objects/$objectPk/ratings/$ratingId/',
   report: baseApiUrl + '/reports/',
-  user: baseApiUrl + '/users/$userPk/'
+  user: baseApiUrl + '/users/$userPk/',
 }
 
 const getHeaders = (token, isFormData = false) => {
@@ -222,7 +222,11 @@ const API = {
   getAuthenticatedUser(token = null) {
     const url = endpoints.account
     return makeGetRequest(url, token)
-  }
+  },
+  editUser(data, token = null) {
+    const url = endpoints.account
+    return makePutRequest(url, data, token)
+  },
 }
 
 export default API

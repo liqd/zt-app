@@ -8,7 +8,7 @@ import { TextSourceSans } from './TextSourceSans'
 
 export const ListContainer = (props) => {
   return (
-    <View>
+    <View style={styles.listContainer}>
       <TextSourceSans style={styles.listTitle}>{props.title}</TextSourceSans>
       {props.children}
     </View>
