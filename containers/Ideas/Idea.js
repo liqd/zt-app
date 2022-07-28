@@ -8,10 +8,10 @@ import {
   ScrollView,
   View,
 } from 'react-native'
+import { SafeAreaView } from 'react-native-safe-area-context'
 import IconSLI from 'react-native-vector-icons/SimpleLineIcons'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { Button } from '@rneui/base'
-import { SafeAreaView } from 'react-native-safe-area-context'
 
 import API from '../../BaseApi'
 import { ButtonCounter } from '../../components/ButtonCounter'

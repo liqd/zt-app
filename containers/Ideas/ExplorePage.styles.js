@@ -20,5 +20,8 @@ export const styles = StyleSheet.create({
     fontSize: SIZES.lg,
     fontFamily: FONTS.familySemiBold,
     marginVertical: SPACINGS.multiplyBy(.25)
+  },
+  flexContainer: {
+    flex: 1
   }
 })

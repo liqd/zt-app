@@ -1,5 +1,6 @@
 import React, { useEffect,useState } from 'react'
 import { Image,ImageBackground, Linking, ScrollView, View } from 'react-native'
+import { SafeAreaView } from 'react-native-safe-area-context'
 import IconFA from 'react-native-vector-icons/FontAwesome'
 import IconSLI from 'react-native-vector-icons/SimpleLineIcons'
 import AsyncStorage from '@react-native-async-storage/async-storage'
@@ -80,7 +81,7 @@ export const IdeaProject = (props) => {
   }, [])
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <ImageBackground
         style={styles.bgImage}
         source={{ uri: bgImage }}
@@ -242,6 +243,6 @@ export const IdeaProject = (props) => {
           </View>
         </View>
       </ScrollView>
-    </View>
+    </SafeAreaView>
   )
 }

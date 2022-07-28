@@ -1,7 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Test Idea Snapshot 1`] = `
-Array [
+<RNCSafeAreaView
+  edges={
+    Array [
+      "bottom",
+      "left",
+      "right",
+      "top",
+    ]
+  }
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
   <View
     style={
       Object {
@@ -192,7 +206,7 @@ Array [
         </View>
       </View>
     </View>
-  </View>,
+  </View>
   <View
     onLayout={[Function]}
     style={
@@ -1125,94 +1139,102 @@ Array [
         </View>
       </View>
     </RCTScrollView>
-    <View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flexDirection": "row",
+          "paddingHorizontal": 20,
+          "paddingVertical": 20,
+        }
+      }
+    >
       <View
         style={
           Object {
             "alignItems": "center",
+            "backgroundColor": "#fff",
+            "borderRadius": 18,
+            "flex": 2,
             "flexDirection": "row",
-            "paddingHorizontal": 20,
-            "paddingVertical": 15,
+            "padding": 10,
+          }
+        }
+      >
+        <TextInput
+          accessibilityHint="Type your comment here"
+          accessibilityLabel="Comment input"
+          multiline={true}
+          name="comment"
+          onBlur={[Function]}
+          onChangeText={[Function]}
+          placeholder="Enter your comment"
+          placeholderTextColor="#666"
+          style={
+            Object {
+              "paddingBottom": 0,
+              "paddingTop": 0,
+              "width": "100%",
+            }
+          }
+          value=""
+        />
+      </View>
+      <View
+        style={
+          Object {
+            "backgroundColor": "#2d40cc",
+            "borderRadius": 18,
+            "marginLeft": 10,
+            "padding": 5,
+            "paddingRight": 8,
           }
         }
       >
         <View
+          accessibilityRole="button"
+          accessibilityState={
+            Object {
+              "disabled": false,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
           style={
             Object {
-              "backgroundColor": "#fff",
-              "borderRadius": 18,
-              "flex": 2,
-              "padding": 10,
+              "opacity": 1,
             }
           }
         >
-          <TextInput
-            accessibilityHint="Type your comment here"
-            accessibilityLabel="Comment input"
-            multiline={true}
-            name="comment"
-            onBlur={[Function]}
-            onChangeText={[Function]}
-            placeholder="Enter your comment"
-            value=""
-          />
-        </View>
-        <View
-          style={
-            Object {
-              "backgroundColor": "#2d40cc",
-              "borderRadius": 18,
-              "marginLeft": 10,
-              "padding": 5,
-              "paddingRight": 8,
-            }
-          }
-        >
-          <View
-            accessibilityRole="button"
-            accessibilityState={
-              Object {
-                "disabled": false,
-              }
-            }
-            accessible={true}
-            collapsable={false}
-            focusable={true}
-            onClick={[Function]}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
+          <Text
+            allowFontScaling={false}
+            selectable={false}
             style={
-              Object {
-                "opacity": 1,
-              }
+              Array [
+                Object {
+                  "color": "#fff",
+                  "fontSize": 17,
+                },
+                undefined,
+                Object {
+                  "fontFamily": "FontAwesome",
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                },
+                Object {},
+              ]
             }
           >
-            <Text
-              allowFontScaling={false}
-              selectable={false}
-              style={
-                Array [
-                  Object {
-                    "color": "#fff",
-                    "fontSize": 17,
-                  },
-                  undefined,
-                  Object {
-                    "fontFamily": "FontAwesome",
-                    "fontStyle": "normal",
-                    "fontWeight": "normal",
-                  },
-                  Object {},
-                ]
-              }
-            >
-              
-            </Text>
-          </View>
+            
+          </Text>
         </View>
       </View>
     </View>
@@ -1230,6 +1252,6 @@ Array [
       transparent={true}
       visible={false}
     />
-  </View>,
-]
+  </View>
+</RNCSafeAreaView>
 `;

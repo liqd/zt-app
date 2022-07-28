@@ -1,5 +1,6 @@
-import React, {useEffect,useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import { Alert, View } from 'react-native'
+import { SafeAreaView } from 'react-native-safe-area-context'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { Formik } from 'formik'
 import * as yup from 'yup'
@@ -13,7 +14,7 @@ import {
 import { Header } from '../../components/Header'
 import {
   ImageChoiceFormFieldContainer } from '../../components/imageFormField'
-import { LabelList,LabelListContainer } from '../../components/LabelForm'
+import { LabelList, LabelListContainer } from '../../components/LabelForm'
 import { TextSourceSans } from '../../components/TextSourceSans'
 import { VirtualScrollView } from '../../components/VirtualScrollView'
 
@@ -190,7 +191,9 @@ export const IdeaCreate = props => {
   }
 
   return (
-    <>
+    <SafeAreaView
+      style={styles.flexContainer}
+    >
       <View style={styles.header}>
         <Header
           navigation={props.navigation} />
@@ -287,7 +290,7 @@ export const IdeaCreate = props => {
           )}
         </Formik>
       </VirtualScrollView>
-    </>
+    </SafeAreaView>
   )
 }
 
