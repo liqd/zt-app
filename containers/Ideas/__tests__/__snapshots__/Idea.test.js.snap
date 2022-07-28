@@ -84,7 +84,7 @@ exports[`Test Idea Snapshot 1`] = `
                 "flexDirection": "row",
                 "justifyContent": "center",
                 "marginVertical": 0,
-                "padding": 0,
+                "padding": 8,
                 "paddingHorizontal": 10,
               }
             }
