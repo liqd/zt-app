@@ -28,7 +28,7 @@ export const Header = (props) => {
       title='Back'
       type='clear'
       icon={arrowLeftIcon}
-      onPress={handleBack}
+      onPress={props.handleCustomBack ? props.handleCustomBack : handleBack}
     />
   )
 

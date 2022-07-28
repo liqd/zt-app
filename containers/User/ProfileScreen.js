@@ -14,8 +14,13 @@ import { styles } from './ProfileScreen.styles'
 
 export const ProfileScreen = (props) => {
   const toSettingsOverview = () => {
-    props.navigation.navigate('SettingsOverview', {name: 'Bob'})
+    props.navigation.navigate('SettingsOverview', {
+      userId: userId,
+      userName: user.username,
+      userImage: user._avatar})
   }
+
+  const {userName, userImage} = props.route.params
 
   const settingsIcon = <IconSLI name='settings' size={30} />
   const rightHeaderButton = (
@@ -52,11 +57,11 @@ export const ProfileScreen = (props) => {
       />
       <View style={styles.containerInner}>
         <AvatarCircle
-          imgSource={user && {uri: user._avatar}}
+          imgSource={userImage ? {uri: userImage} :user && {uri: user._avatar}}
           avatarStyles={styles.avatarStyles}
         />
         <TextSourceSans>
-          {user && user.username}
+          {userName ? userName : user && user.username}
         </TextSourceSans>
       </View>
       {user && user.is_self &&

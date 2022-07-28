@@ -14,7 +14,7 @@ DropDownPicker.setListMode('SCROLLVIEW')
 
 export const TextInputFormField = (props) => {
   return (
-    <View>
+    <View style={props.textInputContainer}>
       <TextSourceSans style={styles.formLabel}>{props.field}</TextSourceSans>
       <TextInput
         ref={props.inputRef}
