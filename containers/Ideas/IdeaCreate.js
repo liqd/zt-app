@@ -32,7 +32,7 @@ export const IdeaCreate = props => {
     imageChecked: yup
       .boolean()
       .when('image', {
-        is: (image) => image !== null,
+        is: (image) => !!image,
         then: yup.boolean()
           .oneOf([true], 'Please confirm the copyright')
       })
@@ -89,13 +89,21 @@ export const IdeaCreate = props => {
     return exLabels.map(el => el.id)
   }
 
+  const processImageData = (values) => {
+  // only send image data if different image was uploaded
+  // if image was deleted, send image_deleted = true
+    if (values.image) {
+      editing && idea.image && (idea.image == values.image) && delete values['image']
+    } else {
+      delete values['image']
+      editing && idea.image && (values.image_deleted = true)
+    }
+    return values
+  }
+
   const makeFormData = (values) => {
     const extractedLabels = [...values.labels]
     extractedLabels && (values.labels = mapLabels(extractedLabels))
-    // do not send null image on create
-    if (!editing && 'image' in values && values.image == null) {
-      delete values['image']
-    }
     let formData = new FormData()
     for (let key in values) {
       Array.isArray(values[key])
@@ -108,7 +116,8 @@ export const IdeaCreate = props => {
   const handleSubmit = (values) => {
     setSubmitPending(true)
     values.description = description
-    const formData = makeFormData(values)
+    const processedValues = processImageData(values)
+    const formData = makeFormData(processedValues)
     AsyncStorage.getItem('authToken')
       .then((token) => {
         if (editing) {
@@ -168,7 +177,7 @@ export const IdeaCreate = props => {
         labels: initialLabels,
         category: initialCategory,
         imageChecked: editing ? !!idea.image : false,
-        image: (editing && idea.image) ? idea.image.uri : null
+        image: (editing && idea.image) ? idea.image : null
       }
     return initialValues
   }
@@ -266,7 +275,7 @@ export const IdeaCreate = props => {
                 }}
                 onIconPress={() => setFieldValue('imageChecked', !values.imageChecked)}
                 checked={values.imageChecked}
-                image={values.image ? values.image.uri : (idea && idea.image)}
+                image={(values.image && values.image.uri) ? values.image.uri : (values.image && values.image)}
               />
               <ButtonSubmit
                 title='Submit'
