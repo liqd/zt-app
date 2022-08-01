@@ -2,6 +2,7 @@ import React from 'react'
 import { Image,TouchableOpacity } from 'react-native'
 
 import { styles } from './ButtonAvatar.styles'
+import { TextSourceSans } from './TextSourceSans'
 
 export const AvatarCircle = (props) => {
   return (
@@ -25,7 +26,11 @@ export const ButtonAvatar = (props) => {
     >
       <AvatarCircle
         imgSource={props.imgSource}
+        avatarStyles={props.avatarStyles}
       />
+      {props.field &&
+      <TextSourceSans>{props.field}</TextSourceSans>
+      }
     </TouchableOpacity>
   )
 }

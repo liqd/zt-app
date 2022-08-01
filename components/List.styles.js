@@ -1,7 +1,8 @@
 import { StyleSheet } from 'react-native'
+
 import { COLORS } from '../theme/colors'
 import { FONTS, SIZES } from '../theme/fonts'
-import { SPACINGS, BORDERRADIUS, BORDERWIDTH } from '../theme/spacings'
+import { BORDERRADIUS, BORDERWIDTH,SPACINGS } from '../theme/spacings'
 
 export const styles = StyleSheet.create({
   listTitle: {

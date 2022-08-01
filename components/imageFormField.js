@@ -6,6 +6,7 @@ import * as Device from 'expo-device'
 import * as ImagePicker from 'expo-image-picker'
 import mime from 'mime'
 
+import { ButtonAvatar } from './ButtonAvatar'
 import { CheckBoxFormField } from './formFields'
 import { styles } from './imageFormField.styles'
 import { TextSourceSans } from './TextSourceSans'
@@ -86,6 +87,35 @@ export const ImagePickerFormField = (props) => {
     props.onSetImage(image)
   }
 
+  const imagePreview = (
+    <>
+      <Button
+        buttonStyle={styles.imageRemoveButton}
+        onPress={deleteImageHandler}
+        icon={closeIcon}
+        type='clear'
+      />
+      <Image
+        style={styles.formImagePreview}
+        source={ image ? {uri: image} : {uri: capturedImage}}
+        resizeMode="contain"
+        accessibilityIgnoresInvertColors={true}
+      />
+    </>
+  )
+
+  const imagePreviewAvatar = (
+    <ButtonAvatar
+      imgSource={ image ? {uri: image} : {uri: capturedImage}}
+      labelText={props.labelText}
+      title={props.title}
+      hintText={props.hintText}
+      avatarStyles={styles.avatarStyles}
+      field={props.field}
+      onPress={deleteImageHandler}
+    />
+  )
+
   const cameraIcon = <IconSLI name='camera' style={styles.iconButton} />
   const pictureIcon = <IconSLI name='picture' style={styles.iconButton} />
   const closeIcon = <IconSLI name='close' style={styles.iconRemoveButton} />
@@ -108,22 +138,8 @@ export const ImagePickerFormField = (props) => {
           imageUri={capturedImage}
           disabled={isSimulator}
         />}
-        {capturedImage &&
-          <>
-            <Button
-              buttonStyle={styles.imageRemoveButton}
-              onPress={deleteImageHandler}
-              icon={closeIcon}
-              type='clear'
-            />
-            <Image
-              style={styles.formImagePreview}
-              source={{uri: capturedImage}}
-              resizeMode="contain"
-              accessibilityIgnoresInvertColors={true}
-            />
-          </>
-        }
+        {capturedImage && props.imagePreview && imagePreview}
+        {capturedImage && !props.imagePreview && imagePreviewAvatar}
       </View>
       <View style={capturedImage || image ?
         styles.formImagePickerFull : styles.formImagePicker
@@ -138,22 +154,8 @@ export const ImagePickerFormField = (props) => {
           titleStyle={styles.textDark}
           imageUri={image}
         />}
-        {image &&
-          <>
-            <Button
-              buttonStyle={styles.imageRemoveButton}
-              onPress={deleteImageHandler}
-              icon={closeIcon}
-              type='clear'
-            />
-            <Image
-              style={styles.formImagePreview}
-              source={{uri: image}}
-              resizeMode="contain"
-              accessibilityIgnoresInvertColors={true}
-            />
-          </>
-        }
+        {image && props.imagePreview && imagePreview}
+        {image && !props.imagePreview && imagePreviewAvatar}
       </View>
     </>
   )
@@ -193,6 +195,7 @@ export const ImageChoiceFormFieldContainer = (props) => {
           <ImagePickerFormField
             onSetImage={props.onSetImage}
             initialImage={props.image}
+            imagePreview={true}
           />
           <CheckBoxFormField
             field='Image Copyright'
@@ -207,5 +210,44 @@ export const ImageChoiceFormFieldContainer = (props) => {
         </>
       }
     </View>
+  )
+}
+
+export const AvaterImageAddButton = (props) => {
+
+  const [clicked, setClicked] = useState(false)
+
+  return (
+    <>
+      {(!clicked && !props.image) &&
+        <ButtonAvatar
+          imgSource={props.imgSource}
+          labelText={props.labelText}
+          title={props.title}
+          hintText={props.hintText}
+          clicked={props.clicked}
+          setClicked={props.setClicked}
+          onPress={setClicked}
+          avatarStyles={styles.avatarStyles}
+          field={props.field}
+        />
+      }
+      {(clicked || props.image) &&
+        <ImagePickerFormField
+          onSetImage={props.onSetImage}
+          initialImage={props.image}
+          imagePreview={false}
+          field={props.fieldPreview}
+          imgSource={{uri: props.image}}
+          labelText={props.labelText}
+          title={props.title}
+          hintText={props.hintText}
+          avatarStyles={styles.avatarStyles}
+          clicked={props.clicked}
+          setClicked={props.setClicked}
+          onPress={setClicked}
+        />
+      }
+    </>
   )
 }

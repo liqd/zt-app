@@ -83,5 +83,8 @@ export const styles = StyleSheet.create({
   },
   textLight: {
     color: COLORS.paper
-  }
+  },
+  avatarStyles: {
+    marginRight: SPACINGS.multiplyBy(1),
+  },
 })

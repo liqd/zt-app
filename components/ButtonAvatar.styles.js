@@ -5,8 +5,9 @@ import { SPACINGS } from '../theme/spacings'
 
 export const styles = StyleSheet.create({
   container: {
+    display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'flex-end',
+    alignItems: 'center',
     backgroundColor: COLORS.paper
   },
   imageCircle: {
