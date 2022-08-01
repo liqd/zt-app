@@ -7,9 +7,9 @@ import { useFocusEffect } from '@react-navigation/native'
 
 import API from '../../BaseApi'
 import { ButtonAvatar } from '../../components/ButtonAvatar'
+import { Header } from '../../components/Header'
 import { TextSourceSans } from '../../components/TextSourceSans'
 import {useAuthorization} from '../../containers/Auth/AuthProvider.js'
-import { Header } from '../../components/Header'
 
 import { ExploreListItem } from './ExploreListItem'
 import { styles } from './ExplorePage.styles'

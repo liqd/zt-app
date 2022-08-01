@@ -1,9 +1,8 @@
 import React from 'react'
 import { View } from 'react-native'
 
-import { ButtonSubmit } from '../../components/ButtonSubmit'
-import { ListContainer, ListLink } from '../../components/List'
 import { Header } from '../../components/Header'
+import { ListContainer, ListLink } from '../../components/List'
 
 export const SettingsOverview = (props) => {
 
