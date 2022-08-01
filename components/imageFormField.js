@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from 'react'
-import { View, Alert, Image, Platform } from 'react-native'
+import React, { useEffect,useState } from 'react'
+import { Alert, Image, Platform,View } from 'react-native'
+import IconSLI from 'react-native-vector-icons/SimpleLineIcons'
 import { Button } from '@rneui/base'
+import * as Device from 'expo-device'
+import * as ImagePicker from 'expo-image-picker'
+import mime from 'mime'
+
 import { CheckBoxFormField } from './formFields'
 import { styles } from './imageFormField.styles'
-import IconSLI from 'react-native-vector-icons/SimpleLineIcons'
-import * as ImagePicker from 'expo-image-picker'
 import { TextSourceSans } from './TextSourceSans'
-import mime from 'mime'
-import * as Device from 'expo-device'
 
 export const ImagePickerFormField = (props) => {
   const [capturedImage, setCapturedImage] = useState(null)

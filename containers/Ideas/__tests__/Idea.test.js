@@ -1,9 +1,11 @@
 import React from 'react'
+import { act,fireEvent, render, waitFor } from '@testing-library/react-native'
+
 import '@testing-library/jest-native/extend-expect'
-import { fireEvent, render, waitFor, act } from '@testing-library/react-native'
-import { Idea } from '../Idea'
-import { testComment as mockComment, testIdeaAdmin, testModule } from '../../../tests/TestData'
+
 import API from '../../../BaseApi'
+import { testComment as mockComment, testIdeaAdmin, testModule } from '../../../tests/TestData'
+import { Idea } from '../Idea'
 
 jest.mock('../../../BaseApi', () => ({
   __esModule: true,

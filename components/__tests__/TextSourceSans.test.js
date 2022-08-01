@@ -1,6 +1,7 @@
 import React from 'react'
-import { TextSourceSans } from '../TextSourceSans.js'
 import { render } from '@testing-library/react-native'
+
+import { TextSourceSans } from '../TextSourceSans.js'
 
 test('Test TextsourceSans no style in props', () => {
   const { toJSON } = render(<TextSourceSans>{'TestText'}</TextSourceSans>)

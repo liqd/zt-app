@@ -1,7 +1,8 @@
 import { StyleSheet } from 'react-native'
+
 import { COLORS } from '../theme/colors'
-import { SPACINGS, BORDERWIDTH, BORDERRADIUS } from '../theme/spacings'
-import { SIZES, LINEHEIGHTS } from '../theme/fonts'
+import { LINEHEIGHTS,SIZES } from '../theme/fonts'
+import { BORDERRADIUS,BORDERWIDTH, SPACINGS } from '../theme/spacings'
 
 export const styles = StyleSheet.create({
   formImagePicker: {

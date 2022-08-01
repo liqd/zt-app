@@ -1,10 +1,12 @@
 import React from 'react'
-import { View, Image, TouchableOpacity } from 'react-native'
-import { COLORS } from '../../theme/colors'
-import { styles } from './ExploreListItem.styles'
+import { Image, TouchableOpacity,View } from 'react-native'
 import IconSLI from 'react-native-vector-icons/SimpleLineIcons'
-import { TextSourceSans } from '../../components/TextSourceSans'
 import { LinearProgress } from '@rneui/themed'
+
+import { TextSourceSans } from '../../components/TextSourceSans'
+import { COLORS } from '../../theme/colors'
+
+import { styles } from './ExploreListItem.styles'
 
 export const ExploreListItem = (props) => {
   const image = props.item.image

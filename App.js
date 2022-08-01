@@ -1,15 +1,16 @@
-import 'react-native-gesture-handler'
-import React, { useEffect, useState, useCallback } from 'react'
+import 'react-native-gesture-handler' /* eslint-disable-line */
+import React, { useCallback,useEffect, useState } from 'react'
 import { View } from 'react-native'
-import * as Sentry from 'sentry-expo'
-import { AuthProvider } from './containers/Auth/AuthProvider'
-import { IdeaNavigator } from './navigation/IdeaNavigator'
-import * as SplashScreen from 'expo-splash-screen'
-import * as Font from 'expo-font'
 import {
   SourceSansPro_400Regular,
   SourceSansPro_600SemiBold,
 } from '@expo-google-fonts/source-sans-pro'
+import * as Font from 'expo-font'
+import * as SplashScreen from 'expo-splash-screen'
+import * as Sentry from 'sentry-expo'
+
+import { AuthProvider } from './containers/Auth/AuthProvider'
+import { IdeaNavigator } from './navigation/IdeaNavigator'
 
 Sentry.init({
   url: 'https://sentry.liqd.net',

@@ -1,5 +1,6 @@
 import React from 'react'
 import { View } from 'react-native'
+
 import { SubComment } from './SubComment'
 
 export const SubComments = (props) => {

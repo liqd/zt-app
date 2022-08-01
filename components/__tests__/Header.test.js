@@ -1,13 +1,14 @@
 import React from 'react'
 import { StyleSheet } from 'react-native'
-import { fireEvent, render } from '@testing-library/react-native'
-import { Button } from '@rneui/themed'
 import IconSLI from 'react-native-vector-icons/SimpleLineIcons'
-import { Header } from '../Header'
+import { Button } from '@rneui/themed'
+import { fireEvent, render } from '@testing-library/react-native'
+
+import { styles } from '../../containers/Ideas/IdeaProject.styles'
 import { COLORS } from '../../theme/colors'
 import { SIZES } from '../../theme/fonts'
 import { SPACINGS } from '../../theme/spacings'
-import { styles } from '../../containers/Ideas/IdeaProject.styles'
+import { Header } from '../Header'
 
 test('Snapshot Default Header', () => {
   const { toJSON } = render(<Header />)

@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native'
+
 import { COLORS } from '../theme/colors'
 import { SIZES } from '../theme/fonts'
 import { BORDERRADIUS } from '../theme/spacings'

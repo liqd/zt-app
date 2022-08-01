@@ -1,13 +1,13 @@
 import React from 'react'
-import { View, ScrollView } from 'react-native'
+import { ScrollView,View } from 'react-native'
 import { Formik } from 'formik'
 import * as yup from 'yup'
+
 import { ButtonSubmit } from '../../components/ButtonSubmit'
+import { TextInputFullFormField } from '../../components/formFields'
 import { Header } from '../../components/Header'
 import { TextSourceSans } from '../../components/TextSourceSans'
-
 import { styles } from '../Reports/ReportCreateMessage.styles'
-import { TextInputFullFormField } from '../../components/formFields'
 
 export const IdeaCreateDescription = props => {
 

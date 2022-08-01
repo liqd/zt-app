@@ -1,11 +1,13 @@
-import React, { useState, useCallback } from 'react'
-import { View, Image } from 'react-native'
-import { Button } from '@rneui/base'
-import { styles } from './Comment.styles'
-import IconSLI from 'react-native-vector-icons/SimpleLineIcons'
+import React, { useCallback,useState } from 'react'
+import { Image,View } from 'react-native'
 import { TouchableWithoutFeedback } from 'react-native'
+import IconSLI from 'react-native-vector-icons/SimpleLineIcons'
+import { Button } from '@rneui/base'
+
 import { ButtonCounter } from '../../components/ButtonCounter'
 import { TextSourceSans } from '../../components/TextSourceSans'
+
+import { styles } from './Comment.styles'
 
 const NUM_OF_LINES = 2
 

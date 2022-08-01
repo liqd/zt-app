@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import { TextInput, View } from 'react-native'
-import { CheckBox } from '@rneui/themed'
 import DropDownPicker from 'react-native-dropdown-picker'
+import { CheckBox } from '@rneui/themed'
+
+import { COLORS } from '../theme/colors'
+
 import { styles } from './formFields.styles'
 import { TextSourceSans } from './TextSourceSans'
-import { COLORS } from '../theme/colors'
 
 /*  Setting list mode to scrollview globally
 FIXME: to be checked if we want this */

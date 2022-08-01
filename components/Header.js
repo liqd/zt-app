@@ -1,8 +1,9 @@
 import React from 'react'
-import { styles } from './Header.styles.js'
 import { StatusBar, View } from 'react-native'
-import { Button } from '@rneui/base'
 import IconSLI from 'react-native-vector-icons/SimpleLineIcons'
+import { Button } from '@rneui/base'
+
+import { styles } from './Header.styles.js'
 
 export const Header = (props) => {
   const arrowLeftIcon = (<IconSLI name='arrow-left' size={22} color={props.arrowColor ? props.arrowColor : undefined} />)

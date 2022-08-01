@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react'
-import { useAuthorization } from '../containers/Auth/AuthProvider.js'
 import { View } from 'react-native'
+
+import { useAuthorization } from '../containers/Auth/AuthProvider.js'
 
 export const DeepLinking = (props) => {
   const { loading, token, setDeepLink } = useAuthorization()
 
   useEffect(() => {
-    if(loading){
+    if (loading) {
       return
     }
     setDeepLink(props.route.params.projectSlug)
@@ -15,7 +16,6 @@ export const DeepLinking = (props) => {
     } else {
       props.navigation.replace('ExplorePage')
     }
-
   }, [loading, props.route.params])
 
   return <View></View>

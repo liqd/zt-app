@@ -1,6 +1,7 @@
 import { StyleSheet } from 'react-native'
+
 import { COLORS } from '../theme/colors'
-import { SPACINGS, BORDERRADIUS } from '../theme/spacings'
+import { BORDERRADIUS,SPACINGS } from '../theme/spacings'
 
 export const styles = StyleSheet.create({
   modalContent: {

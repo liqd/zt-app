@@ -1,7 +1,8 @@
 import React from 'react'
-import { render } from '@testing-library/react-native'
-import { ButtonCounter } from '../ButtonCounter'
 import Icon from 'react-native-vector-icons/SimpleLineIcons'
+import { render } from '@testing-library/react-native'
+
+import { ButtonCounter } from '../ButtonCounter'
 
 test('Test ButtonCounter', () => {
   const { getByText, toJSON } = render(
