@@ -1,9 +1,9 @@
 import React from 'react'
 import { View } from 'react-native'
-import IconSLI from 'react-native-vector-icons/SimpleLineIcons'
-import { styles } from './List.styles'
-
 import { TouchableOpacity } from 'react-native'
+import IconSLI from 'react-native-vector-icons/SimpleLineIcons'
+
+import { styles } from './List.styles'
 import { TextSourceSans } from './TextSourceSans'
 
 export const ListContainer = (props) => {
