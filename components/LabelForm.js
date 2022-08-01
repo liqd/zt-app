@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import { View } from 'react-native'
+import IconFA from 'react-native-vector-icons/FontAwesome'
 import { CheckBox } from '@rneui/themed'
+
+import { COLORS } from '../theme/colors'
+
 import { styles } from './LabelForm.styles'
 import { TextSourceSans } from './TextSourceSans'
-import IconFA from 'react-native-vector-icons/FontAwesome'
-import { COLORS } from '../theme/colors'
 
 export const LabelListContainer = (props) => {
   return (

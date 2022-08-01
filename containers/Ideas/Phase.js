@@ -2,6 +2,7 @@ import React from 'react'
 import {View} from 'react-native'
 
 import {TextSourceSans} from '../../components/TextSourceSans'
+
 import { styles } from './Phase.styles'
 
 export const Phase = props => {

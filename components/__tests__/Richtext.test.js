@@ -1,5 +1,6 @@
 import React from 'react'
 import { render, screen } from '@testing-library/react-native'
+
 import { Richtext } from '../Richtext'
 
 test('Test <Richtext>', () => {

@@ -1,6 +1,7 @@
 import { StyleSheet } from 'react-native'
-import { SPACINGS, BORDERRADIUS } from '../../theme/spacings'
+
 import { COLORS } from '../../theme/colors'
+import { BORDERRADIUS,SPACINGS } from '../../theme/spacings'
 
 export const styles = StyleSheet.create({
   submitContainer: {

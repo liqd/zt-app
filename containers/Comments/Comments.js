@@ -1,7 +1,9 @@
 import React from 'react'
 import { View } from 'react-native'
-import { Comment } from './Comment'
+
 import { TextSourceSans } from '../../components/TextSourceSans'
+
+import { Comment } from './Comment'
 
 export const Comments = (props) => {
   const { navigation } = props

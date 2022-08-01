@@ -1,8 +1,9 @@
 import React from 'react'
 import { View } from 'react-native'
 import { BottomSheet } from '@rneui/themed'
-import { MenuItem } from './MenuItem'
+
 import { styles } from './Menu.styles'
+import { MenuItem } from './MenuItem'
 
 export const Menu = (props) => {
   return (

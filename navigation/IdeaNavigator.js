@@ -2,18 +2,20 @@ import React from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import * as Linking from 'expo-linking'
+
+import { useAuthorization } from '../containers/Auth/AuthProvider.js'
+import { LoginScreen } from '../containers/Auth/LoginScreen'
+import { StartUpScreen } from '../containers/Auth/StartUpScreen'
 import { ExplorePage } from '../containers/Ideas/ExplorePage'
 import { Idea } from '../containers/Ideas/Idea'
 import { IdeaCreate } from '../containers/Ideas/IdeaCreate'
 import { IdeaCreateDescription } from '../containers/Ideas/IdeaCreateDescription'
 import { IdeaProject } from '../containers/Ideas/IdeaProject'
-import { LoginScreen } from '../containers/Auth/LoginScreen'
-import { StartUpScreen } from '../containers/Auth/StartUpScreen'
-import { useAuthorization } from '../containers/Auth/AuthProvider.js'
 import { ReportCreateMessage } from '../containers/Reports/ReportCreateMessage'
 import { ProfileScreen } from '../containers/User/ProfileScreen'
 import { SettingsOverview } from '../containers/User/SettingsOverview'
 import { SettingsProfile } from '../containers/User/SettingsProfile'
+
 import { DeepLinking } from './DeepLinking.js'
 
 const Stack = createStackNavigator()

@@ -1,5 +1,6 @@
 import React from 'react'
-import { TouchableOpacity, Image } from 'react-native'
+import { Image,TouchableOpacity } from 'react-native'
+
 import { styles } from './ButtonAvatar.styles'
 
 export const AvatarCircle = (props) => {

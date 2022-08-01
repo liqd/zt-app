@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
-import { View, Text, TouchableOpacity } from 'react-native'
+import { Text, TouchableOpacity,View } from 'react-native'
 import IconSLI from 'react-native-vector-icons/SimpleLineIcons'
+
 import { COLORS } from '../theme/colors'
+
 import { styles } from './RichtextCollapsibleItem.styles'
 
 export const RichtextCollapsibleItem = ({ title, body }) => {

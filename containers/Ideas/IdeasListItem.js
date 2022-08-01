@@ -1,12 +1,13 @@
 import React from 'react'
-import { View, TouchableOpacity } from 'react-native'
-import { styles } from './IdeasListItem.styles'
+import { TouchableOpacity,View } from 'react-native'
 import IconSLI from 'react-native-vector-icons/SimpleLineIcons'
 
 import { ButtonCounter } from '../../components/ButtonCounter'
-import { DateService } from '../../services/DateService'
 import { Label } from '../../components/Label'
 import { TextSourceSans } from '../../components/TextSourceSans'
+import { DateService } from '../../services/DateService'
+
+import { styles } from './IdeasListItem.styles'
 
 export const IdeasListItem = (props) => {
   const {

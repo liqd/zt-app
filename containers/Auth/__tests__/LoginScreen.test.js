@@ -1,8 +1,10 @@
 import React from 'react'
+import { fireEvent,render, screen, waitFor } from '@testing-library/react-native'
+
 import '@testing-library/jest-native/extend-expect'
-import { render, waitFor, screen, fireEvent } from '@testing-library/react-native'
-import { LoginScreen } from '../LoginScreen'
+
 import API from '../../../BaseApi'
+import { LoginScreen } from '../LoginScreen'
 
 jest.mock('react-native/Libraries/Animated/NativeAnimatedHelper')
 

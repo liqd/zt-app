@@ -1,8 +1,9 @@
 import React from 'react'
 import { View } from 'react-native'
 import { BottomSheet } from '@rneui/themed'
-import { ModalItem } from './ModalItem'
+
 import { styles } from './Modal.styles'
+import { ModalItem } from './ModalItem'
 
 export const Modal = (props) => {
   return (

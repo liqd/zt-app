@@ -1,7 +1,9 @@
 import React from 'react'
 import { Button } from '@rneui/base'
-import { styles } from './ButtonSignOut.styles'
+
 import {useAuthorization} from '../containers/Auth/AuthProvider.js'
+
+import { styles } from './ButtonSignOut.styles'
 
 export const ButtonSignOut = () => {
   const {signOut} = useAuthorization()

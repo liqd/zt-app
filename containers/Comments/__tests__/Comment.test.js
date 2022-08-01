@@ -1,7 +1,8 @@
 import React from 'react'
 import { fireEvent, render } from '@testing-library/react-native'
-import { Comment } from '../Comment'
+
 import { testComment } from '../../../tests/TestData'
+import { Comment } from '../Comment'
 
 test('Test Comment Snapshot', () => {
   const { toJSON } = render(<Comment comment={testComment} />)

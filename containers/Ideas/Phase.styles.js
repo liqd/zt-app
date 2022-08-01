@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native'
+
 import { FONTS, SIZES } from '../../theme/fonts'
 import { SPACINGS } from '../../theme/spacings'
 

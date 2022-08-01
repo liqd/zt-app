@@ -1,14 +1,16 @@
-import React, { useState, useCallback, useEffect } from 'react'
-import { CommonActions } from '@react-navigation/native'
-import { View, FlatList } from 'react-native'
-import { useFocusEffect } from '@react-navigation/native'
-import API from '../../BaseApi'
+import React, { useCallback, useEffect, useState } from 'react'
+import { FlatList,View } from 'react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import { ExploreListItem } from './ExploreListItem'
-import { styles } from './ExplorePage.styles'
+import { CommonActions } from '@react-navigation/native'
+import { useFocusEffect } from '@react-navigation/native'
+
+import API from '../../BaseApi'
 import { ButtonAvatar } from '../../components/ButtonAvatar'
 import { TextSourceSans } from '../../components/TextSourceSans'
 import {useAuthorization} from '../../containers/Auth/AuthProvider.js'
+
+import { ExploreListItem } from './ExploreListItem'
+import { styles } from './ExplorePage.styles'
 
 export const ExplorePage = (props) => {
   const [user, setUser] = useState()

@@ -26,24 +26,26 @@
     "ecmaVersion": 2018,
     "sourceType": "module"
   },
-  "plugins": ["react", "react-native", "jest"],
+  "plugins": ["react", "react-native", "jest", "simple-import-sort"],
   "ignorePatterns": ["**/__mocks__/*"],
   "rules": {
     // General ESLINT rules
+    "brace-style": ["error", "1tbs", { "allowSingleLine": true}],
+    "eol-last": ["error", "always"],
     "indent": ["error", 2, {"SwitchCase": 1}],
     "linebreak-style": ["error", "unix"],
-    "quotes": ["error", "single"],
-    "semi": ["error", "never"],
-    "no-unused-vars": ["error", {"varsIgnorePattern": "(React)"}],
-    "eol-last": ["error", "always"],
-    "no-multiple-empty-lines": ["error", {"max": 1}],
-    "brace-style": ["error", "1tbs", { "allowSingleLine": true}],
     "max-len": ["warn", 100, 2, {
       "ignoreUrls": true,
       "ignorePattern": "^import\\s.+\\sfrom\\s.+;$"
     }],
+    "no-multiple-empty-lines": ["error", {"max": 1}],
     "no-unneeded-ternary": "error",
     "no-nested-ternary": "error",
+    "no-unused-vars": ["error", {"varsIgnorePattern": "(React)"}],
+    "semi": ["error", "never"],
+    "simple-import-sort/imports": "error",
+    "simple-import-sort/exports": "error",
+    "quotes": ["error", "single"],
 
     // Specific REACT rules
     "react/jsx-uses-vars": "error",
@@ -58,5 +60,32 @@
     "react-native/no-color-literals": "off",
     "react-native/no-raw-text": "off",
     "react-native/no-single-element-style-arrays": "error"
-  }
+  },
+  "overrides": [
+    // override "simple-import-sort" config
+    {
+      "files": ["*.js", "*.jsx", "*.ts", "*.tsx"],
+      "rules": {
+        "simple-import-sort/imports": [
+          "error",
+          {
+            "groups": [
+              // Packages `react` related packages come first.
+              ["^react", "^@?\\w"],
+              // Internal packages.
+              ["^(@|components)(/.*|$)"],
+              // Side effect imports.
+              ["^\\u0000"],
+              // Parent imports. Put `..` last.
+              ["^\\.\\.(?!/?$)", "^\\.\\./?$"],
+              // Other relative imports. Put same-folder imports and `.` last.
+              ["^\\./(?=.*/)(?!/?$)", "^\\.(?!/?$)", "^\\./?$"],
+              // Style imports.
+              ["^.+\\.?(css)$"]
+            ]
+          }
+        ]
+      }
+    }
+  ]
 }

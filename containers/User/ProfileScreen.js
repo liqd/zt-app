@@ -1,15 +1,16 @@
-import React, { useState, useEffect } from 'react'
-import AsyncStorage from '@react-native-async-storage/async-storage'
+import React, { useEffect,useState } from 'react'
 import { View } from 'react-native'
+import IconSLI from 'react-native-vector-icons/SimpleLineIcons'
+import AsyncStorage from '@react-native-async-storage/async-storage'
+import { Button } from '@rneui/base'
 
 import API from '../../BaseApi'
-import { styles } from './ProfileScreen.styles'
+import { AvatarCircle } from '../../components/ButtonAvatar'
 import { ButtonSignOut } from '../../components/ButtonSignOut'
 import { Header } from '../../components/Header'
 import { TextSourceSans } from '../../components/TextSourceSans'
-import { AvatarCircle } from '../../components/ButtonAvatar'
-import IconSLI from 'react-native-vector-icons/SimpleLineIcons'
-import { Button } from '@rneui/base'
+
+import { styles } from './ProfileScreen.styles'
 
 export const ProfileScreen = (props) => {
   const toSettingsOverview = () => {

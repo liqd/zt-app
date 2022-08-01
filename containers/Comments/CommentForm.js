@@ -1,11 +1,13 @@
 import React, { useEffect } from 'react'
-import { View, TextInput, TouchableOpacity } from 'react-native'
+import { TextInput, TouchableOpacity,View } from 'react-native'
+import IconFA from 'react-native-vector-icons/FontAwesome'
 import { Formik } from 'formik'
 import * as yup from 'yup'
-import { styles } from './CommentForm.styles'
-import IconFA from 'react-native-vector-icons/FontAwesome'
+
 import { COLORS } from '../../theme/colors'
 import { SIZES } from '../../theme/fonts'
+
+import { styles } from './CommentForm.styles'
 
 export const CommentForm = (props) => {
   const commentValidationSchema = yup.object().shape({

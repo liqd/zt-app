@@ -1,14 +1,15 @@
 import React from 'react'
-import { useWindowDimensions, Linking } from 'react-native'
-import { baseUrl } from '../BaseApi'
-import { RichtextCollapsibleItem } from './RichtextCollapsibleItem'
+import { Linking,useWindowDimensions } from 'react-native'
 import RenderHTML, {
-  useInternalRenderer,
+  HTMLContentModel,
   HTMLElementModel,
-  HTMLContentModel
-} from 'react-native-render-html'
+  useInternalRenderer} from 'react-native-render-html'
+
+import { baseUrl } from '../BaseApi'
 import { COLORS } from '../theme/colors'
+
 import { LinkTextSourceSans } from './LinkTextSourceSans'
+import { RichtextCollapsibleItem } from './RichtextCollapsibleItem'
 
 // The <Richtext /> component can be used as a container
 // for HTML input. It converts html to React Native with the

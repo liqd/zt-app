@@ -1,9 +1,11 @@
 import React from 'react'
 import { TouchableWithoutFeedback } from 'react-native'
-import { ListItem } from '@rneui/themed'
 import IconSLI from 'react-native-vector-icons/SimpleLineIcons'
+import { ListItem } from '@rneui/themed'
+
 import { COLORS } from '../theme/colors'
 import { SIZES } from '../theme/fonts'
+
 import { styles } from './MenuItem.styles'
 
 export const MenuItem = (props) => {

@@ -1,7 +1,8 @@
 import { StyleSheet } from 'react-native'
+
 import { COLORS } from '../theme/colors'
-import { SPACINGS, BORDERWIDTH } from '../theme/spacings'
-import { SIZES, LINEHEIGHTS, FONTWEIGHT } from '../theme/fonts'
+import { FONTWEIGHT,LINEHEIGHTS, SIZES } from '../theme/fonts'
+import { BORDERWIDTH,SPACINGS } from '../theme/spacings'
 
 export const styles = StyleSheet.create({
   formTitle: {
