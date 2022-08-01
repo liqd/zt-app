@@ -1,8 +1,8 @@
 import React from 'react'
 import { ActivityIndicator, View } from 'react-native'
 
-import { styles } from '../Ideas/Idea.styles'
 import { COLORS } from '../../theme/colors'
+import { styles } from '../Ideas/Idea.styles'
 
 export const StartUpScreen = () => {
   return (

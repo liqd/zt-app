@@ -1,8 +1,10 @@
 import React from 'react'
+import { fireEvent, render, waitFor } from '@testing-library/react-native'
+
 import '@testing-library/jest-native/extend-expect'
-import { render, fireEvent, waitFor } from '@testing-library/react-native'
-import { IdeaProject } from '../IdeaProject'
+
 import API from '../../../BaseApi'
+import { IdeaProject } from '../IdeaProject'
 
 API.getModule = jest.fn(() => Promise.resolve())
 

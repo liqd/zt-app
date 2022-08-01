@@ -1,20 +1,29 @@
-import React, { useState, useEffect, useRef } from 'react'
-import { Alert, View, Image, ScrollView,
-  Platform, KeyboardAvoidingView, Pressable } from 'react-native'
-import { Button } from '@rneui/base'
-import { styles } from './Idea.styles'
+import React, { useEffect, useRef,useState } from 'react'
+import {
+  Alert,
+  Image,
+  KeyboardAvoidingView,
+  Platform,
+  Pressable,
+  ScrollView,
+  View,
+} from 'react-native'
 import IconSLI from 'react-native-vector-icons/SimpleLineIcons'
-import API from '../../BaseApi'
 import AsyncStorage from '@react-native-async-storage/async-storage'
+import { Button } from '@rneui/base'
+
+import API from '../../BaseApi'
 import { ButtonCounter } from '../../components/ButtonCounter'
 import { Header } from '../../components/Header'
 import { Label } from '../../components/Label'
 import { Menu } from '../../components/Menu'
 import { Modal } from '../../components/Modal'
 import { TextSourceSans } from '../../components/TextSourceSans'
-import { Comments } from '../Comments/Comments'
-import { CommentForm } from '../Comments/CommentForm'
 import { DateService } from '../../services/DateService'
+import { CommentForm } from '../Comments/CommentForm'
+import { Comments } from '../Comments/Comments'
+
+import { styles } from './Idea.styles'
 
 export const Idea = (props) => {
   const {idea, module} = props.route.params

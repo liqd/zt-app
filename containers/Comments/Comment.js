@@ -1,14 +1,16 @@
-import React, { useState, useCallback, useEffect, useRef } from 'react'
-import { Alert, View, Image } from 'react-native'
-import { Button } from '@rneui/base'
-import { styles } from './Comment.styles'
-import { TextSourceSans } from '../../components/TextSourceSans'
-import IconSLI from 'react-native-vector-icons/SimpleLineIcons'
+import React, { useCallback, useEffect, useRef,useState } from 'react'
+import { Alert, Image,View } from 'react-native'
 import { TouchableWithoutFeedback } from 'react-native'
-import { ButtonCounter } from '../../components/ButtonCounter'
-import { SubComments } from './SubComments'
-import API from '../../BaseApi'
+import IconSLI from 'react-native-vector-icons/SimpleLineIcons'
 import AsyncStorage from '@react-native-async-storage/async-storage'
+import { Button } from '@rneui/base'
+
+import API from '../../BaseApi'
+import { ButtonCounter } from '../../components/ButtonCounter'
+import { TextSourceSans } from '../../components/TextSourceSans'
+
+import { styles } from './Comment.styles'
+import { SubComments } from './SubComments'
 
 const NUM_OF_LINES = 2
 

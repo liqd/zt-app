@@ -1,8 +1,9 @@
 import React from 'react'
 import {View} from 'react-native'
 
-import {IdeasListItem} from './IdeasListItem'
 import {TextSourceSans} from '../../components/TextSourceSans'
+
+import {IdeasListItem} from './IdeasListItem'
 
 export const IdeasList = props => {
   //do not pass ideas to child components

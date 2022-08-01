@@ -3,13 +3,14 @@ import { Alert, Linking, ScrollView, View } from 'react-native'
 import { Formik } from 'formik'
 import * as yup from 'yup'
 
-import { styles } from './LoginScreen.styles'
-import {useAuthorization} from './AuthProvider.js'
 import API, { baseUrl } from '../../BaseApi'
 import { ButtonSubmit } from '../../components/ButtonSubmit'
-import { LinkTextSourceSans } from '../../components/LinkTextSourceSans'
 import { TextInputFormField } from '../../components/formFields'
+import { LinkTextSourceSans } from '../../components/LinkTextSourceSans'
 import { TextSourceSans } from '../../components/TextSourceSans'
+
+import {useAuthorization} from './AuthProvider.js'
+import { styles } from './LoginScreen.styles'
 
 export const LoginScreen = () => {
   const {signIn} = useAuthorization()

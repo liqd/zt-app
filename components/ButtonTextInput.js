@@ -1,9 +1,9 @@
 import React from 'react'
 import { View } from 'react-native'
-import IconSLI from 'react-native-vector-icons/SimpleLineIcons'
-import { styles } from './ButtonTextInput.styles'
-
 import { TouchableOpacity } from 'react-native'
+import IconSLI from 'react-native-vector-icons/SimpleLineIcons'
+
+import { styles } from './ButtonTextInput.styles'
 import { TextSourceSans } from './TextSourceSans'
 
 export const ButtonTextInputFieldContainer = (props) => {

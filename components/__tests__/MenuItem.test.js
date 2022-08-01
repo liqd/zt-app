@@ -1,5 +1,6 @@
 import React from 'react'
 import { render } from '@testing-library/react-native'
+
 import { MenuItem } from '../MenuItem'
 
 test('Test MenuItem notAllowed', () => {

@@ -1,7 +1,8 @@
 import { Platform, StyleSheet } from 'react-native'
+
 import { COLORS } from '../../theme/colors'
-import { FONTS, SIZES, FONTWEIGHT } from '../../theme/fonts'
-import { SPACINGS, BORDERRADIUS } from '../../theme/spacings'
+import { FONTS, FONTWEIGHT,SIZES } from '../../theme/fonts'
+import { BORDERRADIUS,SPACINGS } from '../../theme/spacings'
 
 const headerOffset = 300
 
