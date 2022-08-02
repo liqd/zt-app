@@ -12,6 +12,7 @@ exports[`Test Idea Snapshot 1`] = `
   }
   style={
     Object {
+      "backgroundColor": "#fff",
       "flex": 1,
     }
   }
@@ -20,7 +21,6 @@ exports[`Test Idea Snapshot 1`] = `
     style={
       Object {
         "backgroundColor": "#fff",
-        "paddingTop": 0,
       }
     }
   >
@@ -31,7 +31,6 @@ exports[`Test Idea Snapshot 1`] = `
           "flexDirection": "row",
           "justifyContent": "space-between",
           "paddingBottom": 20,
-          "paddingTop": 10,
         }
       }
     >
@@ -1143,6 +1142,7 @@ exports[`Test Idea Snapshot 1`] = `
       style={
         Object {
           "alignItems": "center",
+          "backgroundColor": "rgb(242, 242, 242)",
           "flexDirection": "row",
           "paddingHorizontal": 20,
           "paddingVertical": 20,

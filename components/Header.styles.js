@@ -9,7 +9,6 @@ export const styles = StyleSheet.create({
     backgroundColor: COLORS.paper,
   },
   actionsContainer: {
-    paddingTop: SPACINGS.multiplyBy(0.5),
     paddingBottom: SPACINGS.multiplyBy(1),
     flexDirection: 'row',
     justifyContent: 'space-between',
