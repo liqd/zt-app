@@ -9,7 +9,6 @@ export const styles = StyleSheet.create({
     flex: 1,
     padding: SPACINGS.multiplyBy(0.8),
     paddingTop: SPACINGS.multiplyBy(1.25),
-    backgroundColor: COLORS.paper,
   },
   title: {
     fontSize: SIZES.xxl,
@@ -22,6 +21,7 @@ export const styles = StyleSheet.create({
     marginVertical: SPACINGS.multiplyBy(.25)
   },
   flexContainer: {
+    backgroundColor: COLORS.paper,
     flex: 1
   }
 })

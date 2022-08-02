@@ -1,5 +1,6 @@
 import React from 'react'
 import { Alert, ScrollView,View } from 'react-native'
+import { SafeAreaView } from 'react-native-safe-area-context'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { Formik } from 'formik'
 import * as yup from 'yup'
@@ -46,8 +47,10 @@ export const ReportCreateMessage = props => {
   }
 
   return (
-    <View style={styles.container}>
-      <Header navigation={props.navigation} />
+    <SafeAreaView style={styles.container}>
+      <View style={styles.header}>
+        <Header navigation={props.navigation} style={styles.header}/>
+      </View>
       <Formik
         validationSchema={reportMessageValidationSchema}
         initialValues={{message: ''}}
@@ -94,7 +97,7 @@ export const ReportCreateMessage = props => {
           </>
         )}
       </Formik>
-    </View>
+    </SafeAreaView>
   )
 }
 

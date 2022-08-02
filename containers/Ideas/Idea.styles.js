@@ -69,4 +69,9 @@ export const styles = StyleSheet.create({
   flexFullWidth: {
     flex: 1
   },
+  safeAreaView: {
+    backgroundColor: COLORS.paper,
+    flex: 1
+  },
+
 })

@@ -9,6 +9,9 @@ export const styles = StyleSheet.create({
     backgroundColor: COLORS.paper,
     flex: 1,
   },
+  header: {
+    paddingTop: SPACINGS.multiplyBy(0.25)
+  },
   title: {
     fontSize: SIZES.md,
     lineHeight: LINEHEIGHTS.base,

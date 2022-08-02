@@ -87,11 +87,11 @@ export const IdeaProject = (props) => {
         source={{ uri: bgImage }}
         accessibilityIgnoresInvertColors={true}
       />
+      <LinearGradient
+        colors={['rgba(0,0,0,0.80)', 'rgba(0,0,0,0.00)']}
+        style={styles.linearGradient}
+      />
       <ScrollView>
-        <LinearGradient
-          colors={['rgba(0,0,0,0.80)', 'rgba(0,0,0,0.00)']}
-          style={styles.linearGradient}
-        />
         <Header
           transparent={true}
           arrowColor={COLORS.paper}
