@@ -28,5 +28,8 @@ export const styles = StyleSheet.create({
     marginLeft: SPACINGS.multiplyBy(0.5),
     backgroundColor: COLORS.primary,
     borderRadius: BORDERRADIUS.lg
+  },
+  disabled: {
+    backgroundColor: COLORS.grey.light
   }
 })

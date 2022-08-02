@@ -1177,20 +1177,19 @@ exports[`Test Idea Snapshot 1`] = `
               "width": "100%",
             }
           }
-          value=""
-        />
-      </View>
-      <View
-        style={
-          Object {
-            "backgroundColor": "#2d40cc",
-            "borderRadius": 18,
-            "marginLeft": 10,
-            "padding": 5,
-            "paddingRight": 8,
-          }
-        }
-      >
+        >
+          <TextInput
+            accessibilityHint="Type your comment here"
+            accessibilityLabel="Comment input"
+            editable={true}
+            multiline={true}
+            name="comment"
+            onBlur={[Function]}
+            onChangeText={[Function]}
+            placeholder="Enter your comment"
+            value=""
+          />
+        </View>
         <View
           accessibilityRole="button"
           accessibilityState={
