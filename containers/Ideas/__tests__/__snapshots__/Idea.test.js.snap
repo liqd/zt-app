@@ -576,7 +576,7 @@ Array [
                       accessibilityIgnoresInvertColors={true}
                       source={
                         Object {
-                          "uri": "",
+                          "uri": "undefined",
                         }
                       }
                       style={
