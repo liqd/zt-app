@@ -1,4 +1,4 @@
-import React, { useEffect, useRef,useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import {
   Alert,
   Image,
@@ -34,13 +34,17 @@ export const Idea = (props) => {
   const [deleteModalVisible, setDeleteModalVisible] = useState(false)
   const [processing, setProcessing] = useState(false)
   const [comments, setComments] = useState([])
-  const [contentObjectOfComment, setContentObjectOfComment] = useState(
-    {'contentType': idea.content_type, 'pk': idea.pk}
-  )
+  const [error, setError] = useState()
+  const [contentObjectOfComment, setContentObjectOfComment] =
+    useState({
+      'contentType': idea.content_type,
+      'pk': idea.pk
+    })
   const [commentLastCommented, setCommentLastCommented] = useState(-1)
   const [isScrolling, setIsScrolling] = useState(false)
   const [isEditing, setIsEditing] = useState(false)
   const [editedComment, setEditedComment] = useState(undefined)
+  const [submitPending, setSubmitPending] = useState(false)
   const hasComments = comments.length !== 0
   const commentInputRef = useRef(null)
   const ideaMenuItems = [
@@ -49,7 +53,11 @@ export const Idea = (props) => {
       icon: 'pencil',
       action: () =>  {
         setMenuVisible(false)
-        props.navigation.navigate('IdeaCreate', {idea: ideaState, module: module, editing: true})
+        props.navigation.navigate('IdeaCreate', {
+          idea: ideaState,
+          module: module,
+          editing: true
+        })
       },
       isFirst: true,
       isAllowed: ideaState.has_changing_permission
@@ -57,7 +65,10 @@ export const Idea = (props) => {
     {
       title: 'Delete',
       icon: 'trash',
-      action: () => {setDeleteModalItems(ideaDeleteModalItems); toggleDeleteModal()},
+      action: () => {
+        setDeleteModalItems(ideaDeleteModalItems)
+        toggleDeleteModal()
+      },
       isAllowed: ideaState.has_deleting_permission
     },
     {
@@ -67,10 +78,14 @@ export const Idea = (props) => {
         setMenuVisible(false)
         props.navigation.navigate(
           'ReportCreateMessage',
-          {content_type: ideaState.content_type, object_pk: ideaState.pk}
+          {
+            content_type: ideaState.content_type,
+            object_pk: ideaState.pk
+          }
         )
       },
-      isFirst: !ideaState.has_changing_permission && !ideaState.has_deleting_permission,
+      isFirst: !ideaState.has_changing_permission &&
+        !ideaState.has_deleting_permission,
       isLast: true,
       isAllowed: true
     },
@@ -85,7 +100,8 @@ export const Idea = (props) => {
   const ideaDeleteModalItems = [
     {
       // space is to center the text
-      title: '   This idea will be deleted.\nThis action cannot be undone.',
+      title: '   This idea will be deleted.\n' +
+        'This action cannot be undone.',
       isText: true
     },
     {
@@ -100,12 +116,15 @@ export const Idea = (props) => {
   ]
 
   const [menuItems, setMenuItems] = useState(ideaMenuItems)
-  const [deleteModalItems, setDeleteModalItems] = useState(ideaDeleteModalItems)
+  const [deleteModalItems, setDeleteModalItems] =
+    useState(ideaDeleteModalItems)
 
   const getLabels = () => {
     let labelsList = []
     ideaState.category && labelsList.push(ideaState.category.name)
-    ideaState.labels.length > 0 && labelsList.push(...ideaState.labels.map(label => label.name))
+    ideaState.labels.length > 0 && labelsList.push(
+      ...ideaState.labels.map(label => label.name)
+    )
     return labelsList
   }
 
@@ -163,88 +182,83 @@ export const Idea = (props) => {
     }
   }
 
-  const handleCommentSubmit = (values) => {
+  const handleComment = (values) => {
     commentInputRef.current.blur()
+    setSubmitPending(true)
     AsyncStorage.getItem('authToken')
       .then((token) => {
         values.agreed_terms_of_use = true
-        return API.addComment(
-          contentObjectOfComment.contentType,
-          contentObjectOfComment.pk,
-          values,
-          token
-        )
+        const payload = getCommentPayload(values, token)
+
+        if (isEditing) return API.editComment(...payload)
+        return API.addComment(...payload)
       })
       .then((response) => {
-        const {statusCode, data} = response
-        if (statusCode == 201) {
-          if (data.content_type == data.comment_content_type) {
-            setCommentLastCommented(data.object_pk)
-          } else {
-            setCommentLastCommented(-1)
-          }
-          fetchComments(idea.content_type, idea.pk)
-          setContentObjectOfComment({'contentType': idea.content_type, 'pk': idea.pk})
-        } else {
-          const errorMessage = 'That did not work.'
-          let errorDetail
-          if (statusCode==403) {
-            errorDetail = data.detail
-          } else if (statusCode == 400) {
-            errorDetail = ('comment' in data ? ('Comment: ' + data['comment']) : 'Bad request')
-          }
-          Alert.alert(errorMessage, errorDetail, [{ text: 'Ok' }])
+        let {statusCode, data} = response
+        if (statusCode === 201 || statusCode === 200) {
+          if (statusCode === 200) toggleEditing()
+          processComment(data)
+          setSubmitPending(false)
+        } else if (statusCode === 403) {
+          return Promise.reject(data.detail)
+        } else if (statusCode === 400) {
+          const errorMsg = 'comment' in data
+            ? 'Comment: ' + data['comment']
+            : 'Bad request'
+          return Promise.reject(errorMsg)
         }
       })
-
+      .catch(error => {
+        setError(error)
+        setSubmitPending(false)
+      })
   }
 
-  function handleCommentEdit(values) {
-    commentInputRef.current.blur()
-    AsyncStorage.getItem('authToken')
-      .then((token) => {
-        values.agreed_terms_of_use = true
-        return API.editComment(
-          editedComment.content_type,
-          editedComment.object_pk,
-          editedComment.id,
-          values,
-          token
-        )
-      })
-      .then((response) => {
-        const {statusCode, data} = response
-        if (statusCode == 200) {
-          toggleEditing()
-          if (data.content_type == data.comment_content_type) {
-            setCommentLastCommented(data.object_pk)
-          } else {
-            setCommentLastCommented(-1)
-          }
-          fetchComments(idea.content_type, idea.pk)
-          setContentObjectOfComment({'contentType': idea.content_type, 'pk': idea.pk})
-        } else {
-          const errorMessage = 'That did not work.'
-          let errorDetail
-          if (statusCode==403) {
-            errorDetail = data.detail
-          } else if (statusCode == 400) {
-            errorDetail = ('comment' in data ? ('Comment: ' + data['comment']) : 'Bad request')
-          }
-          Alert.alert(errorMessage, errorDetail, [{ text: 'Ok', onPress: ()=> {toggleEditing()} }])
-        }
-      })
+  const getCommentPayload = (values, token) => {
+    if (isEditing) {
+      return [
+        editedComment.content_type,
+        editedComment.object_pk,
+        editedComment.id,
+        values,
+        token
+      ]
+    } else {
+      return [
+        contentObjectOfComment.contentType,
+        contentObjectOfComment.pk,
+        values,
+        token
+      ]
+    }
+  }
+
+  const processComment = (data) => {
+    if (data.content_type == data.comment_content_type) {
+      setCommentLastCommented(data.object_pk)
+    } else {
+      setCommentLastCommented(-1)
+    }
+    fetchComments(idea.content_type, idea.pk)
+    setContentObjectOfComment({
+      'contentType': idea.content_type,
+      'pk': idea.pk
+    })
   }
 
   const handleCommentReply = (commentContentType, commentObjectPk) => {
-    setContentObjectOfComment({'contentType': commentContentType, 'pk': commentObjectPk})
+    setContentObjectOfComment({
+      'contentType': commentContentType,
+      'pk': commentObjectPk
+    })
     commentInputRef.current.focus()
   }
 
   function handleScroll(event) {
-    if (isScrolling && event.nativeEvent.contentOffset.y < 75.0) {
+    const { nativeEvent: { contentOffset: { y: offsetY } } } = event
+    if (isScrolling && offsetY < 75.0) {
       setIsScrolling(false)
-    } else if (!isScrolling && (event.nativeEvent.contentOffset.y >= 75.0) ) {
+    } else if (!isScrolling && (offsetY >= 75.0) ) {
       setIsScrolling(true)
     }
   }
@@ -265,7 +279,11 @@ export const Idea = (props) => {
         const {statusCode, data} = response
         toggleDeleteModal()
         if (statusCode == 204) {
-          Alert.alert('Your idea was deleted.', 'Thank you for participating!',  [{ text: 'Ok' }])
+          Alert.alert(
+            'Your idea was deleted.',
+            'Thank you for participating!',
+            [{ text: 'Ok' }]
+          )
           props.navigation.goBack()
         } else {
           const errorMessage = 'That did not work.'
@@ -314,6 +332,12 @@ export const Idea = (props) => {
     }
   }, [isEditing])
 
+  useEffect(() => {
+    if (error) {
+      Alert.alert('An error occured', error, [{ text: 'Ok' }])
+    }
+  }, [error])
+
   const rightHeaderButton = (
     (!isEditing && !isScrolling) &&
         <Button
@@ -330,7 +354,8 @@ export const Idea = (props) => {
         isEditing={isEditing}
         rightButton={rightHeaderButton}
         toggleEditing={toggleEditing}
-        navigation={props.navigation} />
+        navigation={props.navigation}
+      />
       <KeyboardAvoidingView
         behavior={(Platform.OS === 'ios')? 'padding' : null}
         style={styles.flexFullWidth}
@@ -341,11 +366,20 @@ export const Idea = (props) => {
           keyboardShouldPersistTaps='handled'
           onScroll={handleScroll}
         >
-          <Pressable accessibilityRole="button" onPress={isEditing && toggleEditing} style={{
-            ...isEditing ? styles.pressableEditing : {}
-          }} disabled={!isEditing}>
+          <Pressable
+            accessibilityRole="button"
+            onPress={isEditing && toggleEditing}
+            style={{
+              ...isEditing ? styles.pressableEditing : {}
+            }}
+            disabled={!isEditing}
+          >
             <View style={styles.titleContainer}>
-              <TextSourceSans style={styles.title}>{ideaState.name}</TextSourceSans>
+              <TextSourceSans
+                style={styles.title}
+              >
+                {ideaState.name}
+              </TextSourceSans>
             </View>
             <View style={styles.descriptionContainer}>
               {ideaState.image && (
@@ -357,7 +391,11 @@ export const Idea = (props) => {
                   />
                 </>
               )}
-              <TextSourceSans style={styles.text}>{ideaState.description}</TextSourceSans>
+              <TextSourceSans
+                style={styles.text}
+              >
+                {ideaState.description}
+              </TextSourceSans>
             </View>
             {getLabels().length > 0 && (
               <View style={styles.labelsContainer}>
@@ -424,19 +462,15 @@ export const Idea = (props) => {
           </Pressable>
         </ScrollView>
         {idea.has_commenting_permission && (
-          <CommentForm
-            inputRef={commentInputRef}
-            isEdit={isEditing}
-            handleSubmit={isEditing
-              ? handleCommentEdit
-              : handleCommentSubmit
-            }
-            value={isEditing
-              ? editedComment.comment
-              : ''
-            }
-          />
-        )}
+          <View>
+            <CommentForm
+              inputRef={commentInputRef}
+              isEdit={isEditing}
+              handleSubmit={handleComment}
+              value={isEditing ? editedComment.comment : ''}
+              disabled={submitPending}
+            />
+          </View>)}
         <Menu menuItems={menuItems} isVisible={menuVisible} />
         <Modal
           modalItems={deleteModalItems}

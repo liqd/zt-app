@@ -13,10 +13,23 @@ export const CommentForm = (props) => {
   const commentValidationSchema = yup.object().shape({
     comment: yup
       .string()
-      .max(4000, 'Comment must be no longer than 4000 characters.')
+      .max(
+        4000,
+        'Comment must be no longer than 4000 characters.'
+      )
   })
 
-  const planeIcon = <IconFA name="paper-plane" color={COLORS.paper} size={SIZES.md} />
+  const planeIcon = (
+    <IconFA
+      name="paper-plane"
+      color={COLORS.paper}
+      size={SIZES.md}
+    />
+  )
+
+  const submitButtonClass = props.disabled
+    ? {...styles.submitButton, ...styles.disabled}
+    : styles.submitButton
 
   return (
     <Formik
@@ -57,12 +70,14 @@ export const CommentForm = (props) => {
                 error={errors.comment}
                 touched={touched.comment}
                 multiline
+                editable={!props.disabled}
               />
             </View>
-            <View style={styles.submitButton}>
-              <TouchableOpacity accessibilityRole="button"
+            <View style={submitButtonClass}>
+              <TouchableOpacity
+                accessibilityRole="button"
                 onPress={handleSubmit}
-                disabled={!isValid}
+                disabled={!isValid || props.disabled}
               >
                 {planeIcon}
               </TouchableOpacity>
