@@ -1,5 +1,5 @@
-import React from 'react'
-import { Alert, ScrollView,View } from 'react-native'
+import React, { useEffect, useState } from 'react'
+import { Alert, ScrollView, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { Formik } from 'formik'
@@ -15,6 +15,8 @@ import { styles } from './ReportCreateMessage.styles'
 
 export const ReportCreateMessage = props => {
   const {content_type, object_pk} = props.route.params
+  const [error, setError] = useState()
+  const [submitPending, setSubmitPending] = useState()
 
   const reportMessageValidationSchema = yup.object().shape({
     message: yup
@@ -22,27 +24,38 @@ export const ReportCreateMessage = props => {
       .max(1024, 'Message must be no longer then 1024 characters')
   })
 
+  useEffect(() => {
+    if (error) {
+      Alert.alert('An error occured', error, [{ text: 'Ok' }])
+    }
+  }, [error])
+
   const handleSubmit = (values) => {
     const description = values.message
+    setSubmitPending(true)
     AsyncStorage.getItem('authToken')
       .then((token) => {
-        return API.postReport({content_type, object_pk, description}, token)
+        return API.postReport({
+          content_type,
+          object_pk,
+          description
+        }, token)
       })
       .then((response) => {
         const {statusCode, data} = response
-        if (statusCode == 201) {
+        if (statusCode === 201) {
           Alert.alert('Thank you! We are taking care of it.')
+          setSubmitPending(false)
           props.navigation.goBack()
-        } else {
-          const errorMessage = 'That did not work.'
-          let errorDetail
-          if (statusCode==403) {
-            errorDetail = data.detail
-          } else if (statusCode == 400) {
-            errorDetail = 'Bad request'
-          }
-          Alert.alert(errorMessage, errorDetail)
+        } else if (statusCode === 403) {
+          return Promise.reject(data.detail)
+        } else if (statusCode === 400) {
+          return Promise.reject('Bad request')
         }
+      })
+      .catch(error => {
+        setError(error)
+        setSubmitPending(false)
       })
   }
 
@@ -91,7 +104,7 @@ export const ReportCreateMessage = props => {
             <ButtonSubmit
               title='Submit'
               onPress={handleSubmit}
-              disabled={!isValid}
+              disabled={!isValid || submitPending}
             >
             </ButtonSubmit>
           </>
