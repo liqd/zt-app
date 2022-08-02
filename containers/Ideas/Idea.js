@@ -324,7 +324,7 @@ export const Idea = (props) => {
 
   return (
     <SafeAreaView
-      style={styles.flexFullWidth}
+      style={styles.safeAreaView}
     >
       <Header
         isEditing={isEditing}
@@ -427,12 +427,12 @@ export const Idea = (props) => {
           <CommentForm
             inputRef={commentInputRef}
             isEdit={isEditing}
-            handleSubmit={isEditing 
+            handleSubmit={isEditing
               ? handleCommentEdit
               : handleCommentSubmit
             }
-            value={isEditing 
-              ? editedComment.comment 
+            value={isEditing
+              ? editedComment.comment
               : ''
             }
           />

@@ -7,7 +7,9 @@ import { SPACINGS } from '../../theme/spacings'
 export const styles = StyleSheet.create({
   container: {
     paddingHorizontal: SPACINGS.multiplyBy(0.75),
-    backgroundColor: COLORS.paper
+  },
+  header: {
+    paddingTop: SPACINGS.multiplyBy(0.25)
   },
   title: {
     fontSize: SIZES.md,
@@ -21,6 +23,7 @@ export const styles = StyleSheet.create({
     color: COLORS.text,
   },
   flexContainer: {
-    flex: 1
+    flex: 1,
+    backgroundColor: COLORS.paper
   }
 })

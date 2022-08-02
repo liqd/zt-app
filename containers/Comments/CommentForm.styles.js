@@ -1,4 +1,5 @@
-import { Platform,StyleSheet } from 'react-native'
+import { Platform, StyleSheet } from 'react-native'
+import { DefaultTheme } from '@react-navigation/native'
 
 import { COLORS } from '../../theme/colors'
 import { BORDERRADIUS, SPACINGS } from '../../theme/spacings'
@@ -8,7 +9,8 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     paddingHorizontal: SPACINGS.multiplyBy(1),
-    paddingVertical: SPACINGS.multiplyBy(1)
+    paddingVertical: SPACINGS.multiplyBy(1),
+    backgroundColor: DefaultTheme.colors.background
   },
   textInputContainer: {
     flexDirection: 'row',
@@ -16,11 +18,10 @@ export const styles = StyleSheet.create({
     flex: 2,
     backgroundColor: COLORS.paper,
     borderRadius: BORDERRADIUS.lg,
-    padding: SPACINGS.multiplyBy(0.5),
+    padding: SPACINGS.multiplyBy(0.5)
   },
-  textInput: Platform.OS !== 'ios' 
-    ? { width: '100%' }
-    : { width: '100%', paddingTop: 0, paddingBottom: 0 },
+  textInput:
+    Platform.OS !== 'ios' ? { width: '100%' } : { width: '100%', paddingTop: 0, paddingBottom: 0 },
   submitButton: {
     padding: SPACINGS.multiplyBy(0.25),
     paddingRight: SPACINGS.multiplyBy(0.4),

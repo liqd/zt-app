@@ -1,22 +1,24 @@
 import React from 'react'
-import { StatusBar, View } from 'react-native'
+import { View } from 'react-native'
 import IconSLI from 'react-native-vector-icons/SimpleLineIcons'
 import { Button } from '@rneui/base'
 
 import { styles } from './Header.styles.js'
 
 export const Header = (props) => {
-  const arrowLeftIcon = (<IconSLI name='arrow-left' size={22} color={props.arrowColor ? props.arrowColor : undefined} />)
-  const paddingTop = StatusBar.currentHeight || 0
+  const arrowLeftIcon = (
+    <IconSLI name='arrow-left' size={22} color={props.arrowColor ? props.arrowColor : undefined} />
+  )
   const backButtonStyle = props.backButtonStyle ? props.backButtonStyle : styles.backButton
-  const backButtonTextStyle = props.backButtonTextStyle ? props.backButtonTextStyle : styles.backButtonText
+  const backButtonTextStyle = props.backButtonTextStyle
+    ? props.backButtonTextStyle
+    : styles.backButtonText
   const containerStyle = props.transparent ? {} : styles.container
 
   function handleBack() {
-    if (props.isEditing !== undefined && props.isEditing){
+    if (props.isEditing !== undefined && props.isEditing) {
       props.toggleEditing()
-    } else
-      return props.navigation.goBack()
+    } else return props.navigation.goBack()
   }
 
   const defaultLeftButton = (
@@ -31,10 +33,10 @@ export const Header = (props) => {
   )
 
   return (
-    <View style={{...containerStyle, paddingTop}}>
+    <View style={containerStyle}>
       <View style={styles.actionsContainer}>
-        { props.leftButton ? props.leftButton : defaultLeftButton}
-        { props.rightButton }
+        {props.leftButton ? props.leftButton : defaultLeftButton}
+        {props.rightButton}
       </View>
     </View>
   )
