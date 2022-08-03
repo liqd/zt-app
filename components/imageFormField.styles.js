@@ -35,7 +35,7 @@ export const styles = StyleSheet.create({
     fontSize: SIZES.md,
   },
   imageRemoveButton: {
-    flex: 1,
+    flex: 2,
     justifyContent: 'flex-end'
   },
   iconRemoveButton: {

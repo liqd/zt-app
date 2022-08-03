@@ -17,6 +17,7 @@ export const styles = StyleSheet.create({
   listItem: {
     color: COLORS.text,
     flexDirection: 'row',
+    flexWrap: 'wrap',
     alignItems: 'center',
     width: '100%',
     backgroundColor: COLORS.paper,

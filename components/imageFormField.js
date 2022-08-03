@@ -87,6 +87,10 @@ export const ImagePickerFormField = (props) => {
     props.onSetImage(image)
   }
 
+  const closeIcon = <IconSLI name='close' style={styles.iconRemoveButton} />
+  const cameraIcon = <IconSLI name='camera' style={styles.iconButton} />
+  const pictureIcon = <IconSLI name='picture' style={styles.iconButton} />
+
   const imagePreview = (
     <>
       <Button
@@ -116,10 +120,6 @@ export const ImagePickerFormField = (props) => {
     />
   )
 
-  const cameraIcon = <IconSLI name='camera' style={styles.iconButton} />
-  const pictureIcon = <IconSLI name='picture' style={styles.iconButton} />
-  const closeIcon = <IconSLI name='close' style={styles.iconRemoveButton} />
-
   return (
     <>
       <View
@@ -138,8 +138,12 @@ export const ImagePickerFormField = (props) => {
           imageUri={capturedImage}
           disabled={isSimulator}
         />}
-        {capturedImage && props.imagePreview && imagePreview}
-        {capturedImage && !props.imagePreview && imagePreviewAvatar}
+        {capturedImage && props.imagePreview &&
+          imagePreview
+        }
+        {capturedImage && !props.imagePreview &&
+          imagePreviewAvatar
+        }
       </View>
       <View style={capturedImage || image ?
         styles.formImagePickerFull : styles.formImagePicker
