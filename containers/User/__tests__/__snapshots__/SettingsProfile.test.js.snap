@@ -1,0 +1,219 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test SettingsOverview Snapshot 1`] = `
+<View>
+  <View
+    style={
+      Object {
+        "backgroundColor": "#fff",
+        "paddingTop": 0,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "paddingBottom": 20,
+          "paddingTop": 10,
+        }
+      }
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "overflow": "hidden",
+            },
+            Object {
+              "borderRadius": 2,
+            },
+            undefined,
+            false,
+          ]
+        }
+        testID="RNE_BUTTON_WRAPPER"
+      >
+        <View
+          accessibilityRole="button"
+          accessibilityState={
+            Object {
+              "busy": false,
+              "disabled": false,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Object {
+              "opacity": 1,
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "transparent",
+                "borderColor": "#2089dc",
+                "borderRadius": 2,
+                "borderWidth": 0,
+                "flexDirection": "row",
+                "justifyContent": "center",
+                "marginVertical": 0,
+                "padding": 0,
+                "paddingHorizontal": 10,
+              }
+            }
+          >
+            <Text />
+            <Text
+              style={
+                Object {
+                  "color": "#1a1a1a",
+                  "fontSize": 17,
+                  "marginHorizontal": 5,
+                  "paddingVertical": 1,
+                  "textAlign": "center",
+                }
+              }
+            >
+              Back
+            </Text>
+          </View>
+        </View>
+      </View>
+    </View>
+  </View>
+  <Text
+    style={
+      Object {
+        "fontFamily": "SourceSansPro_400Regular",
+      }
+    }
+  >
+    Profile
+  </Text>
+  <Text
+    style={
+      Object {
+        "fontFamily": "SourceSansPro_400Regular",
+      }
+    }
+  >
+    Change profile picture
+  </Text>
+  <View>
+    <Text
+      style={
+        Array [
+          Object {
+            "fontFamily": "SourceSansPro_400Regular",
+          },
+          Object {
+            "fontSize": 15,
+            "lineHeight": 19,
+            "paddingBottom": 5,
+            "paddingTop": 10,
+            "width": "100%",
+          },
+        ]
+      }
+    />
+    <TextInput
+      name="name"
+      placeholder="Username"
+      style={
+        Object {
+          "borderBottomColor": "#d8d8d8",
+          "borderBottomWidth": 1,
+          "fontSize": 17,
+          "height": 40,
+        }
+      }
+    />
+  </View>
+  <View
+    style={
+      Array [
+        Object {
+          "overflow": "hidden",
+        },
+        Object {
+          "borderRadius": 2,
+        },
+        undefined,
+        false,
+      ]
+    }
+    testID="RNE_BUTTON_WRAPPER"
+  >
+    <View
+      accessibilityRole="button"
+      accessibilityState={
+        Object {
+          "busy": false,
+          "disabled": false,
+        }
+      }
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "opacity": 1,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "#2d40cc",
+            "borderColor": "#2089dc",
+            "borderRadius": 0,
+            "borderWidth": 0,
+            "flexDirection": "row",
+            "fontSize": 16,
+            "height": 70,
+            "justifyContent": "center",
+            "padding": 8,
+            "paddingHorizontal": 10,
+            "width": "100%",
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 18,
+              "paddingVertical": 1,
+              "textAlign": "center",
+            }
+          }
+        >
+          Save
+        </Text>
+      </View>
+    </View>
+  </View>
+</View>
+`;
