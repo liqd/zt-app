@@ -1138,43 +1138,27 @@ exports[`Test Idea Snapshot 1`] = `
         </View>
       </View>
     </RCTScrollView>
-    <View
-      style={
-        Object {
-          "alignItems": "center",
-          "backgroundColor": "rgb(242, 242, 242)",
-          "flexDirection": "row",
-          "paddingHorizontal": 20,
-          "paddingVertical": 20,
-        }
-      }
-    >
+    <View>
       <View
         style={
           Object {
             "alignItems": "center",
-            "backgroundColor": "#fff",
-            "borderRadius": 18,
-            "flex": 2,
+            "backgroundColor": "rgb(242, 242, 242)",
             "flexDirection": "row",
-            "padding": 10,
+            "paddingHorizontal": 20,
+            "paddingVertical": 20,
           }
         }
       >
-        <TextInput
-          accessibilityHint="Type your comment here"
-          accessibilityLabel="Comment input"
-          multiline={true}
-          name="comment"
-          onBlur={[Function]}
-          onChangeText={[Function]}
-          placeholder="Enter your comment"
-          placeholderTextColor="#666"
+        <View
           style={
             Object {
-              "paddingBottom": 0,
-              "paddingTop": 0,
-              "width": "100%",
+              "alignItems": "center",
+              "backgroundColor": "#fff",
+              "borderRadius": 18,
+              "flex": 2,
+              "flexDirection": "row",
+              "padding": 10,
             }
           }
         >
@@ -1187,53 +1171,73 @@ exports[`Test Idea Snapshot 1`] = `
             onBlur={[Function]}
             onChangeText={[Function]}
             placeholder="Enter your comment"
+            placeholderTextColor="#666"
+            style={
+              Object {
+                "paddingBottom": 0,
+                "paddingTop": 0,
+                "width": "100%",
+              }
+            }
             value=""
           />
         </View>
         <View
-          accessibilityRole="button"
-          accessibilityState={
-            Object {
-              "disabled": false,
-            }
-          }
-          accessible={true}
-          collapsable={false}
-          focusable={true}
-          onClick={[Function]}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
           style={
             Object {
-              "opacity": 1,
+              "backgroundColor": "#2d40cc",
+              "borderRadius": 18,
+              "marginLeft": 10,
+              "padding": 5,
+              "paddingRight": 8,
             }
           }
         >
-          <Text
-            allowFontScaling={false}
-            selectable={false}
+          <View
+            accessibilityRole="button"
+            accessibilityState={
+              Object {
+                "disabled": false,
+              }
+            }
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
             style={
-              Array [
-                Object {
-                  "color": "#fff",
-                  "fontSize": 17,
-                },
-                undefined,
-                Object {
-                  "fontFamily": "FontAwesome",
-                  "fontStyle": "normal",
-                  "fontWeight": "normal",
-                },
-                Object {},
-              ]
+              Object {
+                "opacity": 1,
+              }
             }
           >
-            
-          </Text>
+            <Text
+              allowFontScaling={false}
+              selectable={false}
+              style={
+                Array [
+                  Object {
+                    "color": "#fff",
+                    "fontSize": 17,
+                  },
+                  undefined,
+                  Object {
+                    "fontFamily": "FontAwesome",
+                    "fontStyle": "normal",
+                    "fontWeight": "normal",
+                  },
+                  Object {},
+                ]
+              }
+            >
+              
+            </Text>
+          </View>
         </View>
       </View>
     </View>
