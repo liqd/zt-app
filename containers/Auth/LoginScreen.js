@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Alert, Linking, ScrollView, View } from 'react-native'
+import { Alert, Linking, View } from 'react-native'
 import { Formik } from 'formik'
 import * as yup from 'yup'
 
@@ -70,49 +70,46 @@ export const LoginScreen = () => {
           handleSubmit={handleSubmit}
           isValid={isValid}
           buttonText='Login'
-          style={styles.flexContainer}
         >
           <View style={styles.container}>
-            <ScrollView>
-              <TextSourceSans style={styles.title}>
-                Login
-              </TextSourceSans>
-              <TextSourceSans style={styles.registerText}>
-                If you have not created an account yet, then please <LinkTextSourceSans
-                  onPress={() => Linking.openURL(baseUrl + registerUrl)}
-                >register</LinkTextSourceSans> first.
-              </TextSourceSans>
-              <TextInputFormField
-                field='Username or E-mail address:'
-                name='username'
-                value={values.username}
-                placeholder=''
-                returnKeyType='next'
-                returnKeyLabel='next'
-                onChangeText={handleChange('username')}
-                onBlur={handleBlur('username')}
-                error={errors.username}
-                touched={touched.username}
-                testID='username-input'
-              />
-              <TextInputFormField
-                field='Password:'
-                name='password'
-                value={values.password}
-                placeholder=''
-                returnKeyType='next'
-                returnKeyLabel='next'
-                onChangeText={handleChange('password')}
-                onBlur={handleBlur('password')}
-                error={errors.password}
-                touched={touched.password}
-                secureTextEntry
-                testID='password-input'
-              />
-              <LinkTextSourceSans style={styles.forgotPassword}
-                onPress={() => Linking.openURL(baseUrl + passwordResetUrl)}
-              >Forgot Password?</LinkTextSourceSans>
-            </ScrollView>
+            <TextSourceSans style={styles.title}>
+              Login
+            </TextSourceSans>
+            <TextSourceSans style={styles.registerText}>
+              If you have not created an account yet, then please <LinkTextSourceSans
+                onPress={() => Linking.openURL(baseUrl + registerUrl)}
+              >register</LinkTextSourceSans> first.
+            </TextSourceSans>
+            <TextInputFormField
+              field='Username or E-mail address:'
+              name='username'
+              value={values.username}
+              placeholder=''
+              returnKeyType='next'
+              returnKeyLabel='next'
+              onChangeText={handleChange('username')}
+              onBlur={handleBlur('username')}
+              error={errors.username}
+              touched={touched.username}
+              testID='username-input'
+            />
+            <TextInputFormField
+              field='Password:'
+              name='password'
+              value={values.password}
+              placeholder=''
+              returnKeyType='next'
+              returnKeyLabel='next'
+              onChangeText={handleChange('password')}
+              onBlur={handleBlur('password')}
+              error={errors.password}
+              touched={touched.password}
+              secureTextEntry
+              testID='password-input'
+            />
+            <LinkTextSourceSans style={styles.forgotPassword}
+              onPress={() => Linking.openURL(baseUrl + passwordResetUrl)}
+            >Forgot Password?</LinkTextSourceSans>
           </View>
         </KeyboardScrollView>
       )}

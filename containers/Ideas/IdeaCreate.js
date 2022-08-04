@@ -198,10 +198,7 @@ export const IdeaCreate = props => {
         <Header
           navigation={props.navigation} />
       </View>
-      <VirtualScrollView
-        style={styles.container}
-        contentContainerStyle={styles.contentContainer}
-      >
+      <VirtualScrollView>
         <TextSourceSans style={styles.title}>Submit a new idea for this project</TextSourceSans>
         <Formik
           validationSchema={ideaValidationSchema}
@@ -224,68 +221,70 @@ export const IdeaCreate = props => {
               isValid={isValid && !submitPending}
               buttonText='Submit'
             >
-              <TextInputFormField
-                field='Idea title'
-                name='name'
-                value={values.name}
-                placeholder='Enter your idea title'
-                returnKeyType='next'
-                returnKeyLabel='next'
-                onChangeText={handleChange('name')}
-                onBlur={handleBlur('name')}
-                error={errors.name}
-                touched={touched.name}
-              />
-              <ButtonTextInputFieldContainer
-                field='Idea Description'
-                name='description'>
-                <ButtonTextInput
-                  title={description ? description : 'Enter your idea description'}
-                  onPress={() => toDescription(values)}
-                  textInputButtonTitle={description ?
-                    styles.textInputButtonTitleDark :
-                    styles.textInputButtonTitleLight}
-                >
-                </ButtonTextInput>
-              </ButtonTextInputFieldContainer>
-              {categories.length > 0 &&
-              <DropdownFormFieldContainer
-                field='Idea Category'
-                name='category'>
-                <DropdownFormField
-                  items={categories}
-                  setItems={setCategories}
-                  value={values.category}
-                  onChangeValue={(selCat) => setFieldValue('category', selCat)}
-                >
-                </DropdownFormField>
-              </DropdownFormFieldContainer>
-              }
-              {labelChoices.length > 0 && initialLabels &&
-              <LabelListContainer
-                field='Idea Labels'
-                name='labels'
-              >
-                <LabelList
-                  labelChoices={labelChoices}
-                  selectedLabels={values.labels}
-                  onIconPress={(selectedLabels) => setFieldValue('labels', selectedLabels)}
+              <View style={styles.container}>
+                <TextInputFormField
+                  field='Idea title'
+                  name='name'
+                  value={values.name}
+                  placeholder='Enter your idea title'
+                  returnKeyType='next'
+                  returnKeyLabel='next'
+                  onChangeText={handleChange('name')}
+                  onBlur={handleBlur('name')}
+                  error={errors.name}
+                  touched={touched.name}
                 />
-              </LabelListContainer>
-              }
-              <ImageChoiceFormFieldContainer
-                field='Add Image'
-                name='image'
-                onSetImage={(img) => {
-                  setFieldValue('image', img)
-                  img && setFieldValue('imageChecked', false)
-                }}
-                onIconPress={() => setFieldValue('imageChecked', !values.imageChecked)}
-                checked={values.imageChecked}
-                image={(values.image && values.image.uri)
-                  ? values.image.uri
-                  : (values.image && values.image)}
-              />
+                <ButtonTextInputFieldContainer
+                  field='Idea Description'
+                  name='description'>
+                  <ButtonTextInput
+                    title={description ? description : 'Enter your idea description'}
+                    onPress={() => toDescription(values)}
+                    textInputButtonTitle={description ?
+                      styles.textInputButtonTitleDark :
+                      styles.textInputButtonTitleLight}
+                  >
+                  </ButtonTextInput>
+                </ButtonTextInputFieldContainer>
+                {categories.length > 0 &&
+                  <DropdownFormFieldContainer
+                    field='Idea Category'
+                    name='category'>
+                    <DropdownFormField
+                      items={categories}
+                      setItems={setCategories}
+                      value={values.category}
+                      onChangeValue={(selCat) => setFieldValue('category', selCat)}
+                    >
+                    </DropdownFormField>
+                  </DropdownFormFieldContainer>
+                }
+                {labelChoices.length > 0 && initialLabels &&
+                  <LabelListContainer
+                    field='Idea Labels'
+                    name='labels'
+                  >
+                    <LabelList
+                      labelChoices={labelChoices}
+                      selectedLabels={values.labels}
+                      onIconPress={(selectedLabels) => setFieldValue('labels', selectedLabels)}
+                    />
+                  </LabelListContainer>
+                }
+                <ImageChoiceFormFieldContainer
+                  field='Add Image'
+                  name='image'
+                  onSetImage={(img) => {
+                    setFieldValue('image', img)
+                    img && setFieldValue('imageChecked', false)
+                  }}
+                  onIconPress={() => setFieldValue('imageChecked', !values.imageChecked)}
+                  checked={values.imageChecked}
+                  image={(values.image && values.image.uri)
+                    ? values.image.uri
+                    : (values.image && values.image)}
+                />
+              </View>
             </KeyboardScrollView>
           )}
         </Formik>
