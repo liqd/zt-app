@@ -15,6 +15,7 @@ export const styles = StyleSheet.create({
     fontSize: SIZES.md,
     lineHeight: LINEHEIGHTS.md,
     fontWeight: FONTWEIGHT.bold,
+    paddingHorizontal: SPACINGS.multiplyBy(0.75),
   },
   textInputButtonTitleLight: {
     color: COLORS.grey.light,
