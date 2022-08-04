@@ -8,9 +8,6 @@ exports[`Test LoginScreen Snapshot 1`] = `
       Object {
         "backgroundColor": "#fff",
         "flex": 1,
-        "flexContainer": Object {
-          "flex": 1,
-        },
         "justifyContent": "space-between",
       },
       Object {
@@ -34,158 +31,154 @@ exports[`Test LoginScreen Snapshot 1`] = `
           }
         }
       >
-        <RCTScrollView>
-          <View>
-            <Text
-              style={
-                Array [
-                  Object {
-                    "fontFamily": "SourceSansPro_400Regular",
-                  },
-                  Object {
-                    "fontSize": 28,
-                    "fontWeight": "800",
-                    "marginBottom": 15,
-                    "marginTop": 80,
-                  },
-                ]
+        <Text
+          style={
+            Array [
+              Object {
+                "fontFamily": "SourceSansPro_400Regular",
+              },
+              Object {
+                "fontSize": 28,
+                "fontWeight": "800",
+                "marginBottom": 15,
+                "marginTop": 80,
+              },
+            ]
+          }
+        >
+          Login
+        </Text>
+        <Text
+          style={
+            Array [
+              Object {
+                "fontFamily": "SourceSansPro_400Regular",
+              },
+              Object {
+                "fontSize": 16,
+                "marginBottom": 30,
+              },
+            ]
+          }
+        >
+          If you have not created an account yet, then please 
+          <Text
+            onPress={[Function]}
+            style={
+              Array [
+                Object {
+                  "fontFamily": "SourceSansPro_400Regular",
+                },
+                Object {
+                  "textDecorationLine": "underline",
+                },
+              ]
+            }
+          >
+            register
+          </Text>
+           first.
+        </Text>
+        <View>
+          <Text
+            style={
+              Array [
+                Object {
+                  "fontFamily": "SourceSansPro_400Regular",
+                },
+                Object {
+                  "fontSize": 15,
+                  "lineHeight": 19,
+                  "paddingBottom": 5,
+                  "paddingTop": 10,
+                  "width": "100%",
+                },
+              ]
+            }
+          >
+            Username or E-mail address:
+          </Text>
+          <TextInput
+            field="Username or E-mail address:"
+            name="username"
+            onBlur={[Function]}
+            onChangeText={[Function]}
+            placeholder=""
+            returnKeyLabel="next"
+            returnKeyType="next"
+            style={
+              Object {
+                "borderBottomColor": "#d8d8d8",
+                "borderBottomWidth": 1,
+                "fontSize": 17,
+                "height": 40,
               }
-            >
-              Login
-            </Text>
-            <Text
-              style={
-                Array [
-                  Object {
-                    "fontFamily": "SourceSansPro_400Regular",
-                  },
-                  Object {
-                    "fontSize": 16,
-                    "marginBottom": 30,
-                  },
-                ]
+            }
+            testID="username-input"
+            value=""
+          />
+        </View>
+        <View>
+          <Text
+            style={
+              Array [
+                Object {
+                  "fontFamily": "SourceSansPro_400Regular",
+                },
+                Object {
+                  "fontSize": 15,
+                  "lineHeight": 19,
+                  "paddingBottom": 5,
+                  "paddingTop": 10,
+                  "width": "100%",
+                },
+              ]
+            }
+          >
+            Password:
+          </Text>
+          <TextInput
+            field="Password:"
+            name="password"
+            onBlur={[Function]}
+            onChangeText={[Function]}
+            placeholder=""
+            returnKeyLabel="next"
+            returnKeyType="next"
+            secureTextEntry={true}
+            style={
+              Object {
+                "borderBottomColor": "#d8d8d8",
+                "borderBottomWidth": 1,
+                "fontSize": 17,
+                "height": 40,
               }
-            >
-              If you have not created an account yet, then please 
-              <Text
-                onPress={[Function]}
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": "SourceSansPro_400Regular",
-                    },
-                    Object {
-                      "textDecorationLine": "underline",
-                    },
-                  ]
-                }
-              >
-                register
-              </Text>
-               first.
-            </Text>
-            <View>
-              <Text
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": "SourceSansPro_400Regular",
-                    },
-                    Object {
-                      "fontSize": 15,
-                      "lineHeight": 19,
-                      "paddingBottom": 5,
-                      "paddingTop": 10,
-                      "width": "100%",
-                    },
-                  ]
-                }
-              >
-                Username or E-mail address:
-              </Text>
-              <TextInput
-                field="Username or E-mail address:"
-                name="username"
-                onBlur={[Function]}
-                onChangeText={[Function]}
-                placeholder=""
-                returnKeyLabel="next"
-                returnKeyType="next"
-                style={
-                  Object {
-                    "borderBottomColor": "#d8d8d8",
-                    "borderBottomWidth": 1,
-                    "fontSize": 17,
-                    "height": 40,
-                  }
-                }
-                testID="username-input"
-                value=""
-              />
-            </View>
-            <View>
-              <Text
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": "SourceSansPro_400Regular",
-                    },
-                    Object {
-                      "fontSize": 15,
-                      "lineHeight": 19,
-                      "paddingBottom": 5,
-                      "paddingTop": 10,
-                      "width": "100%",
-                    },
-                  ]
-                }
-              >
-                Password:
-              </Text>
-              <TextInput
-                field="Password:"
-                name="password"
-                onBlur={[Function]}
-                onChangeText={[Function]}
-                placeholder=""
-                returnKeyLabel="next"
-                returnKeyType="next"
-                secureTextEntry={true}
-                style={
-                  Object {
-                    "borderBottomColor": "#d8d8d8",
-                    "borderBottomWidth": 1,
-                    "fontSize": 17,
-                    "height": 40,
-                  }
-                }
-                testID="password-input"
-                value=""
-              />
-            </View>
-            <Text
-              onPress={[Function]}
-              style={
-                Array [
-                  Object {
-                    "fontFamily": "SourceSansPro_400Regular",
-                  },
-                  Array [
-                    Object {
-                      "textDecorationLine": "underline",
-                    },
-                    Object {
-                      "fontSize": 16,
-                      "marginTop": 60,
-                    },
-                  ],
-                ]
-              }
-            >
-              Forgot Password?
-            </Text>
-          </View>
-        </RCTScrollView>
+            }
+            testID="password-input"
+            value=""
+          />
+        </View>
+        <Text
+          onPress={[Function]}
+          style={
+            Array [
+              Object {
+                "fontFamily": "SourceSansPro_400Regular",
+              },
+              Array [
+                Object {
+                  "textDecorationLine": "underline",
+                },
+                Object {
+                  "fontSize": 16,
+                  "marginTop": 60,
+                },
+              ],
+            ]
+          }
+        >
+          Forgot Password?
+        </Text>
       </View>
     </View>
   </RCTScrollView>
