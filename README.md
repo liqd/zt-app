@@ -7,51 +7,54 @@ Prerequisites
 - Install via terminal/bash`expo (expo.io): npm install expo-cli --global`
 - Install an emulator, e.g. Android Studio (see https://docs.expo.dev/workflow/android-studio-emulator/ for setup)
 
-Technical Review (Updates)
-- Run `expo doctor --fix-dependencies`
+Updates after Hibernation (Technical review)
+- Run `expo doctor --fix-dependencies` (to be tried out to see if it makes
+  updating easier 04.08.22)
+
+
+Setup after Hibernation
+- Check correct Node version: 18.4.0 (04.08.22) -> Note: expo-cli has not yet
+  been tested against v18.4.0
+- Update expo-cli - `npm install -g expo-cli`: 5.4.9 (04.08.22)
+- Update Android Studio and/or XCode
+- Pull latest zt:app repo and install dependencies (see `Run with new deps` below)
+- Update expo go (app on virtual phone) - expo/metro should ask you
+
 
 Setup
 - Clone repo
 - Change directory into project folder `cd zt-app`
 - `make install`
-- If you do `make start` now, a window will open in your browser. If you click "Run on Andoird" or "Run on iOS", it will tell you how set these up.
+- If you do `make start` now, a window will open in your browser. If you click
+"Run on Android" or "Run on iOS", it will tell you how set these up. You can use
+`make start-web` if you want to view in chrome however some styling will be broken.
 
-Setup after Hibernation
-- Check correct Node version: 18.3.0 (15.6.22) -> Note: expo-cli has not yet been tested against v18.3.0
-- Update expo-cli - `npm install -g expo-cli`: 5.4.9 (15.6.22)
-- Update Android Studio and/or XCode
-- Pull latest zt:app repo and install dependencies (see `Run with new deps` below)
-- Update expo go (app on virtual phone) - expo/metro should ask you
 
 Run
 - Start emulators (Android Studio or XCode)
 - `make start`
 - enjoy coding ⌨️ !
 
-Run with new deps (node v18.3.0)
-- Delete all deps `make clean`
-- Install fresh `make install`
-- Start app `make start`
-- Start with cleared cache `make start-nocache`
+Run with new deps (node v18.4.0)
+- Delete all deps: `make clean`
+- Install fresh: `make install`
+- Start app: `make start`
+- Start with cleared cache: `make start-nocache`
 - Check `Makefile` for additional options
 
 Using local api (adhocracy-plus)
-- For Android phones, emulators & simulators just `make start-local`
+- Download and follow setup instructions in aplus and run it locally with `make watch`
+- In ZT for Android phones, emulators & simulators just `make start-local`
 - For Apple iphones set your local ip in BaseApi.js, then `make start-local`
 - In Aplus Repo --> Add or Edit `local.py` --> `ALLOWED_HOSTS = ['10.0.2.2', 'localhost']`
 
 Publishing to expo
-- Add the sentry dsn for the dev or prod project in App.js
-- `expo publish --release-channel dev` (or prod)
-- To also upload the sourcemaps to sentry use `SENTRY_PROJECT=zt-app-dev
-SENTRY_AUTH_TOKEN=<the secret token> expo publish --release-channel dev`
-instead (for prod replace `zt-app-dev` with `zt-app` and use the prod release channel).
+- See the wiki.
 
-Note: There is already a very first attempt of linting included, containing rules
-of eslint, react and react-native rules. To be added react-native-a11y rules.
+Note: There is linting included, containing rules of eslint, react, react-native
+and react-native-a11y rules.
 
 ## Project folder structure of Z:T App
-tbd
 
 example:
 ```
@@ -63,13 +66,11 @@ example:
 /components/IconButton.styles.js
 /containers
 /containers/LiveQuestions
+/containers/LiveQuestions/__tests__/
 /containers/LiveQuestions/LiveQuestions.js
 /containers/LiveQuestions/LiveQuestions.styles.js
 /navigation
 /services
 /services/api-services (tbd)
-/services/redux-services (tbd)
-/services/contexts (tbd)
 /App.js
-/App.styles.js
 ```
