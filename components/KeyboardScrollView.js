@@ -5,9 +5,6 @@ import { ButtonSubmit } from './ButtonSubmit'
 import { styles } from './KeyboardScrollView.styles'
 
 export const KeyboardScrollView = (props) => {
-  const stylesOverride = props.style
-    ? {...styles, ...props.style}
-    : styles
 
   const buttonText = props.buttonText
     ? props.buttonText
@@ -29,10 +26,10 @@ export const KeyboardScrollView = (props) => {
     <KeyboardAvoidingView
       behavior={behavior}
       keyboardVerticalOffset={defaultVerticalOffset}
-      style={stylesOverride}
+      style={styles.flexContainerKeyboard}
     >
       <ScrollView
-        style={stylesOverride.flexContainer}
+        style={styles.flexContainerScroll}
       >
         {props.children}
       </ScrollView>

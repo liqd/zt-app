@@ -45,16 +45,22 @@ export const styles = StyleSheet.create({
     borderRadius: 0
   },
   dropdownContainer: {
-    zIndex: 1
+    zIndex: 1,
   },
   dropdownFormField: {
     borderBottomColor: COLORS.grey.extralight,
-    backgroundColor: COLORS.text,
+    backgroundColor: COLORS.paper,
+    paddingLeft: 0,
+    paddingBottom: 0,
     borderTopWidth: 0,
     borderRightWidth: 0,
     borderLeftWidth: 0,
     borderRadius: 0,
     borderBottomWidth: BORDERWIDTH.base,
+  },
+  dropdownFormFieldText: {
+    color: COLORS.text,
+    fontSize: SIZES.base,
   },
   formError: {
     fontSize: SIZES.xs,

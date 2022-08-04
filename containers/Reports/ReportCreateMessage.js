@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react'
-import { Alert, ScrollView, View } from 'react-native'
+import { Alert, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { Formik } from 'formik'
 import * as yup from 'yup'
 
 import API from '../../BaseApi'
-import { ButtonSubmit } from '../../components/ButtonSubmit'
 import { TextInputFullFormField } from '../../components/formFields'
 import { Header } from '../../components/Header'
+import { KeyboardScrollView } from '../../components/KeyboardScrollView'
 import { TextSourceSans } from '../../components/TextSourceSans'
 
 import { styles } from './ReportCreateMessage.styles'
@@ -79,35 +79,31 @@ export const ReportCreateMessage = props => {
           touched,
           isValid,
         }) => (
-          <>
-            <ScrollView>
-              <TextSourceSans style={styles.title}>
-                You want to report this content? Your message will be sent to the
-                moderation. The moderation will look at the reported content. The
-                content will be deleted if it does not meet our discussion rules
-                (netiquette).
-              </TextSourceSans>
-              <TextInputFullFormField
-                name='message'
-                value={values.message}
-                placeholder='Add message'
-                returnKeyType='next'
-                returnKeyLabel='next'
-                onChangeText={handleChange('message')}
-                onBlur={handleBlur('message')}
-                error={errors.message}
-                touched={touched.message}
-                numberOfLines={10}
-                multiline={true}
-              />
-            </ScrollView>
-            <ButtonSubmit
-              title='Submit'
-              onPress={handleSubmit}
-              disabled={!isValid || submitPending}
-            >
-            </ButtonSubmit>
-          </>
+          <KeyboardScrollView
+            handleSubmit={handleSubmit}
+            isValid={isValid && !submitPending}
+            buttonText='Submit'
+          >
+            <TextSourceSans style={styles.title}>
+              You want to report this content? Your message will be sent to the
+              moderation. The moderation will look at the reported content. The
+              content will be deleted if it does not meet our discussion rules
+              (netiquette).
+            </TextSourceSans>
+            <TextInputFullFormField
+              name='message'
+              value={values.message}
+              placeholder='Add message'
+              returnKeyType='next'
+              returnKeyLabel='next'
+              onChangeText={handleChange('message')}
+              onBlur={handleBlur('message')}
+              error={errors.message}
+              touched={touched.message}
+              numberOfLines={10}
+              multiline={true}
+            />
+          </KeyboardScrollView>
         )}
       </Formik>
     </SafeAreaView>

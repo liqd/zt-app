@@ -1,7 +1,14 @@
 import { StyleSheet } from 'react-native'
 
+import { COLORS } from '../theme/colors'
+
 export const styles = StyleSheet.create({
-  flexContainer: {
-    flex: 1
+  flexContainerKeyboard: {
+    flex: 1,
+    justifyContent: 'space-between',
+    backgroundColor: COLORS.paper,
+  },
+  flexContainerScroll: {
+    flex: 1,
   }
 })

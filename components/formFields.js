@@ -83,6 +83,7 @@ export const DropdownFormField = (props) => {
         setValue={setSelected}
         onChangeValue={value => props.onChangeValue(value)}
         containerStyle={{}}
+        textStyle={styles.dropdownFormFieldText}
       />
     </View>
   )
