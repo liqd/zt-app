@@ -1,5 +1,6 @@
 import React, { useEffect,useState } from 'react'
 import { View } from 'react-native'
+import { SafeAreaView } from 'react-native-safe-area-context'
 import IconSLI from 'react-native-vector-icons/SimpleLineIcons'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { Button } from '@rneui/base'
@@ -50,23 +51,27 @@ export const ProfileScreen = (props) => {
   }, [])
 
   return (
-    <View style={styles.container}>
-      <Header
-        navigation={props.navigation}
-        rightButton={user && user.is_self && rightHeaderButton}
-      />
-      <View style={styles.containerInner}>
-        <AvatarCircle
-          imgSource={userImage ? {uri: userImage} :user && {uri: user._avatar}}
-          avatarStyles={styles.avatarStyles}
+    <SafeAreaView
+      style={styles.safeAreaContainer}
+    >
+      <View style={styles.container}>
+        <Header
+          navigation={props.navigation}
+          rightButton={user && user.is_self && rightHeaderButton}
         />
-        <TextSourceSans>
-          {userName ? userName : user && user.username}
-        </TextSourceSans>
-      </View>
-      {user && user.is_self &&
+        <View style={styles.containerInner}>
+          <AvatarCircle
+            imgSource={userImage ? {uri: userImage} :user && {uri: user._avatar}}
+            avatarStyles={styles.avatarStyles}
+          />
+          <TextSourceSans>
+            {userName ? userName : user && user.username}
+          </TextSourceSans>
+        </View>
+        {user && user.is_self &&
         <ButtonSignOut />
-      }
-    </View>
+        }
+      </View>
+    </SafeAreaView>
   )
 }
