@@ -9,7 +9,6 @@ export const SettingsOverview = (props) => {
   // Pass fetched data forward
   const toProfileSettings = () => {
     props.navigation.navigate('SettingsProfile', {
-      userId: userId,
       userName: userName,
       userImage: userImage
     })
@@ -17,14 +16,17 @@ export const SettingsOverview = (props) => {
 
   // Pass updated info back
   const toProfileScreen = () => {
-    props.navigation.navigate('ProfileScreen', {
-      userId: userId,
-      userName: userName,
-      userImage: userImage
+    props.navigation.navigate({
+      name: 'ProfileScreen',
+      params: {
+        userName: userName,
+        userImage: userImage
+      },
+      merge: true,
     })
   }
 
-  const {userId, userName, userImage} = props.route.params
+  const {userName, userImage} = props.route.params
 
   return (
     <SafeAreaView

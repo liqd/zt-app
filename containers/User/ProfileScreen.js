@@ -16,12 +16,11 @@ import { styles } from './ProfileScreen.styles'
 export const ProfileScreen = (props) => {
   const toSettingsOverview = () => {
     props.navigation.navigate('SettingsOverview', {
-      userId: userId,
       userName: user.username,
-      userImage: user._avatar})
+      userImage: user.user_image})
   }
 
-  const {userName, userImage} = props.route.params
+  const {userId, userName, userImage} = props.route.params
 
   const settingsIcon = <IconSLI name='settings' size={30} />
   const rightHeaderButton = (
@@ -30,7 +29,6 @@ export const ProfileScreen = (props) => {
       type='clear'
       onPress={toSettingsOverview}
     />)
-  const {userId} = props.route.params
   const [user, setUser] = useState()
 
   const fetchUser = () => {
@@ -48,7 +46,7 @@ export const ProfileScreen = (props) => {
 
   useEffect(() => {
     fetchUser()
-  }, [])
+  }, [props.route.params])
 
   return (
     <SafeAreaView
@@ -61,7 +59,7 @@ export const ProfileScreen = (props) => {
         />
         <View style={styles.containerInner}>
           <AvatarCircle
-            imgSource={userImage ? {uri: userImage} :user && {uri: user._avatar}}
+            imgSource={userImage ? {uri: userImage} :user && {uri: (user.user_image) ? user.user_image : user.user_image_fallback}}
             avatarStyles={styles.avatarStyles}
           />
           <TextSourceSans>
