@@ -1,5 +1,6 @@
 import React from 'react'
 import { Alert, View } from 'react-native'
+import { SafeAreaView } from 'react-native-safe-area-context'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { Formik } from 'formik'
 import * as yup from 'yup'
@@ -69,7 +70,7 @@ export const SettingsProfile = props => {
   }
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Formik
         validationSchema={userNameValidationSchema}
         initialValues={
@@ -91,7 +92,7 @@ export const SettingsProfile = props => {
         }) => (
           <>
             <View>
-              <Header navigation={props.navigation} />
+              <Header transparent={true} navigation={props.navigation} />
               <ListContainer
                 title='Edit Profile'>
                 <ListItem>
@@ -132,6 +133,6 @@ export const SettingsProfile = props => {
           </>
         )}
       </Formik>
-    </View>
+    </SafeAreaView>
   )
 }
