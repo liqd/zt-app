@@ -104,7 +104,7 @@ export const ExplorePage = (props) => {
 
   const rightHeaderButton = (
     <ButtonAvatar
-      imgSource={ user && { uri: user._avatar }}
+      imgSource={ user && { uri: (user.user_image) ? user.user_image : user.user_image_fallback }}
       labelText="profile"
       hintText="click to go to profile and settings"
       onPress={toProfile}
