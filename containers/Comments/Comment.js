@@ -1,11 +1,11 @@
 import React, { useCallback, useEffect, useRef,useState } from 'react'
-import { Alert, Image,View } from 'react-native'
+import { Alert, Image, View } from 'react-native'
 import { TouchableWithoutFeedback } from 'react-native'
 import IconSLI from 'react-native-vector-icons/SimpleLineIcons'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { Button } from '@rneui/base'
 
-import API, { baseUrl } from '../../BaseApi'
+import API from '../../BaseApi'
 import { ButtonCounter } from '../../components/ButtonCounter'
 import { TextSourceSans } from '../../components/TextSourceSans'
 
@@ -213,7 +213,7 @@ export const Comment = (props) => {
         <View style={styles.topLeft}>
           {isDisplayed(comment) &&
           <Image
-            source={{ uri: baseUrl + comment.user_image }}
+            source={{ uri: (comment.user_image) ? comment.user_image : comment.user_image_fallback }}
             style={styles.avatar}
             accessibilityIgnoresInvertColors={true}
           />
