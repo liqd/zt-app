@@ -4,10 +4,13 @@ import { COLORS } from '../../theme/colors'
 import { SPACINGS } from '../../theme/spacings'
 
 export const styles = StyleSheet.create({
+  safeAreaContainer: {
+    flex: 1,
+    backgroundColor: COLORS.paper
+  },
   container: {
     flex: 1,
     justifyContent: 'space-between',
-    backgroundColor: COLORS.paper
   },
   containerInner: {
     flex: 1,

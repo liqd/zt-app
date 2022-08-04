@@ -1,5 +1,5 @@
 import React from 'react'
-import { View } from 'react-native'
+import { SafeAreaView } from 'react-native-safe-area-context'
 
 import { Header } from '../../components/Header'
 import { ListContainer, ListLink } from '../../components/List'
@@ -27,8 +27,10 @@ export const SettingsOverview = (props) => {
   const {userId, userName, userImage} = props.route.params
 
   return (
-    <View>
+    <SafeAreaView
+    >
       <Header
+        transparent={true}
         handleCustomBack={toProfileScreen}
       />
       <ListContainer
@@ -40,6 +42,6 @@ export const SettingsOverview = (props) => {
           linkTitle='Dummy Settings'
           onPress={toProfileSettings}/>
       </ListContainer>
-    </View>
+    </SafeAreaView>
   )
 }
