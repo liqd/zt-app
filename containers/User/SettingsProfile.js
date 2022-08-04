@@ -25,16 +25,20 @@ export const SettingsProfile = props => {
   })
 
   const makeFormData = (values) => {
-    // do not send null image on create
-    if ('image' in values && values.image == null) {
-      delete values['image']
+    // do not send image data if not changed
+    if (!values['user_image']) {
+      delete values['user_image']
+    } else if (values['user_image'] == userImage) {
+      delete values['user_image']
     }
+
     let formData = new FormData()
     for (let key in values) {
       Array.isArray(values[key])
         ? values[key].forEach((value) => formData.append(key, value))
         : formData.append(key, values[key])
     }
+
     return formData
   }
 
@@ -51,9 +55,8 @@ export const SettingsProfile = props => {
           props.navigation.navigate({
             name: 'SettingsOverview',
             params: {
-              userName: values.username,
-              userImage: values.image.uri
-            },
+              'userName': data['username'],
+              'userImage': data['user_image']},
             merge: true,
           })
         } else {
@@ -73,10 +76,10 @@ export const SettingsProfile = props => {
     <SafeAreaView style={styles.container}>
       <Formik
         validationSchema={userNameValidationSchema}
-        initialValues={
-          {username: userName},
-          {image: userImage}
-        }
+        initialValues={{
+          username: userName,
+          user_image: userImage ? userImage : null
+        }}
         onSubmit={values => handleSubmit(values)}
         validateOnMount={true}
       >
@@ -97,17 +100,17 @@ export const SettingsProfile = props => {
                 title='Edit Profile'>
                 <ListItem>
                   <AvaterImageAddButton
-                    name='image'
-                    values={values.image}
-                    field='Change profile picture'
-                    fieldPreview='Profile picture'
+                    name='user_image'
+                    values={values.user_image}
+                    field={userImage ? 'Change profile picture' : 'Add profile picture'}
+                    fieldPreview={'Profile Picture'}
                     labelText='change profile image'
                     title='profile image'
                     onSetImage={(img) => {
-                      setFieldValue('image', img)
+                      setFieldValue('user_image', img)
                     }}
                     imgSource={{uri: userImage}}
-                    image={values.image ? values.image.uri : userImage}
+                    image={(values.user_image && values.user_image.uri) ? values.user_image.uri : (values.user_image && values.user_image)}
                   />
                 </ListItem>
                 <TextInputFormField
