@@ -32,7 +32,7 @@ exports[`Test Comment Snapshot 1`] = `
         accessibilityIgnoresInvertColors={true}
         source={
           Object {
-            "uri": "https://aplus-dev.liqd.net",
+            "uri": undefined,
           }
         }
         style={

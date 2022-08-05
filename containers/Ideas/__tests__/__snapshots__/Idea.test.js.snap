@@ -589,7 +589,7 @@ exports[`Test Idea Snapshot 1`] = `
                       accessibilityIgnoresInvertColors={true}
                       source={
                         Object {
-                          "uri": "undefined",
+                          "uri": undefined,
                         }
                       }
                       style={

@@ -226,7 +226,7 @@ exports[`Test ProfileScreen Snapshot 1`] = `
         accessibilityIgnoresInvertColors={true}
         source={
           Object {
-            "uri": null,
+            "uri": undefined,
           }
         }
         style={
