@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test ListLink Snapshot 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "#fff",
+      "borderBottomColor": "#d8d8d8",
+      "borderBottomWidth": 1,
+      "color": "#1a1a1a",
+      "flexDirection": "row",
+      "flexWrap": "wrap",
+      "padding": 15,
+      "width": "100%",
+    }
+  }
+>
+  <View
+    accessibilityRole="button"
+    accessible={true}
+    collapsable={false}
+    focusable={false}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+        "opacity": 1,
+        "width": "100%",
+      }
+    }
+  >
+    <Text
+      numberOfLines={1}
+      style={
+        Object {
+          "fontFamily": "SourceSansPro_400Regular",
+        }
+      }
+    />
+    <Text
+      style={
+        Object {
+          "fontFamily": "SourceSansPro_400Regular",
+        }
+      }
+    >
+      <Text />
+    </Text>
+  </View>
+</View>
+`;
