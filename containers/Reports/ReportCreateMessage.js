@@ -22,6 +22,7 @@ export const ReportCreateMessage = props => {
     message: yup
       .string()
       .max(1024, 'Message must be no longer then 1024 characters')
+      .required('Please add a few words explaining why you are reporting this content'),
   })
 
   useEffect(() => {
