@@ -9,6 +9,9 @@ export const ButtonSubmit = (props) => {
       title={props.title}
       onPress={props.onPress}
       buttonStyle={styles.submitButton}
+      accessible={true}
+      accessibilityLabel={props.title}
+      accessibilityHint={props.fieldHint}
       disabled={props.disabled}
     />
   )

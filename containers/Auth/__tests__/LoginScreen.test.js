@@ -1,5 +1,5 @@
 import React from 'react'
-import { fireEvent,render, screen, waitFor } from '@testing-library/react-native'
+import { fireEvent, render, screen, waitFor } from '@testing-library/react-native'
 
 import '@testing-library/jest-native/extend-expect'
 

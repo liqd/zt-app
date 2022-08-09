@@ -77,3 +77,20 @@ export const testModule = {
   ],
   pk: 7
 }
+
+export const testText = {
+  Lorum1039: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ' +
+  'Huic ego, si negaret quicquam interesse ad beate vivendum quali uteretur ' +
+  'victu, concederem, laudarem etiam; Nam cui proposito sit conservatio sui,' +
+  ' necesse est huic partes quoque sui caras suo genere laudabiles. Duo Reges: ' +
+  'constructio interrete. Ita, quem ad modum in senatu semper est aliquis, qui' +
+  ' interpretem postulet, sic, isti nobis cum interprete audiendi sunt. Et ais, '+
+  'si una littera commota sit, fore tota ut labet disciplina. Quando enim Socrates,'+
+  ' qui parens philosophiae iure dici potest, quicquam tale fecit? Cur igitur,' +
+  ' cum de re conveniat, non malumus usitate loqui? Possumusne ergo in vita ' +
+  'summum bonum dicere, cum id ne in cena quidem posse videamur? Nihilne te ' +
+  'delectat umquam -video, quicum loquar-, te igitur, Torquate, ipsum per se ' +
+  'nihil delectat? Non autem hoc: igitur ne illud quidem. Mihi vero, inquit, ' +
+  'placet agi subtilius et, ut ipse dixisti, pressius. Sin te auctoritas Mihi ' +
+  'vero, inquit, placet agi subtilius et, ut ipse dixisti, pressius. Sin te auctoritas'
+}
