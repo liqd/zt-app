@@ -14,15 +14,21 @@ DropDownPicker.setListMode('SCROLLVIEW')
 
 export const TextInputFormField = (props) => {
   return (
-    <View style={props.textInputContainer}>
+    <View
+      style={props.textInputContainer}
+    >
       <TextSourceSans style={styles.formLabel}>{props.field}</TextSourceSans>
       <TextInput
         ref={props.inputRef}
+        accessibilityLabel={props.field}
+        accessibilityHint={props.fieldHint}
+        accessible={true}
         style={styles.textInput}
         {...props}
       />
       {props.touched && props.error &&
-        <TextSourceSans style={styles.formError}>{props.error}</TextSourceSans>
+        <TextSourceSans style={styles.formError} accessibilityLiveRegion="polite">
+          {props.error}</TextSourceSans>
       }
     </View>
   )
@@ -34,10 +40,13 @@ export const TextInputFullFormField = (props) => {
       <TextSourceSans style={styles.formLabel}>{props.field}</TextSourceSans>
       <TextInput
         style={styles.textInputFull}
+        accessibilityLabel={props.field}
+        accessibilityHint={props.fieldHint}
+        accessible={true}
         {...props}
       />
       {props.touched &&
-        <TextSourceSans style={styles.formError}>{props.error}</TextSourceSans>
+        <TextSourceSans style={styles.formError} accessibilityLiveRegion="polite">{props.error}</TextSourceSans>
       }
     </View>
   )

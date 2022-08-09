@@ -99,6 +99,8 @@ exports[`Test LoginScreen Snapshot 1`] = `
             Username or E-mail address:
           </Text>
           <TextInput
+            accessibilityLabel="Username or E-mail address:"
+            accessible={true}
             field="Username or E-mail address:"
             name="username"
             onBlur={[Function]}
@@ -138,6 +140,8 @@ exports[`Test LoginScreen Snapshot 1`] = `
             Password:
           </Text>
           <TextInput
+            accessibilityLabel="Password:"
+            accessible={true}
             field="Password:"
             name="password"
             onBlur={[Function]}
@@ -198,6 +202,7 @@ exports[`Test LoginScreen Snapshot 1`] = `
     testID="RNE_BUTTON_WRAPPER"
   >
     <View
+      accessibilityLabel="Login"
       accessibilityRole="button"
       accessibilityState={
         Object {

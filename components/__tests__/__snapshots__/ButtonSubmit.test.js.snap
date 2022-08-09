@@ -17,6 +17,7 @@ exports[`Test ButtonSubmit 1`] = `
   testID="RNE_BUTTON_WRAPPER"
 >
   <View
+    accessibilityLabel="TestTitle"
     accessibilityRole="button"
     accessibilityState={
       Object {
