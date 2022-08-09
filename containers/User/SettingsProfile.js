@@ -1,15 +1,15 @@
 import React from 'react'
-import { Alert, View } from 'react-native'
+import { Alert } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { Formik } from 'formik'
 import * as yup from 'yup'
 
 import API from '../../BaseApi'
-import { ButtonSubmit } from '../../components/ButtonSubmit'
 import { TextInputFormField } from '../../components/formFields'
 import { Header } from '../../components/Header'
 import { AvaterImageAddButton } from '../../components/imageFormField'
+import { KeyboardScrollView } from '../../components/KeyboardScrollView'
 import { ListContainer, ListItem } from '../../components/List'
 
 import { styles } from './SettingsProfile.styles'
@@ -94,8 +94,12 @@ export const SettingsProfile = props => {
           setFieldValue
         }) => (
           <>
-            <View>
-              <Header transparent={true} navigation={props.navigation} />
+            <Header transparent={true} navigation={props.navigation} />
+            <KeyboardScrollView
+              handleSubmit={handleSubmit}
+              isValid={isValid}
+              buttonText='Save'
+            >
               <ListContainer
                 title='Edit Profile'>
                 <ListItem>
@@ -127,12 +131,7 @@ export const SettingsProfile = props => {
                   textInputContainer={styles.textInputList}
                 />
               </ListContainer>
-            </View>
-            <ButtonSubmit
-              title='Save'
-              onPress={handleSubmit}
-              disabled={!isValid}
-            />
+            </KeyboardScrollView>
           </>
         )}
       </Formik>
