@@ -7,6 +7,8 @@ import API from '../../../BaseApi'
 import { testToken, testUser } from '../../../tests/TestData'
 import { SettingsProfile } from '../SettingsProfile.js'
 
+global.FormData = require('FormData')
+
 test('Test SettingsOverview Snapshot no user image', async () => {
   const route = { params: { userId: testUser.pk, userName: testUser.username, userImage: null } }
   const { toJSON, queryByText } = render(<SettingsProfile route={route} />)
