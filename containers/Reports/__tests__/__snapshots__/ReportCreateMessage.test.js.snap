@@ -96,7 +96,27 @@ exports[`Test ReportCreateMessage Snapshot 1`] = `
                 }
               }
             >
-              <Text />
+              <Text
+                allowFontScaling={false}
+                selectable={false}
+                style={
+                  Array [
+                    Object {
+                      "color": undefined,
+                      "fontSize": 22,
+                    },
+                    undefined,
+                    Object {
+                      "fontFamily": "simple-line-icons",
+                      "fontStyle": "normal",
+                      "fontWeight": "normal",
+                    },
+                    Object {},
+                  ]
+                }
+              >
+                
+              </Text>
               <Text
                 style={
                   Object {
@@ -180,6 +200,7 @@ exports[`Test ReportCreateMessage Snapshot 1`] = `
           />
           <TextInput
             accessible={true}
+            error="Please add a few words explaining why you are reporting this content"
             multiline={true}
             name="message"
             numberOfLines={10}
@@ -222,7 +243,7 @@ exports[`Test ReportCreateMessage Snapshot 1`] = `
         accessibilityState={
           Object {
             "busy": false,
-            "disabled": false,
+            "disabled": true,
           }
         }
         accessible={true}
@@ -245,7 +266,7 @@ exports[`Test ReportCreateMessage Snapshot 1`] = `
           style={
             Object {
               "alignItems": "center",
-              "backgroundColor": "#2d40cc",
+              "backgroundColor": "hsl(208, 8%, 90%)",
               "borderColor": "#2089dc",
               "borderRadius": 0,
               "borderWidth": 0,
@@ -262,7 +283,7 @@ exports[`Test ReportCreateMessage Snapshot 1`] = `
           <Text
             style={
               Object {
-                "color": "white",
+                "color": "hsl(208, 8%, 63%)",
                 "fontSize": 18,
                 "paddingVertical": 1,
                 "textAlign": "center",
