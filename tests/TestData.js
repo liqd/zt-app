@@ -1,3 +1,5 @@
+export const testToken = 'test-authToken'
+
 export const testUser = {
   _avatar: null,
   is_self: true,
