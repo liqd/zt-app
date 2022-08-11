@@ -1,71 +1,55 @@
 import React from 'react'
-import { fireEvent, render, screen } from '@testing-library/react-native'
+import { act, fireEvent, render, screen } from '@testing-library/react-native'
 
 import '@testing-library/jest-native/extend-expect'
 
 import { testIdeaAdmin, testText } from '../../../tests/TestData'
 import { ReportCreateMessage } from '../ReportCreateMessage'
 
-test('Test ReportCreateMessage Snapshot', () => {
-  const route = { params: {
-    content_type: testIdeaAdmin.content_type,
-    object_pk: testIdeaAdmin.pk
-  }}
-  const { toJSON } = render(<ReportCreateMessage route={route}/>)
+jest.mock('react-native/Libraries/Animated/NativeAnimatedHelper')
+
+test('Test ReportCreateMessage Snapshot', async () => {
+  const route = {
+    params: {
+      content_type: testIdeaAdmin.content_type,
+      object_pk: testIdeaAdmin.pk
+    }
+  }
+  const { toJSON } = render(<ReportCreateMessage route={route} />)
+  await screen.findByPlaceholderText(/Add message/)
   expect(toJSON()).toMatchSnapshot()
 })
 
 test('Test ReportCreateMessage, no charactures error message', async () => {
-  const route = { params: {
-    content_type: testIdeaAdmin.content_type,
-    object_pk: testIdeaAdmin.pk
-  }}
-  const description = ''
-  render(<ReportCreateMessage route={route} description={description}/>)
+  const route = {
+    params: {
+      content_type: testIdeaAdmin.content_type,
+      object_pk: testIdeaAdmin.pk
+    }
+  }
+  render(<ReportCreateMessage route={route} />)
   const submitButton = screen.getByLabelText('Submit')
-  fireEvent(submitButton, 'press')
-  const validationErrors = await screen.findAllByText(
+  fireEvent.press(submitButton)
+  const validationErrors = await screen.findByText(
     /Please add a few words explaining why you are reporting this content/
   )
   expect(validationErrors).toBeTruthy()
+  expect(submitButton).toBeDisabled()
 })
 
 test('Test ReportCreateMessage, too many charectures error message', async () => {
-  const route = { params: {
-    content_type: testIdeaAdmin.content_type,
-    object_pk: testIdeaAdmin.pk
-  }}
-  const description = testText.Lorum1039
-  render(<ReportCreateMessage route={route} description={description}/>)
+  const route = {
+    params: {
+      content_type: testIdeaAdmin.content_type,
+      object_pk: testIdeaAdmin.pk
+    }
+  }
+  render(<ReportCreateMessage route={route} />)
+  const messageInput = await screen.findByPlaceholderText(/Add message/)
   const submitButton = screen.getByLabelText('Submit')
-  fireEvent(submitButton, 'press')
-  const validationErrors = await screen.queryAllByText(
-    /Message must be no longer then 1024 characters/
-  )
-  expect(validationErrors).toBeTruthy()
+  await act(async () => {
+    fireEvent.changeText(messageInput, testText.Lorum1039)
+  })
+  expect(messageInput).toHaveProp('error', 'Message must be no longer then 1024 characters')
+  expect(submitButton).toBeDisabled()
 })
-
-// button not disabled
-// test('Test ReportCreateMessage, no charactures button disabled', async () => {
-//   const route = { params: {
-//     content_type: testIdeaAdmin.content_type,
-//     object_pk: testIdeaAdmin.pk
-//   }}
-//   const description = ''
-//   render(<ReportCreateMessage route={route} description={description}/>)
-//   const submitButton = screen.getByLabelText('Submit')
-//   console.log(submitButton);
-//
-//   expect(submitButton).toBeDisabled()
-// })
-
-// test('Test ReportCreateMessage, too many charactures button disabled', async () => {
-//   const route = { params: {
-//     content_type: testIdeaAdmin.content_type,
-//     object_pk: testIdeaAdmin.pk
-//   }}
-//   const description = testText.Lorum1039
-//   render(<ReportCreateMessage route={route} description={description}/>)
-//   const submitButton = screen.getByLabelText('Submit')
-//   expect(submitButton).toBeDisabled()
-// })
