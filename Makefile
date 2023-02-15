@@ -38,23 +38,23 @@ clean:
 
 .PHONY: start
 start:
-	NODE_OPTIONS=--openssl-legacy-provider npm start
+	npm start
 
 .PHONY: start-local
 start-local:
-	NODE_OPTIONS=--openssl-legacy-provider LOCAL_API=true npm run start
+	LOCAL_API=true npm run start
 
 .PHONY: start-nocache
 start-nocache:
-	NODE_OPTIONS=--openssl-legacy-provider npm start -- -c
+	npm start -- -c
 
 .PHONY: start-android
 start-android:
-	NODE_OPTIONS=--openssl-legacy-provider npm start -- -a
+	npm start -- -a
 
 .PHONY: start-web
 start-web:
-	BROWSER="./chrome.sh" NODE_OPTIONS=--openssl-legacy-provider npm start -- -w
+	BROWSER="./chrome.sh" npm start -- -w
 
 .PHONY: lint
 lint:
