@@ -5,17 +5,19 @@
 Prerequisites
 - Install NodeJS
 - Install via terminal/bash`expo (expo.io): npm install expo-cli --global`
-- Install an emulator, e.g. Android Studio (see https://docs.expo.dev/workflow/android-studio-emulator/ for setup)
+- Install an emulator:
+  - Android Studio (see https://docs.expo.dev/workflow/android-studio-emulator/ for setup)
+  - Xcode for IOS (only on mac, see https://docs.expo.dev/workflow/ios-simulator/ for setup)
 
 Updates after Hibernation (Technical review)
-- Run `expo doctor --fix-dependencies` (to be tried out to see if it makes
-  updating easier 04.08.22)
+- Update the expo version to the most recent (47.0.0 as of 15.02.23)
+- Run `expo doctor --fix-dependencies` (working as of 15.02.23)
 
 
 Setup after Hibernation
-- Check correct Node version: 18.4.0 (04.08.22) -> Note: expo-cli has not yet
+- Check correct Node version: 18.4.0 (15.02.23) -> Note: expo-cli has not yet
   been tested against v18.4.0
-- Update expo-cli - `npm install -g expo-cli`: 5.4.9 (04.08.22)
+- ~~Update expo-cli - `npm install -g expo-cli`: 6.3.1~~ expo-cli deprecated, @expo/cli is now installed in app
 - Update Android Studio and/or XCode
 - Pull latest zt:app repo and install dependencies (see `Run with new deps` below)
 - Update expo go (app on virtual phone) - expo/metro should ask you
@@ -37,7 +39,7 @@ Run
 
 Run with new deps (node v18.4.0)
 - Delete all deps: `make clean`
-- Install fresh: `make install`
+- Install fresh: `make install`, you may need to run `make install --legacy-peer-deps`
 - Start app: `make start`
 - Start with cleared cache: `make start-nocache`
 - Check `Makefile` for additional options
