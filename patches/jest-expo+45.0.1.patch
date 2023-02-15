@@ -1,10 +1,14 @@
+# fix jest-expo issue: 28.x requires object not string returned, is apprently fixed in React-Native 70.x however issue persists (20/03/23
+# fix: https://github.com/facebook/react-native/commit/b5ff26b0b97d6cd600bdb9c33af866971ef14f9c
+# additional ref: https://stackoverflow.com/questions/73550984/invalid-return-value-in-simple-jest-test
+
 diff --git a/node_modules/jest-expo/src/preset/assetFileTransformer.js b/node_modules/jest-expo/src/preset/assetFileTransformer.js
 index c4b0952..dcda667 100644
 --- a/node_modules/jest-expo/src/preset/assetFileTransformer.js
 +++ b/node_modules/jest-expo/src/preset/assetFileTransformer.js
 @@ -1,6 +1,6 @@
  const createCacheKeyFunction = require('@jest/create-cache-key-function').default;
- 
+
  module.exports = {
 -  process: (_, filename) => `module.exports = 1;`,
 +  process: (_, filename) => ({code: `module.exports = 1;`}),
