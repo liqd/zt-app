@@ -119,9 +119,7 @@ exports[`Test ModalItem 1`] = `
         }
       }
       testID="listItemTitle"
-    >
-      
-    </Text>
+    />
   </View>
 </View>
 `;
@@ -245,9 +243,7 @@ exports[`Test ModalItem Action 1`] = `
         }
       }
       testID="listItemTitle"
-    >
-      
-    </Text>
+    />
   </View>
 </View>
 `;
@@ -369,9 +365,7 @@ exports[`Test ModalItem isCancel 1`] = `
         }
       }
       testID="listItemTitle"
-    >
-      
-    </Text>
+    />
   </View>
 </View>
 `;
@@ -495,9 +489,7 @@ exports[`Test ModalItem isCancel isText 1`] = `
         }
       }
       testID="listItemTitle"
-    >
-      
-    </Text>
+    />
   </View>
 </View>
 `;
@@ -621,9 +613,7 @@ exports[`Test ModalItem isText 1`] = `
         }
       }
       testID="listItemTitle"
-    >
-      
-    </Text>
+    />
   </View>
 </View>
 `;

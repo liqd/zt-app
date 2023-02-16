@@ -397,9 +397,7 @@ exports[`Test Menu with MenuItems 1`] = `
                     }
                   }
                   testID="listItemTitle"
-                >
-                  
-                </Text>
+                />
               </View>
             </View>
             <View
@@ -526,9 +524,7 @@ exports[`Test Menu with MenuItems 1`] = `
                     }
                   }
                   testID="listItemTitle"
-                >
-                  
-                </Text>
+                />
               </View>
             </View>
           </View>
