@@ -399,9 +399,7 @@ exports[`Test Modal with ModalItems 1`] = `
                     }
                   }
                   testID="listItemTitle"
-                >
-                  
-                </Text>
+                />
               </View>
             </View>
             <View
@@ -522,9 +520,7 @@ exports[`Test Modal with ModalItems 1`] = `
                     }
                   }
                   testID="listItemTitle"
-                >
-                  
-                </Text>
+                />
               </View>
             </View>
             <View
@@ -643,9 +639,7 @@ exports[`Test Modal with ModalItems 1`] = `
                     }
                   }
                   testID="listItemTitle"
-                >
-                  
-                </Text>
+                />
               </View>
             </View>
             <View
@@ -766,9 +760,7 @@ exports[`Test Modal with ModalItems 1`] = `
                     }
                   }
                   testID="listItemTitle"
-                >
-                  
-                </Text>
+                />
               </View>
             </View>
             <View
@@ -889,9 +881,7 @@ exports[`Test Modal with ModalItems 1`] = `
                     }
                   }
                   testID="listItemTitle"
-                >
-                  
-                </Text>
+                />
               </View>
             </View>
           </View>

@@ -117,9 +117,7 @@ exports[`Test MenuItem isAllowed 1`] = `
         }
       }
       testID="listItemTitle"
-    >
-      
-    </Text>
+    />
   </View>
 </View>
 `;
@@ -240,9 +238,7 @@ exports[`Test MenuItem isAllowed isCancel 1`] = `
         }
       }
       testID="listItemTitle"
-    >
-      
-    </Text>
+    />
   </View>
 </View>
 `;
@@ -364,9 +360,7 @@ exports[`Test MenuItem isAllowed isFirst 1`] = `
         }
       }
       testID="listItemTitle"
-    >
-      
-    </Text>
+    />
   </View>
 </View>
 `;
@@ -490,9 +484,7 @@ exports[`Test MenuItem isAllowed isFirst and isLast 1`] = `
         }
       }
       testID="listItemTitle"
-    >
-      
-    </Text>
+    />
   </View>
 </View>
 `;
@@ -614,9 +606,7 @@ exports[`Test MenuItem isAllowed isLast 1`] = `
         }
       }
       testID="listItemTitle"
-    >
-      
-    </Text>
+    />
   </View>
 </View>
 `;
@@ -746,9 +736,7 @@ exports[`Test MenuItem isAllowed with Icon 1`] = `
         }
       }
       testID="listItemTitle"
-    >
-      
-    </Text>
+    />
   </View>
 </View>
 `;
