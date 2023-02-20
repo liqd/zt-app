@@ -11,8 +11,7 @@
     "test": "jest",
     "testDebug": "jest -o --coverage=false",
     "testNoCov": "jest --coverage=false",
-    "updateSnapshots": "jest -u --coverage=false",
-    "postinstall": "patch-package"
+    "updateSnapshots": "jest -u --coverage=false"
   },
   "jest": {
     "preset": "jest-expo",
@@ -81,9 +80,8 @@
     "eslint-plugin-simple-import-sort": "10.0.0",
     "husky": "8.0.1",
     "jest": "28.1.2",
-    "jest-expo": "45.0.1",
+    "jest-expo": "47.0.1",
     "lint-staged": "13.0.3",
-    "patch-package": "6.4.7",
     "react-test-renderer": "18.1.0",
     "webpack-dev-server": "4.9.3"
   },

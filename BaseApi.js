@@ -4,7 +4,7 @@ import * as Device from 'expo-device'
 export const baseUrl = (() => {
   /*global __DEV__*/
   if (__DEV__) {
-    if (Constants.manifest.extra.localAPI) {
+    if (Constants?.expoConfig?.extra?.localAPI) {
 
       // current workaround as long as isDevice=true for emulators
       const isEmulator = Device.productName && Device.productName.includes('emulator')
@@ -24,7 +24,7 @@ export const baseUrl = (() => {
     }
     return 'https://aplus-dev.liqd.net'
   } else {
-    switch (Constants.manifest.releaseChannel) {
+    switch (Constants?.expoConfig?.releaseChannel) {
       case 'prod':
       case 'default':
         return 'https://adhocracy.plus'
