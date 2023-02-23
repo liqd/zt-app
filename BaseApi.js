@@ -24,7 +24,7 @@ export const baseUrl = (() => {
     }
     return 'https://aplus-dev.liqd.net'
   } else {
-    switch (Constants.manifest.releaseChannel) {
+    switch (Constants?.expoConfig?.releaseChannel) {
       case 'prod':
       case 'default':
         return 'https://adhocracy.plus'
