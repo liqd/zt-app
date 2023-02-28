@@ -1,29 +1,30 @@
 import { StyleSheet } from 'react-native'
 
 import { COLORS } from '../theme/colors'
-import { LINEHEIGHTS,SIZES } from '../theme/fonts'
-import { BORDERRADIUS } from '../theme/spacings'
-import { SPACINGS } from '../theme/spacings'
+import { FONTS } from '../theme/fonts'
+import { BORDERRADIUS, BORDERWIDTH } from '../theme/spacings'
 
 export const styles = StyleSheet.create({
   labelTitle: {
-    color: COLORS.text
+    color: COLORS.text,
+    fontFamily: FONTS.familySans
   },
   labelTitleChecked: {
-    color: COLORS.paper
+    color: COLORS.paper,
+    fontFamily: FONTS.familySans
   },
   labelButton: {
     backgroundColor: COLORS.paper,
-    width: '30%',
     flexDirection: 'row',
     flexWrap: 'wrap',
     marginLeft: 0,
+    borderColor: COLORS.grey.extralight,
+    borderWidth: BORDERWIDTH.base,
     borderRadius: BORDERRADIUS.lg
   },
   labelButtonChecked: {
     color: COLORS.paper,
     backgroundColor: COLORS.primary,
-    width: '30%',
     flexDirection: 'row',
     flexWrap: 'wrap',
     marginLeft: 0,
@@ -33,12 +34,4 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap'
   },
-  formLabel: {
-    fontSize: SIZES.sm,
-    lineHeight: LINEHEIGHTS.sm,
-    paddingTop: SPACINGS.multiplyBy(.5),
-    paddingBottom: SPACINGS.multiplyBy(.25),
-    width: '100%'
-  },
-
 })

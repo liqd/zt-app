@@ -5,16 +5,17 @@ import { CheckBox } from '@rneui/themed'
 
 import { COLORS } from '../theme/colors'
 
+import { FormError } from './FormError'
+import { FormLabel } from './FormLabel'
 import { styles } from './LabelForm.styles'
-import { TextSourceSans } from './TextSourceSans'
 
 export const LabelListContainer = (props) => {
   return (
     <View style={styles.labelContainer}>
-      <TextSourceSans style={styles.formLabel}>{props.field}</TextSourceSans>
+      <FormLabel>{props.field}</FormLabel>
       {props.children}
       {props.children.touched &&
-        <TextSourceSans style={styles.formError} accessibilityLiveRegion="polite">{props.error}</TextSourceSans>
+        <FormError>{props.error}</FormError>
       }
     </View>
   )

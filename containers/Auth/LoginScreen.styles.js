@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native'
 
-import { FONTWEIGHT,SIZES } from '../../theme/fonts'
+import { FONTS ,SIZES } from '../../theme/fonts'
 import { SPACINGS } from '../../theme/spacings'
 
 export const styles = StyleSheet.create({
@@ -11,7 +11,7 @@ export const styles = StyleSheet.create({
     marginTop: SPACINGS.multiplyBy(4),
     marginBottom: SPACINGS.multiplyBy(0.75),
     fontSize: SIZES.xxl,
-    fontWeight: FONTWEIGHT.bold
+    fontFamily: FONTS.familySemiBold
   },
   registerText: {
     fontSize: SIZES.base,

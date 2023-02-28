@@ -1,7 +1,7 @@
 import { Platform, StyleSheet } from 'react-native'
 
 import { COLORS } from '../../theme/colors'
-import { FONTS, FONTWEIGHT,SIZES } from '../../theme/fonts'
+import { FONTS, SIZES } from '../../theme/fonts'
 import { BORDERRADIUS,SPACINGS } from '../../theme/spacings'
 
 const headerOffset = 300
@@ -44,7 +44,7 @@ export const styles = StyleSheet.create({
     fontSize: SIZES.xl,
     marginTop: SPACINGS.multiplyBy(1.5),
     marginBottom: SPACINGS.multiplyBy(0.5),
-    fontWeight: FONTWEIGHT.bold,
+    fontFamily: FONTS.familySemiBold,
   },
   description: {
     fontSize: SIZES.sm,
@@ -119,12 +119,12 @@ export const styles = StyleSheet.create({
     marginTop: SPACINGS.multiplyBy(1),
     paddingTop: SPACINGS.multiplyBy(1),
     fontSize: SIZES.md,
-    fontWeight: FONTWEIGHT.bold,
+    fontFamily: FONTS.familySemiBold,
   },
   contactField: {
     paddingTop: SPACINGS.multiplyBy(0.7),
   },
   contactLabel: {
-    fontWeight: FONTWEIGHT.bold,
+    fontFamily: FONTS.familySemiBold,
   }
 })
