@@ -5,8 +5,9 @@ import { CheckBox } from '@rneui/themed'
 
 import { COLORS } from '../theme/colors'
 
+import { FormError } from './FormError'
 import { styles } from './formFields.styles'
-import { TextSourceSans } from './TextSourceSans'
+import { FormLabel } from './FormLabel'
 
 /*  Setting list mode to scrollview globally
 FIXME: to be checked if we want this */
@@ -17,7 +18,7 @@ export const TextInputFormField = (props) => {
     <View
       style={props.textInputContainer}
     >
-      <TextSourceSans style={styles.formLabel}>{props.field}</TextSourceSans>
+      <FormLabel>{props.field}</FormLabel>
       <TextInput
         ref={props.inputRef}
         accessibilityLabel={props.field}
@@ -27,8 +28,7 @@ export const TextInputFormField = (props) => {
         {...props}
       />
       {props.touched && props.error &&
-        <TextSourceSans style={styles.formError} accessibilityLiveRegion="polite">
-          {props.error}</TextSourceSans>
+        <FormError>{props.error}</FormError>
       }
     </View>
   )
@@ -37,7 +37,7 @@ export const TextInputFormField = (props) => {
 export const TextInputFullFormField = (props) => {
   return (
     <View style={styles.textInputFullContainer}>
-      <TextSourceSans style={styles.formLabel}>{props.field}</TextSourceSans>
+      <FormLabel>{props.field}</FormLabel>
       <TextInput
         style={styles.textInputFull}
         accessibilityLabel={props.field}
@@ -46,7 +46,7 @@ export const TextInputFullFormField = (props) => {
         {...props}
       />
       {props.touched &&
-        <TextSourceSans style={styles.formError} accessibilityLiveRegion="polite">{props.error}</TextSourceSans>
+        <FormError>{props.error}</FormError>
       }
     </View>
   )
@@ -71,7 +71,7 @@ export const CheckBoxFormField = (props) => {
 export const DropdownFormFieldContainer = (props) => {
   return (
     <View style={styles.dropdownContainer}>
-      <TextSourceSans style={styles.formLabel}>{props.field}</TextSourceSans>
+      <FormLabel>{props.field}</FormLabel>
       {props.children}
     </View>
   )

@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native'
 
 import { COLORS } from '../../theme/colors'
-import { FONTWEIGHT, LINEHEIGHTS,SIZES } from '../../theme/fonts'
+import { FONTS, LINEHEIGHTS,SIZES } from '../../theme/fonts'
 import { SPACINGS } from '../../theme/spacings'
 
 export const styles = StyleSheet.create({
@@ -41,7 +41,7 @@ export const styles = StyleSheet.create({
     fontSize: SIZES.xs
   },
   username: {
-    fontWeight: FONTWEIGHT.bold
+    fontFamily: FONTS.familySemiBold
   },
   linkSection: {
     flexDirection: 'row',

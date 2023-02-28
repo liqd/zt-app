@@ -8,6 +8,7 @@ import mime from 'mime'
 
 import { ButtonAvatar } from './ButtonAvatar'
 import { CheckBoxFormField } from './formFields'
+import { FormLabel } from './FormLabel'
 import { styles } from './imageFormField.styles'
 import { TextSourceSans } from './TextSourceSans'
 
@@ -176,7 +177,7 @@ export const ImageChoiceFormFieldContainer = (props) => {
 
   return (
     <View style={styles.formRow}>
-      <TextSourceSans style={styles.formLabel}>{props.field}</TextSourceSans>
+      <FormLabel>{props.field}</FormLabel>
       {(!clicked && !props.image) &&
                 <Button
                   buttonStyle={styles.imageButton}

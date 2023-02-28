@@ -1,8 +1,8 @@
 import { StyleSheet } from 'react-native'
 
 import { COLORS } from '../theme/colors'
-import { LINEHEIGHTS,SIZES } from '../theme/fonts'
-import { BORDERRADIUS,BORDERWIDTH, SPACINGS } from '../theme/spacings'
+import { SIZES } from '../theme/fonts'
+import { BORDERRADIUS, BORDERWIDTH, SPACINGS } from '../theme/spacings'
 
 export const styles = StyleSheet.create({
   formImagePicker: {
@@ -55,13 +55,6 @@ export const styles = StyleSheet.create({
     flexWrap: 'wrap',
     justifyContent: 'space-around',
     alignItems: 'center'
-  },
-  formLabel: {
-    fontSize: SIZES.sm,
-    lineHeight: LINEHEIGHTS.sm,
-    paddingTop: SPACINGS.multiplyBy(.5),
-    paddingBottom: SPACINGS.multiplyBy(.25),
-    width: '100%'
   },
   textDark: {
     color: COLORS.text,

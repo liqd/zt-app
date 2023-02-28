@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native'
 
 import { COLORS } from '../../theme/colors'
-import { FONTWEIGHT,SIZES } from '../../theme/fonts'
+import { FONTS,SIZES } from '../../theme/fonts'
 import { SPACINGS } from '../../theme/spacings'
 
 export const styles = StyleSheet.create({
@@ -13,7 +13,7 @@ export const styles = StyleSheet.create({
   },
   title: {
     fontSize: SIZES.base,
-    fontWeight: FONTWEIGHT.bold,
+    fontFamily: FONTS.familySemiBold,
     marginBottom: SPACINGS.multiplyBy(0.5),
   },
   imageContainer: {

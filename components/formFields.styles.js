@@ -1,22 +1,10 @@
 import { StyleSheet } from 'react-native'
 
 import { COLORS } from '../theme/colors'
-import { FONTWEIGHT,LINEHEIGHTS, SIZES } from '../theme/fonts'
+import { FONTS, SIZES } from '../theme/fonts'
 import { BORDERWIDTH,SPACINGS } from '../theme/spacings'
 
 export const styles = StyleSheet.create({
-  formTitle: {
-    fontSize: SIZES.md,
-    lineHeight: LINEHEIGHTS.md,
-    fontWeight: FONTWEIGHT.bold
-  },
-  formLabel: {
-    fontSize: SIZES.sm,
-    lineHeight: LINEHEIGHTS.sm,
-    width: '100%',
-    paddingTop: SPACINGS.multiplyBy(.5),
-    paddingBottom: SPACINGS.multiplyBy(.25),
-  },
   textInput: {
     borderBottomColor: COLORS.grey.extralight,
     borderBottomWidth: BORDERWIDTH.base,
@@ -38,7 +26,7 @@ export const styles = StyleSheet.create({
   },
   checkBoxText: {
     fontSize: SIZES.xs,
-    fontWeight: FONTWEIGHT.base
+    fontFamily: FONTS.familySans
   },
   checkBoxWrapper: {
     alignItems: 'flex-start',
@@ -61,10 +49,6 @@ export const styles = StyleSheet.create({
   dropdownFormFieldText: {
     color: COLORS.text,
     fontSize: SIZES.base,
-  },
-  formError: {
-    fontSize: SIZES.xs,
-    color: COLORS.warning
   },
   formRow: {
     paddingVertical: SPACINGS.multiplyBy(.5),
