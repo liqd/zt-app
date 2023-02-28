@@ -57,9 +57,10 @@ exports[`Test Comment Snapshot 1`] = `
             Array [
               Object {
                 "fontFamily": "SourceSansPro_400Regular",
+                "fontSize": 18,
               },
               Object {
-                "fontWeight": "800",
+                "fontFamily": "SourceSansPro_600SemiBold",
               },
             ]
           }
@@ -71,10 +72,11 @@ exports[`Test Comment Snapshot 1`] = `
             Array [
               Object {
                 "fontFamily": "SourceSansPro_400Regular",
+                "fontSize": 18,
               },
               Object {
                 "color": "#666",
-                "fontSize": 13,
+                "fontSize": 14.625,
               },
             ]
           }
@@ -87,6 +89,7 @@ exports[`Test Comment Snapshot 1`] = `
       style={
         Object {
           "fontFamily": "SourceSansPro_400Regular",
+          "fontSize": 18,
         }
       }
     >
@@ -158,6 +161,7 @@ exports[`Test Comment Snapshot 1`] = `
       style={
         Object {
           "fontFamily": "SourceSansPro_400Regular",
+          "fontSize": 18,
         }
       }
     >
@@ -222,12 +226,13 @@ exports[`Test Comment Snapshot 1`] = `
             Array [
               Object {
                 "fontFamily": "SourceSansPro_400Regular",
+                "fontSize": 18,
               },
               Array [
                 Object {
-                  "fontSize": 15,
+                  "fontSize": 16.875,
                   "letterSpacing": 5,
-                  "lineHeight": 19,
+                  "lineHeight": 20.9,
                 },
                 Object {
                   "color": "#c4c4c4",
@@ -243,12 +248,13 @@ exports[`Test Comment Snapshot 1`] = `
             Array [
               Object {
                 "fontFamily": "SourceSansPro_400Regular",
+                "fontSize": 18,
               },
               Array [
                 Object {
-                  "fontSize": 15,
+                  "fontSize": 16.875,
                   "letterSpacing": 5,
-                  "lineHeight": 19,
+                  "lineHeight": 20.9,
                 },
                 Object {
                   "color": "#c4c4c4",
@@ -291,12 +297,13 @@ exports[`Test Comment Snapshot 1`] = `
             Array [
               Object {
                 "fontFamily": "SourceSansPro_400Regular",
+                "fontSize": 18,
               },
               Array [
                 Object {
-                  "fontSize": 15,
+                  "fontSize": 16.875,
                   "letterSpacing": 5,
-                  "lineHeight": 19,
+                  "lineHeight": 20.9,
                 },
                 Object {
                   "color": "#c4c4c4",
@@ -312,12 +319,13 @@ exports[`Test Comment Snapshot 1`] = `
             Array [
               Object {
                 "fontFamily": "SourceSansPro_400Regular",
+                "fontSize": 18,
               },
               Array [
                 Object {
-                  "fontSize": 15,
+                  "fontSize": 16.875,
                   "letterSpacing": 5,
-                  "lineHeight": 19,
+                  "lineHeight": 20.9,
                 },
                 Object {
                   "color": "#c4c4c4",
@@ -389,8 +397,8 @@ exports[`Test Comment Snapshot 1`] = `
             style={
               Object {
                 "color": "hsl(208, 8%, 63%)",
-                "fontSize": 15,
-                "lineHeight": 19,
+                "fontSize": 16.875,
+                "lineHeight": 20.9,
                 "marginLeft": 8,
                 "paddingVertical": 1,
                 "textAlign": "center",
@@ -461,8 +469,8 @@ exports[`Test Comment Snapshot 1`] = `
             style={
               Object {
                 "color": "#464a4c",
-                "fontSize": 15,
-                "lineHeight": 19,
+                "fontSize": 16.875,
+                "lineHeight": 20.9,
                 "marginLeft": 8,
                 "paddingVertical": 1,
                 "textAlign": "center",
