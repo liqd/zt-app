@@ -36,10 +36,11 @@ exports[`Test LoginScreen Snapshot 1`] = `
             Array [
               Object {
                 "fontFamily": "SourceSansPro_400Regular",
+                "fontSize": 18,
               },
               Object {
-                "fontSize": 28,
-                "fontWeight": "800",
+                "fontFamily": "SourceSansPro_600SemiBold",
+                "fontSize": 31.5,
                 "marginBottom": 15,
                 "marginTop": 80,
               },
@@ -53,9 +54,10 @@ exports[`Test LoginScreen Snapshot 1`] = `
             Array [
               Object {
                 "fontFamily": "SourceSansPro_400Regular",
+                "fontSize": 18,
               },
               Object {
-                "fontSize": 16,
+                "fontSize": 18,
                 "marginBottom": 30,
               },
             ]
@@ -68,6 +70,7 @@ exports[`Test LoginScreen Snapshot 1`] = `
               Array [
                 Object {
                   "fontFamily": "SourceSansPro_400Regular",
+                  "fontSize": 18,
                 },
                 Object {
                   "textDecorationLine": "underline",
@@ -85,12 +88,13 @@ exports[`Test LoginScreen Snapshot 1`] = `
               Array [
                 Object {
                   "fontFamily": "SourceSansPro_400Regular",
+                  "fontSize": 18,
                 },
                 Object {
-                  "fontSize": 15,
-                  "lineHeight": 19,
+                  "fontSize": 16.875,
+                  "lineHeight": 20.9,
                   "paddingBottom": 5,
-                  "paddingTop": 10,
+                  "paddingTop": 30,
                   "width": "100%",
                 },
               ]
@@ -112,7 +116,7 @@ exports[`Test LoginScreen Snapshot 1`] = `
               Object {
                 "borderBottomColor": "#d8d8d8",
                 "borderBottomWidth": 1,
-                "fontSize": 17,
+                "fontSize": 19.125,
                 "height": 40,
               }
             }
@@ -126,12 +130,13 @@ exports[`Test LoginScreen Snapshot 1`] = `
               Array [
                 Object {
                   "fontFamily": "SourceSansPro_400Regular",
+                  "fontSize": 18,
                 },
                 Object {
-                  "fontSize": 15,
-                  "lineHeight": 19,
+                  "fontSize": 16.875,
+                  "lineHeight": 20.9,
                   "paddingBottom": 5,
-                  "paddingTop": 10,
+                  "paddingTop": 30,
                   "width": "100%",
                 },
               ]
@@ -154,7 +159,7 @@ exports[`Test LoginScreen Snapshot 1`] = `
               Object {
                 "borderBottomColor": "#d8d8d8",
                 "borderBottomWidth": 1,
-                "fontSize": 17,
+                "fontSize": 19.125,
                 "height": 40,
               }
             }
@@ -168,13 +173,14 @@ exports[`Test LoginScreen Snapshot 1`] = `
             Array [
               Object {
                 "fontFamily": "SourceSansPro_400Regular",
+                "fontSize": 18,
               },
               Array [
                 Object {
                   "textDecorationLine": "underline",
                 },
                 Object {
-                  "fontSize": 16,
+                  "fontSize": 18,
                   "marginTop": 60,
                 },
               ],
@@ -235,7 +241,7 @@ exports[`Test LoginScreen Snapshot 1`] = `
             "borderRadius": 0,
             "borderWidth": 0,
             "flexDirection": "row",
-            "fontSize": 16,
+            "fontSize": 18,
             "height": 70,
             "justifyContent": "center",
             "padding": 8,

@@ -42,6 +42,7 @@ exports[`Test ListLink Snapshot 1`] = `
       style={
         Object {
           "fontFamily": "SourceSansPro_400Regular",
+          "fontSize": 18,
         }
       }
     />
@@ -49,6 +50,7 @@ exports[`Test ListLink Snapshot 1`] = `
       style={
         Object {
           "fontFamily": "SourceSansPro_400Regular",
+          "fontSize": 18,
         }
       }
     >

@@ -5,6 +5,7 @@ exports[`Test TextsourceSans no style in props 1`] = `
   style={
     Object {
       "fontFamily": "SourceSansPro_400Regular",
+      "fontSize": 18,
     }
   }
 >
@@ -18,6 +19,7 @@ exports[`Test TextsourceSans no style in props 2`] = `
     Array [
       Object {
         "fontFamily": "SourceSansPro_400Regular",
+        "fontSize": 18,
       },
       Object {
         "fontSize": 10,

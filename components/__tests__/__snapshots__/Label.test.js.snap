@@ -19,10 +19,11 @@ exports[`Test Label 1`] = `
       Array [
         Object {
           "fontFamily": "SourceSansPro_400Regular",
+          "fontSize": 18,
         },
         Object {
           "color": "#fff",
-          "fontSize": 15,
+          "fontSize": 16.875,
         },
       ]
     }
