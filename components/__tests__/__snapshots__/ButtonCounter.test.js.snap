@@ -30,11 +30,12 @@ exports[`Test ButtonCounter 1`] = `
       Array [
         Object {
           "fontFamily": "SourceSansPro_400Regular",
+          "fontSize": 18,
         },
         Object {
-          "fontSize": 15,
+          "fontSize": 16.875,
           "letterSpacing": 5,
-          "lineHeight": 19,
+          "lineHeight": 20.9,
         },
       ]
     }
@@ -46,11 +47,12 @@ exports[`Test ButtonCounter 1`] = `
       Array [
         Object {
           "fontFamily": "SourceSansPro_400Regular",
+          "fontSize": 18,
         },
         Object {
-          "fontSize": 15,
+          "fontSize": 16.875,
           "letterSpacing": 5,
-          "lineHeight": 19,
+          "lineHeight": 20.9,
         },
       ]
     }
@@ -90,11 +92,12 @@ exports[`Test ButtonCounter 10 1`] = `
       Array [
         Object {
           "fontFamily": "SourceSansPro_400Regular",
+          "fontSize": 18,
         },
         Object {
-          "fontSize": 15,
+          "fontSize": 16.875,
           "letterSpacing": 5,
-          "lineHeight": 19,
+          "lineHeight": 20.9,
         },
       ]
     }
@@ -106,11 +109,12 @@ exports[`Test ButtonCounter 10 1`] = `
       Array [
         Object {
           "fontFamily": "SourceSansPro_400Regular",
+          "fontSize": 18,
         },
         Object {
-          "fontSize": 15,
+          "fontSize": 16.875,
           "letterSpacing": 5,
-          "lineHeight": 19,
+          "lineHeight": 20.9,
         },
       ]
     }
@@ -170,12 +174,13 @@ exports[`Test ButtonCounter disabled 1`] = `
       Array [
         Object {
           "fontFamily": "SourceSansPro_400Regular",
+          "fontSize": 18,
         },
         Array [
           Object {
-            "fontSize": 15,
+            "fontSize": 16.875,
             "letterSpacing": 5,
-            "lineHeight": 19,
+            "lineHeight": 20.9,
           },
           Object {
             "color": "#c4c4c4",
@@ -191,12 +196,13 @@ exports[`Test ButtonCounter disabled 1`] = `
       Array [
         Object {
           "fontFamily": "SourceSansPro_400Regular",
+          "fontSize": 18,
         },
         Array [
           Object {
-            "fontSize": 15,
+            "fontSize": 16.875,
             "letterSpacing": 5,
-            "lineHeight": 19,
+            "lineHeight": 20.9,
           },
           Object {
             "color": "#c4c4c4",
@@ -260,16 +266,17 @@ exports[`Test ButtonCounter highlight 1`] = `
       Array [
         Object {
           "fontFamily": "SourceSansPro_400Regular",
+          "fontSize": 18,
         },
         Array [
           Object {
-            "fontSize": 15,
+            "fontSize": 16.875,
             "letterSpacing": 5,
-            "lineHeight": 19,
+            "lineHeight": 20.9,
           },
           Object {
             "color": "#2d40cc",
-            "fontWeight": "800",
+            "fontFamily": "SourceSansPro_600SemiBold",
           },
         ],
       ]
@@ -282,16 +289,17 @@ exports[`Test ButtonCounter highlight 1`] = `
       Array [
         Object {
           "fontFamily": "SourceSansPro_400Regular",
+          "fontSize": 18,
         },
         Array [
           Object {
-            "fontSize": 15,
+            "fontSize": 16.875,
             "letterSpacing": 5,
-            "lineHeight": 19,
+            "lineHeight": 20.9,
           },
           Object {
             "color": "#2d40cc",
-            "fontWeight": "800",
+            "fontFamily": "SourceSansPro_600SemiBold",
           },
         ],
       ]
@@ -352,16 +360,17 @@ exports[`Test ButtonCounter highlight 10 1`] = `
       Array [
         Object {
           "fontFamily": "SourceSansPro_400Regular",
+          "fontSize": 18,
         },
         Array [
           Object {
-            "fontSize": 15,
+            "fontSize": 16.875,
             "letterSpacing": 5,
-            "lineHeight": 19,
+            "lineHeight": 20.9,
           },
           Object {
             "color": "#a72b1e",
-            "fontWeight": "800",
+            "fontFamily": "SourceSansPro_600SemiBold",
           },
         ],
       ]
@@ -374,16 +383,17 @@ exports[`Test ButtonCounter highlight 10 1`] = `
       Array [
         Object {
           "fontFamily": "SourceSansPro_400Regular",
+          "fontSize": 18,
         },
         Array [
           Object {
-            "fontSize": 15,
+            "fontSize": 16.875,
             "letterSpacing": 5,
-            "lineHeight": 19,
+            "lineHeight": 20.9,
           },
           Object {
             "color": "#a72b1e",
-            "fontWeight": "800",
+            "fontFamily": "SourceSansPro_600SemiBold",
           },
         ],
       ]

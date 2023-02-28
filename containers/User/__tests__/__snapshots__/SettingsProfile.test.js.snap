@@ -110,7 +110,7 @@ exports[`Test SettingsOverview Snapshot no user image 1`] = `
               style={
                 Object {
                   "color": "#1a1a1a",
-                  "fontSize": 17,
+                  "fontSize": 19.125,
                   "marginHorizontal": 5,
                   "paddingVertical": 1,
                   "textAlign": "center",
@@ -153,6 +153,7 @@ exports[`Test SettingsOverview Snapshot no user image 1`] = `
               Array [
                 Object {
                   "fontFamily": "SourceSansPro_400Regular",
+                  "fontSize": 18,
                 },
                 Object {
                   "backgroundColor": "#f2f2f2",
@@ -160,7 +161,7 @@ exports[`Test SettingsOverview Snapshot no user image 1`] = `
                   "borderBottomWidth": 1,
                   "borderRadius": 0,
                   "fontFamily": "SourceSansPro_600SemiBold",
-                  "fontSize": 17,
+                  "fontSize": 19.125,
                   "paddingLeft": 15,
                   "paddingVertical": 15,
                 },
@@ -232,6 +233,7 @@ exports[`Test SettingsOverview Snapshot no user image 1`] = `
                 style={
                   Object {
                     "fontFamily": "SourceSansPro_400Regular",
+                    "fontSize": 18,
                   }
                 }
               >
@@ -254,12 +256,13 @@ exports[`Test SettingsOverview Snapshot no user image 1`] = `
                 Array [
                   Object {
                     "fontFamily": "SourceSansPro_400Regular",
+                    "fontSize": 18,
                   },
                   Object {
-                    "fontSize": 15,
-                    "lineHeight": 19,
+                    "fontSize": 16.875,
+                    "lineHeight": 20.9,
                     "paddingBottom": 5,
-                    "paddingTop": 10,
+                    "paddingTop": 30,
                     "width": "100%",
                   },
                 ]
@@ -280,7 +283,7 @@ exports[`Test SettingsOverview Snapshot no user image 1`] = `
                 Object {
                   "borderBottomColor": "#d8d8d8",
                   "borderBottomWidth": 1,
-                  "fontSize": 17,
+                  "fontSize": 19.125,
                   "height": 40,
                 }
               }
@@ -348,7 +351,7 @@ exports[`Test SettingsOverview Snapshot no user image 1`] = `
               "borderRadius": 0,
               "borderWidth": 0,
               "flexDirection": "row",
-              "fontSize": 16,
+              "fontSize": 18,
               "height": 70,
               "justifyContent": "center",
               "padding": 8,
