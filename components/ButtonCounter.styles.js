@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native'
 
 import { COLORS } from '../theme/colors'
-import { FONTWEIGHT,LETTERSPACING, LINEHEIGHTS, SIZES } from '../theme/fonts'
+import { FONTS, LETTERSPACING, LINEHEIGHTS, SIZES } from '../theme/fonts'
 
 export const styles = StyleSheet.create({
   container: {
@@ -18,10 +18,10 @@ export const styles = StyleSheet.create({
   },
   highlightUpStyle: {
     color: COLORS.primary,
-    fontWeight: FONTWEIGHT.bold
+    fontFamily: FONTS.familySemiBold
   },
   highlightDownStyle: {
     color: COLORS.danger,
-    fontWeight: FONTWEIGHT.bold
+    fontFamily: FONTS.familySemiBold
   },
 })

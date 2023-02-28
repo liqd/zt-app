@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native'
 
 import { COLORS } from '../../theme/colors'
-import { FONTS, FONTWEIGHT,SIZES } from '../../theme/fonts'
+import { FONTS,SIZES } from '../../theme/fonts'
 import { SPACINGS } from '../../theme/spacings'
 
 export const styles = StyleSheet.create({
@@ -11,7 +11,7 @@ export const styles = StyleSheet.create({
   },
   title: {
     fontSize: SIZES.xxl,
-    fontWeight: FONTWEIGHT.bold,
+    fontFamily: FONTS.familySemiBold,
     marginVertical: SPACINGS.multiplyBy(.5)
   },
   subtitle: {

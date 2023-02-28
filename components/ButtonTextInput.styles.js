@@ -19,13 +19,6 @@ export const styles = StyleSheet.create({
     borderBottomWidth: BORDERWIDTH.base,
     color: COLORS.grey.light
   },
-  formLabel: {
-    fontSize: SIZES.sm,
-    lineHeight: LINEHEIGHTS.sm,
-    paddingTop: SPACINGS.multiplyBy(.5),
-    paddingBottom: SPACINGS.multiplyBy(.25),
-    width: '100%'
-  },
   textInputButtonTitleBase: {
     fontSize: SIZES.md,
     lineHeight: LINEHEIGHTS.base,

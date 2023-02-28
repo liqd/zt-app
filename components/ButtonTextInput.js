@@ -4,12 +4,13 @@ import { TouchableOpacity } from 'react-native'
 import IconSLI from 'react-native-vector-icons/SimpleLineIcons'
 
 import { styles } from './ButtonTextInput.styles'
+import { FormLabel } from './FormLabel'
 import { TextSourceSans } from './TextSourceSans'
 
 export const ButtonTextInputFieldContainer = (props) => {
   return (
     <View>
-      <TextSourceSans style={styles.formLabel}>{props.field}</TextSourceSans>
+      <FormLabel>{props.field}</FormLabel>
       {props.children}
     </View>
   )
