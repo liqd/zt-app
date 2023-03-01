@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { Trans } from 'react-i18next'
 import { Alert, Linking, View } from 'react-native'
 import { Formik } from 'formik'
 import * as yup from 'yup'
@@ -75,11 +76,13 @@ export const LoginScreen = () => {
             <TextSourceSans style={styles.title}>
               Login
             </TextSourceSans>
-            <TextSourceSans style={styles.registerText}>
-              If you have not created an account yet, then please <LinkTextSourceSans
-                onPress={() => Linking.openURL(baseUrl + registerUrl)}
-              >register</LinkTextSourceSans> first.
-            </TextSourceSans>
+            <Trans>
+              <TextSourceSans style={styles.registerText}>
+                If you have not created an account yet, then please <LinkTextSourceSans
+                  onPress={() => Linking.openURL(baseUrl + registerUrl)}
+                >register</LinkTextSourceSans> first.
+              </TextSourceSans>
+            </Trans>
             <TextInputFormField
               field='Username or E-mail address:'
               name='username'

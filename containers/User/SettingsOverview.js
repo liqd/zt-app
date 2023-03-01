@@ -1,11 +1,12 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
 import { Header } from '../../components/Header'
 import { ListContainer, ListLink } from '../../components/List'
 
 export const SettingsOverview = (props) => {
-
+  const { t } = useTranslation()
   // Pass fetched data forward
   const toProfileSettings = () => {
     props.navigation.navigate('SettingsProfile', {
@@ -38,7 +39,7 @@ export const SettingsOverview = (props) => {
       <ListContainer
         title='Profile'>
         <ListLink
-          linkTitle='Edit Profile'
+          linkTitle={t('Edit Profile')}
           onPress={toProfileSettings}/>
         <ListLink
           linkTitle='Dummy Settings'
