@@ -17,6 +17,8 @@ export const ExplorePage = (props) => {
   const [projects, setProjects] = useState([])
   const { user, deepLink, setDeepLink, signOut } = useAuthorization()
 
+  const userImage = props?.route?.params?.userImage
+
   useFocusEffect(
     useCallback(() => {
       if (deepLink !== null){
@@ -82,9 +84,9 @@ export const ExplorePage = (props) => {
 
   const rightHeaderButton = (
     <ButtonAvatar
-      imgSource={ user && { uri: (user.user_image) ? user.user_image : user.user_image_fallback }}
-      labelText="profile"
-      hintText="click to go to profile and settings"
+      imgSource={ userImage ? { uri: userImage } : user && { uri: (user.user_image) ? user.user_image : user.user_image_fallback }}
+      a11yLabelText="profile"
+      a11yHintText="click to go to profile and settings"
       onPress={toProfile}
     />
   )

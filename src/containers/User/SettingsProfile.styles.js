@@ -13,5 +13,8 @@ export const styles = StyleSheet.create({
     paddingHorizontal: SPACINGS.multiplyBy(0.75),
     borderBottomColor: COLORS.grey.extralight,
     borderBottomWidth: BORDERWIDTH.base,
+  },
+  avatarStyles: {
+    marginRight: SPACINGS.multiplyBy(1),
   }
 })
