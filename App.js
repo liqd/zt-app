@@ -10,9 +10,9 @@ import * as SplashScreen from 'expo-splash-screen'
 import * as Sentry from 'sentry-expo'
 import 'intl-pluralrules'
 
-import { AuthProvider } from './containers/Auth/AuthProvider'
-import { IdeaNavigator } from './navigation/IdeaNavigator'
-import './i18n'
+import './src/i18n'
+import { AuthProvider } from './src/containers/Auth/AuthProvider'
+import { IdeaNavigator } from './src/navigation/IdeaNavigator'
 
 Sentry.init({
   url: 'https://sentry.liqd.net',
