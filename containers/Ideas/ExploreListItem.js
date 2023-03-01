@@ -1,5 +1,5 @@
 import React from 'react'
-import { Image, TouchableOpacity,View } from 'react-native'
+import { Image, TouchableOpacity, View } from 'react-native'
 import IconSLI from 'react-native-vector-icons/SimpleLineIcons'
 import { LinearProgress } from '@rneui/themed'
 
@@ -16,7 +16,10 @@ export const ExploreListItem = (props) => {
   const clockIcon = (<IconSLI name='clock' color={COLORS.grey.medium} />)
 
   return (
-    <TouchableOpacity accessibilityRole="button" onPress={() => props.action(props.item)}>
+    <TouchableOpacity
+      accessibilityRole="button"
+      onPress={() => props.action(props.item)}
+      delayPressIn={100}>
       <View style={styles.container}>
         <View style={styles.imageContainer}>
           <Image
