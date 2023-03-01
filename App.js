@@ -8,9 +8,11 @@ import {
 import * as Font from 'expo-font'
 import * as SplashScreen from 'expo-splash-screen'
 import * as Sentry from 'sentry-expo'
+import 'intl-pluralrules'
 
 import { AuthProvider } from './containers/Auth/AuthProvider'
 import { IdeaNavigator } from './navigation/IdeaNavigator'
+import './i18n'
 
 Sentry.init({
   url: 'https://sentry.liqd.net',
