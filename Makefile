@@ -23,6 +23,7 @@ help:
 	@echo "  make test-nocov      -- run tests without coverage"
 	@echo "  make test-debug      -- run changed tests only, no coverage"
 	@echo "  make updateSnapshots -- update the snapshots for tests"
+	@echo "  make translations    -- create or update translation files"
 	@echo
 
 .PHONY: install
@@ -79,3 +80,7 @@ test-debug:
 .PHONY: updateSnapshots
 updateSnapshots:
 	npm run updateSnapshots
+
+.PHONY: translations
+translations:
+	npx i18next-scanner
