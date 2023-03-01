@@ -1,21 +1,22 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Alert } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { Formik } from 'formik'
 import * as yup from 'yup'
 
 import API from '../../BaseApi'
+import { ButtonAvatar } from '../../components/ButtonAvatar'
 import { TextInputFormField } from '../../components/formFields'
 import { Header } from '../../components/Header'
-import { AvaterImageAddButton } from '../../components/imageFormField'
 import { KeyboardScrollView } from '../../components/KeyboardScrollView'
 import { ListContainer, ListItem } from '../../components/List'
 
 import { styles } from './SettingsProfile.styles'
 
 export const SettingsProfile = props => {
+  const [userImage, setUserImage] = useState(props.route.params.userImage)
 
-  const {userName, userImage} = props.route.params
+  const {userName} = props.route.params
 
   const userNameValidationSchema = yup.object().shape({
     username: yup
@@ -37,7 +38,6 @@ export const SettingsProfile = props => {
         ? values[key].forEach((value) => formData.append(key, value))
         : formData.append(key, values[key])
     }
-
     return formData
   }
 
@@ -52,7 +52,7 @@ export const SettingsProfile = props => {
             name: 'SettingsOverview',
             params: {
               'userName': data['username'],
-              'userImage': data['user_image']},
+              'userImage': data['user_image'] || data['user_image_fallback']},
             merge: true,
           })
         } else {
@@ -66,6 +66,16 @@ export const SettingsProfile = props => {
           Alert.alert(errorMessage, errorDetail)
         }
       })
+  }
+
+  const toProfileSettingsAvatar = (setFieldValue) => {
+    props.navigation.navigate('SettingsProfileAvatar', {
+      userImage,
+      onGoBack: (newImage) => {
+        setFieldValue('user_image', newImage)
+        setUserImage(newImage.uri)
+      }
+    })
   }
 
   return (
@@ -99,19 +109,15 @@ export const SettingsProfile = props => {
               <ListContainer
                 title='Edit Profile'>
                 <ListItem>
-                  <AvaterImageAddButton
-                    name='user_image'
-                    values={values.user_image}
-                    field={userImage ? 'Change profile picture' : 'Add profile picture'}
-                    fieldPreview={'Profile Picture'}
-                    labelText='change profile image'
-                    title='profile image'
-                    onSetImage={(img) => {
-                      setFieldValue('user_image', img)
-                    }}
+                  <ButtonAvatar
                     imgSource={{uri: userImage}}
-                    image={(values.user_image && values.user_image.uri) ? values.user_image.uri : (values.user_image && values.user_image)}
-                  />
+                    a11yLabelText="Change profile picture"
+                    a11yHintText="Click to navigate to change or add your profile image"
+                    avatarStyles={styles.avatarStyles}
+                    onPress={() => toProfileSettingsAvatar(setFieldValue)}
+                  >
+                    {userImage ? 'Change profile picture' : 'Add profile picture'}
+                  </ButtonAvatar>
                 </ListItem>
                 <TextInputFormField
                   username='username'

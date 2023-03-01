@@ -15,6 +15,7 @@ import { ReportCreateMessage } from '../containers/Reports/ReportCreateMessage'
 import { ProfileScreen } from '../containers/User/ProfileScreen'
 import { SettingsOverview } from '../containers/User/SettingsOverview'
 import { SettingsProfile } from '../containers/User/SettingsProfile'
+import { SettingsProfileAvatar } from '../containers/User/SettingsProfileAvatar'
 
 import { DeepLinking } from './DeepLinking.js'
 
@@ -49,6 +50,7 @@ export const IdeaNavigator = () => {
         <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
         <Stack.Screen name="SettingsOverview" component={SettingsOverview} />
         <Stack.Screen name="SettingsProfile" component={SettingsProfile} />
+        <Stack.Screen name="SettingsProfileAvatar" component={SettingsProfileAvatar} />
       </>
     }
   }
