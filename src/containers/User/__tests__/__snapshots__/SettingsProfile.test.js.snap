@@ -186,7 +186,8 @@ exports[`Test SettingsOverview Snapshot no user image 1`] = `
             }
           >
             <View
-              accessibilityLabel="change profile image"
+              accessibilityHint="Click to navigate to change or add your profile image"
+              accessibilityLabel="Change profile picture"
               accessibilityRole="button"
               accessible={true}
               collapsable={false}

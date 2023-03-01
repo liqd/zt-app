@@ -19,8 +19,8 @@ export const ButtonAvatar = (props) => {
     <TouchableOpacity
       style={styles.container}
       onPress={props.onPress}
-      accessibilityLabel={props.labelText}
-      accessibilityHint={props.hintText}
+      accessibilityLabel={props.a11yLabelText}
+      accessibilityHint={props.a11yHintText}
       accessibilityRole="button"
       disabled={props.disabled}
     >
@@ -28,8 +28,8 @@ export const ButtonAvatar = (props) => {
         imgSource={props.imgSource}
         avatarStyles={props.avatarStyles}
       />
-      {props.field &&
-      <TextSourceSans>{props.field}</TextSourceSans>
+      {props.children &&
+        <TextSourceSans>{props.children}</TextSourceSans>
       }
     </TouchableOpacity>
   )

@@ -30,6 +30,18 @@ export const ProfileScreen = (props) => {
     />)
   const user = useUser(userId)
 
+  // Pass updated info back
+  const toExplorePage = () => {
+    props.navigation.navigate({
+      name: 'ExplorePage',
+      params: {
+        userName: userName,
+        userImage: userImage
+      },
+      merge: true,
+    })
+  }
+
   return (
     <SafeAreaView
       style={styles.safeAreaContainer}
@@ -38,6 +50,7 @@ export const ProfileScreen = (props) => {
         <Header
           navigation={props.navigation}
           rightButton={user && user.is_self && rightHeaderButton}
+          handleCustomBack={toExplorePage}
         />
         <View style={styles.containerInner}>
           <AvatarCircle
