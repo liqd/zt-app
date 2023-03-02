@@ -7,7 +7,7 @@ import { SPACINGS } from '../theme/spacings'
 export const styles = StyleSheet.create({
   collapsibleButton: {
     backgroundColor: COLORS.paper,
-    width: '100%',
+    flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -17,11 +17,13 @@ export const styles = StyleSheet.create({
     borderBottomWidth: 1
   },
   collapsibleButtonTitle: {
+    flexGrow: 2,
+    flexBasis: '90%',
     fontSize: SIZES.md,
-    fontFamily: FONTS.familySemiBold
+    fontFamily: FONTS.familySemiBold,
   },
   collapsibleIcon: {
-    marginHorizontal: SPACINGS.multiplyBy(0.75)
+    flexGrow: 1
   },
   collapsibleBody: {
     paddingTop: SPACINGS.multiplyBy(0.5),
