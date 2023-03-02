@@ -27,7 +27,7 @@ export const baseUrl = (() => {
     switch (Constants?.expoConfig?.releaseChannel) {
       case 'prod':
       case 'default':
-        return 'https://adhocracy.plus'
+        return 'https://aplus-app.liqd.net'
       case 'stage':
         return 'https://aplus-stage.liqd.net'
       case 'dev':
