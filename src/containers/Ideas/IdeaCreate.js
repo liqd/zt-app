@@ -7,9 +7,7 @@ import * as yup from 'yup'
 
 import API from '../../BaseApi'
 import { ButtonTextInput, ButtonTextInputFieldContainer } from '../../components/ButtonTextInput'
-import {
-  DropdownFormField,  DropdownFormFieldContainer,
-  TextInputFormField } from '../../components/formFields'
+import { DropdownFormField, TextInputFormField } from '../../components/formFields'
 import { Header } from '../../components/Header'
 import {
   ImageChoiceFormFieldContainer } from '../../components/imageFormField'
@@ -244,17 +242,15 @@ export const IdeaCreate = props => {
                   </ButtonTextInput>
                 </ButtonTextInputFieldContainer>
                 {categories.length > 0 &&
-                  <DropdownFormFieldContainer
+                  <DropdownFormField
                     field={t('Idea Category')}
-                    name='category'>
-                    <DropdownFormField
-                      items={categories}
-                      setItems={setCategories}
-                      value={values.category}
-                      onChangeValue={(selCat) => setFieldValue('category', selCat)}
-                    >
-                    </DropdownFormField>
-                  </DropdownFormFieldContainer>
+                    name='category'
+                    items={categories}
+                    setItems={setCategories}
+                    value={values.category}
+                    onChangeValue={(selCat) => setFieldValue('category', selCat)}
+                  >
+                  </DropdownFormField>
                 }
                 {labelChoices.length > 0 && initialLabels &&
                   <LabelListContainer

@@ -9,10 +9,6 @@ import { FormError } from './FormError'
 import { styles } from './formFields.styles'
 import { FormLabel } from './FormLabel'
 
-/*  Setting list mode to scrollview globally
-FIXME: to be checked if we want this */
-DropDownPicker.setListMode('SCROLLVIEW')
-
 export const TextInputFormField = (props) => {
   return (
     <View
@@ -68,20 +64,12 @@ export const CheckBoxFormField = (props) => {
   )
 }
 
-export const DropdownFormFieldContainer = (props) => {
-  return (
-    <View style={styles.dropdownContainer}>
-      <FormLabel>{props.field}</FormLabel>
-      {props.children}
-    </View>
-  )
-}
-
 export const DropdownFormField = (props) => {
   const [ open, setOpen ] = useState(false)
   const [ selected, setSelected ] = useState(props.value)
   return (
-    <View>
+    <View style={styles.dropdownContainer}>
+      <FormLabel>{props.field}</FormLabel>
       <DropDownPicker
         style={styles.dropdownFormField}
         open={open}
