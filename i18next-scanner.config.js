@@ -38,8 +38,8 @@ module.exports = {
       return '__NOT_TRANSLATED__'
     },
     resource: {
-      loadPath: 'locale/{{lng}}/{{ns}}.json',
-      savePath: 'locale/{{lng}}/{{ns}}.json',
+      loadPath: './locale/{{lng}}/{{ns}}.json',
+      savePath: './locale/{{lng}}/{{ns}}.json',
       jsonIndent: 2,
       lineEnding: '\n'
     },

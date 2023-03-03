@@ -135,6 +135,16 @@ const makeDeleteRequest = (url, token = null) => {
     .catch(error => console.error(error))
 }
 
+export function getUser(userPk, token = null) {
+  let url
+  if (userPk) {
+    url = endpoints.user.replace('$userPk', userPk)
+  } else {
+    url = endpoints.account
+  }
+  return makeGetRequest(url, token)
+}
+
 const API = {
   getIdea(moduleId, ideaId, token = null) {
     const module_url = endpoints.idea.replace('$moduleId', moduleId)
@@ -214,14 +224,6 @@ const API = {
     const ct_obj_url = ct_url.replace('$objectPk', objectPk)
     const url = ct_obj_url.replace('$commentPk', commentPk)
     return makeDeleteRequest(url, token)
-  },
-  getUser(userPk, token = null) {
-    const url = endpoints.user.replace('$userPk', userPk)
-    return makeGetRequest(url, token)
-  },
-  getAuthenticatedUser(token = null) {
-    const url = endpoints.account
-    return makeGetRequest(url, token)
   },
   editUser(data, token = null) {
     const url = endpoints.account
