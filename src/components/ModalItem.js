@@ -5,8 +5,8 @@ import { ListItem } from '@rneui/themed'
 import { styles } from './ModalItem.styles'
 
 export const ModalItem = (props) => {
-  const {item: { isCancel, isText }} = props
-
+  const {item: { isCancel, isText, title }} = props
+  const titleList = Array.isArray(title) ? title : [title]
   let containerStyles
   if (isText) {
     containerStyles = styles.modalText
@@ -37,9 +37,11 @@ export const ModalItem = (props) => {
       containerStyle={containerStyles}
     >
       <ListItem.Content style={styles.modalContent}>
-        <ListItem.Title style={listItemStyles}>
-          {props.item.title}
-        </ListItem.Title>
+        {titleList.map((t,i) => (
+          <ListItem.Title style={listItemStyles} key={i}>
+            {t}
+          </ListItem.Title>
+        ))}
       </ListItem.Content>
     </ListItem>
   )

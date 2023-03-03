@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import {
   Alert,
   Image,
@@ -46,9 +47,10 @@ export const Idea = (props) => {
   const [submitPending, setSubmitPending] = useState(false)
   const hasComments = comments.length !== 0
   const commentInputRef = useRef(null)
+  const { t } = useTranslation()
   const ideaMenuItems = [
     {
-      title: 'Edit',
+      title: t('Edit'),
       icon: 'pencil',
       action: () =>  {
         setMenuVisible(false)
@@ -62,7 +64,7 @@ export const Idea = (props) => {
       isAllowed: ideaState.has_changing_permission
     },
     {
-      title: 'Delete',
+      title: t('Delete'),
       icon: 'trash',
       action: () => {
         setDeleteModalItems(ideaDeleteModalItems)
@@ -71,7 +73,7 @@ export const Idea = (props) => {
       isAllowed: ideaState.has_deleting_permission
     },
     {
-      title: 'Report',
+      title: t('Report'),
       icon: 'flag',
       action: () => {
         setMenuVisible(false)
@@ -89,7 +91,7 @@ export const Idea = (props) => {
       isAllowed: true
     },
     {
-      title: 'Cancel',
+      title: t('Cancel'),
       action: () => toggleMenu(),
       isCancel: true,
       isAllowed: true
@@ -99,16 +101,15 @@ export const Idea = (props) => {
   const ideaDeleteModalItems = [
     {
       // space is to center the text
-      title: '   This idea will be deleted.\n' +
-        'This action cannot be undone.',
+      title: [t('This idea will be deleted.'), t('This action cannot be undone.')],
       isText: true
     },
     {
-      title: 'Delete',
+      title: t('Delete'),
       action: () => deleteIdea()
     },
     {
-      title: 'Cancel',
+      title: t('Cancel'),
       action: () => toggleDeleteModal(),
       isCancel: true
     },
@@ -270,9 +271,9 @@ export const Idea = (props) => {
         toggleDeleteModal()
         if (statusCode == 204) {
           Alert.alert(
-            'Your idea was deleted.',
-            'Thank you for participating!',
-            [{ text: 'Ok' }]
+            t('Your idea was deleted.'),
+            t('Thank you for participating!'),
+            [{ text: t('Ok') }]
           )
           props.navigation.goBack()
         } else {
@@ -398,15 +399,15 @@ export const Idea = (props) => {
                 {ideaState.creator} {DateService(idea.created)}
               </TextSourceSans>
               <TextSourceSans style={styles.text}>
-            Reference No.: {ideaState.reference_number || 'n/a'}
+                {t('Reference No.:') + ' ' + ideaState.reference_number || t('n/a')}
               </TextSourceSans>
             </View>
             <View style={styles.bottomActionsContainer}>
               <View style={styles.ratingButtons}>
                 <ButtonCounter
                   icon={arrowUpIcon}
-                  labelText="up-votes"
-                  hintText="click to up vote"
+                  labelText={t('up-votes')}
+                  hintText={t('click to up vote')}
                   counter={ideaState.positive_rating_count}
                   onPress={() => handleRate(1)}
                   highlight={
@@ -418,8 +419,8 @@ export const Idea = (props) => {
                 />
                 <ButtonCounter
                   icon={arrowDownIcon}
-                  labelText="down-votes"
-                  hintText="click to down vote"
+                  labelText={t('down-votes')}
+                  hintText={t('click to down vote')}
                   counter={ideaState.negative_rating_count}
                   onPress={() => handleRate(-1)}
                   highlight={

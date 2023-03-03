@@ -1,4 +1,5 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import * as Linking from 'expo-linking'
@@ -31,6 +32,7 @@ const linking = {
 }
 
 export const IdeaNavigator = () => {
+  const { t } = useTranslation()
   const { loading, user } = useAuthorization()
 
   let stackScreen
@@ -44,9 +46,24 @@ export const IdeaNavigator = () => {
         <Stack.Screen name="ExplorePage" component={ExplorePage} />
         <Stack.Screen name="IdeaProject" component={IdeaProject} />
         <Stack.Screen name="IdeaDetail" component={Idea} />
-        <Stack.Screen name="IdeaCreate" component={IdeaCreate} />
-        <Stack.Screen name="IdeaCreateDescription" component={IdeaCreateDescription} />
-        <Stack.Screen name="ReportCreateMessage" component={ReportCreateMessage} />
+        <Stack.Screen name="IdeaCreate" component={IdeaCreate}
+          options={{
+            headerTitle: t('Submit your idea'),
+            // headerBackTitle only for iOS
+            headerBackTitle: t('Back')
+          }} />
+        <Stack.Screen name="IdeaCreateDescription" component={IdeaCreateDescription}
+          options={{
+            headerTitle: t('Add your description'),
+            // headerBackTitle only for iOS
+            headerBackTitle: t('Back')
+          }} />
+        <Stack.Screen name="ReportCreateMessage" component={ReportCreateMessage}
+          options={{
+            headerTitle: t('Add your message'),
+            // headerBackTitle only for iOS
+            headerBackTitle: t('Back')
+          }} />
         <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
         <Stack.Screen name="SettingsOverview" component={SettingsOverview} />
         <Stack.Screen name="SettingsProfile" component={SettingsProfile} />

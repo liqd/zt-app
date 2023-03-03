@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
 import { TextInput, TouchableOpacity,View } from 'react-native'
 import IconFA from 'react-native-vector-icons/FontAwesome'
 import { Formik } from 'formik'
@@ -10,12 +11,13 @@ import { SIZES } from '../../theme/fonts'
 import { styles } from './CommentForm.styles'
 
 export const CommentForm = (props) => {
+  const { t } = useTranslation()
   const commentValidationSchema = yup.object().shape({
     comment: yup
       .string()
       .max(
         4000,
-        'Comment must be no longer than 4000 characters.'
+        t('Comment must be no longer than 4000 characters.')
       )
   })
 
@@ -58,12 +60,12 @@ export const CommentForm = (props) => {
             <View style={styles.textInputContainer}>
               <TextInput
                 style={styles.textInput}
-                accessibilityLabel="Comment input"
-                accessibilityHint="Type your comment here"
+                accessibilityLabel={t('Comment input')}
+                accessibilityHint={t('Type your comment here')}
                 name='comment'
                 ref={props.inputRef}
                 value={values.comment}
-                placeholder='Enter your comment'
+                placeholder={t('Enter your comment')}
                 placeholderTextColor={COLORS.grey.medium}
                 onChangeText={handleChange('comment')}
                 onBlur={handleBlur('comment')}

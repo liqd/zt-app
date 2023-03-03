@@ -1,4 +1,5 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import { View } from 'react-native'
 import IconSLI from 'react-native-vector-icons/SimpleLineIcons'
 import { Button } from '@rneui/base'
@@ -6,6 +7,7 @@ import { Button } from '@rneui/base'
 import { styles } from './Header.styles.js'
 
 export const Header = (props) => {
+  const { t } = useTranslation()
   const arrowLeftIcon = (
     <IconSLI name='arrow-left' size={22} color={props.arrowColor ? props.arrowColor : undefined} />
   )
@@ -25,7 +27,7 @@ export const Header = (props) => {
     <Button
       buttonStyle={backButtonStyle}
       titleStyle={backButtonTextStyle}
-      title='Back'
+      title={t('Back')}
       type='clear'
       icon={arrowLeftIcon}
       onPress={props.handleCustomBack ? props.handleCustomBack : handleBack}

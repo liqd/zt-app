@@ -1,4 +1,5 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import { View } from 'react-native'
 
 import { TextSourceSans } from '../../components/TextSourceSans'
@@ -6,14 +7,13 @@ import { TextSourceSans } from '../../components/TextSourceSans'
 import { Comment } from './Comment'
 
 export const Comments = (props) => {
+  const { t } = useTranslation()
   const { navigation } = props
 
   return (
     <View>
       <TextSourceSans>
-        {props.comments.length} {props.comments.length !== 1
-          ? 'Entries'
-          : 'Entry'}
+        {t('{{ count }} Entries', {count: props.comments.length})}
       </TextSourceSans>
       {props.comments.map((comment) =>
         <Comment
