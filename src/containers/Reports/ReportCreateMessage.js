@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Alert, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { Formik } from 'formik'
@@ -13,6 +14,7 @@ import { TextSourceSans } from '../../components/TextSourceSans'
 import { styles } from './ReportCreateMessage.styles'
 
 export const ReportCreateMessage = props => {
+  const { t } = useTranslation()
   const {content_type, object_pk} = props.route.params
   const [error, setError] = useState()
   const [submitPending, setSubmitPending] = useState()
@@ -20,13 +22,13 @@ export const ReportCreateMessage = props => {
   const reportMessageValidationSchema = yup.object().shape({
     message: yup
       .string()
-      .max(1024, 'Message must be no longer then 1024 characters')
-      .required('Please add a few words explaining why you are reporting this content'),
+      .max(1024, t('Message must be no longer then 1024 characters'))
+      .required(t('Please add a few words explaining why you are reporting this content')),
   })
 
   useEffect(() => {
     if (error) {
-      Alert.alert('An error occured', error, [{ text: 'Ok' }])
+      Alert.alert(t('An error occured'), error, [{ text: t('Ok') }])
     }
   }, [error])
 
@@ -41,7 +43,7 @@ export const ReportCreateMessage = props => {
       .then((response) => {
         const {statusCode, data} = response
         if (statusCode === 201) {
-          Alert.alert('Thank you! We are taking care of it.')
+          Alert.alert(t('Thank you! We are taking care of it.'))
           setSubmitPending(false)
           props.navigation.goBack()
         } else if (statusCode === 403) {
@@ -79,20 +81,20 @@ export const ReportCreateMessage = props => {
           <KeyboardScrollView
             handleSubmit={handleSubmit}
             isValid={isValid && !submitPending}
-            buttonText='Submit'
+            buttonText={t('Submit')}
           >
             <TextSourceSans style={styles.title}>
-              You want to report this content? Your message will be sent to the
-              moderation. The moderation will look at the reported content. The
-              content will be deleted if it does not meet our discussion rules
-              (netiquette).
+              {t('You want to report this content? Your message will be sent to the ' +
+              'moderation. The moderation will look at the reported content. The ' +
+              'content will be deleted if it does not meet our discussion rules ' +
+              '(netiquette).')}
             </TextSourceSans>
             <TextInputFullFormField
               name='message'
               value={values.message}
-              placeholder='Add message'
+              placeholder={t('Add message')}
               returnKeyType='next'
-              returnKeyLabel='next'
+              returnKeyLabel={t('next')}
               onChangeText={handleChange('message')}
               onBlur={handleBlur('message')}
               error={errors.message}
@@ -105,10 +107,4 @@ export const ReportCreateMessage = props => {
       </Formik>
     </SafeAreaView>
   )
-}
-
-ReportCreateMessage.navigationOptions = {
-  headerTitle: 'Add your message',
-  // headerBackTitle only for iOS
-  headerBackTitle: 'Back'
 }

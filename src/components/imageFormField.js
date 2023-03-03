@@ -1,4 +1,5 @@
 import React, { useEffect,useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Alert, Image, Platform,View } from 'react-native'
 import IconSLI from 'react-native-vector-icons/SimpleLineIcons'
 import { Button } from '@rneui/base'
@@ -12,6 +13,7 @@ import { styles } from './imageFormField.styles'
 import { TextSourceSans } from './TextSourceSans'
 
 export const ImagePickerFormField = (props) => {
+  const { t } = useTranslation()
   const [capturedImage, setCapturedImage] = useState(null)
   const [image, setImage] = useState(props.initialImage)
   const isSimulator = Device.brand === 'Apple' && !Device.isDevice
@@ -43,7 +45,7 @@ export const ImagePickerFormField = (props) => {
       if (Platform.OS !== 'web') {
         const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync()
         if (status !== 'granted') {
-          Alert.alert('Sorry, we need camera roll permissions to make this work!')
+          Alert.alert(t('Sorry, we need camera roll permissions to make this work!'))
         }
       }
     })()

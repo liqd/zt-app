@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { Alert, Linking, View } from 'react-native'
 import { Formik } from 'formik'
 import * as yup from 'yup'
@@ -14,6 +14,7 @@ import {useAuthorization} from './AuthProvider.js'
 import { styles } from './LoginScreen.styles'
 
 export const LoginScreen = () => {
+  const { t } = useTranslation()
   const {signIn} = useAuthorization()
   const [error, setError] = useState()
   const registerUrl = '/accounts/signup/?next=/'
@@ -46,10 +47,10 @@ export const LoginScreen = () => {
   const loginValidationSchema = yup.object().shape({
     username: yup
       .string()
-      .required('Please enter your e-mail address or username.'),
+      .required(t('Please enter your e-mail address or username.')),
     password: yup
       .string()
-      .required('Please enter your password.'),
+      .required(t('Please enter your password.')),
   })
 
   return (
@@ -74,17 +75,17 @@ export const LoginScreen = () => {
         >
           <View style={styles.container}>
             <TextSourceSans style={styles.title}>
-              Login
+              {t('Login')}
             </TextSourceSans>
-            <Trans>
-              <TextSourceSans style={styles.registerText}>
+            <TextSourceSans style={styles.registerText}>
+              <Trans t={t}>
                 If you have not created an account yet, then please <LinkTextSourceSans
                   onPress={() => Linking.openURL(baseUrl + registerUrl)}
                 >register</LinkTextSourceSans> first.
-              </TextSourceSans>
-            </Trans>
+              </Trans>
+            </TextSourceSans>
             <TextInputFormField
-              field='Username or E-mail address:'
+              field={t('Username or E-mail address:')}
               name='username'
               value={values.username}
               placeholder=''
@@ -97,7 +98,7 @@ export const LoginScreen = () => {
               testID='username-input'
             />
             <TextInputFormField
-              field='Password:'
+              field={t('Password:')}
               name='password'
               value={values.password}
               placeholder=''
@@ -112,7 +113,7 @@ export const LoginScreen = () => {
             />
             <LinkTextSourceSans style={styles.forgotPassword}
               onPress={() => Linking.openURL(baseUrl + passwordResetUrl)}
-            >Forgot Password?</LinkTextSourceSans>
+            >{t('Forgot Password?')}</LinkTextSourceSans>
           </View>
         </KeyboardScrollView>
       )}

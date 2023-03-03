@@ -1,4 +1,5 @@
 import React, { useCallback, useContext, useEffect,useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { FlatList,View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { CommonActions } from '@react-navigation/native'
@@ -15,6 +16,7 @@ import { ExploreListItem } from './ExploreListItem'
 import { styles } from './ExplorePage.styles'
 
 export const ExplorePage = (props) => {
+  const { t } = useTranslation()
   const [projects, setProjects] = useState([])
   const { user, deepLink, setDeepLink, signOut } = useAuthorization()
 
@@ -99,8 +101,8 @@ export const ExplorePage = (props) => {
         profileContext?.userImage?.uri ||
         profileContext?.userImageFallback?.uri
       }}
-      a11yLabelText="profile"
-      a11yHintText="click to go to profile and settings"
+      a11yLabelText={t('profile')}
+      a11yHintText={t('click to go to profile and settings')}
       onPress={toProfile}
     />
   )
@@ -120,8 +122,8 @@ export const ExplorePage = (props) => {
             rightButton={rightHeaderButton}
             navigation={props.navigation} />
         }
-        <TextSourceSans style={styles.title}>Explore</TextSourceSans>
-        <TextSourceSans style={styles.subtitle}>Recently Added</TextSourceSans>
+        <TextSourceSans style={styles.title}>{t('Explore')}</TextSourceSans>
+        <TextSourceSans style={styles.subtitle}>{t('Recently Added')}</TextSourceSans>
         {projects.length > 0 &&
           <FlatList
             keyExtractor={(i) => `pk${i.pk}`}

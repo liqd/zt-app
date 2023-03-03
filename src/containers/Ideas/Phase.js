@@ -1,4 +1,5 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import {View} from 'react-native'
 
 import {TextSourceSans} from '../../components/TextSourceSans'
@@ -6,18 +7,19 @@ import {TextSourceSans} from '../../components/TextSourceSans'
 import { styles } from './Phase.styles'
 
 export const Phase = props => {
+  const { t } = useTranslation()
   const {activePhase, futurePhases, pastPhases} = props
   const startDate = futurePhases ? futurePhases[0].start_date : null
   const endDate = pastPhases ? pastPhases[pastPhases.length-1].end_date : null
 
   function getInactivePhaseText() {
     if(!pastPhases){
-      return `It starts on ${startDate}`
+      return t('It starts on {{startDate}}.', {startDate: startDate})
     }
     if(futurePhases){
-      return `It continues on ${startDate}.`
+      return t('It continues on {{startDate}}}.', {startDate: startDate})
     }
-    return `It ended on ${endDate}.`
+    return t('It ended on {{endDate}}.', { endDate: endDate})
   }
 
   return (
@@ -36,7 +38,7 @@ export const Phase = props => {
     ) : (
       <View style={styles.phaseContainer}>
         <TextSourceSans>
-          Participation is not possible at the moment.
+          {t('Participation is not possible at the moment.')}
         </TextSourceSans>
         <View>
           <TextSourceSans>

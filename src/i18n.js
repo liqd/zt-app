@@ -23,7 +23,9 @@ export async function loadLanguage() {
       lng: lng ? lng : 'de',
       interpolation: {
         escapeValue: false // react already safes from xss
-      }
+      },
+      keySeparator: '>',
+      nsSeparator: '|'
     })
 }
 

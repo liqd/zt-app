@@ -43,8 +43,8 @@ module.exports = {
       jsonIndent: 2,
       lineEnding: '\n'
     },
-    nsSeparator: ':', // namespace separator
-    keySeparator: ':', // key separator
+    nsSeparator: '|', // namespace separator
+    keySeparator: '>', // key separator
     interpolation: {
       prefix: '{{',
       suffix: '}}'

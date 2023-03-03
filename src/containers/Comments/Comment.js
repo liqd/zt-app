@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useRef,useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Alert, Image, View } from 'react-native'
 import { TouchableWithoutFeedback } from 'react-native'
 import IconSLI from 'react-native-vector-icons/SimpleLineIcons'
@@ -14,6 +15,7 @@ import { SubComments } from './SubComments'
 const NUM_OF_LINES = 2
 
 export const Comment = (props) => {
+  const { t } = useTranslation()
   const [showSubComments, setShowSubComments] = useState(false)
   const [showWholeComment, setShowWholeComment] = useState(false)
   const [hasExcerpt, setHasExcerpt] = useState(false)
@@ -23,20 +25,20 @@ export const Comment = (props) => {
   const getCommentMenuItems = (commentInstance) => {
     return [
       {
-        title: 'Edit',
+        title: t('Edit'),
         icon: 'pencil',
         action: () => props.toggleEditing(commentInstance),
         isFirst: true,
         isAllowed: commentInstance.user_info.has_changing_permission
       },
       {
-        title: 'Delete',
+        title: t('Delete'),
         icon: 'trash',
         action: () => props.toggleDeleteModal(),
         isAllowed: commentInstance.user_info.has_deleting_permission
       },
       {
-        title: 'Report',
+        title: t('Report'),
         icon: 'flag',
         action: () => {
           props.toggleMenu()
@@ -50,7 +52,7 @@ export const Comment = (props) => {
         isAllowed: true
       },
       {
-        title: 'Cancel',
+        title: t('Cancel'),
         action: () => props.toggleMenu(),
         isCancel: true,
         isAllowed: true
@@ -61,16 +63,15 @@ export const Comment = (props) => {
   const getCommentDeleteModalItems = (commentInstance) => {
     return [
       {
-        // space is to center the text
-        title: '   This comment will be deleted.\nThis action cannot be undone.',
+        title: [t('This comment will be deleted.'), t('This action cannot be undone.')],
         isText: true
       },
       {
-        title: 'Delete',
+        title: t('Delete'),
         action: () => deleteComment(commentInstance)
       },
       {
-        title: 'Cancel',
+        title: t('Cancel'),
         action: () => props.toggleDeleteModal(),
         isCancel: true
       },
@@ -160,14 +161,14 @@ export const Comment = (props) => {
         if (statusCode == 200) {
           if (commentInstance.user_info.is_users_own_comment) {
             Alert.alert(
-              'Your comment was deleted.',
-              'Thank you for participating!',
+              t('Your comment was deleted.'),
+              t('Thank you for participating!'),
               [{ text: 'Ok' }]
             )
           } else {
             Alert.alert(
-              'This comment was deleted.',
-              'Thank you for moderating!',
+              t('This comment was deleted.'),
+              t('Thank you for moderating!'),
               [{ text: 'Ok' }]
             )
           }
@@ -187,9 +188,9 @@ export const Comment = (props) => {
 
   const getCommentTextDisplay = (commentInstance) => {
     if (commentInstance.is_removed) {
-      return 'Deleted by creator on ' + commentInstance.modified
+      return t('Deleted by creator on ') + commentInstance.modified
     } else if (commentInstance.is_censored || commentInstance.is_blocked) {
-      return 'Deleted by moderation on '+ commentInstance.modified
+      return t('Deleted by moderation on ')+ commentInstance.modified
     } else {
       return commentInstance.comment
     }
@@ -259,7 +260,7 @@ export const Comment = (props) => {
             onPress={toggleWholeComment}
           >
             <TextSourceSans style={styles.linkButton}>
-              {showWholeComment ? 'Read Less' : 'Read More'}
+              {showWholeComment ? t('Read Less') : t('Read More')}
             </TextSourceSans>
           </TouchableWithoutFeedback>}
       </View>
@@ -270,7 +271,9 @@ export const Comment = (props) => {
             onPress={toggleSubComments}
           >
             <TextSourceSans style={styles.linkButton}>
-              {showSubComments ? 'Hide' : 'Show'} {comment.child_comments.length} answers
+              {t('{{ show_hide }} {{ comments }} answers',
+                {state: showSubComments ? t('Show') : t('Hide'),
+                  count: comment.child_comments.length})}
             </TextSourceSans>
           </TouchableWithoutFeedback>
         }
@@ -279,8 +282,8 @@ export const Comment = (props) => {
         <View style={styles.ratingButtons}>
           <ButtonCounter
             icon={arrowUpIcon}
-            labelText="up-votes"
-            hintText="click to up vote"
+            labelText={t('up-votes')}
+            hintText={t('click to up vote')}
             counter={comment.ratings.positive_ratings}
             onPress={() => handleRate(comment, 1)}
             highlight={
@@ -292,8 +295,8 @@ export const Comment = (props) => {
           />
           <ButtonCounter
             icon={arrowDownIcon}
-            labelText="down-votes"
-            hintText="click to down vote"
+            labelText={t('down-votes')}
+            hintText={t('click to down vote')}
             counter={comment.ratings.negative_ratings}
             onPress={() => handleRate(comment, -1)}
             highlight={
@@ -306,7 +309,7 @@ export const Comment = (props) => {
         </View>
         <Button
           icon={commentIcon}
-          title="Reply"
+          title={t('Reply')}
           titleStyle={styles.buttonTitle}
           type='clear'
           styles={styles.commentButton}
@@ -315,7 +318,7 @@ export const Comment = (props) => {
         />
         <Button
           icon={redoIcon}
-          title="Share"
+          title={t('Share')}
           titleStyle={styles.buttonTitle}
           type='clear'
         />
