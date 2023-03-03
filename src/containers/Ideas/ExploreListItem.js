@@ -1,4 +1,5 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import { Image, TouchableOpacity, View } from 'react-native'
 import IconSLI from 'react-native-vector-icons/SimpleLineIcons'
 import { LinearProgress } from '@rneui/themed'
@@ -9,6 +10,7 @@ import { COLORS } from '../../theme/colors'
 import { styles } from './ExploreListItem.styles'
 
 export const ExploreListItem = (props) => {
+  const { t } = useTranslation()
   const image = props.item.image
     ? props.item.image
     : null
@@ -55,7 +57,7 @@ export const ExploreListItem = (props) => {
         </View>
         <View style={styles.textContainer}>
           <TextSourceSans style={styles.text}>
-            by {props.item.organisation}
+            {t('by')} {props.item.organisation}
           </TextSourceSans>
           <TextSourceSans style={styles.title}>
             {props.item.name}

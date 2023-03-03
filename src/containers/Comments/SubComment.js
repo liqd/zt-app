@@ -1,4 +1,5 @@
 import React, { useCallback,useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Image,View } from 'react-native'
 import { TouchableWithoutFeedback } from 'react-native'
 import IconSLI from 'react-native-vector-icons/SimpleLineIcons'
@@ -12,6 +13,7 @@ import { styles } from './Comment.styles'
 const NUM_OF_LINES = 2
 
 export const SubComment = (props) => {
+  const { t } = useTranslation()
   const [showWholeComment, setShowWholeComment] = useState(false)
   const [hasExcerpt, setHasExcerpt] = useState(false)
 
@@ -102,7 +104,7 @@ export const SubComment = (props) => {
         </View>
         <Button
           icon={redoIcon}
-          title="Share"
+          title={t('Share')}
           titleStyle={styles.buttonTitle}
           type='clear'
         />

@@ -1,4 +1,5 @@
 import React, { useEffect,useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Image,ImageBackground, Linking, ScrollView, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import IconFA from 'react-native-vector-icons/FontAwesome'
@@ -19,6 +20,7 @@ import { IdeasList } from './IdeasList'
 import { Phase } from './Phase'
 
 export const IdeaProject = (props) => {
+  const { t } = useTranslation()
   const tabs = {
     participation: 0,
     information: 1,
@@ -45,7 +47,7 @@ export const IdeaProject = (props) => {
     <Button
       buttonStyle={styles.button}
       titleStyle={styles.buttonText}
-      title='Follow'
+      title={t('Follow')}
       icon={plusIcon}
       type='clear'
     />
@@ -179,8 +181,8 @@ export const IdeaProject = (props) => {
                   </View>
                 ) : (
                   <TextSourceSans>
-                    Oops. Multiple module projects are not supported in adhocracy+
-                    app, yet! Please find them on adhocracy+ web.
+                    {t('Oops. Multiple module projects are not supported in adhocracy+ app,'
+                        + ' yet! Please find them on adhocracy+ web.')}
                   </TextSourceSans>
                 )}
               </View>
@@ -191,7 +193,7 @@ export const IdeaProject = (props) => {
                 {project.has_contact_info &&
                 <>
                   <TextSourceSans style={styles.contactHeadline}>
-                    Contact for Questions
+                    {t('Contact for Questions')}
                   </TextSourceSans>
                   {!!project.contact_name &&
                     <TextSourceSans style={styles.contactField}>
@@ -206,14 +208,14 @@ export const IdeaProject = (props) => {
                   {!!project.contact_phone &&
                     <TextSourceSans style={styles.contactField}>
                       <TextSourceSans style={styles.contactLabel}>
-                        Telephone: </TextSourceSans>
+                        {t('Telephone:')} </TextSourceSans>
                       {project.contact_phone}
                     </TextSourceSans>
                   }
                   {!!project.contact_email &&
                     <TextSourceSans style={styles.contactField}>
                       <TextSourceSans style={styles.contactLabel}>
-                        Email: </TextSourceSans>
+                        {t('Email:')} </TextSourceSans>
                       <LinkTextSourceSans
                         onPress={() => Linking.openURL(`mailto:${project.contact_email}`)}>
                         {project.contact_email}
@@ -223,7 +225,7 @@ export const IdeaProject = (props) => {
                   {!!project.contact_url &&
                     <TextSourceSans style={styles.contactField}>
                       <TextSourceSans style={styles.contactLabel}>
-                        Website: </TextSourceSans>
+                        {t('Website:')} </TextSourceSans>
                       <LinkTextSourceSans
                         onPress={() => Linking.openURL(project.contact_url)}>
                         {project.contact_url}

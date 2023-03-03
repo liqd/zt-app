@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react'
+import { useTranslation } from 'react-i18next'
 import { Alert, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { Formik } from 'formik'
@@ -20,21 +21,21 @@ import { VirtualScrollView } from '../../components/VirtualScrollView'
 import { styles } from './IdeaCreate.styles'
 
 export const IdeaCreate = props => {
-
+  const { t } = useTranslation()
   const {idea, module, editing, descriptionText } = props.route.params
   const ideaValidationSchema = yup.object().shape({
     name: yup
       .string()
-      .required('Idea title is Required'),
+      .required(t('Idea title is Required')),
     description: yup
       .string()
-      .required('Description is required'),
+      .required(t('Description is required')),
     imageChecked: yup
       .boolean()
       .when('image', {
         is: (image) => !!image,
         then: yup.boolean()
-          .oneOf([true], 'Please confirm the copyright')
+          .oneOf([true], t('Please confirm the copyright'))
       })
   })
 
@@ -49,7 +50,7 @@ export const IdeaCreate = props => {
 
   useEffect(() => {
     if (error) {
-      Alert.alert('An error occured', error, [{ text: 'Ok' }])
+      Alert.alert(t('An error occured'), error, [{ text: t('Ok') }])
     }
   }, [error])
 
@@ -126,10 +127,11 @@ export const IdeaCreate = props => {
       .then(response => {
         const {statusCode, data} = response
         if (statusCode === 201) {
-          Alert.alert('Your idea was added.', 'Thank you for participating!',  [{ text: 'Ok' }])
+          Alert.alert(t('Your idea was added.'), t('Thank you for participating!'),
+            [{ text: t('Ok') }])
           props.navigation.goBack()
         } else if (editing && statusCode === 200) {
-          Alert.alert('Your idea was updated.', '',  [{ text: 'Ok' }])
+          Alert.alert(t('Your idea was updated.'), '',  [{ text: t('Ok') }])
           props.navigation.navigate({
             name: 'IdeaDetail',
             params: { idea: data },
@@ -140,15 +142,15 @@ export const IdeaCreate = props => {
           if (data && data.image) {
             errorMsg = data.image.reduce((acc, curr) => {
               return `${acc}\n${curr}`
-            }, 'Please try again.\n')
+            }, t('Please try again.\n'))
           } else {
-            errorMsg = ('Required fields are missing.')
+            errorMsg = (t('Required fields are missing.'))
           }
           return Promise.reject(errorMsg)
         } else if (statusCode === 403) {
           return Promise.reject(data.detail)
         } else {
-          return Promise.reject('Try again.')
+          return Promise.reject(t('Try again.'))
         }
       })
       .catch(error => {
@@ -194,7 +196,7 @@ export const IdeaCreate = props => {
           navigation={props.navigation} />
       </View>
       <VirtualScrollView>
-        <TextSourceSans style={styles.title}>Submit a new idea for this project</TextSourceSans>
+        <TextSourceSans style={styles.title}>{t('Submit a new idea for this project')}</TextSourceSans>
         <Formik
           validationSchema={ideaValidationSchema}
           initialValues={getInitialValues()}
@@ -218,12 +220,12 @@ export const IdeaCreate = props => {
             >
               <View style={styles.container}>
                 <TextInputFormField
-                  field='Idea title'
+                  field={t('Idea title')}
                   name='name'
                   value={values.name}
-                  placeholder='Enter your idea title'
+                  placeholder={t('Enter your idea title')}
                   returnKeyType='next'
-                  returnKeyLabel='next'
+                  returnKeyLabel={t('next')}
                   onChangeText={handleChange('name')}
                   onBlur={handleBlur('name')}
                   error={errors.name}
@@ -233,7 +235,7 @@ export const IdeaCreate = props => {
                   field='Idea Description'
                   name='description'>
                   <ButtonTextInput
-                    title={description ? description : 'Enter your idea description'}
+                    title={description ? description : t('Enter your idea description')}
                     onPress={() => toDescription(values)}
                     textInputButtonTitle={description ?
                       styles.textInputButtonTitleDark :
@@ -243,7 +245,7 @@ export const IdeaCreate = props => {
                 </ButtonTextInputFieldContainer>
                 {categories.length > 0 &&
                   <DropdownFormFieldContainer
-                    field='Idea Category'
+                    field={t('Idea Category')}
                     name='category'>
                     <DropdownFormField
                       items={categories}
@@ -256,7 +258,7 @@ export const IdeaCreate = props => {
                 }
                 {labelChoices.length > 0 && initialLabels &&
                   <LabelListContainer
-                    field='Idea Labels'
+                    field={t('Idea Labels')}
                     name='labels'
                   >
                     <LabelList
@@ -267,7 +269,7 @@ export const IdeaCreate = props => {
                   </LabelListContainer>
                 }
                 <ImageChoiceFormFieldContainer
-                  field='Add Image'
+                  field={t('Add Image')}
                   name='image'
                   onSetImage={(img) => {
                     setFieldValue('image', img)
@@ -286,10 +288,4 @@ export const IdeaCreate = props => {
       </VirtualScrollView>
     </SafeAreaView>
   )
-}
-
-IdeaCreate.navigationOptions = {
-  headerTitle: 'Submit your idea',
-  // headerBackTitle only for iOS
-  headerBackTitle: 'Back'
 }
