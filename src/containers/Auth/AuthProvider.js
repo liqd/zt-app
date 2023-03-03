@@ -1,16 +1,20 @@
-import React from 'react'
+import React, { createContext, useContext, useEffect, useMemo, useState} from 'react'
+import { useTranslation } from 'react-i18next'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
-const AuthContext = React.createContext({
+import { useAuthenticatedUser } from '../../hooks/AuthenticatedUser'
+
+const AuthContext = createContext({
   loading: true,
   token: null,
+  user: null,
   deepLink: null,
   signIn: () => {},
   signOut: () => {},
 })
 
 export const useAuthorization = () => {
-  const context = React.useContext(AuthContext)
+  const context = useContext(AuthContext)
   if (!context) {
     console.log('Couldn\'t find auth context')
   }
@@ -18,31 +22,54 @@ export const useAuthorization = () => {
 }
 
 export const AuthProvider = (props) => {
-  const [state, setState] = React.useState({
+  const [state, setState] = useState({
     loading: true,
     token: null,
+    user: null,
     deepLink: null
   })
-  React.useEffect(() => {
+  const { i18n } = useTranslation()
+  const user = useAuthenticatedUser(state.token)
+
+  useEffect(() => {
     const tryLogin = async () => {
-      const authToken = await AsyncStorage.getItem('authToken')
+      const token = await AsyncStorage.getItem('authToken')
       setState({
         ...state,
         loading: false,
-        token: authToken,
+        token,
+        user: null
       })
     }
     tryLogin()
   }, [])
 
-  const actions = React.useMemo(() => ({
-    signIn: async (authToken) => {
-      AsyncStorage.setItem('authToken', authToken)
-      setState({ ...state, loading: false, token: authToken })
+  useEffect(() => {
+    if(!state.loading) {
+      if (user) {
+        i18n.changeLanguage(user.language)
+        // save last used language
+        AsyncStorage.setItem('language', user.language)
+      }
+      setState({
+        ...state,
+        user})
+    }
+  }, [user])
+
+  const actions = useMemo(() => ({
+    signIn: async (token) => {
+      AsyncStorage.setItem('authToken', token)
+      setState({
+        ...state,
+        loading: false,
+        token,
+        user: null
+      })
     },
     signOut: async () => {
       AsyncStorage.removeItem('authToken')
-      setState({ ...state, loading: false, token: null })
+      setState({ ...state, loading: false, token: null, user: null })
     },
     setDeepLink: (projectSlug) => {
       setState({...state, deepLink: projectSlug})

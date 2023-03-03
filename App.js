@@ -10,7 +10,7 @@ import * as SplashScreen from 'expo-splash-screen'
 import * as Sentry from 'sentry-expo'
 import 'intl-pluralrules'
 
-import './src/i18n'
+import { loadLanguage } from './src/i18n'
 import { AuthProvider } from './src/containers/Auth/AuthProvider'
 import { IdeaNavigator } from './src/navigation/IdeaNavigator'
 
@@ -29,6 +29,7 @@ const App = () => {
         await SplashScreen.preventAutoHideAsync()
         await Font.loadAsync({ SourceSansPro_400Regular })
         await Font.loadAsync({ SourceSansPro_600SemiBold })
+        await loadLanguage()
       } catch (e) {
         console.warn(e)
       } finally {

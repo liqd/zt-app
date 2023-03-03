@@ -1,15 +1,14 @@
-import React, { useEffect,useState } from 'react'
+import React from 'react'
 import { View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import IconSLI from 'react-native-vector-icons/SimpleLineIcons'
-import AsyncStorage from '@react-native-async-storage/async-storage'
 import { Button } from '@rneui/base'
 
-import API from '../../BaseApi'
 import { AvatarCircle } from '../../components/ButtonAvatar'
 import { ButtonSignOut } from '../../components/ButtonSignOut'
 import { Header } from '../../components/Header'
 import { TextSourceSans } from '../../components/TextSourceSans'
+import { useUser } from '../../hooks/User'
 
 import { styles } from './ProfileScreen.styles'
 
@@ -29,24 +28,7 @@ export const ProfileScreen = (props) => {
       type='clear'
       onPress={toSettingsOverview}
     />)
-  const [user, setUser] = useState()
-
-  const fetchUser = () => {
-    return AsyncStorage.getItem('authToken')
-      .then((token) => API.getUser(userId, token))
-      .then((response) => {
-        if(response.statusCode === 200) {
-          setUser(response.data)
-        } else {
-          return Promise.reject(new Error('fetchUser returned ' + response.statusCode))
-        }
-      })
-      .catch(error => console.warn(error))
-  }
-
-  useEffect(() => {
-    fetchUser()
-  }, [props.route.params])
+  const user = useUser(userId)
 
   return (
     <SafeAreaView
