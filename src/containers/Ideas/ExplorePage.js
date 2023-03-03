@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import { FlatList,View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import AsyncStorage from '@react-native-async-storage/async-storage'
@@ -15,56 +15,8 @@ import { ExploreListItem } from './ExploreListItem'
 import { styles } from './ExplorePage.styles'
 
 export const ExplorePage = (props) => {
-  const [user, setUser] = useState()
   const [projects, setProjects] = useState([])
-  const {signOut} = useAuthorization()
-  const { deepLink, setDeepLink } = useAuthorization()
-
-  const fetchProjects = () => {
-    AsyncStorage.getItem('authToken')
-      .then((token) => API.getProjects(token))
-      .then((response) => {
-        if(response.statusCode === 200) {
-          setProjects(response.data)
-        } else if (response.statusCode === 401) {
-          console.warn('Unauthorized, wrong login?')
-          signOut()
-        } else {
-          return Promise.reject(new Error('fetchProjects returned ' + response.statusCode))
-        }
-      }).catch(error => console.warn(error))
-  }
-
-  const fetchAuthenticatedUser = () => {
-    AsyncStorage.getItem('authToken')
-      .then((token) => API.getAuthenticatedUser(token))
-      .then((response) => {
-        if(response.statusCode === 200) {
-          setUser(response.data)
-        } else {
-          return Promise.reject(new Error('fetchAuthenticatedUser returned ' + response.statusCode))
-        }
-      })
-      .catch(error => console.warn(error))
-  }
-
-  const fetchProject = () => {
-    return AsyncStorage.getItem('authToken').then((token) =>
-      API.getProject(token, deepLink))
-      .then((result) => {
-        if (result.statusCode === 200) {
-          return result.data
-        }
-        return null
-      })
-  }
-
-  const pressHandler = (project) =>
-    props.navigation.navigate('IdeaProject', { project: project })
-
-  const projectItem = ({ item }) => (
-    <ExploreListItem item={item} action={(project) => pressHandler(project)} />
-  )
+  const { user, deepLink, setDeepLink, signOut } = useAuthorization()
 
   useFocusEffect(
     useCallback(() => {
@@ -94,9 +46,38 @@ export const ExplorePage = (props) => {
     }, [])
   )
 
-  useEffect(() => {
-    fetchAuthenticatedUser()
-  }, [])
+  const fetchProjects = () => {
+    AsyncStorage.getItem('authToken')
+      .then((token) => API.getProjects(token))
+      .then((response) => {
+        if(response.statusCode === 200) {
+          setProjects(response.data)
+        } else if (response.statusCode === 401) {
+          console.warn('Unauthorized, wrong login?')
+          signOut()
+        } else {
+          return Promise.reject(new Error('fetchProjects returned ' + response.statusCode))
+        }
+      }).catch(error => console.warn(error))
+  }
+
+  const fetchProject = () => {
+    return AsyncStorage.getItem('authToken').then((token) =>
+      API.getProject(token, deepLink))
+      .then((result) => {
+        if (result.statusCode === 200) {
+          return result.data
+        }
+        return null
+      })
+  }
+
+  const pressHandler = (project) =>
+    props.navigation.navigate('IdeaProject', { project: project })
+
+  const projectItem = ({ item }) => (
+    <ExploreListItem item={item} action={(project) => pressHandler(project)} />
+  )
 
   const toProfile = () => {
     props.navigation.navigate('ProfileScreen', {userId: user.pk})
