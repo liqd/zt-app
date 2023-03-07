@@ -20,59 +20,63 @@ export const Comment = (props) => {
   const [hasExcerpt, setHasExcerpt] = useState(false)
   const [comment, setComment] = useState(props.comment)
   const processing = useRef(false)
-  const commentBeingProcessed = useRef(props.comment)
-  const commentMenuItems = [
-    {
-      title: 'Edit',
-      icon: 'pencil',
-      action: () => props.toggleEditing(commentBeingProcessed.current),
-      isFirst: true,
-      isAllowed: comment.user_info.has_changing_permission
-    },
-    {
-      title: 'Delete',
-      icon: 'trash',
-      action: () => props.toggleDeleteModal(),
-      isAllowed: comment.user_info.has_deleting_permission
-    },
-    {
-      title: 'Report',
-      icon: 'flag',
-      action: () => {
-        props.toggleMenu()
-        props.navigation.navigate('ReportCreateMessage', {
-          content_type: comment.comment_content_type,
-          object_pk: comment.id
-        })
-      },
-      isFirst: !comment.user_info.has_changing_permission && !comment.user_info.has_deleting_permission,
-      isLast: true,
-      isAllowed: true
-    },
-    {
-      title: 'Cancel',
-      action: () => props.toggleMenu(),
-      isCancel: true,
-      isAllowed: true
-    },
-  ]
 
-  const commentDeleteModalItems = [
-    {
-      // space is to center the text
-      title: '   This comment will be deleted.\nThis action cannot be undone.',
-      isText: true
-    },
-    {
-      title: 'Delete',
-      action: () => deleteComment()
-    },
-    {
-      title: 'Cancel',
-      action: () => props.toggleDeleteModal(),
-      isCancel: true
-    },
-  ]
+  const getCommentMenuItems = (commentInstance) => {
+    return [
+      {
+        title: 'Edit',
+        icon: 'pencil',
+        action: () => props.toggleEditing(commentInstance),
+        isFirst: true,
+        isAllowed: commentInstance.user_info.has_changing_permission
+      },
+      {
+        title: 'Delete',
+        icon: 'trash',
+        action: () => props.toggleDeleteModal(),
+        isAllowed: commentInstance.user_info.has_deleting_permission
+      },
+      {
+        title: 'Report',
+        icon: 'flag',
+        action: () => {
+          props.toggleMenu()
+          props.navigation.navigate('ReportCreateMessage', {
+            content_type: commentInstance.comment_content_type,
+            object_pk: commentInstance.id
+          })
+        },
+        isFirst: !commentInstance.user_info.has_changing_permission && !commentInstance.user_info.has_deleting_permission,
+        isLast: true,
+        isAllowed: true
+      },
+      {
+        title: 'Cancel',
+        action: () => props.toggleMenu(),
+        isCancel: true,
+        isAllowed: true
+      },
+    ]
+  }
+
+  const getCommentDeleteModalItems = (commentInstance) => {
+    return [
+      {
+        // space is to center the text
+        title: '   This comment will be deleted.\nThis action cannot be undone.',
+        isText: true
+      },
+      {
+        title: 'Delete',
+        action: () => deleteComment(commentInstance)
+      },
+      {
+        title: 'Cancel',
+        action: () => props.toggleDeleteModal(),
+        isCancel: true
+      },
+    ]
+  }
 
   useEffect(() => {
     setComment(props.comment)
@@ -91,50 +95,45 @@ export const Comment = (props) => {
     setHasExcerpt(e.nativeEvent.lines.length > NUM_OF_LINES)
   }, [])
 
-  function handleOptions(subcomment) {
-    if (subcomment !== undefined){
-      commentBeingProcessed.current = subcomment
-    } else {
-      commentBeingProcessed.current = comment
-    }
-    props.setDeleteModalItems(commentDeleteModalItems)
-    props.setMenuItems(commentMenuItems)
+  function handleOptions(commentInstance) {
+    props.setDeleteModalItems(getCommentDeleteModalItems(commentInstance))
+    props.setMenuItems(getCommentMenuItems(commentInstance))
     props.toggleMenu()
   }
 
-  const handleRate = async(ratingComment, value) => {
+  const handleRate = async(commentInstance, value) => {
     if (processing.current) return
     processing.current = true
     const token = await AsyncStorage.getItem('authToken')
-    const newComment = await rate(ratingComment, value, token)
+    const newComment = await rate(commentInstance, value, token)
     if (newComment) {
       processing.current = false
     }
   }
 
-  const rate = async(ratingComment, value, token) => {
-    if (ratingComment.ratings.current_user_rating_id) {
-      if (ratingComment.ratings.current_user_rating_value !== value) {
+  const rate = async(commentInstance, value, token) => {
+    if (commentInstance.ratings.current_user_rating_id) {
+      if (commentInstance.ratings.current_user_rating_value !== value) {
         await API.changeRating(
-          ratingComment.comment_content_type,
-          ratingComment.id,
-          ratingComment.ratings.current_user_rating_id,
+          commentInstance.comment_content_type,
+          commentInstance.id,
+          commentInstance.ratings.current_user_rating_id,
           {value: value},
           token
         )
       } else {
         await API.changeRating(
-          ratingComment.comment_content_type,
-          ratingComment.id,
-          ratingComment.ratings.current_user_rating_id,
+          commentInstance.comment_content_type,
+          commentInstance.id,
+          commentInstance.ratings.current_user_rating_id,
           {value: 0},
           token
         )
       }
     } else {
       await API.postRating(
-        ratingComment.comment_content_type,
-        ratingComment.id,
+        commentInstance.comment_content_type,
+        commentInstance.id,
         {value: value},
         token
       )
@@ -156,23 +155,31 @@ export const Comment = (props) => {
       })
   }
 
-  const deleteComment = () => {
+  const deleteComment = (commentInstance) => {
     AsyncStorage.getItem('authToken')
       .then((token) => API.deleteComment(
-        commentBeingProcessed.current.content_type,
-        commentBeingProcessed.current.object_pk,
-        commentBeingProcessed.current.id,
+        commentInstance.content_type,
+        commentInstance.object_pk,
+        commentInstance.id,
         token
       ))
       .then((response) => {
         const {statusCode, data} = response
         props.toggleDeleteModal()
         if (statusCode == 200) {
-          Alert.alert(
-            'Your comment was deleted.',
-            'Thank you for participating!',
-            [{ text: 'Ok' }]
-          )
+          if (commentInstance.user_info.is_users_own_comment) {
+            Alert.alert(
+              'Your comment was deleted.',
+              'Thank you for participating!',
+              [{ text: 'Ok' }]
+            )
+          } else {
+            Alert.alert(
+              'This comment was deleted.',
+              'Thank you for moderating!',
+              [{ text: 'Ok' }]
+            )
+          }
           fetchComment()
         } else {
           const errorMessage = 'That did not work.'
@@ -187,18 +194,18 @@ export const Comment = (props) => {
       })
   }
 
-  const getCommentTextDisplay = (comment) => {
-    if (comment.is_removed) {
-      return 'Deleted by creator on ' + comment.modified
-    } else if (comment.is_censored || comment.is_blocked) {
-      return 'Deleted by moderation on '+ comment.modified
+  const getCommentTextDisplay = (commentInstance) => {
+    if (commentInstance.is_removed) {
+      return 'Deleted by creator on ' + commentInstance.modified
+    } else if (commentInstance.is_censored || commentInstance.is_blocked) {
+      return 'Deleted by moderation on '+ commentInstance.modified
     } else {
-      return comment.comment
+      return commentInstance.comment
     }
   }
 
-  const isDisplayed = (comment) => {
-    return !(comment.is_deleted || comment.is_blocked)
+  const isDisplayed = (commentInstance) => {
+    return !(commentInstance.is_deleted || commentInstance.is_blocked)
   }
 
   const optionsIcon = (<IconSLI name='options-vertical' size={22} />)
@@ -235,7 +242,7 @@ export const Comment = (props) => {
             testID={'options_button_' + comment.id}
             icon={optionsIcon}
             type='clear'
-            onPress={() => handleOptions()}
+            onPress={() => handleOptions(comment)}
           />
         </TextSourceSans>
         }
