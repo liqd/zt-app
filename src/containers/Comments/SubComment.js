@@ -34,7 +34,7 @@ export const SubComment = (props) => {
         <View style={styles.topLeft}>
           {props.isDisplayed(props.comment) &&
           <Image
-            source={{ uri: props.comment.user_image }}
+            source={{ uri: (props.comment.user_image) ? props.comment.user_image : props.comment.user_image_fallback }}
             style={styles.avatar}
             accessibilityIgnoresInvertColors={true}
           />
