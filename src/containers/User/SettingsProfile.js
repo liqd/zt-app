@@ -10,6 +10,7 @@ import { TextInputFormField } from '../../components/formFields'
 import { Header } from '../../components/Header'
 import { KeyboardScrollView } from '../../components/KeyboardScrollView'
 import { ListContainer, ListItem } from '../../components/List'
+import { StatusBarStyled } from '../../components/StatusBarStyled'
 import { ProfileContext } from '../../contexts/ProfileContext'
 
 import { styles } from './SettingsProfile.styles'
@@ -80,6 +81,7 @@ export const SettingsProfile = props => {
 
   return (
     <SafeAreaView style={styles.container}>
+      <StatusBarStyled />
       <Formik
         validationSchema={userNameValidationSchema}
         initialValues={{

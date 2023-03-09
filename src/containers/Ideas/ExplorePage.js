@@ -8,8 +8,9 @@ import { useFocusEffect } from '@react-navigation/native'
 import API from '../../BaseApi'
 import { ButtonAvatar } from '../../components/ButtonAvatar'
 import { Header } from '../../components/Header'
+import { StatusBarStyled } from '../../components/StatusBarStyled'
 import { TextSourceSans } from '../../components/TextSourceSans'
-import {useAuthorization} from '../../containers/Auth/AuthProvider.js'
+import { useAuthorization } from '../../containers/Auth/AuthProvider.js'
 import { ProfileContext } from '../../contexts/ProfileContext'
 
 import { ExploreListItem } from './ExploreListItem'
@@ -117,6 +118,7 @@ export const ExplorePage = (props) => {
     <SafeAreaView
       style={styles.flexContainer}
     >
+      <StatusBarStyled />
       <View style={styles.container}>
         {user &&
           <Header

@@ -8,6 +8,7 @@ import API, { baseUrl } from '../../BaseApi'
 import { TextInputFormField } from '../../components/formFields'
 import { KeyboardScrollView } from '../../components/KeyboardScrollView'
 import { LinkTextSourceSans } from '../../components/LinkTextSourceSans'
+import { StatusBarStyled } from '../../components/StatusBarStyled'
 import { TextSourceSans } from '../../components/TextSourceSans'
 
 import {useAuthorization} from './AuthProvider.js'
@@ -73,6 +74,7 @@ export const LoginScreen = () => {
           isValid={isValid}
           buttonText='Login'
         >
+          <StatusBarStyled />
           <View style={styles.container}>
             <TextSourceSans style={styles.title}>
               {t('Login')}

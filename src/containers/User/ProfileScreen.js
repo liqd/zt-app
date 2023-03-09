@@ -7,6 +7,7 @@ import { Button } from '@rneui/base'
 import { AvatarCircle } from '../../components/ButtonAvatar'
 import { ButtonSignOut } from '../../components/ButtonSignOut'
 import { Header } from '../../components/Header'
+import { StatusBarStyled } from '../../components/StatusBarStyled'
 import { TextSourceSans } from '../../components/TextSourceSans'
 import { ProfileContext } from '../../contexts/ProfileContext'
 import { useUser } from '../../hooks/User'
@@ -34,6 +35,7 @@ export const ProfileScreen = (props) => {
     <SafeAreaView
       style={styles.safeAreaContainer}
     >
+      <StatusBarStyled />
       <View style={styles.container}>
         <Header
           navigation={props.navigation}

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Alert, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
@@ -13,6 +13,7 @@ import {
   ImageChoiceFormFieldContainer } from '../../components/imageFormField'
 import { KeyboardScrollView } from '../../components/KeyboardScrollView'
 import { LabelList,LabelListContainer } from '../../components/LabelForm'
+import { StatusBarStyled } from '../../components/StatusBarStyled'
 import { TextSourceSans } from '../../components/TextSourceSans'
 import { VirtualScrollView } from '../../components/VirtualScrollView'
 
@@ -189,6 +190,7 @@ export const IdeaCreate = props => {
     <SafeAreaView
       style={styles.flexContainer}
     >
+      <StatusBarStyled />
       <View style={styles.header}>
         <Header
           navigation={props.navigation} />
