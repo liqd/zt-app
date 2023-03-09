@@ -19,6 +19,7 @@ import { Header } from '../../components/Header'
 import { Label } from '../../components/Label'
 import { Menu } from '../../components/Menu'
 import { Modal } from '../../components/Modal'
+import { StatusBarStyled } from '../../components/StatusBarStyled'
 import { TextSourceSans } from '../../components/TextSourceSans'
 import { DateService } from '../../services/DateService'
 import { CommentForm } from '../Comments/CommentForm'
@@ -340,6 +341,7 @@ export const Idea = (props) => {
     <SafeAreaView
       style={styles.safeAreaView}
     >
+      <StatusBarStyled />
       <Header
         isEditing={isEditing}
         rightButton={rightHeaderButton}

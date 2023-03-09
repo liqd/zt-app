@@ -1,5 +1,5 @@
 import React from 'react'
-import { KeyboardAvoidingView, Platform,ScrollView } from 'react-native'
+import { KeyboardAvoidingView, Platform, ScrollView } from 'react-native'
 
 import { ButtonSubmit } from './ButtonSubmit'
 import { styles } from './KeyboardScrollView.styles'

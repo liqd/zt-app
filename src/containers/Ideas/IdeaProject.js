@@ -12,6 +12,7 @@ import { ButtonSubmit } from '../../components/ButtonSubmit'
 import { Header } from '../../components/Header'
 import { LinkTextSourceSans } from '../../components/LinkTextSourceSans'
 import { Richtext } from '../../components/Richtext'
+import { StatusBarStyled } from '../../components/StatusBarStyled'
 import { TextSourceSans } from '../../components/TextSourceSans'
 import { COLORS } from '../../theme/colors'
 
@@ -81,6 +82,9 @@ export const IdeaProject = (props) => {
 
   return (
     <SafeAreaView style={styles.container}>
+      <StatusBarStyled
+        lightContent={true}
+      />
       <ImageBackground
         style={styles.bgImage}
         source={{ uri: bgImage }}

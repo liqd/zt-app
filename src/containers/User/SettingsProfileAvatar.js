@@ -4,6 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import { Header } from '../../components/Header'
 import { ImagePickerFormField } from '../../components/imageFormField'
 import { ListContainer, ListItem } from '../../components/List'
+import { StatusBarStyled } from '../../components/StatusBarStyled'
 import { ProfileContext } from '../../contexts/ProfileContext'
 
 export const SettingsProfileAvatar = props => {
@@ -11,6 +12,7 @@ export const SettingsProfileAvatar = props => {
 
   return (
     <SafeAreaView>
+      <StatusBarStyled />
       <Header transparent={true} navigation={props.navigation} />
       <ListContainer
         title='Edit Profile Avatar'>
