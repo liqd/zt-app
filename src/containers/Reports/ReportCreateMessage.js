@@ -9,6 +9,7 @@ import API from '../../BaseApi'
 import { TextInputFullFormField } from '../../components/formFields'
 import { Header } from '../../components/Header'
 import { KeyboardScrollView } from '../../components/KeyboardScrollView'
+import { StatusBarStyled } from '../../components/StatusBarStyled'
 import { TextSourceSans } from '../../components/TextSourceSans'
 
 import { styles } from './ReportCreateMessage.styles'
@@ -60,6 +61,7 @@ export const ReportCreateMessage = props => {
 
   return (
     <SafeAreaView style={styles.container}>
+      <StatusBarStyled />
       <View style={styles.header}>
         <Header navigation={props.navigation} style={styles.header}/>
       </View>

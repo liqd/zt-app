@@ -7,6 +7,7 @@ import * as yup from 'yup'
 import { TextInputFullFormField } from '../../components/formFields'
 import { Header } from '../../components/Header'
 import { KeyboardScrollView } from '../../components/KeyboardScrollView'
+import { StatusBarStyled } from '../../components/StatusBarStyled'
 import { TextSourceSans } from '../../components/TextSourceSans'
 import { styles } from '../Reports/ReportCreateMessage.styles'
 
@@ -30,6 +31,7 @@ export const IdeaCreateDescription = props => {
 
   return (
     <SafeAreaView style={styles.container}>
+      <StatusBarStyled />
       <Header navigation={props.navigation} />
       <Formik
         validationSchema={ideaDescriptionValidationSchema}

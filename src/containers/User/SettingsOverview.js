@@ -4,6 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 
 import { Header } from '../../components/Header'
 import { ListContainer, ListLink } from '../../components/List'
+import { StatusBarStyled } from '../../components/StatusBarStyled'
 
 export const SettingsOverview = (props) => {
   const { t } = useTranslation()
@@ -19,6 +20,7 @@ export const SettingsOverview = (props) => {
   return (
     <SafeAreaView
     >
+      <StatusBarStyled />
       <Header
         transparent={true}
         handleCustomBack={toProfileScreen}
