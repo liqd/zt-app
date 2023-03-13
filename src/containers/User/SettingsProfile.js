@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext } from 'react'
 import { Alert } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { Formik } from 'formik'
@@ -10,13 +10,12 @@ import { TextInputFormField } from '../../components/formFields'
 import { Header } from '../../components/Header'
 import { KeyboardScrollView } from '../../components/KeyboardScrollView'
 import { ListContainer, ListItem } from '../../components/List'
+import { ProfileContext } from '../../contexts/ProfileContext'
 
 import { styles } from './SettingsProfile.styles'
 
 export const SettingsProfile = props => {
-  const [userImage, setUserImage] = useState(props.route.params.userImage)
-
-  const {userName} = props.route.params
+  const [profileContext, setProfileContext] = useContext(ProfileContext)
 
   const userNameValidationSchema = yup.object().shape({
     username: yup
@@ -28,8 +27,22 @@ export const SettingsProfile = props => {
     // do not send image data if not changed
     if (!values['user_image']) {
       delete values['user_image']
-    } else if (values['user_image'] == userImage) {
+    } else if (values['user_image'] === profileContext?.newUserImage) {
       delete values['user_image']
+    } else if (values['user_image'] !== profileContext?.newUserImage) {
+      console.log('context', profileContext)
+      // instead of setFieldValue (Formik), assigning "manually" here
+      values['user_image'] = profileContext.newUserImage
+      setProfileContext({
+        ...profileContext,
+        userImage: profileContext.newUserImage,
+        newUserImage: null
+      })
+    }
+
+    // update profile context if username changed
+    if (values['username'] !== profileContext?.userName) {
+      setProfileContext({...profileContext, userName: values['username']})
     }
 
     let formData = new FormData()
@@ -48,13 +61,7 @@ export const SettingsProfile = props => {
         const {statusCode, data} = response
         if (statusCode == 200) {
           Alert.alert('You\'re profile has been updated')
-          props.navigation.navigate({
-            name: 'SettingsOverview',
-            params: {
-              'userName': data['username'],
-              'userImage': data['user_image'] || data['user_image_fallback']},
-            merge: true,
-          })
+          props.navigation.navigate('SettingsOverview')
         } else {
           const errorMessage = 'That did not work.'
           let errorDetail
@@ -68,14 +75,8 @@ export const SettingsProfile = props => {
       })
   }
 
-  const toProfileSettingsAvatar = (setFieldValue) => {
-    props.navigation.navigate('SettingsProfileAvatar', {
-      userImage,
-      onGoBack: (newImage) => {
-        setFieldValue('user_image', newImage)
-        setUserImage(newImage.uri)
-      }
-    })
+  const toProfileSettingsAvatar = () => {
+    props.navigation.navigate('SettingsProfileAvatar')
   }
 
   return (
@@ -83,8 +84,8 @@ export const SettingsProfile = props => {
       <Formik
         validationSchema={userNameValidationSchema}
         initialValues={{
-          username: userName,
-          user_image: userImage ? userImage : null
+          username: profileContext.userName,
+          user_image: profileContext.userImage
         }}
         onSubmit={values => handleSubmit(values)}
         validateOnMount={true}
@@ -96,8 +97,7 @@ export const SettingsProfile = props => {
           values,
           errors,
           touched,
-          isValid,
-          setFieldValue
+          isValid
         }) => (
           <>
             <Header transparent={true} navigation={props.navigation} />
@@ -110,20 +110,27 @@ export const SettingsProfile = props => {
                 title='Edit Profile'>
                 <ListItem>
                   <ButtonAvatar
-                    imgSource={{uri: userImage}}
+                    imgSource={{uri:
+                      profileContext?.newUserImage?.uri ||
+                      profileContext?.userImage?.uri ||
+                      profileContext?.userImageFallback?.uri
+                    }}
                     a11yLabelText="Change profile picture"
                     a11yHintText="Click to navigate to change or add your profile image"
                     avatarStyles={styles.avatarStyles}
-                    onPress={() => toProfileSettingsAvatar(setFieldValue)}
+                    onPress={() => toProfileSettingsAvatar()}
                   >
-                    {userImage ? 'Change profile picture' : 'Add profile picture'}
+                    {profileContext.userImage
+                      ? 'Change profile picture'
+                      : 'Add profile picture'
+                    }
                   </ButtonAvatar>
                 </ListItem>
                 <TextInputFormField
                   username='username'
                   field='Username'
                   value={values.username}
-                  placeholder={userName}
+                  placeholder={profileContext?.userName}
                   returnKeyType='next'
                   returnKeyLabel='next'
                   onChangeText={handleChange('username')}

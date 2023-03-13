@@ -13,6 +13,7 @@ import 'intl-pluralrules'
 import { loadLanguage } from './src/i18n'
 import { AuthProvider } from './src/containers/Auth/AuthProvider'
 import { IdeaNavigator } from './src/navigation/IdeaNavigator'
+import { ProfileProvider } from './src/contexts/ProfileContext'
 
 Sentry.init({
   url: 'https://sentry.liqd.net',
@@ -23,6 +24,7 @@ Sentry.init({
 
 const App = () => {
   const [appIsReady, setAppIsReady] = useState(false)
+
   useEffect(() => {
     (async function () {
       try {
@@ -53,9 +55,11 @@ const App = () => {
     style={{ flex: 1 }} /* eslint-disable-line */
       onLayout={onLayoutRootView}
     >
-      <AuthProvider>
-        <IdeaNavigator />
-      </AuthProvider>
+      <ProfileProvider>
+        <AuthProvider>
+          <IdeaNavigator />
+        </AuthProvider>
+      </ProfileProvider>
     </View>
   )
 }

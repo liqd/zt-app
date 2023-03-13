@@ -7,27 +7,14 @@ import { ListContainer, ListLink } from '../../components/List'
 
 export const SettingsOverview = (props) => {
   const { t } = useTranslation()
-  // Pass fetched data forward
+
   const toProfileSettings = () => {
-    props.navigation.navigate('SettingsProfile', {
-      userName: userName,
-      userImage: userImage
-    })
+    props.navigation.navigate('SettingsProfile')
   }
 
-  // Pass updated info back
   const toProfileScreen = () => {
-    props.navigation.navigate({
-      name: 'ProfileScreen',
-      params: {
-        userName: userName,
-        userImage: userImage
-      },
-      merge: true,
-    })
+    props.navigation.navigate('ProfileScreen')
   }
-
-  const {userName, userImage} = props.route.params
 
   return (
     <SafeAreaView
