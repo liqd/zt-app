@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useContext, useEffect,useState } from 'react'
 import { FlatList,View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import AsyncStorage from '@react-native-async-storage/async-storage'
@@ -10,6 +10,7 @@ import { ButtonAvatar } from '../../components/ButtonAvatar'
 import { Header } from '../../components/Header'
 import { TextSourceSans } from '../../components/TextSourceSans'
 import {useAuthorization} from '../../containers/Auth/AuthProvider.js'
+import { ProfileContext } from '../../contexts/ProfileContext'
 
 import { ExploreListItem } from './ExploreListItem'
 import { styles } from './ExplorePage.styles'
@@ -18,7 +19,15 @@ export const ExplorePage = (props) => {
   const [projects, setProjects] = useState([])
   const { user, deepLink, setDeepLink, signOut } = useAuthorization()
 
-  const userImage = props?.route?.params?.userImage
+  useEffect(() => {
+    // initially setting profile context
+    setProfileContext({
+      userId: user.pk,
+      userName: user.username,
+      userImage: { uri: user.user_image },
+      userImageFallback: { uri: user.user_image_fallback }
+    })
+  }, [])
 
   useFocusEffect(
     useCallback(() => {
@@ -82,12 +91,17 @@ export const ExplorePage = (props) => {
   )
 
   const toProfile = () => {
-    props.navigation.navigate('ProfileScreen', {userId: user.pk})
+    props.navigation.navigate('ProfileScreen')
   }
+
+  const [profileContext, setProfileContext] = useContext(ProfileContext)
 
   const rightHeaderButton = (
     <ButtonAvatar
-      imgSource={ userImage ? { uri: userImage } : user && { uri: (user.user_image) ? user.user_image : user.user_image_fallback }}
+      imgSource={{ uri:
+        profileContext?.userImage?.uri ||
+        profileContext?.userImageFallback?.uri
+      }}
       a11yLabelText="profile"
       a11yHintText="click to go to profile and settings"
       onPress={toProfile}
