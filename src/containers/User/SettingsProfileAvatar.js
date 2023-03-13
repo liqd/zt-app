@@ -1,13 +1,13 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
 import { Header } from '../../components/Header'
 import { ImagePickerFormField } from '../../components/imageFormField'
 import { ListContainer, ListItem } from '../../components/List'
+import { ProfileContext } from '../../contexts/ProfileContext'
 
 export const SettingsProfileAvatar = props => {
-
-  const onGoBack = props.route.params.onGoBack
+  const [profileContext, setProfileContext] = useContext(ProfileContext)
 
   return (
     <SafeAreaView>
@@ -17,7 +17,10 @@ export const SettingsProfileAvatar = props => {
         <ListItem>
           <ImagePickerFormField
             onSetImage={img => {
-              onGoBack(img)
+              setProfileContext({
+                ...profileContext,
+                newUserImage: img
+              })
               props.navigation.goBack()
             }}
           />

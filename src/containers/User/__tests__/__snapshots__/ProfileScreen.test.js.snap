@@ -254,7 +254,7 @@ exports[`Test ProfileScreen Snapshot 1`] = `
           }
         }
       >
-        test-user
+        testname
       </Text>
     </View>
     <View

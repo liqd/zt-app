@@ -213,7 +213,7 @@ exports[`Test SettingsOverview Snapshot no user image 1`] = `
                 accessibilityIgnoresInvertColors={true}
                 source={
                   Object {
-                    "uri": null,
+                    "uri": undefined,
                   }
                 }
                 style={
