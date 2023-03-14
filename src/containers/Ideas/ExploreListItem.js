@@ -15,13 +15,38 @@ export const ExploreListItem = (props) => {
 
   const clockIcon = (<IconSLI name='clock' color={COLORS.grey.medium} />)
 
+  const containerHeight = () => {
+    if (props.item.description.length > 200) {
+      return { height: 530 }
+    } else if (props.item.description.length > 120) {
+      return { height: 480 }
+    } else {
+      return { height: 440 }
+    }
+  }
+
+  const containerStyles = {
+    ...styles.container,
+    ...containerHeight()
+  }
+
+  const imageContainerStyles = () => {
+    if (props.item.description.length > 200) {
+      return { flex: 1 }
+    } else if (props.item.description.length > 120) {
+      return { flex: 1 }
+    } else {
+      return { flex: 2 }
+    }
+  }
+
   return (
     <TouchableOpacity
       accessibilityRole="button"
       onPress={() => props.action(props.item)}
       delayPressIn={100}>
-      <View style={styles.container}>
-        <View style={styles.imageContainer}>
+      <View style={containerStyles}>
+        <View style={imageContainerStyles()}>
           <Image
             style={styles.image}
             source={{ uri: image }}
