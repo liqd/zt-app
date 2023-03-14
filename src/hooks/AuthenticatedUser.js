@@ -9,7 +9,7 @@ export function useAuthenticatedUser(token) {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const response = await getUser(null, token)
+        const response = await getUser(null)
         if (response) {
           if(response.statusCode === 200 && !isLoading) {
             setUser(response.data)

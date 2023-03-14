@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Alert, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import AsyncStorage from '@react-native-async-storage/async-storage'
 import { Formik } from 'formik'
 import * as yup from 'yup'
 
@@ -34,14 +33,11 @@ export const ReportCreateMessage = props => {
   const handleSubmit = (values) => {
     const description = values.message
     setSubmitPending(true)
-    AsyncStorage.getItem('authToken')
-      .then((token) => {
-        return API.postReport({
-          content_type,
-          object_pk,
-          description
-        }, token)
-      })
+    return API.postReport({
+      content_type,
+      object_pk,
+      description
+    })
       .then((response) => {
         const {statusCode, data} = response
         if (statusCode === 201) {

@@ -1,7 +1,6 @@
 import React, { useCallback, useState } from 'react'
 import { FlatList,View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import AsyncStorage from '@react-native-async-storage/async-storage'
 import { CommonActions } from '@react-navigation/native'
 import { useFocusEffect } from '@react-navigation/native'
 
@@ -47,8 +46,7 @@ export const ExplorePage = (props) => {
   )
 
   const fetchProjects = () => {
-    AsyncStorage.getItem('authToken')
-      .then((token) => API.getProjects(token))
+    API.getProjects()
       .then((response) => {
         if(response.statusCode === 200) {
           setProjects(response.data)
@@ -62,8 +60,7 @@ export const ExplorePage = (props) => {
   }
 
   const fetchProject = () => {
-    return AsyncStorage.getItem('authToken').then((token) =>
-      API.getProject(token, deepLink))
+    return API.getProject(deepLink)
       .then((result) => {
         if (result.statusCode === 200) {
           return result.data

@@ -1,7 +1,6 @@
 import React from 'react'
 import { Alert } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import AsyncStorage from '@react-native-async-storage/async-storage'
 import { Formik } from 'formik'
 import * as yup from 'yup'
 
@@ -44,10 +43,7 @@ export const SettingsProfile = props => {
 
   const handleSubmit = (values) => {
     const formData = makeFormData(values)
-    AsyncStorage.getItem('authToken')
-      .then((token) => {
-        return API.editUser(formData, token)
-      })
+    return API.editUser(formData)
       .then((response) => {
         const {statusCode, data} = response
         if (statusCode == 200) {

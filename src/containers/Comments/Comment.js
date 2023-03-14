@@ -2,7 +2,6 @@ import React, { useCallback, useEffect, useRef,useState } from 'react'
 import { Alert, Image, View } from 'react-native'
 import { TouchableWithoutFeedback } from 'react-native'
 import IconSLI from 'react-native-vector-icons/SimpleLineIcons'
-import AsyncStorage from '@react-native-async-storage/async-storage'
 import { Button } from '@rneui/base'
 
 import API from '../../BaseApi'
@@ -104,51 +103,45 @@ export const Comment = (props) => {
   const handleRate = async(commentInstance, value) => {
     if (processing.current) return
     processing.current = true
-    const token = await AsyncStorage.getItem('authToken')
-    const newComment = await rate(commentInstance, value, token)
+    const newComment = await rate(commentInstance, value)
     if (newComment) {
       processing.current = false
     }
   }
 
-  const rate = async(commentInstance, value, token) => {
+  const rate = async(commentInstance, value) => {
     if (commentInstance.ratings.current_user_rating_id) {
       if (commentInstance.ratings.current_user_rating_value !== value) {
         await API.changeRating(
           commentInstance.comment_content_type,
           commentInstance.id,
           commentInstance.ratings.current_user_rating_id,
-          {value: value},
-          token
+          {value: value}
         )
       } else {
         await API.changeRating(
           commentInstance.comment_content_type,
           commentInstance.id,
           commentInstance.ratings.current_user_rating_id,
-          {value: 0},
-          token
+          {value: 0}
         )
       }
     } else {
       await API.postRating(
         commentInstance.comment_content_type,
         commentInstance.id,
-        {value: value},
-        token
+        {value: value}
       )
     }
     return await fetchComment()
   }
 
   const fetchComment = () => {
-    return AsyncStorage.getItem('authToken')
-      .then((token) => API.getComment(
-        comment.content_type,
-        comment.object_pk,
-        comment.id,
-        token
-      ))
+    return API.getComment(
+      comment.content_type,
+      comment.object_pk,
+      comment.id,
+    )
       .then(response => {
         setComment(response.data)
         return response.data
@@ -156,13 +149,11 @@ export const Comment = (props) => {
   }
 
   const deleteComment = (commentInstance) => {
-    AsyncStorage.getItem('authToken')
-      .then((token) => API.deleteComment(
-        commentInstance.content_type,
-        commentInstance.object_pk,
-        commentInstance.id,
-        token
-      ))
+    API.deleteComment(
+      commentInstance.content_type,
+      commentInstance.object_pk,
+      commentInstance.id,
+    )
       .then((response) => {
         const {statusCode, data} = response
         props.toggleDeleteModal()
