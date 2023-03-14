@@ -3,7 +3,6 @@ import { Image,ImageBackground, Linking, ScrollView, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import IconFA from 'react-native-vector-icons/FontAwesome'
 import IconSLI from 'react-native-vector-icons/SimpleLineIcons'
-import AsyncStorage from '@react-native-async-storage/async-storage'
 import { Button } from '@rneui/themed'
 import { LinearGradient } from 'expo-linear-gradient'
 
@@ -54,16 +53,14 @@ export const IdeaProject = (props) => {
 
   const fetchIdeas = () => {
     project.single_idea_collection_module &&
-      AsyncStorage.getItem('authToken')
-        .then(token => API.getIdeas(project.single_idea_collection_module, token))
+      API.getIdeas(project.single_idea_collection_module)
         .then(ideaResponse => {
           setIdeas(ideaResponse.data)
         })
   }
 
   const fetchModule = () => {
-    AsyncStorage.getItem('authToken')
-      .then(token => API.getModule(project.single_idea_collection_module, token))
+    API.getModule(project.single_idea_collection_module)
       .then(moduleResponse => {
         setModule(moduleResponse.data)
       })

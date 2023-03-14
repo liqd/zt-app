@@ -1,3 +1,4 @@
+import AsyncStorage from '@react-native-async-storage/async-storage'
 import Constants from 'expo-constants'
 import * as Device from 'expo-device'
 
@@ -55,22 +56,24 @@ const endpoints = {
   user: baseApiUrl + '/users/$userPk/',
 }
 
-const getHeaders = (token, isFormData = false) => {
+const getHeaders = async (isFormData = false) => {
   const headers = {
     Accept: 'application/json',
     'Content-Type': isFormData ? 'multipart/form-data' : 'application/json'
   }
+  const token = await AsyncStorage.getItem('authToken')
   if (token) {
     headers['Authorization'] = 'Token ' + token
   }
   return headers
 }
 
-const makeGetRequest = (url, token = null) => {
-  return fetch(url, {
-    method: 'GET',
-    headers: getHeaders(token)
-  })
+const makeGetRequest = (url) => {
+  return getHeaders()
+    .then(headers => fetch(url, {
+      method: 'GET',
+      headers: headers
+    }))
     .then(response => {
       const statusCode = response.status
       const data = response.json()
@@ -82,13 +85,14 @@ const makeGetRequest = (url, token = null) => {
     .catch(error => console.error(error))
 }
 
-const makePostRequest = (url, data = {}, token = null) => {
+const makePostRequest = (url, data = {}) => {
   const isFormData = data instanceof FormData
-  return fetch(url, {
-    method: 'POST',
-    headers: getHeaders(token, isFormData),
-    body: isFormData ? data : JSON.stringify(data)
-  })
+  return getHeaders(isFormData)
+    .then(headers => fetch(url, {
+      method: 'POST',
+      headers: headers,
+      body: isFormData ? data : JSON.stringify(data)
+    }))
     .then(response => {
       const statusCode = response.status
       const data = response.json()
@@ -100,13 +104,14 @@ const makePostRequest = (url, data = {}, token = null) => {
     .catch(error => console.error(error))
 }
 
-const makePutRequest = (url, data = {}, token = null) => {
+const makePutRequest = (url, data = {}) => {
   const isFormData = data instanceof FormData
-  return fetch(url, {
-    method: 'PUT',
-    headers: getHeaders(token, isFormData),
-    body: isFormData ? data : JSON.stringify(data)
-  })
+  return getHeaders(isFormData)
+    .then(headers => fetch(url, {
+      method: 'PUT',
+      headers: headers,
+      body: isFormData ? data : JSON.stringify(data)
+    }))
     .then(response => {
       const statusCode = response.status
       const data = response.json()
@@ -118,11 +123,12 @@ const makePutRequest = (url, data = {}, token = null) => {
     .catch(error => console.error(error))
 }
 
-const makeDeleteRequest = (url, token = null) => {
-  return fetch(url, {
-    method: 'DELETE',
-    headers: getHeaders(token)
-  })
+const makeDeleteRequest = (url) => {
+  return getHeaders()
+    .then(headers => fetch(url, {
+      method: 'DELETE',
+      headers: headers
+    }))
     .then(response => {
       const statusCode = response.status
       let data
@@ -135,99 +141,99 @@ const makeDeleteRequest = (url, token = null) => {
     .catch(error => console.error(error))
 }
 
-export function getUser(userPk, token = null) {
+export function getUser(userPk) {
   let url
   if (userPk) {
     url = endpoints.user.replace('$userPk', userPk)
   } else {
     url = endpoints.account
   }
-  return makeGetRequest(url, token)
+  return makeGetRequest(url)
 }
 
 const API = {
-  getIdea(moduleId, ideaId, token = null) {
+  getIdea(moduleId, ideaId) {
     const module_url = endpoints.idea.replace('$moduleId', moduleId)
     const url = module_url.replace('$ideaPk', ideaId)
-    return makeGetRequest(url, token)
+    return makeGetRequest(url)
   },
-  getIdeas(moduleId, token = null) {
+  getIdeas(moduleId) {
     const url = endpoints.ideas.replace(/\$(\w+?)\b/g, moduleId)
-    return makeGetRequest(url, token)
+    return makeGetRequest(url)
   },
-  postIdea(moduleId, formData, token = null) {
+  postIdea(moduleId, formData) {
     const url = endpoints.ideas.replace(/\$(\w+?)\b/g, moduleId)
-    return makePostRequest(url, formData, token)
+    return makePostRequest(url, formData)
   },
-  deleteIdea(moduleId, ideaPk, token = null) {
+  deleteIdea(moduleId, ideaPk) {
     const module_url = endpoints.idea.replace('$moduleId', moduleId)
     const url = module_url.replace('$ideaPk', ideaPk)
-    return makeDeleteRequest(url, token)
+    return makeDeleteRequest(url)
   },
-  editIdea(moduleId, ideaPk, data, token = null) {
+  editIdea(moduleId, ideaPk, data) {
     const module_url = endpoints.idea.replace('$moduleId', moduleId)
     const url = module_url.replace('$ideaPk', ideaPk)
-    return makePutRequest(url, data, token)
+    return makePutRequest(url, data)
   },
-  postReport(data, token = null) {
-    return makePostRequest(endpoints.report, data, token)
+  postReport(data) {
+    return makePostRequest(endpoints.report, data)
   },
   postLogin(data) {
     return makePostRequest(endpoints.login, data)
   },
-  getProjects(token = null) {
-    return makeGetRequest(endpoints.projects, token)
+  getProjects() {
+    return makeGetRequest(endpoints.projects)
   },
-  getProject(token, project) {
+  getProject(project) {
     const url = endpoints.project.replace('$project', project)
-    return makeGetRequest(url, token)
+    return makeGetRequest(url)
   },
-  getModule(moduleId, token = null) {
+  getModule(moduleId) {
     const url = endpoints.module.replace('$moduleId', moduleId)
-    return makeGetRequest(url, token)
+    return makeGetRequest(url)
   },
-  postRating(contentTypeId, objectPk, data, token = null) {
+  postRating(contentTypeId, objectPk, data) {
     const ct_url = endpoints.ratings.replace('$contentTypeId', contentTypeId)
     const url = ct_url.replace('$objectPk', objectPk)
-    return makePostRequest(url, data, token)
+    return makePostRequest(url, data)
   },
-  changeRating(contentTypeId, objectPk, ratingId, data, token = null) {
+  changeRating(contentTypeId, objectPk, ratingId, data) {
     const ct_url = endpoints.rating.replace('$contentTypeId', contentTypeId)
     const ct_obj_url = ct_url.replace('$objectPk', objectPk)
     const url = ct_obj_url.replace('$ratingId', ratingId)
-    return makePutRequest(url, data, token)
+    return makePutRequest(url, data)
   },
-  getComments(contentTypeId, objectPk, token = null) {
+  getComments(contentTypeId, objectPk) {
     const ct_url = endpoints.comments.replace('$contentTypeId', contentTypeId)
     const url = ct_url.replace('$objectPk', objectPk)
-    return makeGetRequest(url, token)
+    return makeGetRequest(url)
   },
-  getComment(contentTypeId, objectPk, commentPk, token = null) {
+  getComment(contentTypeId, objectPk, commentPk) {
     const ct_url = endpoints.comment.replace('$contentTypeId', contentTypeId)
     const ct_obj_url = ct_url.replace('$objectPk', objectPk)
     const url = ct_obj_url.replace('$commentPk', commentPk)
-    return makeGetRequest(url, token)
+    return makeGetRequest(url)
   },
-  addComment(contentTypeId, objectPk, data, token = null) {
+  addComment(contentTypeId, objectPk, data) {
     const ct_url = endpoints.comments.replace('$contentTypeId', contentTypeId)
     const url = ct_url.replace('$objectPk', objectPk)
-    return makePostRequest(url, data, token)
+    return makePostRequest(url, data)
   },
-  editComment(contentTypeId, objectPk, commentPk, data, token = null) {
+  editComment(contentTypeId, objectPk, commentPk, data) {
     const ct_url = endpoints.comment.replace('$contentTypeId', contentTypeId)
     const ct_obj_url = ct_url.replace('$objectPk', objectPk)
     const url = ct_obj_url.replace('$commentPk', commentPk)
-    return makePutRequest(url, data, token)
+    return makePutRequest(url, data)
   },
-  deleteComment(contentTypeId, objectPk, commentPk, token = null) {
+  deleteComment(contentTypeId, objectPk, commentPk) {
     const ct_url = endpoints.comment.replace('$contentTypeId', contentTypeId)
     const ct_obj_url = ct_url.replace('$objectPk', objectPk)
     const url = ct_obj_url.replace('$commentPk', commentPk)
-    return makeDeleteRequest(url, token)
+    return makeDeleteRequest(url)
   },
-  editUser(data, token = null) {
+  editUser(data) {
     const url = endpoints.account
-    return makePutRequest(url, data, token)
+    return makePutRequest(url, data)
   },
 }
 

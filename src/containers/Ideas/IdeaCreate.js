@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import { Alert, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import AsyncStorage from '@react-native-async-storage/async-storage'
 import { Formik } from 'formik'
 import * as yup from 'yup'
 
@@ -119,15 +118,11 @@ export const IdeaCreate = props => {
     values.description = description
     const processedValues = processImageData(values)
     const formData = makeFormData(processedValues)
-    AsyncStorage.getItem('authToken')
-      .then((token) => {
-        if (editing) {
-          return API.editIdea(module.pk, idea.pk, formData, token)
-        } else {
-          return API.postIdea(module.pk, formData, token)
-        }
-      })
-      //error handling is provisional and should probably go somewhere else eventually
+    return (editing
+      ? API.editIdea(module.pk, idea.pk, formData)
+      : API.postIdea(module.pk, formData)
+    )
+    //error handling is provisional and should probably go somewhere else eventually
       .then(response => {
         const {statusCode, data} = response
         if (statusCode === 201) {

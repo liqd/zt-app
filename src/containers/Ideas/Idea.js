@@ -10,7 +10,6 @@ import {
 } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import IconSLI from 'react-native-vector-icons/SimpleLineIcons'
-import AsyncStorage from '@react-native-async-storage/async-storage'
 import { Button } from '@rneui/base'
 
 import API from '../../BaseApi'
@@ -138,12 +137,11 @@ export const Idea = (props) => {
   const handleRate = async(value) => {
     if (processing) return
     setProcessing(true)
-    const token = await AsyncStorage.getItem('authToken')
-    const newIdea = await rate(value, token)
+    const newIdea = await rate(value)
     newIdea && setProcessing(false)
   }
 
-  const rate = async(value, token) => {
+  const rate = async(value) => {
     const {pk, content_type} = ideaState
 
     if (ideaState.user_rating) {
@@ -152,20 +150,18 @@ export const Idea = (props) => {
           content_type,
           pk,
           ideaState.user_rating.id,
-          {value: value},
-          token
+          {value: value}
         )
       } else {
         await API.changeRating(
           content_type,
           pk,
           ideaState.user_rating.id,
-          {value: 0},
-          token
+          {value: 0}
         )
       }
     } else {
-      await API.postRating(content_type, pk, {value: value}, token)
+      await API.postRating(content_type, pk, {value: value})
     }
     return await fetchIdea()
   }
@@ -185,14 +181,12 @@ export const Idea = (props) => {
   const handleComment = (values) => {
     commentInputRef.current.blur()
     setSubmitPending(true)
-    AsyncStorage.getItem('authToken')
-      .then((token) => {
-        values.agreed_terms_of_use = true
-        const payload = getCommentPayload(values, token)
-
-        if (isEditing) return API.editComment(...payload)
-        return API.addComment(...payload)
-      })
+    values.agreed_terms_of_use = true
+    const payload = getCommentPayload(values)
+    return (isEditing
+      ? API.editComment(...payload)
+      : API.addComment(...payload)
+    )
       .then((response) => {
         let {statusCode, data} = response
         if (statusCode === 201 || statusCode === 200) {
@@ -214,21 +208,19 @@ export const Idea = (props) => {
       })
   }
 
-  const getCommentPayload = (values, token) => {
+  const getCommentPayload = (values) => {
     if (isEditing) {
       return [
         editedComment.content_type,
         editedComment.object_pk,
         editedComment.id,
-        values,
-        token
+        values
       ]
     } else {
       return [
         contentObjectOfComment.contentType,
         contentObjectOfComment.pk,
-        values,
-        token
+        values
       ]
     }
   }
@@ -264,8 +256,7 @@ export const Idea = (props) => {
   }
 
   const fetchIdea = () => {
-    return AsyncStorage.getItem('authToken')
-      .then(token => API.getIdea(module.pk, ideaState.pk, token))
+    return API.getIdea(module.pk, ideaState.pk)
       .then(response => {
         setIdeaState(response.data)
         return response.data
@@ -273,8 +264,7 @@ export const Idea = (props) => {
   }
 
   const deleteIdea = () => {
-    AsyncStorage.getItem('authToken')
-      .then((token) => API.deleteIdea(module.pk, ideaState.pk, token))
+    API.deleteIdea(module.pk, ideaState.pk)
       .then((response) => {
         const {statusCode, data} = response
         toggleDeleteModal()
@@ -312,8 +302,7 @@ export const Idea = (props) => {
   )
 
   const fetchComments = (ideaContentType, ideaPk) => {
-    AsyncStorage.getItem('authToken')
-      .then(token => API.getComments(ideaContentType, ideaPk, token))
+    API.getComments(ideaContentType, ideaPk)
       .then(response => setComments(response.data.results))
   }
 
