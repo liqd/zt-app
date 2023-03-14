@@ -8,16 +8,12 @@ export const styles = StyleSheet.create({
   container: {
     borderWidth: 1,
     borderColor: COLORS.grey.extralight,
-    height: 424,
     marginVertical: SPACINGS.multiplyBy(0.75),
   },
   title: {
     fontSize: SIZES.base,
     fontFamily: FONTS.familySemiBold,
     marginBottom: SPACINGS.multiplyBy(0.5),
-  },
-  imageContainer: {
-    height: '50%'
   },
   image: {
     flex: 1,
@@ -29,7 +25,7 @@ export const styles = StyleSheet.create({
     flex: 1
   },
   text: {
-    marginBottom: SPACINGS.multiplyBy(0.5),
+    marginBottom: SPACINGS.multiplyBy(0.5)
   },
   progressContainer: {
     padding: SPACINGS.multiplyBy(0.8),
