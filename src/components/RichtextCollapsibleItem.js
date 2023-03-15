@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Text, TouchableOpacity,View } from 'react-native'
-import IconSLI from 'react-native-vector-icons/SimpleLineIcons'
+import IconFA from 'react-native-vector-icons/FontAwesome'
 
 import { COLORS } from '../theme/colors'
 
@@ -9,8 +9,8 @@ import { styles } from './RichtextCollapsibleItem.styles'
 export const RichtextCollapsibleItem = ({ title, body }) => {
   const [collapsed, setCollapsed] = useState(true)
   const chevron = collapsed
-    ? <IconSLI name={'plus'} size={24} color={COLORS.text} />
-    : <IconSLI name={'minus'} size={24} color={COLORS.text} />
+    ? <IconFA name={'plus'} size={20} color={COLORS.text} />
+    : <IconFA name={'minus'} size={20} color={COLORS.text} />
 
   return (
     <TouchableOpacity
