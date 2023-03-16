@@ -24,6 +24,8 @@ help:
 	@echo "  make test-debug      -- run changed tests only, no coverage"
 	@echo "  make updateSnapshots -- update the snapshots for tests"
 	@echo "  make translations    -- create or update translation files"
+	@echo "  make publish-dev     -- publish to dev channel"
+	@echo "  make publish-prod    -- publish to prod channel"
 	@echo
 
 .PHONY: install
@@ -84,3 +86,11 @@ updateSnapshots:
 .PHONY: translations
 translations:
 	npx i18next-scanner
+
+.PHONY: publish-dev
+publish-dev:
+	npx eas update --channel dev
+
+.PHONY: publish-prod
+publish-prod:
+	npx eas update --channel prod
