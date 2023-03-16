@@ -30,7 +30,6 @@ export const SettingsProfile = props => {
     } else if (values['user_image'] === profileContext?.newUserImage) {
       delete values['user_image']
     } else if (values['user_image'] !== profileContext?.newUserImage) {
-      console.log('context', profileContext)
       // instead of setFieldValue (Formik), assigning "manually" here
       values['user_image'] = profileContext.newUserImage
       setProfileContext({
