@@ -4,7 +4,8 @@ import IconSLI from 'react-native-vector-icons/SimpleLineIcons'
 import { Button } from '@rneui/base'
 import * as Device from 'expo-device'
 import * as ImagePicker from 'expo-image-picker'
-import mime from 'mime'
+
+import { useImageResize } from '../hooks/useImageResize'
 
 import { CheckBoxFormField } from './formFields'
 import { FormLabel } from './FormLabel'
@@ -15,28 +16,7 @@ export const ImagePickerFormField = (props) => {
   const [capturedImage, setCapturedImage] = useState(null)
   const [image, setImage] = useState(props.initialImage)
   const isSimulator = Device.brand === 'Apple' && !Device.isDevice
-
-  const makePayload = (imageFromExpo) => {
-    const imagePayload = {
-      type: '',
-      name: '',
-      size: 0,
-      uri: ''
-    }
-
-    const nameRegex = /[^/]*$/
-    const imgName = imageFromExpo.uri.match(nameRegex)
-    const imgSize = imageFromExpo.fileSize
-    const extRegex = /\w+$/
-    const imgExt = imgName[0].match(extRegex)
-
-    imagePayload.type = imgExt ? mime.getType(imgExt[0]) : 'image/jpeg'
-    imagePayload.name = imgName ? imgName[0] : 'unnamed'
-    imagePayload.size = imgSize ? imgSize : 1
-    imagePayload.uri = imageFromExpo.uri
-
-    return imagePayload
-  }
+  const [resizedImage, setInputImage] = useImageResize()
 
   useEffect(() => {
     (async () => {
@@ -49,6 +29,13 @@ export const ImagePickerFormField = (props) => {
     })()
   }, [capturedImage, image])
 
+  useEffect(() => {
+    if (resizedImage) {
+      setImage(resizedImage.uri)
+      props.onSetImage(resizedImage)
+    }
+  }, [resizedImage])
+
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
@@ -57,11 +44,8 @@ export const ImagePickerFormField = (props) => {
       quality: 1,
     })
 
-    const payload = makePayload(result.assets[0])
-
     if (!result.canceled) {
-      setImage(payload.uri)
-      props.onSetImage(payload)
+      setInputImage(result.assets[0])
     }
   }
 
@@ -84,11 +68,8 @@ export const ImagePickerFormField = (props) => {
       quality: 1,
     })
 
-    const payload = makePayload(result.assets[0])
-
     if (!result.canceled) {
-      setCapturedImage(payload.uri)
-      props.onSetImage(payload)
+      setInputImage(result.assets[0])
     }
   }
 
