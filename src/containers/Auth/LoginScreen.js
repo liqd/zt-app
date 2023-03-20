@@ -18,6 +18,7 @@ export const LoginScreen = () => {
   const { t } = useTranslation()
   const {signIn} = useAuthorization()
   const [error, setError] = useState()
+  const [submitPending, setSubmitPending] = useState()
   const registerUrl = '/accounts/signup/?next=/'
   const passwordResetUrl = '/accounts/password/reset/'
 
@@ -28,21 +29,30 @@ export const LoginScreen = () => {
   }, [error])
 
   const handleLogin = (values) => {
-    API.postLogin(values).then((response) => {
-      if (response.statusCode!==200) {
-        if (response.data.non_field_errors) {
-          setError(response.data.non_field_errors[0])
-        } else if (response.data.username) {
-          setError(t('Username or E-mail address: ') + response.data.username[0])
-        } else if (response.data.password) {
-          setError(t('Password: ') + response.data.password[0])
-        } else {
-          setError(t('Something went wrong, please try again.'))
+    setSubmitPending(true)
+    return API.postLogin(values)
+      .then((response) => {
+        const {statusCode, data} = response
+        if (statusCode === 200) {
+          signIn(data.token)
+        } else if (statusCode === 400) {
+          let errorMessage
+          if (data.non_field_errors) {
+            errorMessage = data.non_field_errors[0]
+          } else if (data.username) {
+            errorMessage = t('Username or E-mail address: ') + data.username[0]
+          } else if (data.password) {
+            errorMessage = t('Password: ') + data.password[0]
+          } else {
+            errorMessage = t('Something went wrong, please try again.')
+          }
+          return Promise.reject(errorMessage)
         }
-      } else {
-        signIn(response.data.token)
-      }
-    })
+      })
+      .catch(error => {
+        setError(error)
+        setSubmitPending(false)
+      })
   }
 
   const loginValidationSchema = yup.object().shape({
@@ -59,6 +69,7 @@ export const LoginScreen = () => {
       validationSchema={loginValidationSchema}
       initialValues={{ username: '', password: '' }}
       onSubmit={values => handleLogin(values)}
+      validateOnMount={true}
     >
       {({
         handleChange,
@@ -71,7 +82,7 @@ export const LoginScreen = () => {
       }) => (
         <KeyboardScrollView
           handleSubmit={handleSubmit}
-          isValid={isValid}
+          isValid={isValid && !submitPending}
           buttonText='Login'
         >
           <StatusBarStyled />

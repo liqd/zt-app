@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Alert } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
@@ -19,6 +19,7 @@ import { styles } from './SettingsProfile.styles'
 export const SettingsProfile = props => {
   const [profileContext, setProfileContext] = useContext(ProfileContext)
   const { t } = useTranslation()
+  const [submitPending, setSubmitPending] = useState()
 
   const userNameValidationSchema = yup.object().shape({
     username: yup
@@ -57,12 +58,14 @@ export const SettingsProfile = props => {
   }
 
   const handleSubmit = (values) => {
+    setSubmitPending(true)
     const formData = makeFormData(values)
     return API.editUser(formData)
       .then((response) => {
         const {statusCode, data} = response
         if (statusCode == 200) {
           Alert.alert(t('You\'re profile has been updated'))
+          setSubmitPending(false)
           props.navigation.navigate('SettingsOverview')
         } else {
           const errorMessage = t('That did not work.')
@@ -73,6 +76,7 @@ export const SettingsProfile = props => {
             errorDetail = 'Bad request'
           }
           Alert.alert(errorMessage, errorDetail)
+          setSubmitPending(false)
         }
       })
   }
@@ -106,8 +110,8 @@ export const SettingsProfile = props => {
             <Header transparent={true} navigation={props.navigation} />
             <KeyboardScrollView
               handleSubmit={handleSubmit}
-              isValid={isValid}
               buttonText={t('Save')}
+              isValid={isValid && !submitPending}
             >
               <ListContainer
                 title={t('Edit Profile')}>
