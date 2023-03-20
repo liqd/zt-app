@@ -195,7 +195,10 @@ export const IdeaCreate = props => {
         <Header
           navigation={props.navigation} />
       </View>
-      <VirtualScrollView>
+      <VirtualScrollView
+        contentContainerStyle={styles.flexContainer}
+        listHeaderStyle={styles.flexContainer}
+      >
         <TextSourceSans style={styles.title}>{t('Submit a new idea for this project')}</TextSourceSans>
         <Formik
           validationSchema={ideaValidationSchema}
