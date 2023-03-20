@@ -1,5 +1,5 @@
 import React from 'react'
-import {FlatList} from 'react-native'
+import { FlatList } from 'react-native'
 
 export const VirtualScrollView = props => {
   return (
@@ -13,6 +13,7 @@ export const VirtualScrollView = props => {
       ListHeaderComponent={() => (
         <>{props.children}</>
       )}
+      ListHeaderComponentStyle={props.listHeaderStyle}
     />
   )
 }
