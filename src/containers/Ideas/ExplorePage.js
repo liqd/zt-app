@@ -22,13 +22,15 @@ export const ExplorePage = (props) => {
 
   useEffect(() => {
     // initially setting profile context
-    setProfileContext({
-      userId: user.pk,
-      userName: user.username,
-      userImage: { uri: user.user_image },
-      userImageFallback: { uri: user.user_image_fallback }
-    })
-  }, [])
+    if (user) {
+      setProfileContext({
+        userId: user.pk,
+        userName: user.username,
+        userImage: { uri: user.user_image },
+        userImageFallback: { uri: user.user_image_fallback }
+      })
+    }
+  }, [user])
 
   useFocusEffect(
     useCallback(() => {
