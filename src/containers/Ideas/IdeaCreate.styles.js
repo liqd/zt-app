@@ -25,6 +25,6 @@ export const styles = StyleSheet.create({
   },
   flexContainer: {
     flex: 1,
-    backgroundColor: COLORS.paper
+    backgroundColor: COLORS.paper,
   }
 })
