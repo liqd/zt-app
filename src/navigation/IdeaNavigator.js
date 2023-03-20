@@ -33,13 +33,13 @@ const linking = {
 
 export const IdeaNavigator = () => {
   const { t } = useTranslation()
-  const { loading, user } = useAuthorization()
+  const { loading, token } = useAuthorization()
 
   let stackScreen
   if (loading) {
     stackScreen = <Stack.Screen name="StartUp" component={StartUpScreen} />
   } else {
-    if (user == null) {
+    if (token == null) {
       stackScreen = <Stack.Screen name="Auth" component={LoginScreen} />
     } else {
       stackScreen = <>
