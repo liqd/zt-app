@@ -2,8 +2,8 @@ import { initReactI18next } from 'react-i18next'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import i18n from 'i18next'
 
-import lang_de from '../locale/de/translation.json'
-import lang_en from '../locale/en/translation.json'
+import lang_de from './locale/de/translation.json'
+import lang_en from './locale/en/translation.json'
 
 const resources = {
   en: {
