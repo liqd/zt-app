@@ -219,6 +219,7 @@ export const IdeaCreate = props => {
             <KeyboardScrollView
               handleSubmit={handleSubmit}
               isValid={isValid && !submitPending}
+              pending={submitPending}
               buttonText={t('Submit')}
             >
               <View style={styles.container}>
