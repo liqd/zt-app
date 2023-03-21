@@ -285,6 +285,7 @@ export const Comment = (props) => {
             labelText={t('up-votes')}
             hintText={t('click to up vote')}
             counter={comment.ratings.positive_ratings}
+            rating='pos'
             onPress={() => handleRate(comment, 1)}
             highlight={
               comment.ratings.current_user_rating_id &&
@@ -298,6 +299,7 @@ export const Comment = (props) => {
             labelText={t('down-votes')}
             hintText={t('click to down vote')}
             counter={comment.ratings.negative_ratings}
+            rating='neg'
             onPress={() => handleRate(comment, -1)}
             highlight={
               comment.ratings.current_user_rating_id &&

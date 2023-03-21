@@ -1,6 +1,7 @@
 export const COLORS = {
   // brand
   primary: '#2d40cc',
+  primaryLight: '#e5e8f8',
   secondary: '#90efe4',
   tertiary: '#008dc5',
 
@@ -9,6 +10,7 @@ export const COLORS = {
   info: '#2d40cc',
   warning: '#ffc107',
   danger: '#a72b1e',
+  dangerLight: '#f6e9e8',
 
   // utility
   text: '#1a1a1a',
