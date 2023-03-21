@@ -13,7 +13,7 @@ export const Comments = (props) => {
   return (
     <View>
       <TextSourceSans>
-        {t('{{ count }} Entries', {count: props.comments.length})}
+        {t('{{ count }} Entry', {count: props.comments.length})}
       </TextSourceSans>
       {props.comments.map((comment) =>
         <Comment
