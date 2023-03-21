@@ -65,6 +65,10 @@ const getHeaders = async (isFormData = false) => {
   if (token) {
     headers['Authorization'] = 'Token ' + token
   }
+  const lang = await AsyncStorage.getItem('language')
+  if (lang && lang == 'de') {
+    headers['Accept-Language'] = lang
+  }
   return headers
 }
 
