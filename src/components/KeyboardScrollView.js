@@ -37,6 +37,7 @@ export const KeyboardScrollView = (props) => {
         title={buttonText}
         onPress={props.handleSubmit}
         disabled={!props.isValid}
+        loading={props.pending}
       />
     </KeyboardAvoidingView>
   )

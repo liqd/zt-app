@@ -112,6 +112,7 @@ export const SettingsProfile = props => {
               handleSubmit={handleSubmit}
               buttonText={t('Save')}
               isValid={isValid && !submitPending}
+              pending={submitPending}
             >
               <ListContainer
                 title={t('Edit Profile')}>

@@ -13,6 +13,7 @@ export const ButtonSubmit = (props) => {
       accessibilityLabel={props.title}
       accessibilityHint={props.fieldHint}
       disabled={props.disabled}
+      loading={props.loading}
     />
   )
 }

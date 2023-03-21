@@ -83,6 +83,7 @@ export const LoginScreen = () => {
         <KeyboardScrollView
           handleSubmit={handleSubmit}
           isValid={isValid && !submitPending}
+          pending={submitPending}
           buttonText='Login'
         >
           <StatusBarStyled />
