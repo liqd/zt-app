@@ -13,6 +13,7 @@ import { Header } from '../../components/Header'
 import { LinkTextSourceSans } from '../../components/LinkTextSourceSans'
 import { Richtext } from '../../components/Richtext'
 import { StatusBarStyled } from '../../components/StatusBarStyled'
+import { StickyContainer } from '../../components/StickyContainer'
 import { TextSourceSans } from '../../components/TextSourceSans'
 import { COLORS } from '../../theme/colors'
 
@@ -94,7 +95,11 @@ export const IdeaProject = (props) => {
         colors={['rgba(0,0,0,0.80)', 'rgba(0,0,0,0.00)']}
         style={styles.linearGradient}
       />
-      <ScrollView>
+      <ScrollView
+        style={visibleTab === tabs.participation && module.has_idea_adding_permission &&
+          styles.scrollContainer
+        }
+      >
         <Header
           transparent={true}
           arrowColor={COLORS.paper}
@@ -175,13 +180,6 @@ export const IdeaProject = (props) => {
                         navigation={props.navigation}
                       />
                     </View>
-                    {module.has_idea_adding_permission && (
-                      <ButtonSubmit
-                        title='Submit Idea'
-                        onPress={pressHandler}
-                      >
-                      </ButtonSubmit>
-                    )}
                   </View>
                 ) : (
                   <TextSourceSans>
@@ -246,6 +244,14 @@ export const IdeaProject = (props) => {
           </View>
         </View>
       </ScrollView>
+      {visibleTab === tabs.participation && module.has_idea_adding_permission && (
+        <StickyContainer>
+          <ButtonSubmit
+            title='Submit Idea'
+            onPress={pressHandler}
+          ></ButtonSubmit>
+        </StickyContainer>
+      )}
     </SafeAreaView>
   )
 }

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Linking,useWindowDimensions } from 'react-native'
+import { Linking, useWindowDimensions } from 'react-native'
 import RenderHTML, {
   HTMLContentModel,
   HTMLElementModel,
