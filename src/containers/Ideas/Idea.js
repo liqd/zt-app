@@ -415,6 +415,7 @@ export const Idea = (props) => {
                 ideaState.user_rating.value === 1 &&
                 ideaState.user_rating.value
                   }
+                  rating='pos'
                   disabled={!ideaState.has_rating_permission}
                 />
                 <ButtonCounter
@@ -428,6 +429,7 @@ export const Idea = (props) => {
                 ideaState.user_rating.value === -1 &&
                 ideaState.user_rating.value
                   }
+                  rating='neg'
                   disabled={!ideaState.has_rating_permission}
                 />
               </View>
