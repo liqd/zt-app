@@ -83,7 +83,7 @@
     "eslint-plugin-simple-import-sort": "10.0.0",
     "glob-stream": "^7.0.0",
     "husky": "8.0.1",
-    "i18next-scanner": "4.1.1",
+    "i18next-parser": "7.7.0",
     "jest": "28.1.2",
     "jest-expo": "47.0.1",
     "lint-staged": "13.0.3",

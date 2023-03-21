@@ -10,7 +10,7 @@ import * as SplashScreen from 'expo-splash-screen'
 import * as Sentry from 'sentry-expo'
 import 'intl-pluralrules'
 
-import { loadLanguage } from './src/i18n'
+import { loadLanguage } from './i18n'
 import { AuthProvider } from './src/containers/Auth/AuthProvider'
 import { IdeaNavigator } from './src/navigation/IdeaNavigator'
 import { ProfileProvider } from './src/contexts/ProfileContext'
