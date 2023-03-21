@@ -1,40 +1,51 @@
 import React from 'react'
-import { TouchableOpacity } from 'react-native'
+import { Pressable, View } from 'react-native'
 
 import { styles } from './ButtonCounter.styles'
 import { TextSourceSans } from './TextSourceSans'
 
 export const ButtonCounter = (props) => {
   let btnStyle
+  let textStyle
   if (props.disabled) {
-    btnStyle = [styles.text, styles.disableStyle]
+    textStyle = [styles.text, styles.disableStyle]
   } else {
-    if (!props.highlight) {
-      btnStyle = styles.text
+    if (props.counter === 0) {
+      btnStyle = styles.btn
+      textStyle = styles.text
     } else {
-      if (props.highlight === 1) {
-        btnStyle = [styles.text, styles.highlightUpStyle]
-      } else {
-        btnStyle = [styles.text, styles.highlightDownStyle]
+      if (props.rating === 'pos') {
+        btnStyle = styles.btn
+        textStyle = [styles.text, styles.ratedUp]
+        if (props.highlight) {
+          btnStyle = [styles.btn, styles.highlightUp]
+          textStyle = [styles.text, styles.ratedUp]
+        }
+      } else if (props.rating === 'neg') {
+        btnStyle = styles.btn
+        textStyle = [styles.text, styles.ratedDown]
+        if (props.highlight) {
+          btnStyle = [styles.btn, styles.highlightDown]
+          textStyle = [styles.text, styles.ratedDown]
+        }
       }
     }
   }
 
   return (
-    <TouchableOpacity
-      style={styles.container}
-      onPress={props.onPress}
-      accessibilityLabel={props.labelText}
-      accessibilityHint={props.hintText}
-      disabled={props.disabled}
-    >
-      <TextSourceSans style={btnStyle}>
-        {props.counter}
-      </TextSourceSans>
-
-      <TextSourceSans style={btnStyle}>
-        {props.icon}
-      </TextSourceSans>
-    </TouchableOpacity>
+    <View style={styles.container}>
+      <Pressable
+        style={btnStyle}
+        onPress={props.onPress}
+        accessibilityLabel={props.labelText}
+        accessibilityHint={props.hintText}
+        disabled={props.disabled}
+      >
+        <TextSourceSans style={textStyle}>
+          {props.counter}
+          {props.icon}
+        </TextSourceSans>
+      </Pressable>
+    </View>
   )
 }
