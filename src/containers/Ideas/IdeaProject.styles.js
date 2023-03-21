@@ -1,17 +1,22 @@
-import { Platform, StyleSheet } from 'react-native'
+import { Dimensions,Platform, StyleSheet } from 'react-native'
 
 import { COLORS } from '../../theme/colors'
 import { FONTS, SIZES } from '../../theme/fonts'
 import { BORDERRADIUS,SPACINGS } from '../../theme/spacings'
 
 const headerOffset = 300
+const SCREEN_HEIGHT = Dimensions.get('window').height
+const submitButtonOffset =  SCREEN_HEIGHT * 0.085
 
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
+  scrollContainer:
+    Platform.OS == 'ios' ? { marginBottom: submitButtonOffset / 1.9 } : { marginBottom: submitButtonOffset },
   containerInner: {
-    margin: SPACINGS.multiplyBy(-0.8),
+    marginLeft: SPACINGS.multiplyBy(-0.8),
+    marginRight: SPACINGS.multiplyBy(-0.8),
   },
   bgImage: {
     width: '100%',

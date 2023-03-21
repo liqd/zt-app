@@ -1,10 +1,11 @@
-import { StyleSheet } from 'react-native'
+import { Dimensions,StyleSheet } from 'react-native'
 
 import { COLORS } from '../theme/colors'
 import { SIZES } from '../theme/fonts'
 import { BORDERRADIUS } from '../theme/spacings'
 
-const submitButtonHeight = 70
+const SCREEN_HEIGHT = Dimensions.get('window').height
+const submitButtonHeight =  SCREEN_HEIGHT * 0.085
 
 export const styles = StyleSheet.create({
   submitButton: {
@@ -14,5 +15,5 @@ export const styles = StyleSheet.create({
     height: submitButtonHeight,
     fontSize: SIZES.base,
     borderRadius: BORDERRADIUS.none,
-  },
+  }
 })
