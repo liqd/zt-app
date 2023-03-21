@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { Formik } from 'formik'
@@ -14,6 +14,7 @@ import { styles } from '../Reports/ReportCreateMessage.styles'
 export const IdeaCreateDescription = props => {
   const { t } = useTranslation()
   const description = props.route.params.description
+  const [submitPending, setSubmitPending] = useState()
   const ideaDescriptionValidationSchema = yup.object().shape({
     description: yup
       .string()
@@ -22,11 +23,13 @@ export const IdeaCreateDescription = props => {
   })
 
   const handleSubmit = (values) => {
+    setSubmitPending(true)
     props.navigation.navigate({
       name: 'IdeaCreate',
       params: { descriptionText: values.description },
       merge: true,
-    })
+    }),
+    setSubmitPending(false)
   }
 
   return (
@@ -50,7 +53,8 @@ export const IdeaCreateDescription = props => {
         }) => (
           <KeyboardScrollView
             handleSubmit={handleSubmit}
-            isValid={isValid}
+            isValid={isValid && !submitPending}
+            pending={submitPending}
           >
             <TextSourceSans style={styles.title}>
               {t('Add description')}
