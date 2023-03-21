@@ -211,127 +211,143 @@ export const Comment = (props) => {
   const redoIcon = (<IconSLI name='action-redo' size={18} />)
 
   return (
-    <View style={styles.container}>
-      <View style={styles.top}>
-        <View style={styles.topLeft}>
-          {isDisplayed(comment) &&
-          <Image
-            source={{ uri: (comment.user_image) ? comment.user_image : comment.user_image_fallback }}
-            style={styles.avatar}
-            accessibilityIgnoresInvertColors={true}
-          />
-          }
-          <View style={styles.author}>
-            <TextSourceSans style={styles.username}>
-              {comment.user_name}
-            </TextSourceSans>
+    <>
+      <View
+        style={styles.container}
+        onLayout={({nativeEvent}) => {
+          props.onLayout(
+            Math.floor(nativeEvent.layout.y),
+            Math.floor(nativeEvent.layout.height)
+          )
+        }}
+      >
+        <View style={styles.top}>
+          <View style={styles.topLeft}>
             {isDisplayed(comment) &&
-            <TextSourceSans style={styles.date}>
-              {comment.created}
-            </TextSourceSans>
+            <Image
+              source={{
+                uri: (comment.user_image)
+                  ? comment.user_image
+                  : comment.user_image_fallback
+              }}
+              style={styles.avatar}
+              accessibilityIgnoresInvertColors={true}
+            />
             }
+            <View style={styles.author}>
+              <TextSourceSans style={styles.username}>
+                {comment.user_name}
+              </TextSourceSans>
+              {isDisplayed(comment) &&
+              <TextSourceSans style={styles.date}>
+                {comment.created}
+              </TextSourceSans>
+              }
+            </View>
           </View>
+          {isDisplayed(comment) &&
+          <TextSourceSans>
+            <Button
+              testID={'options_button_' + comment.id}
+              icon={optionsIcon}
+              type='clear'
+              onPress={() => handleOptions(comment)}
+            />
+          </TextSourceSans>
+          }
+        </View>
+        <View>
+          {!showWholeComment &&
+            <TextSourceSans
+              style={styles.comment}
+              numberOfLines={numOfLines}
+              onTextLayout={onTextLayout}
+            >
+              {getCommentTextDisplay(comment)}
+            </TextSourceSans>
+          }
+          {showWholeComment &&
+          <TextSourceSans style={styles.comment}>
+            {comment.comment}
+          </TextSourceSans>
+          }
+          {hasExcerpt &&
+            <TouchableWithoutFeedback
+              accessibilityRole="button"
+              onPress={toggleWholeComment}
+            >
+              <TextSourceSans style={styles.linkButton}>
+                {showWholeComment ? t('Read Less') : t('Read More')}
+              </TextSourceSans>
+            </TouchableWithoutFeedback>}
+        </View>
+        <View style={styles.linkSection}>
+          {comment.child_comments.length !== 0 &&
+            <TouchableWithoutFeedback
+              accessibilityRole="button"
+              onPress={toggleSubComments}
+            >
+              <TextSourceSans style={styles.linkButton}>
+                {showSubComments
+                  ? t('Hide {{ count }} answer', {count: comment.child_comments.length})
+                  : t('Show {{ count }} answer', {count: comment.child_comments.length})
+                }
+              </TextSourceSans>
+            </TouchableWithoutFeedback>
+          }
         </View>
         {isDisplayed(comment) &&
-        <TextSourceSans>
-          <Button
-            testID={'options_button_' + comment.id}
-            icon={optionsIcon}
-            type='clear'
-            onPress={() => handleOptions(comment)}
-          />
-        </TextSourceSans>
-        }
-      </View>
-      <View>
-        {!showWholeComment &&
-          <TextSourceSans
-            style={styles.comment}
-            numberOfLines={numOfLines}
-            onTextLayout={onTextLayout}
-          >
-            {getCommentTextDisplay(comment)}
-          </TextSourceSans>
-        }
-        {showWholeComment &&
-        <TextSourceSans style={styles.comment}>
-          {comment.comment}
-        </TextSourceSans>
-        }
-        {hasExcerpt &&
-          <TouchableWithoutFeedback
-            accessibilityRole="button"
-            onPress={toggleWholeComment}
-          >
-            <TextSourceSans style={styles.linkButton}>
-              {showWholeComment ? t('Read Less') : t('Read More')}
-            </TextSourceSans>
-          </TouchableWithoutFeedback>}
-      </View>
-      <View style={styles.linkSection}>
-        {comment.child_comments.length !== 0 &&
-          <TouchableWithoutFeedback
-            accessibilityRole="button"
-            onPress={toggleSubComments}
-          >
-            <TextSourceSans style={styles.linkButton}>
-              {showSubComments
-                ? t('Hide {{ count }} answer', {count: comment.child_comments.length})
-                : t('Show {{ count }} answer', {count: comment.child_comments.length})
+        <View style={styles.bottomActionsContainer}>
+          <View style={styles.ratingButtons}>
+            <ButtonCounter
+              icon={arrowUpIcon}
+              labelText={t('up-votes')}
+              hintText={t('click to up vote')}
+              counter={comment.ratings.positive_ratings}
+              rating='pos'
+              onPress={() => handleRate(comment, 1)}
+              highlight={
+                comment.ratings.current_user_rating_id &&
+                comment.ratings.current_user_rating_value === 1 &&
+                comment.ratings.current_user_rating_value
               }
-            </TextSourceSans>
-          </TouchableWithoutFeedback>
-        }
-      </View>
-      {isDisplayed(comment) &&
-      <View style={styles.bottomActionsContainer}>
-        <View style={styles.ratingButtons}>
-          <ButtonCounter
-            icon={arrowUpIcon}
-            labelText={t('up-votes')}
-            hintText={t('click to up vote')}
-            counter={comment.ratings.positive_ratings}
-            rating='pos'
-            onPress={() => handleRate(comment, 1)}
-            highlight={
-              comment.ratings.current_user_rating_id &&
-              comment.ratings.current_user_rating_value === 1 &&
-              comment.ratings.current_user_rating_value
-            }
-            disabled={!comment.user_info.has_rating_permission}
+              disabled={!comment.user_info.has_rating_permission}
+            />
+            <ButtonCounter
+              icon={arrowDownIcon}
+              labelText={t('down-votes')}
+              hintText={t('click to down vote')}
+              counter={comment.ratings.negative_ratings}
+              rating='neg'
+              onPress={() => handleRate(comment, -1)}
+              highlight={
+                comment.ratings.current_user_rating_id &&
+                comment.ratings.current_user_rating_value === -1 &&
+                comment.ratings.current_user_rating_value
+              }
+              disabled={!comment.user_info.has_rating_permission}
+            />
+          </View>
+          <Button
+            icon={commentIcon}
+            title={t('Reply')}
+            titleStyle={styles.buttonTitle}
+            type='clear'
+            styles={styles.commentButton}
+            onPress={() => {
+              props.handleReply(comment.comment_content_type, comment.id)
+            }}
+            disabled={!props.hasCommentingPermission}
           />
-          <ButtonCounter
-            icon={arrowDownIcon}
-            labelText={t('down-votes')}
-            hintText={t('click to down vote')}
-            counter={comment.ratings.negative_ratings}
-            rating='neg'
-            onPress={() => handleRate(comment, -1)}
-            highlight={
-              comment.ratings.current_user_rating_id &&
-              comment.ratings.current_user_rating_value === -1 &&
-              comment.ratings.current_user_rating_value
-            }
-            disabled={!comment.user_info.has_rating_permission}
+          <Button
+            icon={redoIcon}
+            title={t('Share')}
+            titleStyle={styles.buttonTitle}
+            type='clear'
           />
         </View>
-        <Button
-          icon={commentIcon}
-          title={t('Reply')}
-          titleStyle={styles.buttonTitle}
-          type='clear'
-          styles={styles.commentButton}
-          onPress={() => {props.handleReply(comment.comment_content_type, comment.id)}}
-          disabled={!props.hasCommentingPermission}
-        />
-        <Button
-          icon={redoIcon}
-          title={t('Share')}
-          titleStyle={styles.buttonTitle}
-          type='clear'
-        />
+        }
       </View>
-      }
       {showSubComments &&
         <SubComments
           comments={comment.child_comments}
@@ -340,8 +356,7 @@ export const Comment = (props) => {
           toggleMenu={props.toggleMenu}
           getCommentTextDisplay={getCommentTextDisplay}
           isDisplayed={isDisplayed}
-        />
-      }
-    </View>
+        />}
+    </>
   )
 }
