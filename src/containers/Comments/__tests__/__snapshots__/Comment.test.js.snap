@@ -2,6 +2,7 @@
 
 exports[`Test Comment Snapshot 1`] = `
 <View
+  onLayout={[Function]}
   style={
     Object {
       "borderColor": "#c4c4c4",

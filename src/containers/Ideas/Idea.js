@@ -3,10 +3,12 @@ import { useTranslation } from 'react-i18next'
 import {
   Alert,
   Image,
+  Keyboard,
   KeyboardAvoidingView,
   Platform,
   Pressable,
   ScrollView,
+  useWindowDimensions,
   View,
 } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
@@ -47,6 +49,7 @@ export const Idea = (props) => {
   const [submitPending, setSubmitPending] = useState(false)
   const hasComments = comments.length !== 0
   const commentInputRef = useRef(null)
+  const scrollViewRef = useRef(null)
   const { t } = useTranslation()
   const ideaMenuItems = [
     {
@@ -239,12 +242,18 @@ export const Idea = (props) => {
     })
   }
 
-  const handleCommentReply = (commentContentType, commentObjectPk) => {
+  const handleCommentReply = (
+    commentContentType,
+    commentObjectPk,
+    parentCommentY
+  ) => {
     setContentObjectOfComment({
       'contentType': commentContentType,
       'pk': commentObjectPk
     })
-    commentInputRef.current.focus()
+
+    setAnchorComment(parentCommentY)
+    setIsReply(true)
   }
 
   function handleScroll(event) {
@@ -322,6 +331,52 @@ export const Idea = (props) => {
     }
   }, [isEditing])
 
+  /***** start of scrolling to anchored Comment *****/
+
+  const [anchorComment, setAnchorComment] =  useState(0)
+  const [isReply, setIsReply] =  useState(false)
+  const [ideaInfoHeight, setIdeaInfoHeight] =  useState()
+  const {height: windowHeight} = useWindowDimensions()
+  const ideaRef = useRef(null)
+
+  useEffect(() => {
+    if (ideaRef.current) {
+      ideaRef.current.measureInWindow((...measures) => {
+        // measures[3] = distance from top to comments list
+        // moving to bottom of screen with minus windowHeight
+        setIdeaInfoHeight(measures[3] - windowHeight)
+      })
+    }
+  }, [ideaRef.current])
+
+  useEffect(() => {
+    // re-define local function everytime anchorComment changes
+    // to make sure latest anchorComment is used
+    const onKeyboardDidShow = (e) => {
+      const keyboardHeight = e.endCoordinates.height
+      isReply && scrollViewRef?.current?.scrollTo({
+        x: 0,
+        y: ideaInfoHeight + keyboardHeight + anchorComment
+      })
+      setIsReply(false)
+    }
+    const keyboardEventListener = Keyboard
+      .addListener('keyboardDidShow', (e) => onKeyboardDidShow(e))
+
+    // cleanup listener -> this runs next time before useEffect body runs
+    return () => {
+      keyboardEventListener.remove()
+    }
+  }, [anchorComment, isReply])
+
+  useEffect(() => {
+    if (anchorComment && isReply) {
+      commentInputRef.current.focus()
+    }
+  }, [anchorComment, isReply])
+
+  /***** end of scrolling to anchored Comment *****/
+
   useEffect(() => {
     if (error) {
       Alert.alert(t('An error occured'), error, [{ text: 'Ok' }])
@@ -356,6 +411,7 @@ export const Idea = (props) => {
           scrollEnabled={!isEditing}
           keyboardShouldPersistTaps='handled'
           onScroll={handleScroll}
+          ref={scrollViewRef}
         >
           <Pressable
             accessibilityRole="button"
@@ -365,80 +421,85 @@ export const Idea = (props) => {
             }}
             disabled={!isEditing}
           >
-            <View style={styles.titleContainer}>
-              <TextSourceSans
-                style={styles.title}
-              >
-                {ideaState.name}
-              </TextSourceSans>
-            </View>
-            <View style={styles.descriptionContainer}>
-              {ideaState.image && (
-                <>
-                  <Image
-                    accessibilityIgnoresInvertColors={true}
-                    source={{ uri: ideaState.image }}
-                    style={styles.ideaImage}
-                  />
-                </>
+            <View
+              ref={ideaRef}
+              collapsable={false}
+            >
+              <View style={styles.titleContainer}>
+                <TextSourceSans
+                  style={styles.title}
+                >
+                  {ideaState.name}
+                </TextSourceSans>
+              </View>
+              <View style={styles.descriptionContainer}>
+                {ideaState.image && (
+                  <>
+                    <Image
+                      accessibilityIgnoresInvertColors={true}
+                      source={{ uri: ideaState.image }}
+                      style={styles.ideaImage}
+                    />
+                  </>
+                )}
+                <TextSourceSans
+                  style={styles.text}
+                >
+                  {ideaState.description}
+                </TextSourceSans>
+              </View>
+              {getLabels().length > 0 && (
+                <View style={styles.labelsContainer}>
+                  {getLabels().map((label, idx) => (
+                    <Label key={idx + label} title={label} />
+                  ))}
+                </View>
               )}
-              <TextSourceSans
-                style={styles.text}
-              >
-                {ideaState.description}
-              </TextSourceSans>
-            </View>
-            {getLabels().length > 0 && (
-              <View style={styles.labelsContainer}>
-                {getLabels().map((label, idx) => (
-                  <Label key={idx + label} title={label} />
-                ))}
+              <View style={styles.infoContainer}>
+                <TextSourceSans style={styles.creator}>
+                  {ideaState.creator} {idea.created}
+                </TextSourceSans>
+                <TextSourceSans style={styles.text}>
+                  {t('Reference No.:') + ' ' + ideaState.reference_number || t('n/a')}
+                </TextSourceSans>
               </View>
-            )}
-            <View style={styles.infoContainer}>
-              <TextSourceSans style={styles.creator}>
-                {ideaState.creator} {idea.created}
-              </TextSourceSans>
-              <TextSourceSans style={styles.text}>
-                {t('Reference No.:') + ' ' + ideaState.reference_number || t('n/a')}
-              </TextSourceSans>
-            </View>
-            <View style={styles.bottomActionsContainer}>
-              <View style={styles.ratingButtons}>
-                <ButtonCounter
-                  icon={arrowUpIcon}
-                  labelText={t('up-votes')}
-                  hintText={t('click to up vote')}
-                  counter={ideaState.positive_rating_count}
-                  onPress={() => handleRate(1)}
-                  highlight={
-                    ideaState.user_rating &&
-                ideaState.user_rating.value === 1 &&
-                ideaState.user_rating.value
-                  }
-                  rating='pos'
-                  disabled={!ideaState.has_rating_permission}
-                />
-                <ButtonCounter
-                  icon={arrowDownIcon}
-                  labelText={t('down-votes')}
-                  hintText={t('click to down vote')}
-                  counter={ideaState.negative_rating_count}
-                  onPress={() => handleRate(-1)}
-                  highlight={
-                    ideaState.user_rating &&
-                ideaState.user_rating.value === -1 &&
-                ideaState.user_rating.value
-                  }
-                  rating='neg'
-                  disabled={!ideaState.has_rating_permission}
-                />
-              </View>
-              <View>
-                {commentIcon}
+              <View style={styles.bottomActionsContainer}>
+                <View style={styles.ratingButtons}>
+                  <ButtonCounter
+                    icon={arrowUpIcon}
+                    labelText={t('up-votes')}
+                    hintText={t('click to up vote')}
+                    counter={ideaState.positive_rating_count}
+                    onPress={() => handleRate(1)}
+                    highlight={
+                      ideaState.user_rating &&
+                      ideaState.user_rating.value === 1 &&
+                      ideaState.user_rating.value
+                    }
+                    rating='pos'
+                    disabled={!ideaState.has_rating_permission}
+                  />
+                  <ButtonCounter
+                    icon={arrowDownIcon}
+                    labelText={t('down-votes')}
+                    hintText={t('click to down vote')}
+                    counter={ideaState.negative_rating_count}
+                    onPress={() => handleRate(-1)}
+                    highlight={
+                      ideaState.user_rating &&
+                      ideaState.user_rating.value === -1 &&
+                      ideaState.user_rating.value
+                    }
+                    rating='neg'
+                    disabled={!ideaState.has_rating_permission}
+                  />
+                </View>
+                <View>
+                  {commentIcon}
+                </View>
               </View>
             </View>
-            {comments && <View>
+            {comments && (
               <Comments
                 comments={comments}
                 handleReply={handleCommentReply}
@@ -451,7 +512,7 @@ export const Idea = (props) => {
                 hasCommentingPermission={idea.has_commenting_permission}
                 navigation={navigation}
               />
-            </View>}
+            )}
           </Pressable>
         </ScrollView>
         {idea.has_commenting_permission && (
