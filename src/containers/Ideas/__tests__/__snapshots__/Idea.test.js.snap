@@ -562,7 +562,7 @@ exports[`Test Idea Snapshot 1`] = `
                   }
                 }
               >
-                {{ count }} Entries
+                {{ count }} Entry
               </Text>
               <View
                 style={
