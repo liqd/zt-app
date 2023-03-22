@@ -363,166 +363,164 @@ exports[`Test Idea Snapshot 1`] = `
               }
             >
               <View
-                accessibilityHint="click to up vote"
-                accessibilityLabel="up-votes"
-                accessibilityState={
-                  Object {
-                    "disabled": false,
-                  }
-                }
-                accessible={true}
-                collapsable={false}
-                focusable={true}
-                onClick={[Function]}
-                onResponderGrant={[Function]}
-                onResponderMove={[Function]}
-                onResponderRelease={[Function]}
-                onResponderTerminate={[Function]}
-                onResponderTerminationRequest={[Function]}
-                onStartShouldSetResponder={[Function]}
                 style={
                   Object {
                     "flex": 1,
                     "flexDirection": "row",
-                    "opacity": 1,
                   }
                 }
               >
-                <Text
-                  style={
-                    Array [
-                      Object {
-                        "fontFamily": "SourceSansPro_400Regular",
-                        "fontSize": 18,
-                      },
-                      Object {
-                        "fontSize": 16.875,
-                        "letterSpacing": 5,
-                        "lineHeight": 20.9,
-                      },
-                    ]
+                <View
+                  accessibilityHint="click to up vote"
+                  accessibilityLabel="up-votes"
+                  accessibilityState={
+                    Object {
+                      "disabled": false,
+                    }
                   }
-                >
-                  0
-                </Text>
-                <Text
+                  accessible={true}
+                  collapsable={false}
+                  focusable={true}
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onResponderGrant={[Function]}
+                  onResponderMove={[Function]}
+                  onResponderRelease={[Function]}
+                  onResponderTerminate={[Function]}
+                  onResponderTerminationRequest={[Function]}
+                  onStartShouldSetResponder={[Function]}
                   style={
-                    Array [
-                      Object {
-                        "fontFamily": "SourceSansPro_400Regular",
-                        "fontSize": 18,
-                      },
-                      Object {
-                        "fontSize": 16.875,
-                        "letterSpacing": 5,
-                        "lineHeight": 20.9,
-                      },
-                    ]
+                    Object {
+                      "borderRadius": 6,
+                      "marginBottom": 10,
+                      "paddingBottom": 5,
+                      "paddingLeft": 10,
+                      "paddingRight": 10,
+                      "paddingTop": 5,
+                    }
                   }
                 >
                   <Text
-                    allowFontScaling={false}
-                    selectable={false}
                     style={
                       Array [
                         Object {
-                          "color": undefined,
+                          "fontFamily": "SourceSansPro_400Regular",
                           "fontSize": 18,
                         },
-                        undefined,
                         Object {
-                          "fontFamily": "simple-line-icons",
-                          "fontStyle": "normal",
-                          "fontWeight": "normal",
+                          "fontFamily": "SourceSansPro_600SemiBold",
+                          "fontSize": 19.125,
+                          "letterSpacing": 5,
+                          "lineHeight": 20.9,
                         },
-                        Object {},
                       ]
                     }
                   >
-                    
+                    0
+                    <Text
+                      allowFontScaling={false}
+                      selectable={false}
+                      style={
+                        Array [
+                          Object {
+                            "color": undefined,
+                            "fontSize": 18,
+                          },
+                          undefined,
+                          Object {
+                            "fontFamily": "simple-line-icons",
+                            "fontStyle": "normal",
+                            "fontWeight": "normal",
+                          },
+                          Object {},
+                        ]
+                      }
+                    >
+                      
+                    </Text>
                   </Text>
-                </Text>
+                </View>
               </View>
               <View
-                accessibilityHint="click to down vote"
-                accessibilityLabel="down-votes"
-                accessibilityState={
-                  Object {
-                    "disabled": false,
-                  }
-                }
-                accessible={true}
-                collapsable={false}
-                focusable={true}
-                onClick={[Function]}
-                onResponderGrant={[Function]}
-                onResponderMove={[Function]}
-                onResponderRelease={[Function]}
-                onResponderTerminate={[Function]}
-                onResponderTerminationRequest={[Function]}
-                onStartShouldSetResponder={[Function]}
                 style={
                   Object {
                     "flex": 1,
                     "flexDirection": "row",
-                    "opacity": 1,
                   }
                 }
               >
-                <Text
-                  style={
-                    Array [
-                      Object {
-                        "fontFamily": "SourceSansPro_400Regular",
-                        "fontSize": 18,
-                      },
-                      Object {
-                        "fontSize": 16.875,
-                        "letterSpacing": 5,
-                        "lineHeight": 20.9,
-                      },
-                    ]
+                <View
+                  accessibilityHint="click to down vote"
+                  accessibilityLabel="down-votes"
+                  accessibilityState={
+                    Object {
+                      "disabled": false,
+                    }
                   }
-                >
-                  0
-                </Text>
-                <Text
+                  accessible={true}
+                  collapsable={false}
+                  focusable={true}
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onResponderGrant={[Function]}
+                  onResponderMove={[Function]}
+                  onResponderRelease={[Function]}
+                  onResponderTerminate={[Function]}
+                  onResponderTerminationRequest={[Function]}
+                  onStartShouldSetResponder={[Function]}
                   style={
-                    Array [
-                      Object {
-                        "fontFamily": "SourceSansPro_400Regular",
-                        "fontSize": 18,
-                      },
-                      Object {
-                        "fontSize": 16.875,
-                        "letterSpacing": 5,
-                        "lineHeight": 20.9,
-                      },
-                    ]
+                    Object {
+                      "borderRadius": 6,
+                      "marginBottom": 10,
+                      "paddingBottom": 5,
+                      "paddingLeft": 10,
+                      "paddingRight": 10,
+                      "paddingTop": 5,
+                    }
                   }
                 >
                   <Text
-                    allowFontScaling={false}
-                    selectable={false}
                     style={
                       Array [
                         Object {
-                          "color": undefined,
+                          "fontFamily": "SourceSansPro_400Regular",
                           "fontSize": 18,
                         },
-                        undefined,
                         Object {
-                          "fontFamily": "simple-line-icons",
-                          "fontStyle": "normal",
-                          "fontWeight": "normal",
+                          "fontFamily": "SourceSansPro_600SemiBold",
+                          "fontSize": 19.125,
+                          "letterSpacing": 5,
+                          "lineHeight": 20.9,
                         },
-                        Object {},
                       ]
                     }
                   >
-                    
+                    0
+                    <Text
+                      allowFontScaling={false}
+                      selectable={false}
+                      style={
+                        Array [
+                          Object {
+                            "color": undefined,
+                            "fontSize": 18,
+                          },
+                          undefined,
+                          Object {
+                            "fontFamily": "simple-line-icons",
+                            "fontStyle": "normal",
+                            "fontWeight": "normal",
+                          },
+                          Object {},
+                        ]
+                      }
+                    >
+                      
+                    </Text>
                   </Text>
-                </Text>
+                </View>
               </View>
             </View>
             <View>
@@ -779,186 +777,158 @@ exports[`Test Idea Snapshot 1`] = `
                     }
                   >
                     <View
-                      accessibilityHint="click to up vote"
-                      accessibilityLabel="up-votes"
-                      accessibilityState={
-                        Object {
-                          "disabled": true,
-                        }
-                      }
-                      accessible={true}
-                      collapsable={false}
-                      focusable={true}
-                      onClick={[Function]}
-                      onResponderGrant={[Function]}
-                      onResponderMove={[Function]}
-                      onResponderRelease={[Function]}
-                      onResponderTerminate={[Function]}
-                      onResponderTerminationRequest={[Function]}
-                      onStartShouldSetResponder={[Function]}
                       style={
                         Object {
                           "flex": 1,
                           "flexDirection": "row",
-                          "opacity": 1,
                         }
                       }
                     >
-                      <Text
-                        style={
-                          Array [
-                            Object {
-                              "fontFamily": "SourceSansPro_400Regular",
-                              "fontSize": 18,
-                            },
-                            Array [
-                              Object {
-                                "fontSize": 16.875,
-                                "letterSpacing": 5,
-                                "lineHeight": 20.9,
-                              },
-                              Object {
-                                "color": "#c4c4c4",
-                              },
-                            ],
-                          ]
+                      <View
+                        accessibilityHint="click to up vote"
+                        accessibilityLabel="up-votes"
+                        accessibilityState={
+                          Object {
+                            "disabled": true,
+                          }
                         }
-                      >
-                        0
-                      </Text>
-                      <Text
-                        style={
-                          Array [
-                            Object {
-                              "fontFamily": "SourceSansPro_400Regular",
-                              "fontSize": 18,
-                            },
-                            Array [
-                              Object {
-                                "fontSize": 16.875,
-                                "letterSpacing": 5,
-                                "lineHeight": 20.9,
-                              },
-                              Object {
-                                "color": "#c4c4c4",
-                              },
-                            ],
-                          ]
-                        }
+                        accessible={true}
+                        collapsable={false}
+                        focusable={true}
+                        onBlur={[Function]}
+                        onClick={[Function]}
+                        onFocus={[Function]}
+                        onResponderGrant={[Function]}
+                        onResponderMove={[Function]}
+                        onResponderRelease={[Function]}
+                        onResponderTerminate={[Function]}
+                        onResponderTerminationRequest={[Function]}
+                        onStartShouldSetResponder={[Function]}
                       >
                         <Text
-                          allowFontScaling={false}
-                          selectable={false}
                           style={
                             Array [
                               Object {
-                                "color": undefined,
+                                "fontFamily": "SourceSansPro_400Regular",
                                 "fontSize": 18,
                               },
-                              undefined,
-                              Object {
-                                "fontFamily": "simple-line-icons",
-                                "fontStyle": "normal",
-                                "fontWeight": "normal",
-                              },
-                              Object {},
+                              Array [
+                                Object {
+                                  "fontFamily": "SourceSansPro_600SemiBold",
+                                  "fontSize": 19.125,
+                                  "letterSpacing": 5,
+                                  "lineHeight": 20.9,
+                                },
+                                Object {
+                                  "color": "#666",
+                                  "fontFamily": "SourceSansPro_400Regular",
+                                  "fontSize": 16.875,
+                                },
+                              ],
                             ]
                           }
                         >
-                          
+                          0
+                          <Text
+                            allowFontScaling={false}
+                            selectable={false}
+                            style={
+                              Array [
+                                Object {
+                                  "color": undefined,
+                                  "fontSize": 18,
+                                },
+                                undefined,
+                                Object {
+                                  "fontFamily": "simple-line-icons",
+                                  "fontStyle": "normal",
+                                  "fontWeight": "normal",
+                                },
+                                Object {},
+                              ]
+                            }
+                          >
+                            
+                          </Text>
                         </Text>
-                      </Text>
+                      </View>
                     </View>
                     <View
-                      accessibilityHint="click to down vote"
-                      accessibilityLabel="down-votes"
-                      accessibilityState={
-                        Object {
-                          "disabled": true,
-                        }
-                      }
-                      accessible={true}
-                      collapsable={false}
-                      focusable={true}
-                      onClick={[Function]}
-                      onResponderGrant={[Function]}
-                      onResponderMove={[Function]}
-                      onResponderRelease={[Function]}
-                      onResponderTerminate={[Function]}
-                      onResponderTerminationRequest={[Function]}
-                      onStartShouldSetResponder={[Function]}
                       style={
                         Object {
                           "flex": 1,
                           "flexDirection": "row",
-                          "opacity": 1,
                         }
                       }
                     >
-                      <Text
-                        style={
-                          Array [
-                            Object {
-                              "fontFamily": "SourceSansPro_400Regular",
-                              "fontSize": 18,
-                            },
-                            Array [
-                              Object {
-                                "fontSize": 16.875,
-                                "letterSpacing": 5,
-                                "lineHeight": 20.9,
-                              },
-                              Object {
-                                "color": "#c4c4c4",
-                              },
-                            ],
-                          ]
+                      <View
+                        accessibilityHint="click to down vote"
+                        accessibilityLabel="down-votes"
+                        accessibilityState={
+                          Object {
+                            "disabled": true,
+                          }
                         }
-                      >
-                        0
-                      </Text>
-                      <Text
-                        style={
-                          Array [
-                            Object {
-                              "fontFamily": "SourceSansPro_400Regular",
-                              "fontSize": 18,
-                            },
-                            Array [
-                              Object {
-                                "fontSize": 16.875,
-                                "letterSpacing": 5,
-                                "lineHeight": 20.9,
-                              },
-                              Object {
-                                "color": "#c4c4c4",
-                              },
-                            ],
-                          ]
-                        }
+                        accessible={true}
+                        collapsable={false}
+                        focusable={true}
+                        onBlur={[Function]}
+                        onClick={[Function]}
+                        onFocus={[Function]}
+                        onResponderGrant={[Function]}
+                        onResponderMove={[Function]}
+                        onResponderRelease={[Function]}
+                        onResponderTerminate={[Function]}
+                        onResponderTerminationRequest={[Function]}
+                        onStartShouldSetResponder={[Function]}
                       >
                         <Text
-                          allowFontScaling={false}
-                          selectable={false}
                           style={
                             Array [
                               Object {
-                                "color": undefined,
+                                "fontFamily": "SourceSansPro_400Regular",
                                 "fontSize": 18,
                               },
-                              undefined,
-                              Object {
-                                "fontFamily": "simple-line-icons",
-                                "fontStyle": "normal",
-                                "fontWeight": "normal",
-                              },
-                              Object {},
+                              Array [
+                                Object {
+                                  "fontFamily": "SourceSansPro_600SemiBold",
+                                  "fontSize": 19.125,
+                                  "letterSpacing": 5,
+                                  "lineHeight": 20.9,
+                                },
+                                Object {
+                                  "color": "#666",
+                                  "fontFamily": "SourceSansPro_400Regular",
+                                  "fontSize": 16.875,
+                                },
+                              ],
                             ]
                           }
                         >
-                          
+                          0
+                          <Text
+                            allowFontScaling={false}
+                            selectable={false}
+                            style={
+                              Array [
+                                Object {
+                                  "color": undefined,
+                                  "fontSize": 18,
+                                },
+                                undefined,
+                                Object {
+                                  "fontFamily": "simple-line-icons",
+                                  "fontStyle": "normal",
+                                  "fontWeight": "normal",
+                                },
+                                Object {},
+                              ]
+                            }
+                          >
+                            
+                          </Text>
                         </Text>
-                      </Text>
+                      </View>
                     </View>
                   </View>
                   <View
