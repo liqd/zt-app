@@ -196,146 +196,118 @@ exports[`Test Comment Snapshot 1`] = `
       }
     >
       <View
-        accessibilityHint="click to up vote"
-        accessibilityLabel="up-votes"
-        accessibilityState={
-          Object {
-            "disabled": true,
-          }
-        }
-        accessible={true}
-        collapsable={false}
-        focusable={true}
-        onClick={[Function]}
-        onResponderGrant={[Function]}
-        onResponderMove={[Function]}
-        onResponderRelease={[Function]}
-        onResponderTerminate={[Function]}
-        onResponderTerminationRequest={[Function]}
-        onStartShouldSetResponder={[Function]}
         style={
           Object {
             "flex": 1,
             "flexDirection": "row",
-            "opacity": 1,
           }
         }
       >
-        <Text
-          style={
-            Array [
-              Object {
-                "fontFamily": "SourceSansPro_400Regular",
-                "fontSize": 18,
-              },
+        <View
+          accessibilityHint="click to up vote"
+          accessibilityLabel="up-votes"
+          accessibilityState={
+            Object {
+              "disabled": true,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+        >
+          <Text
+            style={
               Array [
                 Object {
-                  "fontSize": 16.875,
-                  "letterSpacing": 5,
-                  "lineHeight": 20.9,
+                  "fontFamily": "SourceSansPro_400Regular",
+                  "fontSize": 18,
                 },
-                Object {
-                  "color": "#c4c4c4",
-                },
-              ],
-            ]
-          }
-        >
-          0
-        </Text>
-        <Text
-          style={
-            Array [
-              Object {
-                "fontFamily": "SourceSansPro_400Regular",
-                "fontSize": 18,
-              },
-              Array [
-                Object {
-                  "fontSize": 16.875,
-                  "letterSpacing": 5,
-                  "lineHeight": 20.9,
-                },
-                Object {
-                  "color": "#c4c4c4",
-                },
-              ],
-            ]
-          }
-        >
-          <Text />
-        </Text>
+                Array [
+                  Object {
+                    "fontFamily": "SourceSansPro_600SemiBold",
+                    "fontSize": 19.125,
+                    "letterSpacing": 5,
+                    "lineHeight": 20.9,
+                  },
+                  Object {
+                    "color": "#666",
+                    "fontFamily": "SourceSansPro_400Regular",
+                    "fontSize": 16.875,
+                  },
+                ],
+              ]
+            }
+          >
+            0
+            <Text />
+          </Text>
+        </View>
       </View>
       <View
-        accessibilityHint="click to down vote"
-        accessibilityLabel="down-votes"
-        accessibilityState={
-          Object {
-            "disabled": true,
-          }
-        }
-        accessible={true}
-        collapsable={false}
-        focusable={true}
-        onClick={[Function]}
-        onResponderGrant={[Function]}
-        onResponderMove={[Function]}
-        onResponderRelease={[Function]}
-        onResponderTerminate={[Function]}
-        onResponderTerminationRequest={[Function]}
-        onStartShouldSetResponder={[Function]}
         style={
           Object {
             "flex": 1,
             "flexDirection": "row",
-            "opacity": 1,
           }
         }
       >
-        <Text
-          style={
-            Array [
-              Object {
-                "fontFamily": "SourceSansPro_400Regular",
-                "fontSize": 18,
-              },
+        <View
+          accessibilityHint="click to down vote"
+          accessibilityLabel="down-votes"
+          accessibilityState={
+            Object {
+              "disabled": true,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+        >
+          <Text
+            style={
               Array [
                 Object {
-                  "fontSize": 16.875,
-                  "letterSpacing": 5,
-                  "lineHeight": 20.9,
+                  "fontFamily": "SourceSansPro_400Regular",
+                  "fontSize": 18,
                 },
-                Object {
-                  "color": "#c4c4c4",
-                },
-              ],
-            ]
-          }
-        >
-          0
-        </Text>
-        <Text
-          style={
-            Array [
-              Object {
-                "fontFamily": "SourceSansPro_400Regular",
-                "fontSize": 18,
-              },
-              Array [
-                Object {
-                  "fontSize": 16.875,
-                  "letterSpacing": 5,
-                  "lineHeight": 20.9,
-                },
-                Object {
-                  "color": "#c4c4c4",
-                },
-              ],
-            ]
-          }
-        >
-          <Text />
-        </Text>
+                Array [
+                  Object {
+                    "fontFamily": "SourceSansPro_600SemiBold",
+                    "fontSize": 19.125,
+                    "letterSpacing": 5,
+                    "lineHeight": 20.9,
+                  },
+                  Object {
+                    "color": "#666",
+                    "fontFamily": "SourceSansPro_400Regular",
+                    "fontSize": 16.875,
+                  },
+                ],
+              ]
+            }
+          >
+            0
+            <Text />
+          </Text>
+        </View>
       </View>
     </View>
     <View
