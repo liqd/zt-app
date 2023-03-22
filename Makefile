@@ -85,7 +85,7 @@ updateSnapshots:
 
 .PHONY: translations
 translations:
-	npx i18next-scanner
+	npx i18next
 
 .PHONY: publish-dev
 publish-dev:

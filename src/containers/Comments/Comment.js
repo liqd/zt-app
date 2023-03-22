@@ -271,8 +271,8 @@ export const Comment = (props) => {
             onPress={toggleSubComments}
           >
             <TextSourceSans style={styles.linkButton}>
-              {t('{{ show_hide }} {{ comments }} answers',
-                {state: showSubComments ? t('Show') : t('Hide'),
+              {t('{{ state }} {{ count }} answers',
+                {state: showSubComments ? t('Hide') : t('Show') ,
                   count: comment.child_comments.length})}
             </TextSourceSans>
           </TouchableWithoutFeedback>
