@@ -1,5 +1,6 @@
-const baseFontSize = 18
-const baseLineHeight = 22
+import { PixelRatio } from 'react-native'
+
+const pixelRatio = PixelRatio.getFontScale()
 
 export const FONTS = {
   familySans: 'SourceSansPro_400Regular',
@@ -7,21 +8,21 @@ export const FONTS = {
 }
 
 export const SIZES = {
-  xs: baseFontSize * 0.8125, //
-  sm: baseFontSize * 0.9375, //
-  base: baseFontSize,
-  md: baseFontSize * 1.0625, //
-  lg: baseFontSize * 1.25, //
-  xl: baseFontSize * 1.375, //
-  xxl: baseFontSize * 1.75, //
+  xs: pixelRatio * 13,
+  sm: pixelRatio * 16,
+  base: pixelRatio * 18,
+  md: pixelRatio * 20,
+  lg: pixelRatio * 22,
+  xl: pixelRatio * 28,
+  xxl: pixelRatio * 34,
 }
 
 export const LINEHEIGHTS = {
-  sm: baseLineHeight * 0.95,
-  base: baseLineHeight,
-  md: baseLineHeight * 1.1,
-  lg: baseLineHeight * 1.3,
-  xl: baseLineHeight * 1.9,
+  sm: pixelRatio * 21,
+  base: pixelRatio * 22,
+  md: pixelRatio * 24,
+  lg: pixelRatio * 28,
+  xl: pixelRatio * 30,
 }
 
 export const LETTERSPACING = {
