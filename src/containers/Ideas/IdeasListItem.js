@@ -37,7 +37,10 @@ export const IdeasListItem = (props) => {
   const commentIcon = <IconSLI name='bubble' size={18} />
 
   return (
-    <TouchableOpacity accessibilityRole="button" onPress={pressHandler}>
+    <TouchableOpacity
+      accessibilityRole="button"
+      onPress={pressHandler}
+      delayPressIn={50}>
       <View style={styles.container}>
         <View style={styles.topContainer}>
           <TextSourceSans style={styles.title}>{name}</TextSourceSans>
