@@ -14,7 +14,7 @@ export const RichtextCollapsibleItem = ({ title, body }) => {
 
   return (
     <TouchableOpacity
-      accessibilityRole="button" 
+      accessibilityRole="button"
       onPress={() => setCollapsed(!collapsed)}
     >
       <View style={styles.collapsibleButton}>
@@ -27,7 +27,7 @@ export const RichtextCollapsibleItem = ({ title, body }) => {
       </View>
       {!collapsed && (
         <View style={styles.collapsibleBody}>
-          <Text>{body}</Text>
+          <Text style={styles.collapsibleBodyText}>{body}</Text>
         </View>
       )}
     </TouchableOpacity>

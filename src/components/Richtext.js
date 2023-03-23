@@ -7,6 +7,7 @@ import RenderHTML, {
 
 import { baseUrl } from '../BaseApi'
 import { COLORS } from '../theme/colors'
+import { FONTS, SIZES } from '../theme/fonts'
 
 import { LinkTextSourceSans } from './LinkTextSourceSans'
 import { RichtextCollapsibleItem } from './RichtextCollapsibleItem'
@@ -106,6 +107,18 @@ export const Richtext = ({ text }) => {
     },
     a: {
       color: COLORS.text
+    },
+    p: {
+      fontFamily: FONTS.familySans,
+      fontSize: SIZES.base,
+    },
+    li: {
+      fontFamily: FONTS.familySans,
+      fontSize: SIZES.base,
+    },
+    div: {
+      fontFamily: FONTS.familySans,
+      fontSize: SIZES.base,
     }
   }
 

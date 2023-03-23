@@ -29,6 +29,10 @@ export const styles = StyleSheet.create({
     paddingTop: SPACINGS.multiplyBy(0.5),
     paddingBottom: SPACINGS.multiplyBy(1.25),
     marginBottom: SPACINGS.multiplyBy(0.5),
-    borderBottomWidth: 1
+    borderBottomWidth: 1,
+  },
+  collapsibleBodyText: {
+    fontFamily: FONTS.familySans,
+    fontSize: SIZES.base,
   }
 })
