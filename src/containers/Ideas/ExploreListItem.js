@@ -46,7 +46,7 @@ export const ExploreListItem = (props) => {
     <TouchableOpacity
       accessibilityRole="button"
       onPress={() => props.action(props.item)}
-      delayPressIn={100}>
+      delayPressIn={50}>
       <View style={containerStyles}>
         <View style={imageContainerStyles()}>
           <Image
