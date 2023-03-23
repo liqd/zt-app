@@ -274,7 +274,7 @@ exports[`Test ReportCreateMessage Snapshot 1`] = `
               "borderWidth": 0,
               "flexDirection": "row",
               "fontSize": 18,
-              "height": 70,
+              "height": 113.39000000000001,
               "justifyContent": "center",
               "padding": 8,
               "paddingHorizontal": 10,
