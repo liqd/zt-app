@@ -26,12 +26,12 @@ export const SettingsOverview = (props) => {
         handleCustomBack={toProfileScreen}
       />
       <ListContainer
-        title='Profile'>
+        title={('Profile')}>
         <ListLink
           linkTitle={t('Edit Profile')}
           onPress={toProfileSettings}/>
         <ListLink
-          linkTitle='Dummy Settings'
+          linkTitle={('Dummy Settings')}
           onPress={toProfileSettings}/>
       </ListContainer>
     </SafeAreaView>

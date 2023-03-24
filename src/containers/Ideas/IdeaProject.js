@@ -135,7 +135,7 @@ export const IdeaProject = (props) => {
                   [ styles.tabsMenuItem, styles.tabsMenuItemActive ] :
                   styles.tabsMenuItem
                 }
-                title='Participation'
+                title={t('Participation')}
                 type='clear'
                 onPress={() => setVisibleTab(tabs.participation)}
               />
@@ -145,7 +145,7 @@ export const IdeaProject = (props) => {
                   [ styles.tabsMenuItem, styles.tabsMenuItemActive ] :
                   styles.tabsMenuItem
                 }
-                title='Information'
+                title={t('Information')}
                 type='clear'
                 onPress={() => setVisibleTab(tabs.information)}
               />
@@ -155,7 +155,7 @@ export const IdeaProject = (props) => {
                   [ styles.tabsMenuItem, styles.tabsMenuItemActive ] :
                   styles.tabsMenuItem
                 }
-                title='Results'
+                title={t('Results')}
                 type='clear'
                 onPress={() => setVisibleTab(tabs.results)}
               />
@@ -247,7 +247,7 @@ export const IdeaProject = (props) => {
       {visibleTab === tabs.participation && module.has_idea_adding_permission && (
         <StickyContainer>
           <ButtonSubmit
-            title='Submit Idea'
+            title={t('Submit Idea')}
             onPress={pressHandler}
           ></ButtonSubmit>
         </StickyContainer>

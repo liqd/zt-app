@@ -1,5 +1,5 @@
 import React, { useEffect,useState } from 'react'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { Alert, Image, Platform,View } from 'react-native'
 import IconSLI from 'react-native-vector-icons/SimpleLineIcons'
 import { Button } from '@rneui/base'
@@ -56,7 +56,7 @@ export const ImagePickerFormField = (props) => {
       if (Platform.OS !== 'web') {
         const { status } = await ImagePicker.requestCameraPermissionsAsync()
         if (status !== 'granted') {
-          alert('Sorry, we need camera permissions to make this work!')
+          alert(t('Sorry, we need camera permissions to make this work!'))
         }
       }
     })()
@@ -149,6 +149,7 @@ export const ImageChoiceFormFieldContainer = (props) => {
   )
 
   const [clicked, setClicked] = useState(false)
+  const { t } = useTranslation()
 
   return (
     <View style={styles.formRow}>
@@ -158,7 +159,7 @@ export const ImageChoiceFormFieldContainer = (props) => {
                   buttonStyle={styles.imageButton}
                   icon={cloudUploadIcon}
                   type='fill'
-                  title='Add image'
+                  title={t('Add image')}
                   titleStyle={styles.textLight}
                   clicked={props.clicked}
                   setClicked={props.setClicked}
@@ -166,9 +167,11 @@ export const ImageChoiceFormFieldContainer = (props) => {
                 />
       }
       <TextSourceSans style={styles.imageInfo}>
-        Visualize your idea. It must be min. 600 pixel wide and 400 pixel tall.
-        Allowed file formats are png, jpeg, gif. The file size should be
-        max. 5 MB.
+        <Trans t={t}>
+          Visualize your idea. It must be min. 600 pixel wide and 400 pixel tall.
+          Allowed file formats are png, jpeg, gif. The file size should be
+          max. 5 MB.
+        </Trans>
       </TextSourceSans>
       {(clicked || props.image) &&
         <>
@@ -178,14 +181,14 @@ export const ImageChoiceFormFieldContainer = (props) => {
             imagePreview={true}
           />
           <CheckBoxFormField
-            field='Image Copyright'
+            field={t('Image Copyright')}
             name='imageCopyrightChecked'
             onIconPress={props.onIconPress}
             checked={props.checked}
-            title='I hereby confirm that the copyrights for this photo are with
-            me or that I have received rights of use from the author.
-            I also confirm that the privacy rights of depicted third persons
-            are not violated.'
+            title={t('I hereby confirm that the copyrights for this photo are with '
+            + 'me or that I have received rights of use from the author. '
+            + 'I also confirm that the privacy rights of depicted third persons '
+            + 'are not violated.')}
           />
         </>
       }

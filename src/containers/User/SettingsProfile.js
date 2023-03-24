@@ -1,4 +1,5 @@
 import React, { useContext } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Alert } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { Formik } from 'formik'
@@ -17,11 +18,12 @@ import { styles } from './SettingsProfile.styles'
 
 export const SettingsProfile = props => {
   const [profileContext, setProfileContext] = useContext(ProfileContext)
+  const { t } = useTranslation()
 
   const userNameValidationSchema = yup.object().shape({
     username: yup
       .string()
-      .max(60, 'Required. 60 characters or fewer. Letters, digits, spaces and @/./+/-/_ only.')
+      .max(60, t('Required. 60 characters or fewer. Letters, digits, spaces and @/./+/-/_ only.'))
   })
 
   const makeFormData = (values) => {
@@ -60,10 +62,10 @@ export const SettingsProfile = props => {
       .then((response) => {
         const {statusCode, data} = response
         if (statusCode == 200) {
-          Alert.alert('You\'re profile has been updated')
+          Alert.alert(t('You\'re profile has been updated'))
           props.navigation.navigate('SettingsOverview')
         } else {
-          const errorMessage = 'That did not work.'
+          const errorMessage = t('That did not work.')
           let errorDetail
           if (statusCode==403) {
             errorDetail = data.detail
@@ -105,10 +107,10 @@ export const SettingsProfile = props => {
             <KeyboardScrollView
               handleSubmit={handleSubmit}
               isValid={isValid}
-              buttonText='Save'
+              buttonText={t('Save')}
             >
               <ListContainer
-                title='Edit Profile'>
+                title={t('Edit Profile')}>
                 <ListItem>
                   <ButtonAvatar
                     imgSource={{uri:
@@ -116,20 +118,20 @@ export const SettingsProfile = props => {
                       profileContext?.userImage?.uri ||
                       profileContext?.userImageFallback?.uri
                     }}
-                    a11yLabelText="Change profile picture"
-                    a11yHintText="Click to navigate to change or add your profile image"
+                    a11yLabelText={t('Change profile picture')}
+                    a11yHintText={t('Click to navigate to change or add your profile image')}
                     avatarStyles={styles.avatarStyles}
                     onPress={() => toProfileSettingsAvatar()}
                   >
                     {profileContext.userImage
-                      ? 'Change profile picture'
-                      : 'Add profile picture'
+                      ? t('Change profile picture')
+                      : t('Add profile picture')
                     }
                   </ButtonAvatar>
                 </ListItem>
                 <TextInputFormField
                   username='username'
-                  field='Username'
+                  field={t('Username')}
                   value={values.username}
                   placeholder={profileContext?.userName}
                   returnKeyType='next'
