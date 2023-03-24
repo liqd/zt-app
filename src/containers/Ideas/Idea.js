@@ -278,7 +278,7 @@ export const Idea = (props) => {
           )
           props.navigation.goBack()
         } else {
-          const errorMessage = 'That did not work.'
+          const errorMessage = t('That did not work.')
           let errorDetail
           if (statusCode==403) {
             errorDetail = data.detail
@@ -325,7 +325,7 @@ export const Idea = (props) => {
 
   useEffect(() => {
     if (error) {
-      Alert.alert('An error occured', error, [{ text: 'Ok' }])
+      Alert.alert(t('An error occured'), error, [{ text: 'Ok' }])
     }
   }, [error])
 

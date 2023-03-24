@@ -216,7 +216,7 @@ export const IdeaCreate = props => {
             <KeyboardScrollView
               handleSubmit={handleSubmit}
               isValid={isValid && !submitPending}
-              buttonText='Submit'
+              buttonText={t('Submit')}
             >
               <View style={styles.container}>
                 <TextInputFormField
@@ -232,7 +232,7 @@ export const IdeaCreate = props => {
                   touched={touched.name}
                 />
                 <ButtonTextInputFieldContainer
-                  field='Idea Description'
+                  field={t('Idea Description')}
                   name='description'>
                   <ButtonTextInput
                     title={description ? description : t('Enter your idea description')}
