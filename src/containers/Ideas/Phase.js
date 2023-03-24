@@ -26,7 +26,7 @@ export const Phase = props => {
     activePhase ? (
       <View style={styles.phaseContainer}>
         <TextSourceSans style={styles.phaseText}>
-          {activePhase.name + ' (active)'}
+          {t('{{activePhase}} (active)', {activePhase: activePhase.name})}
         </TextSourceSans>
         <TextSourceSans style={styles.phaseDate}>
           {activePhase.start_date} – {activePhase.end_date}

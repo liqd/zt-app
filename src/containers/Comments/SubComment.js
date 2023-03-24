@@ -74,7 +74,7 @@ export const SubComment = (props) => {
       }
       <View style={styles.linkSection}>
         {hasExcerpt && <TouchableWithoutFeedback accessibilityRole="button" onPress={toggleWholeComment}>
-          <TextSourceSans style={styles.linkButton}>{showWholeComment ? 'Read Less' : 'Read More'}</TextSourceSans>
+          <TextSourceSans style={styles.linkButton}>{showWholeComment ? t('Read Less') : t('Read More')}</TextSourceSans>
         </TouchableWithoutFeedback>}
       </View>
       <View style={styles.bottomActionsContainer}>

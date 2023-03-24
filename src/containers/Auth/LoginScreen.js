@@ -23,7 +23,7 @@ export const LoginScreen = () => {
 
   useEffect(() => {
     if (error) {
-      Alert.alert('An error occured', error, [{ text: 'Ok' }])
+      Alert.alert(t('An error occured'), error, [{ text: 'Ok' }])
     }
   }, [error])
 
@@ -33,11 +33,11 @@ export const LoginScreen = () => {
         if (response.data.non_field_errors) {
           setError(response.data.non_field_errors[0])
         } else if (response.data.username) {
-          setError('Username or E-mail address: ' + response.data.username[0])
+          setError(t('Username or E-mail address: ') + response.data.username[0])
         } else if (response.data.password) {
-          setError('Password: ' + response.data.password[0])
+          setError(t('Password: ') + response.data.password[0])
         } else {
-          setError('Something went wrong, please try again.')
+          setError(t('Something went wrong, please try again.'))
         }
       } else {
         signIn(response.data.token)
