@@ -5,7 +5,6 @@ import IconSLI from 'react-native-vector-icons/SimpleLineIcons'
 import { ButtonCounter } from '../../components/ButtonCounter'
 import { Label } from '../../components/Label'
 import { TextSourceSans } from '../../components/TextSourceSans'
-import { DateService } from '../../services/DateService'
 
 import { styles } from './IdeasListItem.styles'
 
@@ -62,7 +61,7 @@ export const IdeasListItem = (props) => {
           <TextSourceSans style={styles.text}>{creator}</TextSourceSans>
           <View style={styles.infoContainer}>
             <TextSourceSans style={styles.date}>
-              {DateService(created)}
+              {created}
             </TextSourceSans>
             <View style={styles.counters}>
               <ButtonCounter icon={arrowUpIcon} counter={upCount} disabled />
