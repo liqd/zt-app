@@ -121,7 +121,7 @@ exports[`Test ReportCreateMessage Snapshot 1`] = `
                 style={
                   Object {
                     "color": "#1a1a1a",
-                    "fontSize": 19.125,
+                    "fontSize": 40,
                     "marginHorizontal": 5,
                     "paddingVertical": 1,
                     "textAlign": "center",
@@ -164,11 +164,11 @@ exports[`Test ReportCreateMessage Snapshot 1`] = `
             Array [
               Object {
                 "fontFamily": "SourceSansPro_400Regular",
-                "fontSize": 18,
+                "fontSize": 36,
               },
               Object {
-                "fontSize": 19.125,
-                "lineHeight": 22,
+                "fontSize": 40,
+                "lineHeight": 44,
                 "paddingHorizontal": 15,
               },
             ]
@@ -188,11 +188,11 @@ exports[`Test ReportCreateMessage Snapshot 1`] = `
               Array [
                 Object {
                   "fontFamily": "SourceSansPro_400Regular",
-                  "fontSize": 18,
+                  "fontSize": 36,
                 },
                 Object {
-                  "fontSize": 16.875,
-                  "lineHeight": 20.9,
+                  "fontSize": 32,
+                  "lineHeight": 42,
                   "paddingBottom": 5,
                   "paddingTop": 30,
                   "width": "100%",
@@ -214,7 +214,7 @@ exports[`Test ReportCreateMessage Snapshot 1`] = `
             style={
               Object {
                 "alignContent": "flex-start",
-                "fontSize": 19.125,
+                "fontSize": 40,
                 "justifyContent": "flex-start",
                 "textAlignVertical": "top",
               }
@@ -273,7 +273,7 @@ exports[`Test ReportCreateMessage Snapshot 1`] = `
               "borderRadius": 0,
               "borderWidth": 0,
               "flexDirection": "row",
-              "fontSize": 18,
+              "fontSize": 36,
               "height": 113.39000000000001,
               "justifyContent": "center",
               "padding": 8,
