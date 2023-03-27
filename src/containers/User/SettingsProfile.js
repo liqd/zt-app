@@ -29,23 +29,15 @@ export const SettingsProfile = props => {
 
   const makeFormData = (values) => {
     // do not send image data if not changed
-    if (!values['user_image']) {
-      delete values['user_image']
-    } else if (values['user_image'] === profileContext?.newUserImage) {
+    const existingImage = values['user_image']
+    const newImage = profileContext?.newUserImage
+    const existingIsSameAsNewImage = existingImage === newImage
+
+    if (!existingImage || !newImage || existingIsSameAsNewImage) {
       delete values['user_image']
     } else if (values['user_image'] !== profileContext?.newUserImage) {
       // instead of setFieldValue (Formik), assigning "manually" here
       values['user_image'] = profileContext.newUserImage
-      setProfileContext({
-        ...profileContext,
-        userImage: profileContext.newUserImage,
-        newUserImage: null
-      })
-    }
-
-    // update profile context if username changed
-    if (values['username'] !== profileContext?.userName) {
-      setProfileContext({...profileContext, userName: values['username']})
     }
 
     let formData = new FormData()
@@ -64,8 +56,23 @@ export const SettingsProfile = props => {
       .then((response) => {
         const {statusCode, data} = response
         if (statusCode == 200) {
-          Alert.alert(t('You\'re profile has been updated'))
+          Alert.alert(t('Your profile has been updated'))
           setSubmitPending(false)
+          // update profile context if username or user_image changed
+          if (values['user_image'] &&
+              values['user_image'] !== profileContext?.userImage) {
+            setProfileContext({
+              ...profileContext,
+              userName: values['username'],
+              userImage: values['user_image'],
+              newUserImage: null
+            })
+          } else {
+            setProfileContext({
+              ...profileContext,
+              userName: values['username']
+            })
+          }
           props.navigation.navigate('SettingsOverview')
         } else {
           const errorMessage = t('That did not work.')
