@@ -63,6 +63,7 @@ export const styles = StyleSheet.create({
   },
   organisationName: {
     fontSize: SIZES.sm,
+    flex: 1
   },
   organisationLogoContainer: {
     width: 40,

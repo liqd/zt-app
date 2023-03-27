@@ -124,7 +124,7 @@ export const IdeaProject = (props) => {
                     accessibilityIgnoresInvertColors={true}
                   />
                 </View>)}
-              <TextSourceSans style={styles.organisationName}>
+              <TextSourceSans style={styles.organisationName} numberOfLines={1}>
                 {project.organisation}
               </TextSourceSans>
             </View>
