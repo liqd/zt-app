@@ -27,9 +27,9 @@ export const styles = StyleSheet.create({
     fontSize: SIZES.base,
     fontFamily: FONTS.familySemiBold
   },
-  text: {
+  creatorText: {
     fontSize: SIZES.sm,
-    marginRight: SPACINGS.multiplyBy(0.5),
+    flexBasis: '100%'
   },
   date: {
     fontSize: SIZES.sm,

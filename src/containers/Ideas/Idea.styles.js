@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native'
 
 import { COLORS } from '../../theme/colors'
-import { FONTS, LINEHEIGHTS,SIZES } from '../../theme/fonts'
+import { FONTS, LINEHEIGHTS, SIZES } from '../../theme/fonts'
 import { SPACINGS } from '../../theme/spacings'
 
 export const styles = StyleSheet.create({
@@ -57,10 +57,6 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     marginVertical: SPACINGS.multiplyBy(.5),
     flexWrap: 'wrap',
-  },
-  commentIcon: {
-    fontSize: SIZES.md,
-    marginVertical: SPACINGS.multiplyBy(.5),
   },
   pressableEditing: {
     opacity: 0.25,

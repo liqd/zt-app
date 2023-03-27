@@ -53,6 +53,7 @@ export const styles = StyleSheet.create({
   },
   bottomActionsContainer: {
     flexDirection: 'row',
+    flexWrap: 'wrap',
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingBottom: SPACINGS.multiplyBy(0.5)

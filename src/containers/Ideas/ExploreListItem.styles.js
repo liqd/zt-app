@@ -31,6 +31,7 @@ export const styles = StyleSheet.create({
     padding: SPACINGS.multiplyBy(0.8),
   },
   progressText: {
+    fontSize: SIZES.sm,
     color: COLORS.grey.medium
   },
   progressBar: {
