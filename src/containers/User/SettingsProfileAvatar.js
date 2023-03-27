@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
 import { Header } from '../../components/Header'
-import { ImagePickerFormField } from '../../components/imageFormField'
+import { ImagePickerFormField } from '../../components/ImagePickerFormField'
 import { ListContainer, ListItem } from '../../components/List'
 import { StatusBarStyled } from '../../components/StatusBarStyled'
 import { ProfileContext } from '../../contexts/ProfileContext'

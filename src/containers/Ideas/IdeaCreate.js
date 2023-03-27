@@ -10,7 +10,7 @@ import { ButtonTextInput, ButtonTextInputFieldContainer } from '../../components
 import { DropdownFormField, TextInputFormField } from '../../components/formFields'
 import { Header } from '../../components/Header'
 import {
-  ImageChoiceFormFieldContainer } from '../../components/imageFormField'
+  ImagePickerFormFieldContainer } from '../../components/ImagePickerFormField'
 import { KeyboardScrollView } from '../../components/KeyboardScrollView'
 import { LabelList,LabelListContainer } from '../../components/LabelForm'
 import { StatusBarStyled } from '../../components/StatusBarStyled'
@@ -270,7 +270,7 @@ export const IdeaCreate = props => {
                     />
                   </LabelListContainer>
                 }
-                <ImageChoiceFormFieldContainer
+                <ImagePickerFormFieldContainer
                   field={t('Add Image')}
                   name='image'
                   onSetImage={(img) => {

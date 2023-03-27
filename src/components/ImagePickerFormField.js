@@ -10,7 +10,7 @@ import { useImageResize } from '../hooks/useImageResize'
 
 import { CheckBoxFormField } from './formFields'
 import { FormLabel } from './FormLabel'
-import { styles } from './imageFormField.styles'
+import { styles } from './ImagePickerFormField.styles'
 import { TextSourceSans } from './TextSourceSans'
 
 export const ImagePickerFormField = (props) => {
@@ -92,6 +92,9 @@ export const ImagePickerFormField = (props) => {
         onPress={deleteImageHandler}
         icon={closeIcon}
         type='clear'
+        accessible={true}
+        accessibilityLabel={t('Remove image')}
+        accessibilityHint={t('Click this button to remove or replace this image')}
       />
       <Image
         style={styles.formImagePreview}
@@ -119,6 +122,9 @@ export const ImagePickerFormField = (props) => {
           titleStyle={styles.textDark}
           imageUri={capturedImage}
           disabled={isSimulator}
+          accessible={true}
+          accessibilityLabel={isSimulator ? t('Camera - not available') : t('Camera image')}
+          accessibilityHint={t('Click this button to add image using your camera')}
         />}
         {capturedImage && props.imagePreview && imagePreview}
       </View>
@@ -134,6 +140,9 @@ export const ImagePickerFormField = (props) => {
           icon={pictureIcon}
           titleStyle={styles.textDark}
           imageUri={image}
+          accessible={true}
+          accessibilityLabel={t('Library image')}
+          accessibilityHint={t('Click this button to upload image from your library')}
         />}
         {image && props.imagePreview && imagePreview}
       </View>
@@ -141,7 +150,7 @@ export const ImagePickerFormField = (props) => {
   )
 }
 
-export const ImageChoiceFormFieldContainer = (props) => {
+export const ImagePickerFormFieldContainer = (props) => {
   const cloudUploadIcon = (
     <IconSLI
       name='cloud-upload'
@@ -164,6 +173,9 @@ export const ImageChoiceFormFieldContainer = (props) => {
                   clicked={props.clicked}
                   setClicked={props.setClicked}
                   onPress={setClicked}
+                  accessible={true}
+                  accessibilityLabel={t('Add image')}
+                  accessibilityHint={t('Click this button to add an image to your idea')}
                 />
       }
       <TextSourceSans style={styles.imageInfo}>
