@@ -5,34 +5,45 @@ import { styles } from './ButtonCounter.styles'
 import { TextSourceSans } from './TextSourceSans'
 
 export const ButtonCounter = (props) => {
+  const listStyle = [styles.baseText, styles.disableText, styles.listText]
   let btnStyle
   let textStyle
   if (props.disabled) {
-    textStyle = [styles.text, styles.disableStyle]
+    btnStyle = styles.btn
+    textStyle = [styles.baseText, styles.disableText]
   } else {
     if (props.counter === 0) {
       btnStyle = styles.btn
-      textStyle = styles.text
+      textStyle = styles.baseText
     } else {
       if (props.rating === 'pos') {
         btnStyle = styles.btn
-        textStyle = [styles.text, styles.ratedUp]
+        textStyle = [styles.baseText, styles.ratedUp]
         if (props.highlight) {
           btnStyle = [styles.btn, styles.highlightUp]
-          textStyle = [styles.text, styles.ratedUp]
+          textStyle = [styles.baseText, styles.ratedUp]
         }
       } else if (props.rating === 'neg') {
         btnStyle = styles.btn
-        textStyle = [styles.text, styles.ratedDown]
+        textStyle = [styles.baseText, styles.ratedDown]
         if (props.highlight) {
           btnStyle = [styles.btn, styles.highlightDown]
-          textStyle = [styles.text, styles.ratedDown]
+          textStyle = [styles.baseText, styles.ratedDown]
         }
       }
     }
   }
 
-  return (
+  return (props.list ?
+    <View style={styles.container}>
+      <TextSourceSans style={listStyle}>
+        {props.counter}
+      </TextSourceSans>
+      <TextSourceSans style={listStyle}>
+        {props.icon}
+      </TextSourceSans>
+    </View>
+    :
     <View style={styles.container}>
       <Pressable
         style={btnStyle}
@@ -43,6 +54,8 @@ export const ButtonCounter = (props) => {
       >
         <TextSourceSans style={textStyle}>
           {props.counter}
+        </TextSourceSans>
+        <TextSourceSans style={textStyle}>
           {props.icon}
         </TextSourceSans>
       </Pressable>

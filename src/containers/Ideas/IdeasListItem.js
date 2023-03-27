@@ -31,9 +31,9 @@ export const IdeasListItem = (props) => {
     return categoryList
   }
 
-  const arrowUpIcon = <IconSLI name='arrow-up' size={18} />
-  const arrowDownIcon = <IconSLI name='arrow-down' size={18} />
-  const commentIcon = <IconSLI name='bubble' size={18} />
+  const arrowUpIcon = <IconSLI name='arrow-up' size={16} />
+  const arrowDownIcon = <IconSLI name='arrow-down' size={16} />
+  const commentIcon = <IconSLI name='bubble' size={16} />
 
   return (
     <TouchableOpacity
@@ -60,15 +60,15 @@ export const IdeasListItem = (props) => {
               <View style={styles.noLabelSpacing}></View>)}
         </View>
         <View style={styles.bottomContainer}>
-          <TextSourceSans style={styles.text}>{creator}</TextSourceSans>
+          <TextSourceSans style={styles.creatorText}>{creator}</TextSourceSans>
           <View style={styles.infoContainer}>
             <TextSourceSans style={styles.date}>
               {created}
             </TextSourceSans>
             <View style={styles.counters}>
-              <ButtonCounter icon={arrowUpIcon} counter={upCount} disabled />
-              <ButtonCounter icon={arrowDownIcon} counter={downCount} disabled />
-              <ButtonCounter icon={commentIcon} counter={commentCount} disabled />
+              <ButtonCounter icon={arrowUpIcon} counter={upCount} disabled list />
+              <ButtonCounter icon={arrowDownIcon} counter={downCount} disabled list />
+              <ButtonCounter icon={commentIcon} counter={commentCount} disabled list />
             </View>
           </View>
         </View>

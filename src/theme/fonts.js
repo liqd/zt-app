@@ -24,7 +24,3 @@ export const LINEHEIGHTS = {
   lg: pixelRatio * 28,
   xl: pixelRatio * 30,
 }
-
-export const LETTERSPACING = {
-  iconbtn: 5,
-}

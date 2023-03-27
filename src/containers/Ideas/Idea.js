@@ -300,15 +300,7 @@ export const Idea = (props) => {
   const optionsIcon = <IconSLI name='options-vertical' size={22} />
   const arrowUpIcon = <IconSLI name='arrow-up' size={18} />
   const arrowDownIcon = <IconSLI name='arrow-down' size={18} />
-  const commentIcon = (
-    <IconSLI name='bubble' size={18}
-      color={!hasComments
-        ? styles.disabledIcon.color
-        : styles.fontColor.color
-      }
-      style={styles.commentIcon}
-    />
-  )
+  const commentIcon = <IconSLI name='bubble' size={18} />
 
   const fetchComments = (ideaContentType, ideaPk) => {
     API.getComments(ideaContentType, ideaPk)
@@ -412,6 +404,7 @@ export const Idea = (props) => {
         <ScrollView
           style={styles.container}
           scrollEnabled={!isEditing}
+          scrollEventThrottle={16}
           keyboardShouldPersistTaps='handled'
           onScroll={handleScroll}
           ref={scrollViewRef}
@@ -490,9 +483,14 @@ export const Idea = (props) => {
                   disabled={!ideaState.has_rating_permission}
                 />
               </View>
-              <View>
-                {commentIcon}
-              </View>
+              {hasComments &&
+                <View>
+                  <ButtonCounter
+                    icon={commentIcon}
+                    labelText={t('idea has comments')}
+                    disabled
+                  />
+                </View>}
             </View>
           </View>
           {comments && (
