@@ -84,7 +84,7 @@ exports[`Test SettingsOverview Snapshot 1`] = `
               style={
                 Object {
                   "color": "#1a1a1a",
-                  "fontSize": 19.125,
+                  "fontSize": 40,
                   "marginHorizontal": 5,
                   "paddingVertical": 1,
                   "textAlign": "center",
@@ -104,7 +104,7 @@ exports[`Test SettingsOverview Snapshot 1`] = `
         Array [
           Object {
             "fontFamily": "SourceSansPro_400Regular",
-            "fontSize": 18,
+            "fontSize": 36,
           },
           Object {
             "backgroundColor": "#f2f2f2",
@@ -112,7 +112,7 @@ exports[`Test SettingsOverview Snapshot 1`] = `
             "borderBottomWidth": 1,
             "borderRadius": 0,
             "fontFamily": "SourceSansPro_600SemiBold",
-            "fontSize": 19.125,
+            "fontSize": 40,
             "paddingLeft": 15,
             "paddingVertical": 15,
           },
@@ -162,7 +162,7 @@ exports[`Test SettingsOverview Snapshot 1`] = `
           style={
             Object {
               "fontFamily": "SourceSansPro_400Regular",
-              "fontSize": 18,
+              "fontSize": 36,
             }
           }
         >
@@ -172,7 +172,7 @@ exports[`Test SettingsOverview Snapshot 1`] = `
           style={
             Object {
               "fontFamily": "SourceSansPro_400Regular",
-              "fontSize": 18,
+              "fontSize": 36,
             }
           }
         >
@@ -221,7 +221,7 @@ exports[`Test SettingsOverview Snapshot 1`] = `
           style={
             Object {
               "fontFamily": "SourceSansPro_400Regular",
-              "fontSize": 18,
+              "fontSize": 36,
             }
           }
         >
@@ -231,7 +231,7 @@ exports[`Test SettingsOverview Snapshot 1`] = `
           style={
             Object {
               "fontFamily": "SourceSansPro_400Regular",
-              "fontSize": 18,
+              "fontSize": 36,
             }
           }
         >

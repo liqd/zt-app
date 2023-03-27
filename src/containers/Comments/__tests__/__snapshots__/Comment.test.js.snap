@@ -57,7 +57,7 @@ exports[`Test Comment Snapshot 1`] = `
             Array [
               Object {
                 "fontFamily": "SourceSansPro_400Regular",
-                "fontSize": 18,
+                "fontSize": 36,
               },
               Object {
                 "fontFamily": "SourceSansPro_600SemiBold",
@@ -72,11 +72,11 @@ exports[`Test Comment Snapshot 1`] = `
             Array [
               Object {
                 "fontFamily": "SourceSansPro_400Regular",
-                "fontSize": 18,
+                "fontSize": 36,
               },
               Object {
                 "color": "#666",
-                "fontSize": 14.625,
+                "fontSize": 26,
               },
             ]
           }
@@ -89,7 +89,7 @@ exports[`Test Comment Snapshot 1`] = `
       style={
         Object {
           "fontFamily": "SourceSansPro_400Regular",
-          "fontSize": 18,
+          "fontSize": 36,
         }
       }
     >
@@ -161,7 +161,7 @@ exports[`Test Comment Snapshot 1`] = `
       style={
         Object {
           "fontFamily": "SourceSansPro_400Regular",
-          "fontSize": 18,
+          "fontSize": 36,
         }
       }
     >
@@ -229,19 +229,19 @@ exports[`Test Comment Snapshot 1`] = `
               Array [
                 Object {
                   "fontFamily": "SourceSansPro_400Regular",
-                  "fontSize": 18,
+                  "fontSize": 36,
                 },
                 Array [
                   Object {
                     "fontFamily": "SourceSansPro_600SemiBold",
-                    "fontSize": 19.125,
+                    "fontSize": 40,
                     "letterSpacing": 5,
-                    "lineHeight": 20.9,
+                    "lineHeight": 42,
                   },
                   Object {
                     "color": "#666",
                     "fontFamily": "SourceSansPro_400Regular",
-                    "fontSize": 16.875,
+                    "fontSize": 32,
                   },
                 ],
               ]
@@ -286,19 +286,19 @@ exports[`Test Comment Snapshot 1`] = `
               Array [
                 Object {
                   "fontFamily": "SourceSansPro_400Regular",
-                  "fontSize": 18,
+                  "fontSize": 36,
                 },
                 Array [
                   Object {
                     "fontFamily": "SourceSansPro_600SemiBold",
-                    "fontSize": 19.125,
+                    "fontSize": 40,
                     "letterSpacing": 5,
-                    "lineHeight": 20.9,
+                    "lineHeight": 42,
                   },
                   Object {
                     "color": "#666",
                     "fontFamily": "SourceSansPro_400Regular",
-                    "fontSize": 16.875,
+                    "fontSize": 32,
                   },
                 ],
               ]
@@ -369,8 +369,8 @@ exports[`Test Comment Snapshot 1`] = `
             style={
               Object {
                 "color": "hsl(208, 8%, 63%)",
-                "fontSize": 16.875,
-                "lineHeight": 20.9,
+                "fontSize": 32,
+                "lineHeight": 42,
                 "marginLeft": 8,
                 "paddingVertical": 1,
                 "textAlign": "center",
@@ -441,8 +441,8 @@ exports[`Test Comment Snapshot 1`] = `
             style={
               Object {
                 "color": "#464a4c",
-                "fontSize": 16.875,
-                "lineHeight": 20.9,
+                "fontSize": 32,
+                "lineHeight": 42,
                 "marginLeft": 8,
                 "paddingVertical": 1,
                 "textAlign": "center",
