@@ -50,7 +50,7 @@ exports[`Test ButtonSubmit 1`] = `
           "borderRadius": 0,
           "borderWidth": 0,
           "flexDirection": "row",
-          "fontSize": 18,
+          "fontSize": 36,
           "height": 113.39000000000001,
           "justifyContent": "center",
           "padding": 8,

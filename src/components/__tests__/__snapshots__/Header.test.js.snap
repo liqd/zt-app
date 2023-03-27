@@ -78,7 +78,7 @@ exports[`Snapshot Default Header 1`] = `
             style={
               Object {
                 "color": "#1a1a1a",
-                "fontSize": 19.125,
+                "fontSize": 40,
                 "marginHorizontal": 5,
                 "paddingVertical": 1,
                 "textAlign": "center",
@@ -192,7 +192,7 @@ exports[`Snapshot Default Header Custom Style 1`] = `
             style={
               Object {
                 "color": "#1a1a1a",
-                "fontSize": 19.125,
+                "fontSize": 40,
                 "marginHorizontal": 5,
                 "paddingVertical": 1,
                 "textAlign": "center",
@@ -302,7 +302,7 @@ exports[`Snapshot Default Header Transparent White Arrow 1`] = `
             style={
               Object {
                 "color": "#1a1a1a",
-                "fontSize": 19.125,
+                "fontSize": 40,
                 "marginHorizontal": 5,
                 "paddingVertical": 1,
                 "textAlign": "center",

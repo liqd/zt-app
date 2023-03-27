@@ -43,13 +43,13 @@ exports[`Test ButtonCounter 1`] = `
         Array [
           Object {
             "fontFamily": "SourceSansPro_400Regular",
-            "fontSize": 18,
+            "fontSize": 36,
           },
           Object {
             "fontFamily": "SourceSansPro_600SemiBold",
-            "fontSize": 19.125,
+            "fontSize": 40,
             "letterSpacing": 5,
-            "lineHeight": 20.9,
+            "lineHeight": 42,
           },
         ]
       }
@@ -93,7 +93,7 @@ exports[`Test ButtonCounter 10 1`] = `
       style={
         Object {
           "fontFamily": "SourceSansPro_400Regular",
-          "fontSize": 18,
+          "fontSize": 36,
         }
       }
     >
@@ -157,19 +157,19 @@ exports[`Test ButtonCounter disabled 1`] = `
         Array [
           Object {
             "fontFamily": "SourceSansPro_400Regular",
-            "fontSize": 18,
+            "fontSize": 36,
           },
           Array [
             Object {
               "fontFamily": "SourceSansPro_600SemiBold",
-              "fontSize": 19.125,
+              "fontSize": 40,
               "letterSpacing": 5,
-              "lineHeight": 20.9,
+              "lineHeight": 42,
             },
             Object {
               "color": "#666",
               "fontFamily": "SourceSansPro_400Regular",
-              "fontSize": 16.875,
+              "fontSize": 32,
             },
           ],
         ]
@@ -245,13 +245,13 @@ exports[`Test ButtonCounter highlight 1`] = `
         Array [
           Object {
             "fontFamily": "SourceSansPro_400Regular",
-            "fontSize": 18,
+            "fontSize": 36,
           },
           Object {
             "fontFamily": "SourceSansPro_600SemiBold",
-            "fontSize": 19.125,
+            "fontSize": 40,
             "letterSpacing": 5,
-            "lineHeight": 20.9,
+            "lineHeight": 42,
           },
         ]
       }
@@ -326,13 +326,13 @@ exports[`Test ButtonCounter highlight 10 1`] = `
         Array [
           Object {
             "fontFamily": "SourceSansPro_400Regular",
-            "fontSize": 18,
+            "fontSize": 36,
           },
           Object {
             "fontFamily": "SourceSansPro_600SemiBold",
-            "fontSize": 19.125,
+            "fontSize": 40,
             "letterSpacing": 5,
-            "lineHeight": 20.9,
+            "lineHeight": 42,
           },
         ]
       }
