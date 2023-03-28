@@ -279,6 +279,7 @@ export const Comment = (props) => {
           </TouchableWithoutFeedback>
         }
       </View>
+      {isDisplayed(comment) &&
       <View style={styles.bottomActionsContainer}>
         <View style={styles.ratingButtons}>
           <ButtonCounter
@@ -326,6 +327,7 @@ export const Comment = (props) => {
           type='clear'
         />
       </View>
+      }
       {showSubComments &&
         <SubComments
           comments={comment.child_comments}
