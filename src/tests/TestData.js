@@ -35,7 +35,7 @@ export const testIdeaAdmin = {
   category: null,
   comment_count: 1,
   content_type: 110,
-  created: '2022-06-29T14:48:31.387494+02:00',
+  created: 'June 29, 2022',
   creator: 'admin',
   description: `This is a test idea.
 
