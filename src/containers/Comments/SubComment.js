@@ -77,6 +77,7 @@ export const SubComment = (props) => {
           <TextSourceSans style={styles.linkButton}>{showWholeComment ? t('Read Less') : t('Read More')}</TextSourceSans>
         </TouchableWithoutFeedback>}
       </View>
+      {props.isDisplayed(props.comment) &&
       <View style={styles.bottomActionsContainer}>
         <View style={styles.ratingButtons}>
           <ButtonCounter
@@ -111,6 +112,7 @@ export const SubComment = (props) => {
           type='clear'
         />
       </View>
+      }
     </View>
   )
 }
