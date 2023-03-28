@@ -110,15 +110,15 @@ export const Richtext = ({ text }) => {
     },
     p: {
       fontFamily: FONTS.familySans,
-      fontSize: SIZES.base,
+      fontSize: SIZES.sm,
     },
     li: {
       fontFamily: FONTS.familySans,
-      fontSize: SIZES.base,
+      fontSize: SIZES.sm,
     },
     div: {
       fontFamily: FONTS.familySans,
-      fontSize: SIZES.base,
+      fontSize: SIZES.sm,
     }
   }
 

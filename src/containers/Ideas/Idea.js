@@ -6,7 +6,6 @@ import {
   Keyboard,
   KeyboardAvoidingView,
   Platform,
-  Pressable,
   ScrollView,
   useWindowDimensions,
   View,
@@ -389,6 +388,8 @@ export const Idea = (props) => {
           icon={optionsIcon}
           type='clear'
           onPress={() => {setMenuItems(ideaMenuItems); toggleMenu()}}
+          accessibilityLabel={t('Click to open idea menu')}
+          accessibilityHint={t('Click to open menu to update or delete your idea or report someone elses')}
         />)
 
   return (
@@ -413,107 +414,99 @@ export const Idea = (props) => {
           onScroll={handleScroll}
           ref={scrollViewRef}
         >
-          <Pressable
-            accessibilityRole="button"
-            onPress={isEditing && toggleEditing}
-            style={{
-              ...isEditing ? styles.pressableEditing : {}
-            }}
-            disabled={!isEditing}
+          <View
+            ref={ideaRef}
+            collapsable={false}
           >
-            <View
-              ref={ideaRef}
-              collapsable={false}
-            >
-              <View style={styles.titleContainer}>
-                <TextSourceSans
-                  style={styles.title}
-                >
-                  {ideaState.name}
-                </TextSourceSans>
-              </View>
-              <View style={styles.descriptionContainer}>
-                {ideaState.image && (
-                  <>
-                    <Image
-                      accessibilityIgnoresInvertColors={true}
-                      source={{ uri: ideaState.image }}
-                      style={styles.ideaImage}
-                    />
-                  </>
-                )}
-                <TextSourceSans
-                  style={styles.text}
-                >
-                  {ideaState.description}
-                </TextSourceSans>
-              </View>
-              {getLabels().length > 0 && (
-                <View style={styles.labelsContainer}>
-                  {getLabels().map((label, idx) => (
-                    <Label key={idx + label} title={label} />
-                  ))}
-                </View>
+            <View style={styles.titleContainer}>
+              <TextSourceSans
+                accessibilityRole="header"
+                style={styles.title}
+              >
+                {ideaState.name}
+              </TextSourceSans>
+            </View>
+            <View style={styles.descriptionContainer}>
+              {ideaState.image && (
+                <>
+                  <Image
+                    accessibilityIgnoresInvertColors={true}
+                    source={{ uri: ideaState.image }}
+                    style={styles.ideaImage}
+                  />
+                </>
               )}
-              <View style={styles.infoContainer}>
-                <TextSourceSans style={styles.creator}>
-                  {ideaState.creator} {idea.created}
-                </TextSourceSans>
-                <TextSourceSans style={styles.text}>
-                  {t('Reference No.:') + ' ' + ideaState.reference_number || t('n/a')}
-                </TextSourceSans>
+              <TextSourceSans
+                style={styles.text}
+              >
+                {ideaState.description}
+              </TextSourceSans>
+            </View>
+            {getLabels().length > 0 && (
+              <View style={styles.labelsContainer}>
+                {getLabels().map((label, idx) => (
+                  <Label key={idx + label} title={label} />
+                ))}
               </View>
-              <View style={styles.bottomActionsContainer}>
-                <View style={styles.ratingButtons}>
-                  <ButtonCounter
-                    icon={arrowUpIcon}
-                    labelText={t('up-votes')}
-                    hintText={t('click to up vote')}
-                    counter={ideaState.positive_rating_count}
-                    onPress={() => handleRate(1)}
-                    highlight={
-                      ideaState.user_rating &&
-                      ideaState.user_rating.value === 1 &&
-                      ideaState.user_rating.value
-                    }
-                    rating='pos'
-                    disabled={!ideaState.has_rating_permission}
-                  />
-                  <ButtonCounter
-                    icon={arrowDownIcon}
-                    labelText={t('down-votes')}
-                    hintText={t('click to down vote')}
-                    counter={ideaState.negative_rating_count}
-                    onPress={() => handleRate(-1)}
-                    highlight={
-                      ideaState.user_rating &&
-                      ideaState.user_rating.value === -1 &&
-                      ideaState.user_rating.value
-                    }
-                    rating='neg'
-                    disabled={!ideaState.has_rating_permission}
-                  />
-                </View>
-                <View>
-                  {commentIcon}
-                </View>
+            )}
+            <View style={styles.infoContainer}>
+              <TextSourceSans style={styles.creator}>
+                {ideaState.creator} {idea.created}
+              </TextSourceSans>
+              <TextSourceSans style={styles.text}>
+                {t('Reference No.:') + ' ' + ideaState.reference_number || t('n/a')}
+              </TextSourceSans>
+            </View>
+            <View style={styles.bottomActionsContainer}>
+              <View style={styles.ratingButtons}>
+                <ButtonCounter
+                  icon={arrowUpIcon}
+                  labelText={ideaState.positive_rating_count + ' ' + t('up-votes')}
+                  hintText={t('click to up vote')}
+                  counter={ideaState.positive_rating_count}
+                  onPress={() => handleRate(1)}
+                  highlight={
+                    ideaState.user_rating &&
+                    ideaState.user_rating.value === 1 &&
+                    ideaState.user_rating.value
+                  }
+                  rating='pos'
+                  disabled={!ideaState.has_rating_permission}
+                />
+                <ButtonCounter
+                  icon={arrowDownIcon}
+                  labelText={ideaState.negative_rating_count + ' ' + t('down-votes')}
+                  hintText={t('click to down vote')}
+                  counter={ideaState.negative_rating_count}
+                  onPress={() => handleRate(-1)}
+                  highlight={
+                    ideaState.user_rating &&
+                    ideaState.user_rating.value === -1 &&
+                    ideaState.user_rating.value
+                  }
+                  rating='neg'
+                  disabled={!ideaState.has_rating_permission}
+                />
+              </View>
+              <View>
+                {commentIcon}
               </View>
             </View>
-            {comments && (
-              <Comments
-                comments={comments}
-                handleReply={handleCommentReply}
-                commentLastCommented={commentLastCommented}
-                setMenuItems={setMenuItems}
-                toggleMenu={toggleMenu}
-                toggleEditing={toggleEditing}
-                setDeleteModalItems={setDeleteModalItems}
-                toggleDeleteModal={toggleDeleteModal}
-                hasCommentingPermission={idea.has_commenting_permission}
-                navigation={navigation}
-              />
-            )}
-          </Pressable>
+          </View>
+          {comments && (
+            <Comments
+              comments={comments}
+              handleReply={handleCommentReply}
+              commentLastCommented={commentLastCommented}
+              setMenuItems={setMenuItems}
+              toggleMenu={toggleMenu}
+              toggleEditing={toggleEditing}
+              setDeleteModalItems={setDeleteModalItems}
+              toggleDeleteModal={toggleDeleteModal}
+              hasCommentingPermission={idea.has_commenting_permission}
+              navigation={navigation}
+            />
+          )}
         </ScrollView>
         {idea.has_commenting_permission && (
           <View>

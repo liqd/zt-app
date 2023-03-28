@@ -35,8 +35,9 @@ export const styles = StyleSheet.create({
     fontSize: SIZES.md,
   },
   imageRemoveButton: {
-    flex: 2,
-    justifyContent: 'flex-end'
+    width: '89%',
+    justifyContent: 'flex-end',
+    marginBottom: -8,
   },
   iconRemoveButton: {
     fontSize: SIZES.lg,

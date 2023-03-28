@@ -42,7 +42,7 @@ export const IdeasListItem = (props) => {
       delayPressIn={50}>
       <View style={styles.container}>
         <View style={styles.topContainer}>
-          <TextSourceSans style={styles.title}>{name}</TextSourceSans>
+          <TextSourceSans style={styles.title} accessibilityRole="header">{name}</TextSourceSans>
           {getCategory().length > 0 ? (
             <View style={styles.labelsContainer}>
               {getCategory().map((category, idx) => (
