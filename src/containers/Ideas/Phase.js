@@ -23,29 +23,31 @@ export const Phase = props => {
   }
 
   return (
-    activePhase ? (
-      <View style={styles.phaseContainer}>
-        <TextSourceSans style={styles.phaseText}>
-          {t('{{activePhase}} (active)', {activePhase: activePhase.name})}
-        </TextSourceSans>
-        <TextSourceSans style={styles.phaseDate}>
-          {activePhase.start_date} – {activePhase.end_date}
-        </TextSourceSans>
-        <TextSourceSans style={styles.phaseText}>
-          {activePhase.description}
-        </TextSourceSans>
-      </View>
-    ) : (
-      <View style={styles.phaseContainer}>
-        <TextSourceSans>
-          {t('Participation is not possible at the moment.')}
-        </TextSourceSans>
-        <View>
-          <TextSourceSans>
-            {getInactivePhaseText()}
+    activePhase
+      ? (
+        <View style={styles.phaseContainer}>
+          <TextSourceSans style={styles.phaseText}>
+            {t('{{activePhase}} (active)', {activePhase: activePhase.name})}
+          </TextSourceSans>
+          <TextSourceSans style={styles.phaseDate}>
+            {activePhase.start_date} – {activePhase.end_date}
+          </TextSourceSans>
+          <TextSourceSans style={styles.phaseText}>
+            {activePhase.description}
           </TextSourceSans>
         </View>
-      </View>
+      )
+      : (
+        <View style={styles.phaseContainer}>
+          <TextSourceSans style={styles.phaseText}>
+            {t('Participation is not possible at the moment.')}
+          </TextSourceSans>
+          <View>
+            <TextSourceSans style={styles.phaseText}>
+              {getInactivePhaseText()}
+            </TextSourceSans>
+          </View>
+        </View>
     )
   )
 }

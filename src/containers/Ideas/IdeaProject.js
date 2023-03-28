@@ -52,6 +52,7 @@ export const IdeaProject = (props) => {
       title={t('Follow')}
       icon={plusIcon}
       type='clear'
+      accessible={false}
     />
   )
 
@@ -109,7 +110,7 @@ export const IdeaProject = (props) => {
           navigation={props.navigation} />
         <View style={styles.overlayContainer}>
           <View style={styles.infoContainer}>
-            <TextSourceSans style={styles.title}>
+            <TextSourceSans style={styles.title} accessibilityRole="header">
               {project.name}
             </TextSourceSans>
             <TextSourceSans style={styles.description}>
@@ -170,8 +171,8 @@ export const IdeaProject = (props) => {
                 {project.single_idea_collection_module ? (
                   <View style={styles.containerInner}>
                     <View style={styles.listActions}>
-                      <Button icon={filterIcon} type='clear' />
-                      <Button icon={sortIcon} type='clear' />
+                      <Button icon={filterIcon} type='clear' disabled />
+                      <Button icon={sortIcon} type='clear' disabled />
                     </View>
                     <View style={styles.listContainer}>
                       <IdeasList

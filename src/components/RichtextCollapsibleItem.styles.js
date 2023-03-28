@@ -19,7 +19,7 @@ export const styles = StyleSheet.create({
   collapsibleButtonTitle: {
     flexGrow: 2,
     flexBasis: '90%',
-    fontSize: SIZES.md,
+    fontSize: SIZES.base,
     fontFamily: FONTS.familySemiBold,
   },
   collapsibleIcon: {
@@ -33,6 +33,6 @@ export const styles = StyleSheet.create({
   },
   collapsibleBodyText: {
     fontFamily: FONTS.familySans,
-    fontSize: SIZES.base,
+    fontSize: SIZES.sm,
   }
 })

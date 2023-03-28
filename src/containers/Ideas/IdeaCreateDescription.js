@@ -62,6 +62,9 @@ export const IdeaCreateDescription = props => {
             <TextInputFullFormField
               name='description'
               value={values.description}
+              accessibilityHint={t('Enter your idea description')}
+              autoCorrect={true}
+              autoCapitalize={true}
               placeholder={t('Enter your idea description')}
               returnKeyType='next'
               returnKeyLabel={t('next')}

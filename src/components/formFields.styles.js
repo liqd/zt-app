@@ -33,7 +33,7 @@ export const styles = StyleSheet.create({
     borderRadius: 0
   },
   dropdownContainer: {
-    zIndex: 1,
+    zIndex: 2,
   },
   dropdownFormField: {
     borderBottomColor: COLORS.grey.extralight,

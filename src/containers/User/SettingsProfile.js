@@ -145,6 +145,9 @@ export const SettingsProfile = props => {
                   username='username'
                   field={t('Username')}
                   value={values.username}
+                  accessibilityHint={t('update your username')}
+                  autoCorrect={false}
+                  autoCapitalize={true}
                   placeholder={profileContext?.userName}
                   returnKeyType='next'
                   returnKeyLabel='next'

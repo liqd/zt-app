@@ -102,6 +102,10 @@ export const LoginScreen = () => {
               field={t('Username or E-mail address:')}
               name='username'
               value={values.username}
+              accessibilityHint={t('type in your password')}
+              autoCorrect={false}
+              autoCapitalize={false}
+              keyboardType='email-address'
               placeholder=''
               returnKeyType='next'
               returnKeyLabel='next'
@@ -115,6 +119,9 @@ export const LoginScreen = () => {
               field={t('Password:')}
               name='password'
               value={values.password}
+              accessibilityHint={t('type in your password')}
+              autoCorrect={false}
+              autoCapitalize={false}
               placeholder=''
               returnKeyType='next'
               returnKeyLabel='next'

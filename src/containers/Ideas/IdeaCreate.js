@@ -6,8 +6,9 @@ import { Formik } from 'formik'
 import * as yup from 'yup'
 
 import API from '../../BaseApi'
-import { ButtonTextInput, ButtonTextInputFieldContainer } from '../../components/ButtonTextInput'
+import { ButtonTextInput } from '../../components/ButtonTextInput'
 import { DropdownFormField, TextInputFormField } from '../../components/formFields'
+import { FormLabel } from '../../components/FormLabel'
 import { Header } from '../../components/Header'
 import {
   ImagePickerFormFieldContainer } from '../../components/ImagePickerFormField'
@@ -199,7 +200,7 @@ export const IdeaCreate = props => {
         contentContainerStyle={styles.flexContainer}
         listHeaderStyle={styles.flexContainer}
       >
-        <TextSourceSans style={styles.title}>{t('Submit a new idea for this project')}</TextSourceSans>
+        <TextSourceSans style={styles.title} accessibilityRole="header" >{t('Submit a new idea for this project')}</TextSourceSans>
         <Formik
           validationSchema={ideaValidationSchema}
           initialValues={getInitialValues()}
@@ -227,6 +228,9 @@ export const IdeaCreate = props => {
                   field={t('Idea title')}
                   name='name'
                   value={values.name}
+                  accessibilityHint={t('Enter your idea title')}
+                  autoCorrect={true}
+                  autoCapitalize={true}
                   placeholder={t('Enter your idea title')}
                   returnKeyType='next'
                   returnKeyLabel={t('next')}
@@ -234,19 +238,19 @@ export const IdeaCreate = props => {
                   onBlur={handleBlur('name')}
                   error={errors.name}
                   touched={touched.name}
+                  autoFocus
                 />
-                <ButtonTextInputFieldContainer
-                  field={t('Idea Description')}
-                  name='description'>
-                  <ButtonTextInput
-                    title={description ? description : t('Enter your idea description')}
-                    onPress={() => toDescription(values)}
-                    textInputButtonTitle={description ?
-                      styles.textInputButtonTitleDark :
-                      styles.textInputButtonTitleLight}
-                  >
-                  </ButtonTextInput>
-                </ButtonTextInputFieldContainer>
+                <FormLabel>{t('Idea Description')}</FormLabel>
+                <ButtonTextInput
+                  title={description ? description : t('Enter your idea description')}
+                  accessibilityLabel={description ? t('Click to edit description on a new page') : t('Click to add idea description on a new page')}
+                  accessibilityHint={description ? t('button will open new page where you can edit your description') : t('button will open new page with large text entry page')}
+                  onPress={() => toDescription(values)}
+                  textInputButtonTitle={description ?
+                    styles.textInputButtonTitleDark :
+                    styles.textInputButtonTitleLight}
+                >
+                </ButtonTextInput>
                 {categories.length > 0 &&
                   <DropdownFormField
                     field={t('Idea Category')}
