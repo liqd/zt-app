@@ -29,12 +29,12 @@ exports[`Test ButtonCounter 1`] = `
     onStartShouldSetResponder={[Function]}
     style={
       Object {
+        "alignItems": "center",
         "borderRadius": 6,
-        "marginBottom": 10,
-        "paddingBottom": 5,
-        "paddingLeft": 10,
-        "paddingRight": 10,
-        "paddingTop": 5,
+        "flexDirection": "row",
+        "justifyContent": "center",
+        "paddingHorizontal": 10,
+        "paddingVertical": 8,
       }
     }
   >
@@ -48,13 +48,30 @@ exports[`Test ButtonCounter 1`] = `
           Object {
             "fontFamily": "SourceSansPro_600SemiBold",
             "fontSize": 40,
-            "letterSpacing": 5,
             "lineHeight": 42,
+            "marginRight": 5,
           },
         ]
       }
     >
       0
+    </Text>
+    <Text
+      style={
+        Array [
+          Object {
+            "fontFamily": "SourceSansPro_400Regular",
+            "fontSize": 36,
+          },
+          Object {
+            "fontFamily": "SourceSansPro_600SemiBold",
+            "fontSize": 40,
+            "lineHeight": 42,
+            "marginRight": 5,
+          },
+        ]
+      }
+    >
       <Text />
     </Text>
   </View>
@@ -98,6 +115,15 @@ exports[`Test ButtonCounter 10 1`] = `
       }
     >
       10
+    </Text>
+    <Text
+      style={
+        Object {
+          "fontFamily": "SourceSansPro_400Regular",
+          "fontSize": 36,
+        }
+      }
+    >
       <Text
         allowFontScaling={false}
         selectable={false}
@@ -151,6 +177,16 @@ exports[`Test ButtonCounter disabled 1`] = `
     onResponderTerminate={[Function]}
     onResponderTerminationRequest={[Function]}
     onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "alignItems": "center",
+        "borderRadius": 6,
+        "flexDirection": "row",
+        "justifyContent": "center",
+        "paddingHorizontal": 10,
+        "paddingVertical": 8,
+      }
+    }
   >
     <Text
       style={
@@ -163,19 +199,47 @@ exports[`Test ButtonCounter disabled 1`] = `
             Object {
               "fontFamily": "SourceSansPro_600SemiBold",
               "fontSize": 40,
-              "letterSpacing": 5,
               "lineHeight": 42,
+              "marginRight": 5,
             },
             Object {
+              "alignItems": "center",
               "color": "#666",
+              "flexDirection": "row",
               "fontFamily": "SourceSansPro_400Regular",
-              "fontSize": 32,
+              "justifyContent": "center",
             },
           ],
         ]
       }
     >
       0
+    </Text>
+    <Text
+      style={
+        Array [
+          Object {
+            "fontFamily": "SourceSansPro_400Regular",
+            "fontSize": 36,
+          },
+          Array [
+            Object {
+              "fontFamily": "SourceSansPro_600SemiBold",
+              "fontSize": 40,
+              "lineHeight": 42,
+              "marginRight": 5,
+            },
+            Object {
+              "alignItems": "center",
+              "color": "#666",
+              "flexDirection": "row",
+              "fontFamily": "SourceSansPro_400Regular",
+              "justifyContent": "center",
+            },
+          ],
+        ]
+      }
+    >
       <Text
         allowFontScaling={false}
         selectable={false}
@@ -231,12 +295,12 @@ exports[`Test ButtonCounter highlight 1`] = `
     onStartShouldSetResponder={[Function]}
     style={
       Object {
+        "alignItems": "center",
         "borderRadius": 6,
-        "marginBottom": 10,
-        "paddingBottom": 5,
-        "paddingLeft": 10,
-        "paddingRight": 10,
-        "paddingTop": 5,
+        "flexDirection": "row",
+        "justifyContent": "center",
+        "paddingHorizontal": 10,
+        "paddingVertical": 8,
       }
     }
   >
@@ -250,13 +314,30 @@ exports[`Test ButtonCounter highlight 1`] = `
           Object {
             "fontFamily": "SourceSansPro_600SemiBold",
             "fontSize": 40,
-            "letterSpacing": 5,
             "lineHeight": 42,
+            "marginRight": 5,
           },
         ]
       }
     >
       0
+    </Text>
+    <Text
+      style={
+        Array [
+          Object {
+            "fontFamily": "SourceSansPro_400Regular",
+            "fontSize": 36,
+          },
+          Object {
+            "fontFamily": "SourceSansPro_600SemiBold",
+            "fontSize": 40,
+            "lineHeight": 42,
+            "marginRight": 5,
+          },
+        ]
+      }
+    >
       <Text
         allowFontScaling={false}
         selectable={false}
@@ -312,12 +393,12 @@ exports[`Test ButtonCounter highlight 10 1`] = `
     onStartShouldSetResponder={[Function]}
     style={
       Object {
+        "alignItems": "center",
         "borderRadius": 6,
-        "marginBottom": 10,
-        "paddingBottom": 5,
-        "paddingLeft": 10,
-        "paddingRight": 10,
-        "paddingTop": 5,
+        "flexDirection": "row",
+        "justifyContent": "center",
+        "paddingHorizontal": 10,
+        "paddingVertical": 8,
       }
     }
   >
@@ -331,13 +412,30 @@ exports[`Test ButtonCounter highlight 10 1`] = `
           Object {
             "fontFamily": "SourceSansPro_600SemiBold",
             "fontSize": 40,
-            "letterSpacing": 5,
             "lineHeight": 42,
+            "marginRight": 5,
           },
         ]
       }
     >
       0
+    </Text>
+    <Text
+      style={
+        Array [
+          Object {
+            "fontFamily": "SourceSansPro_400Regular",
+            "fontSize": 36,
+          },
+          Object {
+            "fontFamily": "SourceSansPro_600SemiBold",
+            "fontSize": 40,
+            "lineHeight": 42,
+            "marginRight": 5,
+          },
+        ]
+      }
+    >
       <Text
         allowFontScaling={false}
         selectable={false}

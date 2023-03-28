@@ -25,7 +25,10 @@ export const styles = StyleSheet.create({
   },
   disableText: {
     color: COLORS.grey.medium,
-    fontFamily: FONTS.familySans
+    fontFamily: FONTS.familySans,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   listText: {
     fontSize: SIZES.sm,
