@@ -21,7 +21,6 @@ import { Menu } from '../../components/Menu'
 import { Modal } from '../../components/Modal'
 import { StatusBarStyled } from '../../components/StatusBarStyled'
 import { TextSourceSans } from '../../components/TextSourceSans'
-import { DateService } from '../../services/DateService'
 import { CommentForm } from '../Comments/CommentForm'
 import { Comments } from '../Comments/Comments'
 
@@ -398,7 +397,7 @@ export const Idea = (props) => {
             )}
             <View style={styles.infoContainer}>
               <TextSourceSans style={styles.creator}>
-                {ideaState.creator} {DateService(idea.created)}
+                {ideaState.creator} {idea.created}
               </TextSourceSans>
               <TextSourceSans style={styles.text}>
                 {t('Reference No.:') + ' ' + ideaState.reference_number || t('n/a')}
