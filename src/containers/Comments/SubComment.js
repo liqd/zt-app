@@ -16,13 +16,17 @@ export const SubComment = (props) => {
   const { t } = useTranslation()
   const [showWholeComment, setShowWholeComment] = useState(false)
   const [hasExcerpt, setHasExcerpt] = useState(false)
+  const [numOfLines, setNumOfLines] = useState(0)
 
   const toggleWholeComment = () => {
     setShowWholeComment(!showWholeComment)
   }
 
   const onTextLayout = useCallback(e => {
-    setHasExcerpt(e.nativeEvent.lines.length > NUM_OF_LINES)
+    if (e.nativeEvent.lines.length > NUM_OF_LINES) {
+      setNumOfLines(NUM_OF_LINES)
+      setHasExcerpt(true)
+    }
   }, [])
 
   const optionsIcon = (<IconSLI name='options-vertical' size={22} />)
@@ -61,7 +65,7 @@ export const SubComment = (props) => {
       {!showWholeComment &&
         <TextSourceSans
           style={styles.comment}
-          numberOfLines={NUM_OF_LINES}
+          numberOfLines={numOfLines}
           onTextLayout={onTextLayout}
         >
           {props.getCommentTextDisplay(props.comment)}
@@ -73,9 +77,15 @@ export const SubComment = (props) => {
       </TextSourceSans>
       }
       <View style={styles.linkSection}>
-        {hasExcerpt && <TouchableWithoutFeedback accessibilityRole="button" onPress={toggleWholeComment}>
-          <TextSourceSans style={styles.linkButton}>{showWholeComment ? t('Read Less') : t('Read More')}</TextSourceSans>
-        </TouchableWithoutFeedback>}
+        {hasExcerpt &&
+          <TouchableWithoutFeedback
+            accessibilityRole="button"
+            onPress={toggleWholeComment}
+          >
+            <TextSourceSans style={styles.linkButton}>
+              {showWholeComment ? t('Read Less') : t('Read More')}
+            </TextSourceSans>
+          </TouchableWithoutFeedback>}
       </View>
       <View style={styles.bottomActionsContainer}>
         <View style={styles.ratingButtons}>

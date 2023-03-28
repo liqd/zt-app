@@ -19,6 +19,7 @@ export const Comment = (props) => {
   const [showSubComments, setShowSubComments] = useState(false)
   const [showWholeComment, setShowWholeComment] = useState(false)
   const [hasExcerpt, setHasExcerpt] = useState(false)
+  const [numOfLines, setNumOfLines] = useState(0)
   const [comment, setComment] = useState(props.comment)
   const processing = useRef(false)
 
@@ -92,7 +93,10 @@ export const Comment = (props) => {
   }
 
   const onTextLayout = useCallback(e => {
-    setHasExcerpt(e.nativeEvent.lines.length > NUM_OF_LINES)
+    if (e.nativeEvent.lines.length > NUM_OF_LINES) {
+      setNumOfLines(NUM_OF_LINES)
+      setHasExcerpt(true)
+    }
   }, [])
 
   function handleOptions(commentInstance) {
@@ -243,7 +247,7 @@ export const Comment = (props) => {
         {!showWholeComment &&
           <TextSourceSans
             style={styles.comment}
-            numberOfLines={NUM_OF_LINES}
+            numberOfLines={numOfLines}
             onTextLayout={onTextLayout}
           >
             {getCommentTextDisplay(comment)}
