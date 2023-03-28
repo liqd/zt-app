@@ -183,6 +183,7 @@ exports[`Test Comment Snapshot 1`] = `
       Object {
         "alignItems": "center",
         "flexDirection": "row",
+        "flexWrap": "wrap",
         "justifyContent": "space-between",
         "paddingBottom": 10,
       }
@@ -224,6 +225,16 @@ exports[`Test Comment Snapshot 1`] = `
           onResponderTerminate={[Function]}
           onResponderTerminationRequest={[Function]}
           onStartShouldSetResponder={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "borderRadius": 6,
+              "flexDirection": "row",
+              "justifyContent": "center",
+              "paddingHorizontal": 10,
+              "paddingVertical": 8,
+            }
+          }
         >
           <Text
             style={
@@ -236,19 +247,47 @@ exports[`Test Comment Snapshot 1`] = `
                   Object {
                     "fontFamily": "SourceSansPro_600SemiBold",
                     "fontSize": 40,
-                    "letterSpacing": 5,
                     "lineHeight": 42,
+                    "marginRight": 5,
                   },
                   Object {
+                    "alignItems": "center",
                     "color": "#666",
+                    "flexDirection": "row",
                     "fontFamily": "SourceSansPro_400Regular",
-                    "fontSize": 32,
+                    "justifyContent": "center",
                   },
                 ],
               ]
             }
           >
             0
+          </Text>
+          <Text
+            style={
+              Array [
+                Object {
+                  "fontFamily": "SourceSansPro_400Regular",
+                  "fontSize": 36,
+                },
+                Array [
+                  Object {
+                    "fontFamily": "SourceSansPro_600SemiBold",
+                    "fontSize": 40,
+                    "lineHeight": 42,
+                    "marginRight": 5,
+                  },
+                  Object {
+                    "alignItems": "center",
+                    "color": "#666",
+                    "flexDirection": "row",
+                    "fontFamily": "SourceSansPro_400Regular",
+                    "justifyContent": "center",
+                  },
+                ],
+              ]
+            }
+          >
             <Text />
           </Text>
         </View>
@@ -281,6 +320,16 @@ exports[`Test Comment Snapshot 1`] = `
           onResponderTerminate={[Function]}
           onResponderTerminationRequest={[Function]}
           onStartShouldSetResponder={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "borderRadius": 6,
+              "flexDirection": "row",
+              "justifyContent": "center",
+              "paddingHorizontal": 10,
+              "paddingVertical": 8,
+            }
+          }
         >
           <Text
             style={
@@ -293,19 +342,47 @@ exports[`Test Comment Snapshot 1`] = `
                   Object {
                     "fontFamily": "SourceSansPro_600SemiBold",
                     "fontSize": 40,
-                    "letterSpacing": 5,
                     "lineHeight": 42,
+                    "marginRight": 5,
                   },
                   Object {
+                    "alignItems": "center",
                     "color": "#666",
+                    "flexDirection": "row",
                     "fontFamily": "SourceSansPro_400Regular",
-                    "fontSize": 32,
+                    "justifyContent": "center",
                   },
                 ],
               ]
             }
           >
             0
+          </Text>
+          <Text
+            style={
+              Array [
+                Object {
+                  "fontFamily": "SourceSansPro_400Regular",
+                  "fontSize": 36,
+                },
+                Array [
+                  Object {
+                    "fontFamily": "SourceSansPro_600SemiBold",
+                    "fontSize": 40,
+                    "lineHeight": 42,
+                    "marginRight": 5,
+                  },
+                  Object {
+                    "alignItems": "center",
+                    "color": "#666",
+                    "flexDirection": "row",
+                    "fontFamily": "SourceSansPro_400Regular",
+                    "justifyContent": "center",
+                  },
+                ],
+              ]
+            }
+          >
             <Text />
           </Text>
         </View>
@@ -379,78 +456,6 @@ exports[`Test Comment Snapshot 1`] = `
             }
           >
             Reply
-          </Text>
-        </View>
-      </View>
-    </View>
-    <View
-      style={
-        Array [
-          Object {
-            "overflow": "hidden",
-          },
-          Object {
-            "borderRadius": 2,
-          },
-          undefined,
-          false,
-        ]
-      }
-      testID="RNE_BUTTON_WRAPPER"
-    >
-      <View
-        accessibilityRole="button"
-        accessibilityState={
-          Object {
-            "busy": false,
-            "disabled": false,
-          }
-        }
-        accessible={true}
-        collapsable={false}
-        focusable={true}
-        onClick={[Function]}
-        onResponderGrant={[Function]}
-        onResponderMove={[Function]}
-        onResponderRelease={[Function]}
-        onResponderTerminate={[Function]}
-        onResponderTerminationRequest={[Function]}
-        onStartShouldSetResponder={[Function]}
-        style={
-          Object {
-            "opacity": 1,
-          }
-        }
-      >
-        <View
-          style={
-            Object {
-              "alignItems": "center",
-              "backgroundColor": "transparent",
-              "borderColor": "#2089dc",
-              "borderRadius": 2,
-              "borderWidth": 0,
-              "flexDirection": "row",
-              "justifyContent": "center",
-              "padding": 8,
-              "paddingHorizontal": 10,
-            }
-          }
-        >
-          <Text />
-          <Text
-            style={
-              Object {
-                "color": "#464a4c",
-                "fontSize": 32,
-                "lineHeight": 42,
-                "marginLeft": 8,
-                "paddingVertical": 1,
-                "textAlign": "center",
-              }
-            }
-          >
-            Share
           </Text>
         </View>
       </View>
