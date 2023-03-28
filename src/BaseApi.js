@@ -68,6 +68,8 @@ const getHeaders = async (isFormData = false) => {
   const lang = await AsyncStorage.getItem('language')
   if (lang && lang == 'de') {
     headers['Accept-Language'] = lang
+  } else {
+    headers['Accept-Language'] = 'en'
   }
   return headers
 }
