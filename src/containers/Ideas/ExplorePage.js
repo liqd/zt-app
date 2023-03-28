@@ -126,8 +126,8 @@ export const ExplorePage = (props) => {
             rightButton={rightHeaderButton}
             navigation={props.navigation} />
         }
-        <TextSourceSans style={styles.title}>{t('Explore')}</TextSourceSans>
-        <TextSourceSans style={styles.subtitle}>{t('Recently Added')}</TextSourceSans>
+        <TextSourceSans style={styles.title} accessibilityRole="header">{t('Explore')}</TextSourceSans>
+        <TextSourceSans style={styles.subtitle} accessibilityRole="header">{t('Recently Added Projects')}</TextSourceSans>
         {projects.length > 0 &&
           <FlatList
             keyExtractor={(i) => `pk${i.pk}`}

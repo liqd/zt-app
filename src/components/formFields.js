@@ -17,14 +17,19 @@ export const TextInputFormField = (props) => {
       <FormLabel>{props.field}</FormLabel>
       <TextInput
         ref={props.inputRef}
+        value={props.value}
         accessibilityLabel={props.field}
         accessibilityHint={props.fieldHint}
         accessible={true}
+        autoCorrect={props.autoCorrect}
+        autoCapitalize={props.autoCapitalize}
+        placeholder={props.placeholder}
+        keyboardType={props.keyboardType}
         style={styles.textInput}
         {...props}
       />
       {props.touched && props.error &&
-        <FormError>{props.error}</FormError>
+          <FormError>{props.error}</FormError>
       }
     </View>
   )
@@ -39,10 +44,11 @@ export const TextInputFullFormField = (props) => {
         accessibilityLabel={props.field}
         accessibilityHint={props.fieldHint}
         accessible={true}
+        keyboardType={props.keyboardType}
         {...props}
       />
       {props.touched &&
-        <FormError>{props.error}</FormError>
+          <FormError>{props.error}</FormError>
       }
     </View>
   )

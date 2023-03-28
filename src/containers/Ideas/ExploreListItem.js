@@ -59,7 +59,7 @@ export const ExploreListItem = (props) => {
           <TextSourceSans style={styles.text}>
             {t('by')} {props.item.organisation}
           </TextSourceSans>
-          <TextSourceSans style={styles.title}>
+          <TextSourceSans accessibilityRole="header" style={styles.title}>
             {props.item.name}
           </TextSourceSans>
           <TextSourceSans style={styles.text}>

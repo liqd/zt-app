@@ -11,7 +11,7 @@ export const FormError = (props) => {
     ? [styles.error, props.style]
     : styles.error
   return (
-    <TextSourceSans {...props} style={mergedStyles} accessibilityLiveRegion="polite">
+    <TextSourceSans {...props} style={mergedStyles} accessibilityRole="alert">
       {props.children}
     </TextSourceSans>
   )

@@ -1,4 +1,5 @@
 import React, { useContext } from 'react'
+import { useTranslation } from 'react-i18next'
 import { View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import IconSLI from 'react-native-vector-icons/SimpleLineIcons'
@@ -20,6 +21,7 @@ export const ProfileScreen = (props) => {
   }
 
   const [profileContext] = useContext(ProfileContext)
+  const { t } = useTranslation()
 
   const settingsIcon = <IconSLI name='settings' size={30} />
   const rightHeaderButton = (
@@ -27,6 +29,8 @@ export const ProfileScreen = (props) => {
       icon={settingsIcon}
       type='clear'
       onPress={toSettingsOverview}
+      accessibilityLabel={t('Click to navigate to your profile settings')}
+      accessibilityHint={t('Click to navigate to update your profile settings')}
     />)
 
   const user = useUser(profileContext?.userId)
