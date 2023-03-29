@@ -3,10 +3,7 @@ all: help
 
 .PHONY: help
 help:
-	@echo adhocracy+ development tools
-	@echo
-	@echo It will either use an exisiting virtualenv if it was entered
-	@echo before or create a new one in the venv subdirectory.
+	@echo z:t development tools
 	@echo
 	@echo usage:
 	@echo
