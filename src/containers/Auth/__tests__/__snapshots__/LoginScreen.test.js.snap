@@ -103,9 +103,13 @@ exports[`Test LoginScreen Snapshot 1`] = `
             Username or E-mail address:
           </Text>
           <TextInput
+            accessibilityHint="type in your password"
             accessibilityLabel="Username or E-mail address:"
             accessible={true}
+            autoCapitalize={false}
+            autoCorrect={false}
             field="Username or E-mail address:"
+            keyboardType="email-address"
             name="username"
             onBlur={[Function]}
             onChangeText={[Function]}
@@ -145,8 +149,11 @@ exports[`Test LoginScreen Snapshot 1`] = `
             Password:
           </Text>
           <TextInput
+            accessibilityHint="type in your password"
             accessibilityLabel="Password:"
             accessible={true}
+            autoCapitalize={false}
+            autoCorrect={false}
             field="Password:"
             name="password"
             onBlur={[Function]}
