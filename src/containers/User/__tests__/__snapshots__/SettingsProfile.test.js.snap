@@ -272,8 +272,11 @@ exports[`Test SettingsOverview Snapshot no user image 1`] = `
               Username
             </Text>
             <TextInput
+              accessibilityHint="update your username"
               accessibilityLabel="Username"
               accessible={true}
+              autoCapitalize={true}
+              autoCorrect={false}
               field="Username"
               onBlur={[Function]}
               onChangeText={[Function]}

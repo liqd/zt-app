@@ -142,6 +142,8 @@ exports[`Test Idea Snapshot 1`] = `
         testID="RNE_BUTTON_WRAPPER"
       >
         <View
+          accessibilityHint="Click to open menu to update or delete your idea or report someone elses"
+          accessibilityLabel="Click to open idea menu"
           accessibilityRole="button"
           accessibilityState={
             Object {
@@ -232,358 +234,533 @@ exports[`Test Idea Snapshot 1`] = `
     >
       <View>
         <View
-          accessibilityRole="button"
-          accessibilityState={
-            Object {
-              "disabled": true,
-            }
-          }
-          accessible={true}
           collapsable={false}
-          focusable={true}
-          onBlur={[Function]}
-          onClick={[Function]}
-          onFocus={[Function]}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
-          style={Object {}}
         >
           <View
-            collapsable={false}
+            style={
+              Object {
+                "marginTop": 5,
+              }
+            }
+          >
+            <Text
+              accessibilityRole="header"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": "SourceSansPro_400Regular",
+                    "fontSize": 36,
+                  },
+                  Object {
+                    "fontFamily": "SourceSansPro_600SemiBold",
+                    "fontSize": 40,
+                    "lineHeight": 44,
+                  },
+                ]
+              }
+            >
+              App Test Idea 0
+            </Text>
+          </View>
+          <View
+            style={
+              Object {
+                "marginVertical": 5,
+              }
+            }
+          >
+            <Text
+              style={
+                Array [
+                  Object {
+                    "fontFamily": "SourceSansPro_400Regular",
+                    "fontSize": 36,
+                  },
+                  Object {
+                    "fontSize": 32,
+                  },
+                ]
+              }
+            >
+              This is a test idea.
+
+  It's a really good one.
+  
+            </Text>
+          </View>
+          <View
+            style={
+              Object {
+                "marginVertical": 15,
+              }
+            }
+          >
+            <Text
+              style={
+                Array [
+                  Object {
+                    "fontFamily": "SourceSansPro_400Regular",
+                    "fontSize": 36,
+                  },
+                  Object {
+                    "fontSize": 32,
+                    "lineHeight": 42,
+                    "textTransform": "capitalize",
+                  },
+                ]
+              }
+            >
+              admin
+               
+              June 29, 2022
+            </Text>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "fontFamily": "SourceSansPro_400Regular",
+                    "fontSize": 36,
+                  },
+                  Object {
+                    "fontSize": 32,
+                  },
+                ]
+              }
+            >
+              Reference No.: 2022-00006
+            </Text>
+          </View>
+          <View
+            style={
+              Object {
+                "flexDirection": "row",
+                "justifyContent": "space-between",
+                "marginVertical": 25,
+              }
+            }
           >
             <View
               style={
                 Object {
-                  "marginTop": 5,
-                }
-              }
-            >
-              <Text
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": "SourceSansPro_400Regular",
-                      "fontSize": 36,
-                    },
-                    Object {
-                      "fontFamily": "SourceSansPro_600SemiBold",
-                      "fontSize": 40,
-                      "lineHeight": 44,
-                    },
-                  ]
-                }
-              >
-                App Test Idea 0
-              </Text>
-            </View>
-            <View
-              style={
-                Object {
-                  "marginVertical": 5,
-                }
-              }
-            >
-              <Text
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": "SourceSansPro_400Regular",
-                      "fontSize": 36,
-                    },
-                    Object {
-                      "fontSize": 32,
-                    },
-                  ]
-                }
-              >
-                This is a test idea.
-
-  It's a really good one.
-  
-              </Text>
-            </View>
-            <View
-              style={
-                Object {
-                  "marginVertical": 15,
-                }
-              }
-            >
-              <Text
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": "SourceSansPro_400Regular",
-                      "fontSize": 36,
-                    },
-                    Object {
-                      "fontSize": 32,
-                      "lineHeight": 42,
-                      "textTransform": "capitalize",
-                    },
-                  ]
-                }
-              >
-                admin
-                 
-                June 29, 2022
-              </Text>
-              <Text
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": "SourceSansPro_400Regular",
-                      "fontSize": 36,
-                    },
-                    Object {
-                      "fontSize": 32,
-                    },
-                  ]
-                }
-              >
-                Reference No.: 2022-00006
-              </Text>
-            </View>
-            <View
-              style={
-                Object {
                   "flexDirection": "row",
-                  "justifyContent": "space-between",
-                  "marginVertical": 25,
+                  "width": 120,
                 }
               }
             >
               <View
                 style={
                   Object {
+                    "flex": 1,
                     "flexDirection": "row",
-                    "width": 120,
+                  }
+                }
+              >
+                <View
+                  accessibilityHint="click to up vote"
+                  accessibilityLabel="0 up-votes"
+                  accessibilityState={
+                    Object {
+                      "disabled": false,
+                    }
+                  }
+                  accessible={true}
+                  collapsable={false}
+                  focusable={true}
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onResponderGrant={[Function]}
+                  onResponderMove={[Function]}
+                  onResponderRelease={[Function]}
+                  onResponderTerminate={[Function]}
+                  onResponderTerminationRequest={[Function]}
+                  onStartShouldSetResponder={[Function]}
+                  style={
+                    Object {
+                      "borderRadius": 6,
+                      "marginBottom": 10,
+                      "paddingBottom": 5,
+                      "paddingLeft": 10,
+                      "paddingRight": 10,
+                      "paddingTop": 5,
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      Array [
+                        Object {
+                          "fontFamily": "SourceSansPro_400Regular",
+                          "fontSize": 36,
+                        },
+                        Object {
+                          "fontFamily": "SourceSansPro_600SemiBold",
+                          "fontSize": 40,
+                          "letterSpacing": 5,
+                          "lineHeight": 42,
+                        },
+                      ]
+                    }
+                  >
+                    0
+                    <Text
+                      allowFontScaling={false}
+                      selectable={false}
+                      style={
+                        Array [
+                          Object {
+                            "color": undefined,
+                            "fontSize": 18,
+                          },
+                          undefined,
+                          Object {
+                            "fontFamily": "simple-line-icons",
+                            "fontStyle": "normal",
+                            "fontWeight": "normal",
+                          },
+                          Object {},
+                        ]
+                      }
+                    >
+                      
+                    </Text>
+                  </Text>
+                </View>
+              </View>
+              <View
+                style={
+                  Object {
+                    "flex": 1,
+                    "flexDirection": "row",
+                  }
+                }
+              >
+                <View
+                  accessibilityHint="click to down vote"
+                  accessibilityLabel="0 down-votes"
+                  accessibilityState={
+                    Object {
+                      "disabled": false,
+                    }
+                  }
+                  accessible={true}
+                  collapsable={false}
+                  focusable={true}
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onResponderGrant={[Function]}
+                  onResponderMove={[Function]}
+                  onResponderRelease={[Function]}
+                  onResponderTerminate={[Function]}
+                  onResponderTerminationRequest={[Function]}
+                  onStartShouldSetResponder={[Function]}
+                  style={
+                    Object {
+                      "borderRadius": 6,
+                      "marginBottom": 10,
+                      "paddingBottom": 5,
+                      "paddingLeft": 10,
+                      "paddingRight": 10,
+                      "paddingTop": 5,
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      Array [
+                        Object {
+                          "fontFamily": "SourceSansPro_400Regular",
+                          "fontSize": 36,
+                        },
+                        Object {
+                          "fontFamily": "SourceSansPro_600SemiBold",
+                          "fontSize": 40,
+                          "letterSpacing": 5,
+                          "lineHeight": 42,
+                        },
+                      ]
+                    }
+                  >
+                    0
+                    <Text
+                      allowFontScaling={false}
+                      selectable={false}
+                      style={
+                        Array [
+                          Object {
+                            "color": undefined,
+                            "fontSize": 18,
+                          },
+                          undefined,
+                          Object {
+                            "fontFamily": "simple-line-icons",
+                            "fontStyle": "normal",
+                            "fontWeight": "normal",
+                          },
+                          Object {},
+                        ]
+                      }
+                    >
+                      
+                    </Text>
+                  </Text>
+                </View>
+              </View>
+            </View>
+            <View>
+              <Text
+                allowFontScaling={false}
+                selectable={false}
+                style={
+                  Array [
+                    Object {
+                      "color": "#1a1a1a",
+                      "fontSize": 18,
+                    },
+                    Object {
+                      "fontSize": 40,
+                      "marginVertical": 10,
+                    },
+                    Object {
+                      "fontFamily": "simple-line-icons",
+                      "fontStyle": "normal",
+                      "fontWeight": "normal",
+                    },
+                    Object {},
+                  ]
+                }
+              >
+                
+              </Text>
+            </View>
+          </View>
+        </View>
+        <View>
+          <Text
+            style={
+              Object {
+                "fontFamily": "SourceSansPro_400Regular",
+                "fontSize": 36,
+              }
+            }
+          >
+            {{ count }} Entry
+          </Text>
+          <RCTScrollView>
+            <View>
+              <View
+                onLayout={[Function]}
+                style={
+                  Object {
+                    "borderColor": "#c4c4c4",
+                    "borderTopWidth": 1,
+                    "marginVertical": 10,
                   }
                 }
               >
                 <View
                   style={
                     Object {
-                      "flex": 1,
+                      "alignItems": "flex-start",
                       "flexDirection": "row",
-                    }
-                  }
-                >
-                  <View
-                    accessibilityHint="click to up vote"
-                    accessibilityLabel="up-votes"
-                    accessibilityState={
-                      Object {
-                        "disabled": false,
-                      }
-                    }
-                    accessible={true}
-                    collapsable={false}
-                    focusable={true}
-                    onBlur={[Function]}
-                    onClick={[Function]}
-                    onFocus={[Function]}
-                    onResponderGrant={[Function]}
-                    onResponderMove={[Function]}
-                    onResponderRelease={[Function]}
-                    onResponderTerminate={[Function]}
-                    onResponderTerminationRequest={[Function]}
-                    onStartShouldSetResponder={[Function]}
-                    style={
-                      Object {
-                        "borderRadius": 6,
-                        "marginBottom": 10,
-                        "paddingBottom": 5,
-                        "paddingLeft": 10,
-                        "paddingRight": 10,
-                        "paddingTop": 5,
-                      }
-                    }
-                  >
-                    <Text
-                      style={
-                        Array [
-                          Object {
-                            "fontFamily": "SourceSansPro_400Regular",
-                            "fontSize": 36,
-                          },
-                          Object {
-                            "fontFamily": "SourceSansPro_600SemiBold",
-                            "fontSize": 40,
-                            "letterSpacing": 5,
-                            "lineHeight": 42,
-                          },
-                        ]
-                      }
-                    >
-                      0
-                      <Text
-                        allowFontScaling={false}
-                        selectable={false}
-                        style={
-                          Array [
-                            Object {
-                              "color": undefined,
-                              "fontSize": 18,
-                            },
-                            undefined,
-                            Object {
-                              "fontFamily": "simple-line-icons",
-                              "fontStyle": "normal",
-                              "fontWeight": "normal",
-                            },
-                            Object {},
-                          ]
-                        }
-                      >
-                        
-                      </Text>
-                    </Text>
-                  </View>
-                </View>
-                <View
-                  style={
-                    Object {
-                      "flex": 1,
-                      "flexDirection": "row",
-                    }
-                  }
-                >
-                  <View
-                    accessibilityHint="click to down vote"
-                    accessibilityLabel="down-votes"
-                    accessibilityState={
-                      Object {
-                        "disabled": false,
-                      }
-                    }
-                    accessible={true}
-                    collapsable={false}
-                    focusable={true}
-                    onBlur={[Function]}
-                    onClick={[Function]}
-                    onFocus={[Function]}
-                    onResponderGrant={[Function]}
-                    onResponderMove={[Function]}
-                    onResponderRelease={[Function]}
-                    onResponderTerminate={[Function]}
-                    onResponderTerminationRequest={[Function]}
-                    onStartShouldSetResponder={[Function]}
-                    style={
-                      Object {
-                        "borderRadius": 6,
-                        "marginBottom": 10,
-                        "paddingBottom": 5,
-                        "paddingLeft": 10,
-                        "paddingRight": 10,
-                        "paddingTop": 5,
-                      }
-                    }
-                  >
-                    <Text
-                      style={
-                        Array [
-                          Object {
-                            "fontFamily": "SourceSansPro_400Regular",
-                            "fontSize": 36,
-                          },
-                          Object {
-                            "fontFamily": "SourceSansPro_600SemiBold",
-                            "fontSize": 40,
-                            "letterSpacing": 5,
-                            "lineHeight": 42,
-                          },
-                        ]
-                      }
-                    >
-                      0
-                      <Text
-                        allowFontScaling={false}
-                        selectable={false}
-                        style={
-                          Array [
-                            Object {
-                              "color": undefined,
-                              "fontSize": 18,
-                            },
-                            undefined,
-                            Object {
-                              "fontFamily": "simple-line-icons",
-                              "fontStyle": "normal",
-                              "fontWeight": "normal",
-                            },
-                            Object {},
-                          ]
-                        }
-                      >
-                        
-                      </Text>
-                    </Text>
-                  </View>
-                </View>
-              </View>
-              <View>
-                <Text
-                  allowFontScaling={false}
-                  selectable={false}
-                  style={
-                    Array [
-                      Object {
-                        "color": "#1a1a1a",
-                        "fontSize": 18,
-                      },
-                      Object {
-                        "fontSize": 40,
-                        "marginVertical": 10,
-                      },
-                      Object {
-                        "fontFamily": "simple-line-icons",
-                        "fontStyle": "normal",
-                        "fontWeight": "normal",
-                      },
-                      Object {},
-                    ]
-                  }
-                >
-                  
-                </Text>
-              </View>
-            </View>
-          </View>
-          <View>
-            <Text
-              style={
-                Object {
-                  "fontFamily": "SourceSansPro_400Regular",
-                  "fontSize": 36,
-                }
-              }
-            >
-              {{ count }} Entry
-            </Text>
-            <RCTScrollView>
-              <View>
-                <View
-                  onLayout={[Function]}
-                  style={
-                    Object {
-                      "borderColor": "#c4c4c4",
-                      "borderTopWidth": 1,
-                      "marginVertical": 10,
+                      "justifyContent": "space-between",
+                      "marginVertical": 20,
                     }
                   }
                 >
                   <View
                     style={
                       Object {
-                        "alignItems": "flex-start",
+                        "flex": 1,
                         "flexDirection": "row",
-                        "justifyContent": "space-between",
-                        "marginVertical": 20,
+                      }
+                    }
+                  >
+                    <Image
+                      accessibilityIgnoresInvertColors={true}
+                      source={
+                        Object {
+                          "uri": undefined,
+                        }
+                      }
+                      style={
+                        Object {
+                          "backgroundColor": "#2d40cc",
+                          "borderRadius": 20,
+                          "height": 40,
+                          "marginRight": 20,
+                          "width": 40,
+                        }
+                      }
+                    />
+                    <View
+                      style={
+                        Object {
+                          "flex": 1,
+                        }
+                      }
+                    >
+                      <Text
+                        style={
+                          Array [
+                            Object {
+                              "fontFamily": "SourceSansPro_400Regular",
+                              "fontSize": 36,
+                            },
+                            Object {
+                              "fontFamily": "SourceSansPro_600SemiBold",
+                            },
+                          ]
+                        }
+                      >
+                        test-user
+                      </Text>
+                      <Text
+                        style={
+                          Array [
+                            Object {
+                              "fontFamily": "SourceSansPro_400Regular",
+                              "fontSize": 36,
+                            },
+                            Object {
+                              "color": "#666",
+                              "fontSize": 26,
+                            },
+                          ]
+                        }
+                      >
+                        January 1, 2022
+                      </Text>
+                    </View>
+                  </View>
+                  <Text
+                    style={
+                      Object {
+                        "fontFamily": "SourceSansPro_400Regular",
+                        "fontSize": 36,
+                      }
+                    }
+                  >
+                    <View
+                      style={
+                        Array [
+                          Object {
+                            "overflow": "hidden",
+                          },
+                          Object {
+                            "borderRadius": 2,
+                          },
+                          undefined,
+                          false,
+                        ]
+                      }
+                      testID="RNE_BUTTON_WRAPPER"
+                    >
+                      <View
+                        accessibilityRole="button"
+                        accessibilityState={
+                          Object {
+                            "busy": false,
+                            "disabled": false,
+                          }
+                        }
+                        accessible={true}
+                        collapsable={false}
+                        focusable={true}
+                        onClick={[Function]}
+                        onResponderGrant={[Function]}
+                        onResponderMove={[Function]}
+                        onResponderRelease={[Function]}
+                        onResponderTerminate={[Function]}
+                        onResponderTerminationRequest={[Function]}
+                        onStartShouldSetResponder={[Function]}
+                        style={
+                          Object {
+                            "opacity": 1,
+                          }
+                        }
+                        testID="options_button_1"
+                      >
+                        <View
+                          style={
+                            Object {
+                              "alignItems": "center",
+                              "backgroundColor": "transparent",
+                              "borderColor": "#2089dc",
+                              "borderRadius": 2,
+                              "borderWidth": 0,
+                              "flexDirection": "row",
+                              "justifyContent": "center",
+                              "padding": 8,
+                              "paddingHorizontal": 10,
+                            }
+                          }
+                        >
+                          <Text
+                            allowFontScaling={false}
+                            selectable={false}
+                            style={
+                              Array [
+                                Object {
+                                  "color": undefined,
+                                  "fontSize": 22,
+                                },
+                                undefined,
+                                Object {
+                                  "fontFamily": "simple-line-icons",
+                                  "fontStyle": "normal",
+                                  "fontWeight": "normal",
+                                },
+                                Object {},
+                              ]
+                            }
+                          >
+                            
+                          </Text>
+                        </View>
+                      </View>
+                    </View>
+                  </Text>
+                </View>
+                <View>
+                  <Text
+                    numberOfLines={0}
+                    onTextLayout={[Function]}
+                    style={
+                      Object {
+                        "fontFamily": "SourceSansPro_400Regular",
+                        "fontSize": 36,
+                      }
+                    }
+                  >
+                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
+                  </Text>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "flexDirection": "row",
+                      "justifyContent": "space-between",
+                      "marginVertical": 20,
+                    }
+                  }
+                />
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flexDirection": "row",
+                      "justifyContent": "space-between",
+                      "paddingBottom": 10,
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "flexDirection": "row",
+                        "width": 120,
                       }
                     }
                   >
@@ -595,29 +772,26 @@ exports[`Test Idea Snapshot 1`] = `
                         }
                       }
                     >
-                      <Image
-                        accessibilityIgnoresInvertColors={true}
-                        source={
-                          Object {
-                            "uri": undefined,
-                          }
-                        }
-                        style={
-                          Object {
-                            "backgroundColor": "#2d40cc",
-                            "borderRadius": 20,
-                            "height": 40,
-                            "marginRight": 20,
-                            "width": 40,
-                          }
-                        }
-                      />
                       <View
-                        style={
+                        accessibilityHint="click to up vote"
+                        accessibilityLabel="up-votes"
+                        accessibilityState={
                           Object {
-                            "flex": 1,
+                            "disabled": true,
                           }
                         }
+                        accessible={true}
+                        collapsable={false}
+                        focusable={true}
+                        onBlur={[Function]}
+                        onClick={[Function]}
+                        onFocus={[Function]}
+                        onResponderGrant={[Function]}
+                        onResponderMove={[Function]}
+                        onResponderRelease={[Function]}
+                        onResponderTerminate={[Function]}
+                        onResponderTerminationRequest={[Function]}
+                        onStartShouldSetResponder={[Function]}
                       >
                         <Text
                           style={
@@ -626,506 +800,313 @@ exports[`Test Idea Snapshot 1`] = `
                                 "fontFamily": "SourceSansPro_400Regular",
                                 "fontSize": 36,
                               },
-                              Object {
-                                "fontFamily": "SourceSansPro_600SemiBold",
-                              },
+                              Array [
+                                Object {
+                                  "fontFamily": "SourceSansPro_600SemiBold",
+                                  "fontSize": 40,
+                                  "letterSpacing": 5,
+                                  "lineHeight": 42,
+                                },
+                                Object {
+                                  "color": "#666",
+                                  "fontFamily": "SourceSansPro_400Regular",
+                                  "fontSize": 32,
+                                },
+                              ],
                             ]
                           }
                         >
-                          test-user
-                        </Text>
-                        <Text
-                          style={
-                            Array [
-                              Object {
-                                "fontFamily": "SourceSansPro_400Regular",
-                                "fontSize": 36,
-                              },
-                              Object {
-                                "color": "#666",
-                                "fontSize": 26,
-                              },
-                            ]
-                          }
-                        >
-                          January 1, 2022
+                          0
+                          <Text
+                            allowFontScaling={false}
+                            selectable={false}
+                            style={
+                              Array [
+                                Object {
+                                  "color": undefined,
+                                  "fontSize": 18,
+                                },
+                                undefined,
+                                Object {
+                                  "fontFamily": "simple-line-icons",
+                                  "fontStyle": "normal",
+                                  "fontWeight": "normal",
+                                },
+                                Object {},
+                              ]
+                            }
+                          >
+                            
+                          </Text>
                         </Text>
                       </View>
                     </View>
-                    <Text
+                    <View
                       style={
                         Object {
-                          "fontFamily": "SourceSansPro_400Regular",
-                          "fontSize": 36,
+                          "flex": 1,
+                          "flexDirection": "row",
                         }
                       }
                     >
                       <View
-                        style={
-                          Array [
-                            Object {
-                              "overflow": "hidden",
-                            },
-                            Object {
-                              "borderRadius": 2,
-                            },
-                            undefined,
-                            false,
-                          ]
+                        accessibilityHint="click to down vote"
+                        accessibilityLabel="down-votes"
+                        accessibilityState={
+                          Object {
+                            "disabled": true,
+                          }
                         }
-                        testID="RNE_BUTTON_WRAPPER"
+                        accessible={true}
+                        collapsable={false}
+                        focusable={true}
+                        onBlur={[Function]}
+                        onClick={[Function]}
+                        onFocus={[Function]}
+                        onResponderGrant={[Function]}
+                        onResponderMove={[Function]}
+                        onResponderRelease={[Function]}
+                        onResponderTerminate={[Function]}
+                        onResponderTerminationRequest={[Function]}
+                        onStartShouldSetResponder={[Function]}
                       >
-                        <View
-                          accessibilityRole="button"
-                          accessibilityState={
-                            Object {
-                              "busy": false,
-                              "disabled": false,
-                            }
-                          }
-                          accessible={true}
-                          collapsable={false}
-                          focusable={true}
-                          onClick={[Function]}
-                          onResponderGrant={[Function]}
-                          onResponderMove={[Function]}
-                          onResponderRelease={[Function]}
-                          onResponderTerminate={[Function]}
-                          onResponderTerminationRequest={[Function]}
-                          onStartShouldSetResponder={[Function]}
+                        <Text
                           style={
-                            Object {
-                              "opacity": 1,
-                            }
-                          }
-                          testID="options_button_1"
-                        >
-                          <View
-                            style={
+                            Array [
                               Object {
-                                "alignItems": "center",
-                                "backgroundColor": "transparent",
-                                "borderColor": "#2089dc",
-                                "borderRadius": 2,
-                                "borderWidth": 0,
-                                "flexDirection": "row",
-                                "justifyContent": "center",
-                                "padding": 8,
-                                "paddingHorizontal": 10,
-                              }
+                                "fontFamily": "SourceSansPro_400Regular",
+                                "fontSize": 36,
+                              },
+                              Array [
+                                Object {
+                                  "fontFamily": "SourceSansPro_600SemiBold",
+                                  "fontSize": 40,
+                                  "letterSpacing": 5,
+                                  "lineHeight": 42,
+                                },
+                                Object {
+                                  "color": "#666",
+                                  "fontFamily": "SourceSansPro_400Regular",
+                                  "fontSize": 32,
+                                },
+                              ],
+                            ]
+                          }
+                        >
+                          0
+                          <Text
+                            allowFontScaling={false}
+                            selectable={false}
+                            style={
+                              Array [
+                                Object {
+                                  "color": undefined,
+                                  "fontSize": 18,
+                                },
+                                undefined,
+                                Object {
+                                  "fontFamily": "simple-line-icons",
+                                  "fontStyle": "normal",
+                                  "fontWeight": "normal",
+                                },
+                                Object {},
+                              ]
                             }
                           >
-                            <Text
-                              allowFontScaling={false}
-                              selectable={false}
-                              style={
-                                Array [
-                                  Object {
-                                    "color": undefined,
-                                    "fontSize": 22,
-                                  },
-                                  undefined,
-                                  Object {
-                                    "fontFamily": "simple-line-icons",
-                                    "fontStyle": "normal",
-                                    "fontWeight": "normal",
-                                  },
-                                  Object {},
-                                ]
-                              }
-                            >
-                              
-                            </Text>
-                          </View>
-                        </View>
+                            
+                          </Text>
+                        </Text>
                       </View>
-                    </Text>
+                    </View>
                   </View>
-                  <View>
-                    <Text
-                      numberOfLines={0}
-                      onTextLayout={[Function]}
-                      style={
+                  <View
+                    style={
+                      Array [
                         Object {
-                          "fontFamily": "SourceSansPro_400Regular",
-                          "fontSize": 36,
-                        }
-                      }
-                    >
-                      Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
-                    </Text>
-                  </View>
-                  <View
-                    style={
-                      Object {
-                        "flexDirection": "row",
-                        "justifyContent": "space-between",
-                        "marginVertical": 20,
-                      }
+                          "overflow": "hidden",
+                        },
+                        Object {
+                          "borderRadius": 2,
+                        },
+                        undefined,
+                        false,
+                      ]
                     }
-                  />
-                  <View
-                    style={
-                      Object {
-                        "alignItems": "center",
-                        "flexDirection": "row",
-                        "justifyContent": "space-between",
-                        "paddingBottom": 10,
-                      }
-                    }
+                    testID="RNE_BUTTON_WRAPPER"
                   >
                     <View
+                      accessibilityRole="button"
+                      accessibilityState={
+                        Object {
+                          "busy": false,
+                          "disabled": false,
+                        }
+                      }
+                      accessible={true}
+                      collapsable={false}
+                      focusable={true}
+                      onClick={[Function]}
+                      onResponderGrant={[Function]}
+                      onResponderMove={[Function]}
+                      onResponderRelease={[Function]}
+                      onResponderTerminate={[Function]}
+                      onResponderTerminationRequest={[Function]}
+                      onStartShouldSetResponder={[Function]}
                       style={
                         Object {
-                          "flexDirection": "row",
-                          "width": 120,
+                          "opacity": 1,
                         }
                       }
                     >
                       <View
                         style={
                           Object {
-                            "flex": 1,
-                            "flexDirection": "row",
-                          }
-                        }
-                      >
-                        <View
-                          accessibilityHint="click to up vote"
-                          accessibilityLabel="up-votes"
-                          accessibilityState={
-                            Object {
-                              "disabled": true,
-                            }
-                          }
-                          accessible={true}
-                          collapsable={false}
-                          focusable={true}
-                          onBlur={[Function]}
-                          onClick={[Function]}
-                          onFocus={[Function]}
-                          onResponderGrant={[Function]}
-                          onResponderMove={[Function]}
-                          onResponderRelease={[Function]}
-                          onResponderTerminate={[Function]}
-                          onResponderTerminationRequest={[Function]}
-                          onStartShouldSetResponder={[Function]}
-                        >
-                          <Text
-                            style={
-                              Array [
-                                Object {
-                                  "fontFamily": "SourceSansPro_400Regular",
-                                  "fontSize": 36,
-                                },
-                                Array [
-                                  Object {
-                                    "fontFamily": "SourceSansPro_600SemiBold",
-                                    "fontSize": 40,
-                                    "letterSpacing": 5,
-                                    "lineHeight": 42,
-                                  },
-                                  Object {
-                                    "color": "#666",
-                                    "fontFamily": "SourceSansPro_400Regular",
-                                    "fontSize": 32,
-                                  },
-                                ],
-                              ]
-                            }
-                          >
-                            0
-                            <Text
-                              allowFontScaling={false}
-                              selectable={false}
-                              style={
-                                Array [
-                                  Object {
-                                    "color": undefined,
-                                    "fontSize": 18,
-                                  },
-                                  undefined,
-                                  Object {
-                                    "fontFamily": "simple-line-icons",
-                                    "fontStyle": "normal",
-                                    "fontWeight": "normal",
-                                  },
-                                  Object {},
-                                ]
-                              }
-                            >
-                              
-                            </Text>
-                          </Text>
-                        </View>
-                      </View>
-                      <View
-                        style={
-                          Object {
-                            "flex": 1,
-                            "flexDirection": "row",
-                          }
-                        }
-                      >
-                        <View
-                          accessibilityHint="click to down vote"
-                          accessibilityLabel="down-votes"
-                          accessibilityState={
-                            Object {
-                              "disabled": true,
-                            }
-                          }
-                          accessible={true}
-                          collapsable={false}
-                          focusable={true}
-                          onBlur={[Function]}
-                          onClick={[Function]}
-                          onFocus={[Function]}
-                          onResponderGrant={[Function]}
-                          onResponderMove={[Function]}
-                          onResponderRelease={[Function]}
-                          onResponderTerminate={[Function]}
-                          onResponderTerminationRequest={[Function]}
-                          onStartShouldSetResponder={[Function]}
-                        >
-                          <Text
-                            style={
-                              Array [
-                                Object {
-                                  "fontFamily": "SourceSansPro_400Regular",
-                                  "fontSize": 36,
-                                },
-                                Array [
-                                  Object {
-                                    "fontFamily": "SourceSansPro_600SemiBold",
-                                    "fontSize": 40,
-                                    "letterSpacing": 5,
-                                    "lineHeight": 42,
-                                  },
-                                  Object {
-                                    "color": "#666",
-                                    "fontFamily": "SourceSansPro_400Regular",
-                                    "fontSize": 32,
-                                  },
-                                ],
-                              ]
-                            }
-                          >
-                            0
-                            <Text
-                              allowFontScaling={false}
-                              selectable={false}
-                              style={
-                                Array [
-                                  Object {
-                                    "color": undefined,
-                                    "fontSize": 18,
-                                  },
-                                  undefined,
-                                  Object {
-                                    "fontFamily": "simple-line-icons",
-                                    "fontStyle": "normal",
-                                    "fontWeight": "normal",
-                                  },
-                                  Object {},
-                                ]
-                              }
-                            >
-                              
-                            </Text>
-                          </Text>
-                        </View>
-                      </View>
-                    </View>
-                    <View
-                      style={
-                        Array [
-                          Object {
-                            "overflow": "hidden",
-                          },
-                          Object {
+                            "alignItems": "center",
+                            "backgroundColor": "transparent",
+                            "borderColor": "#2089dc",
                             "borderRadius": 2,
-                          },
-                          undefined,
-                          false,
-                        ]
-                      }
-                      testID="RNE_BUTTON_WRAPPER"
-                    >
-                      <View
-                        accessibilityRole="button"
-                        accessibilityState={
-                          Object {
-                            "busy": false,
-                            "disabled": false,
-                          }
-                        }
-                        accessible={true}
-                        collapsable={false}
-                        focusable={true}
-                        onClick={[Function]}
-                        onResponderGrant={[Function]}
-                        onResponderMove={[Function]}
-                        onResponderRelease={[Function]}
-                        onResponderTerminate={[Function]}
-                        onResponderTerminationRequest={[Function]}
-                        onStartShouldSetResponder={[Function]}
-                        style={
-                          Object {
-                            "opacity": 1,
+                            "borderWidth": 0,
+                            "flexDirection": "row",
+                            "justifyContent": "center",
+                            "padding": 8,
+                            "paddingHorizontal": 10,
                           }
                         }
                       >
-                        <View
+                        <Text
+                          allowFontScaling={false}
+                          selectable={false}
+                          style={
+                            Array [
+                              Object {
+                                "color": undefined,
+                                "fontSize": 18,
+                              },
+                              undefined,
+                              Object {
+                                "fontFamily": "simple-line-icons",
+                                "fontStyle": "normal",
+                                "fontWeight": "normal",
+                              },
+                              Object {},
+                            ]
+                          }
+                        >
+                          
+                        </Text>
+                        <Text
                           style={
                             Object {
-                              "alignItems": "center",
-                              "backgroundColor": "transparent",
-                              "borderColor": "#2089dc",
-                              "borderRadius": 2,
-                              "borderWidth": 0,
-                              "flexDirection": "row",
-                              "justifyContent": "center",
-                              "padding": 8,
-                              "paddingHorizontal": 10,
+                              "color": "#464a4c",
+                              "fontSize": 32,
+                              "lineHeight": 42,
+                              "marginLeft": 8,
+                              "paddingVertical": 1,
+                              "textAlign": "center",
                             }
                           }
                         >
-                          <Text
-                            allowFontScaling={false}
-                            selectable={false}
-                            style={
-                              Array [
-                                Object {
-                                  "color": undefined,
-                                  "fontSize": 18,
-                                },
-                                undefined,
-                                Object {
-                                  "fontFamily": "simple-line-icons",
-                                  "fontStyle": "normal",
-                                  "fontWeight": "normal",
-                                },
-                                Object {},
-                              ]
-                            }
-                          >
-                            
-                          </Text>
-                          <Text
-                            style={
-                              Object {
-                                "color": "#464a4c",
-                                "fontSize": 32,
-                                "lineHeight": 42,
-                                "marginLeft": 8,
-                                "paddingVertical": 1,
-                                "textAlign": "center",
-                              }
-                            }
-                          >
-                            Reply
-                          </Text>
-                        </View>
+                          Reply
+                        </Text>
                       </View>
                     </View>
+                  </View>
+                  <View
+                    style={
+                      Array [
+                        Object {
+                          "overflow": "hidden",
+                        },
+                        Object {
+                          "borderRadius": 2,
+                        },
+                        undefined,
+                        false,
+                      ]
+                    }
+                    testID="RNE_BUTTON_WRAPPER"
+                  >
                     <View
-                      style={
-                        Array [
-                          Object {
-                            "overflow": "hidden",
-                          },
-                          Object {
-                            "borderRadius": 2,
-                          },
-                          undefined,
-                          false,
-                        ]
+                      accessibilityRole="button"
+                      accessibilityState={
+                        Object {
+                          "busy": false,
+                          "disabled": false,
+                        }
                       }
-                      testID="RNE_BUTTON_WRAPPER"
+                      accessible={true}
+                      collapsable={false}
+                      focusable={true}
+                      onClick={[Function]}
+                      onResponderGrant={[Function]}
+                      onResponderMove={[Function]}
+                      onResponderRelease={[Function]}
+                      onResponderTerminate={[Function]}
+                      onResponderTerminationRequest={[Function]}
+                      onStartShouldSetResponder={[Function]}
+                      style={
+                        Object {
+                          "opacity": 1,
+                        }
+                      }
                     >
                       <View
-                        accessibilityRole="button"
-                        accessibilityState={
-                          Object {
-                            "busy": false,
-                            "disabled": false,
-                          }
-                        }
-                        accessible={true}
-                        collapsable={false}
-                        focusable={true}
-                        onClick={[Function]}
-                        onResponderGrant={[Function]}
-                        onResponderMove={[Function]}
-                        onResponderRelease={[Function]}
-                        onResponderTerminate={[Function]}
-                        onResponderTerminationRequest={[Function]}
-                        onStartShouldSetResponder={[Function]}
                         style={
                           Object {
-                            "opacity": 1,
+                            "alignItems": "center",
+                            "backgroundColor": "transparent",
+                            "borderColor": "#2089dc",
+                            "borderRadius": 2,
+                            "borderWidth": 0,
+                            "flexDirection": "row",
+                            "justifyContent": "center",
+                            "padding": 8,
+                            "paddingHorizontal": 10,
                           }
                         }
                       >
-                        <View
+                        <Text
+                          allowFontScaling={false}
+                          selectable={false}
+                          style={
+                            Array [
+                              Object {
+                                "color": undefined,
+                                "fontSize": 18,
+                              },
+                              undefined,
+                              Object {
+                                "fontFamily": "simple-line-icons",
+                                "fontStyle": "normal",
+                                "fontWeight": "normal",
+                              },
+                              Object {},
+                            ]
+                          }
+                        >
+                          
+                        </Text>
+                        <Text
                           style={
                             Object {
-                              "alignItems": "center",
-                              "backgroundColor": "transparent",
-                              "borderColor": "#2089dc",
-                              "borderRadius": 2,
-                              "borderWidth": 0,
-                              "flexDirection": "row",
-                              "justifyContent": "center",
-                              "padding": 8,
-                              "paddingHorizontal": 10,
+                              "color": "#464a4c",
+                              "fontSize": 32,
+                              "lineHeight": 42,
+                              "marginLeft": 8,
+                              "paddingVertical": 1,
+                              "textAlign": "center",
                             }
                           }
                         >
-                          <Text
-                            allowFontScaling={false}
-                            selectable={false}
-                            style={
-                              Array [
-                                Object {
-                                  "color": undefined,
-                                  "fontSize": 18,
-                                },
-                                undefined,
-                                Object {
-                                  "fontFamily": "simple-line-icons",
-                                  "fontStyle": "normal",
-                                  "fontWeight": "normal",
-                                },
-                                Object {},
-                              ]
-                            }
-                          >
-                            
-                          </Text>
-                          <Text
-                            style={
-                              Object {
-                                "color": "#464a4c",
-                                "fontSize": 32,
-                                "lineHeight": 42,
-                                "marginLeft": 8,
-                                "paddingVertical": 1,
-                                "textAlign": "center",
-                              }
-                            }
-                          >
-                            Share
-                          </Text>
-                        </View>
+                          Share
+                        </Text>
                       </View>
                     </View>
                   </View>
                 </View>
               </View>
-            </RCTScrollView>
-          </View>
+            </View>
+          </RCTScrollView>
         </View>
       </View>
     </RCTScrollView>
