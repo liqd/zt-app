@@ -150,6 +150,8 @@ exports[`Test ProfileScreen Snapshot 1`] = `
           testID="RNE_BUTTON_WRAPPER"
         >
           <View
+            accessibilityHint="Click to navigate to update your profile settings"
+            accessibilityLabel="Click to navigate to your profile settings"
             accessibilityRole="button"
             accessibilityState={
               Object {
