@@ -404,7 +404,9 @@ export const Idea = (props) => {
         navigation={props.navigation}
       />
       <KeyboardAvoidingView
-        behavior={(Platform.OS === 'ios')? 'padding' : null}
+        behavior={(Platform.OS === 'ios')
+          ? 'padding'
+          : null}
         style={styles.flexFullWidth}
       >
         <ScrollView
@@ -514,7 +516,9 @@ export const Idea = (props) => {
               inputRef={commentInputRef}
               isEdit={isEditing}
               handleSubmit={handleComment}
-              value={isEditing ? editedComment.comment : ''}
+              value={isEditing
+                ? editedComment.comment
+                : ''}
               disabled={submitPending}
             />
           </View>)}

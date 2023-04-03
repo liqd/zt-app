@@ -20,7 +20,9 @@ export async function loadLanguage() {
     .use(initReactI18next) // passes i18n down to react-i18next
     .init({
       resources,
-      lng: lng ? lng : 'de',
+      lng: lng
+        ? lng
+        : 'de',
       interpolation: {
         escapeValue: false // react already safes from xss
       },

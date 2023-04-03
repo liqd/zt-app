@@ -72,12 +72,16 @@ export const LabelFormField = props => {
       title={props.label.name}
       titleProps={{}}
       textStyle={
-        checkState ? styles.labelTitleChecked : styles.labelTitle
+        checkState
+          ? styles.labelTitleChecked
+          : styles.labelTitle
       }
       checkedIcon={checkIcon}
       uncheckedIcon={plusIcon}
       containerStyle={
-        checkState ? styles.labelButtonChecked: styles.labelButton
+        checkState
+          ? styles.labelButtonChecked
+          : styles.labelButton
       }
     />
   )

@@ -12,17 +12,19 @@ export const IdeasList = props => {
   const {ideas, ...otherProps} = props
   return (
     <View>
-      {ideas && ideas.length > 0 ? (
-        props.ideas.map(idea => {
-          return (
-            <IdeasListItem key={`pk${idea.pk}`} idea={idea} {...otherProps} />
-          )
-        })
-      ) : (
-        <TextSourceSans>
-          {t('No ideas found. Be the first to add an idea!')}
-        </TextSourceSans>
-      )}
+      {ideas && ideas.length > 0
+        ? (
+          props.ideas.map(idea => {
+            return (
+              <IdeasListItem key={`pk${idea.pk}`} idea={idea} {...otherProps} />
+            )
+          })
+        )
+        : (
+          <TextSourceSans>
+            {t('No ideas found. Be the first to add an idea!')}
+          </TextSourceSans>
+        )}
     </View>
   )
 }

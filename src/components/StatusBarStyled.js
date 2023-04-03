@@ -5,7 +5,9 @@ export const StatusBarStyled = (props) => {
   return (
     <StatusBar
       backgroundColor='transparent'
-      barStyle={props.lightContent ? 'light-content' : 'dark-content'}
+      barStyle={props.lightContent
+        ? 'light-content'
+        : 'dark-content'}
       translucent={true}
     />
   )

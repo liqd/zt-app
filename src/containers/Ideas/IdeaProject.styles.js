@@ -13,7 +13,9 @@ export const styles = StyleSheet.create({
     flex: 1,
   },
   scrollContainer:
-    Platform.OS == 'ios' ? { marginBottom: submitButtonOffset / 1.9 } : { marginBottom: submitButtonOffset },
+    Platform.OS == 'ios'
+      ? { marginBottom: submitButtonOffset / 1.9 }
+      : { marginBottom: submitButtonOffset },
   containerInner: {
     marginLeft: SPACINGS.multiplyBy(-0.8),
     marginRight: SPACINGS.multiplyBy(-0.8),

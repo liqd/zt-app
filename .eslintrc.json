@@ -38,6 +38,7 @@
       "ignoreUrls": true,
       "ignorePattern": "^import\\s.+\\sfrom\\s.+;$"
     }],
+    "multiline-ternary": ["error", "always"],
     "no-multiple-empty-lines": ["error", {"max": 1}],
     "no-unneeded-ternary": "error",
     "no-nested-ternary": "error",

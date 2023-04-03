@@ -44,7 +44,9 @@ export const IdeaCreate = props => {
   const [labelChoices, setLabelChoices] = useState([])
   const [initialCategory, setInitialCategory] = useState('')
   const [initialLabels, setInitialLabels] = useState([])
-  const [description, setDescription] = useState(() => editing ? idea.description : '')
+  const [description, setDescription] = useState(() => editing
+    ? idea.description
+    : '')
   const [prevValues, setPrevValues] = useState('')
   const [submitPending, setSubmitPending] = useState(false)
 
@@ -162,20 +164,40 @@ export const IdeaCreate = props => {
   const getInitialValues = () => {
     const initialValues = prevValues
       ? {
-        name: prevValues.name ? prevValues.name : '',
-        description: description ? description : '',
-        labels: prevValues.labels ? prevValues.labels : initialLabels,
-        category: prevValues.category ? prevValues.category : initialCategory,
-        imageChecked: prevValues.imageChecked ? prevValues.imageChecked : false,
-        image: prevValues.image ? prevValues.image : null
+        name: prevValues.name
+          ? prevValues.name
+          : '',
+        description: description
+          ? description
+          : '',
+        labels: prevValues.labels
+          ? prevValues.labels
+          : initialLabels,
+        category: prevValues.category
+          ? prevValues.category
+          : initialCategory,
+        imageChecked: prevValues.imageChecked
+          ? prevValues.imageChecked
+          : false,
+        image: prevValues.image
+          ? prevValues.image
+          : null
       }
       : {
-        name: editing ? idea.name : '',
-        description: editing ? idea.description : '',
+        name: editing
+          ? idea.name
+          : '',
+        description: editing
+          ? idea.description
+          : '',
         labels: initialLabels,
         category: initialCategory,
-        imageChecked: editing ? !!idea.image : false,
-        image: (editing && idea.image) ? idea.image : null
+        imageChecked: editing
+          ? !!idea.image
+          : false,
+        image: (editing && idea.image)
+          ? idea.image
+          : null
       }
     return initialValues
   }
@@ -242,9 +264,15 @@ export const IdeaCreate = props => {
                 />
                 <FormLabel>{t('Idea Description')}</FormLabel>
                 <ButtonTextInput
-                  title={description ? description : t('Enter your idea description')}
-                  accessibilityLabel={description ? t('Click to edit description on a new page') : t('Click to add idea description on a new page')}
-                  accessibilityHint={description ? t('button will open new page where you can edit your description') : t('button will open new page with large text entry page')}
+                  title={description
+                    ? description
+                    : t('Enter your idea description')}
+                  accessibilityLabel={description
+                    ? t('Click to edit description on a new page')
+                    : t('Click to add idea description on a new page')}
+                  accessibilityHint={description
+                    ? t('button will open new page where you can edit your description')
+                    : t('button will open new page with large text entry page')}
                   onPress={() => toDescription(values)}
                   textInputButtonTitle={description ?
                     styles.textInputButtonTitleDark :

@@ -6,7 +6,9 @@ import { styles } from './ModalItem.styles'
 
 export const ModalItem = (props) => {
   const {item: { isCancel, isText, title }} = props
-  const titleList = Array.isArray(title) ? title : [title]
+  const titleList = Array.isArray(title)
+    ? title
+    : [title]
   let containerStyles
   if (isText) {
     containerStyles = styles.modalText
@@ -33,7 +35,9 @@ export const ModalItem = (props) => {
     <ListItem
       Component={TouchableWithoutFeedback}
       bottomDivider={true}
-      onPress={props.item.action ? props.item.action : null}
+      onPress={props.item.action
+        ? props.item.action
+        : null}
       containerStyle={containerStyles}
     >
       <ListItem.Content style={styles.modalContent}>

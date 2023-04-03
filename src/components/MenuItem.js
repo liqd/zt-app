@@ -37,10 +37,15 @@ export const MenuItem = (props) => {
             name={props.item.icon}
             color={COLORS.primary}
             size={SIZES.md}
-          /> : null}
-        <ListItem.Content style={isCancel ? styles.cancelContent : null}>
+          />
+          : null}
+        <ListItem.Content style={isCancel
+          ? styles.cancelContent
+          : null}>
           <ListItem.Title
-            style={isCancel ? styles.cancelButtonText : null}
+            style={isCancel
+              ? styles.cancelButtonText
+              : null}
           >
             {props.item.title}
           </ListItem.Title>

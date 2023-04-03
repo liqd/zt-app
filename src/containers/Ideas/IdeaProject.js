@@ -32,7 +32,9 @@ export const IdeaProject = (props) => {
   const [ideas, setIdeas] = useState([])
   const [module, setModule] = useState([])
   const [visibleTab, setVisibleTab] = useState(tabs.participation)
-  const bgImage = project.image ? project.image : null
+  const bgImage = project.image
+    ? project.image
+    : null
 
   const pressHandler = () =>
     props.navigation.navigate('IdeaCreate', {
@@ -168,26 +170,28 @@ export const IdeaProject = (props) => {
                   futurePhases={module.future_phases}
                   pastPhases={module.past_phases}
                 />
-                {project.single_idea_collection_module ? (
-                  <View style={styles.containerInner}>
-                    <View style={styles.listActions}>
-                      <Button icon={filterIcon} type='clear' disabled />
-                      <Button icon={sortIcon} type='clear' disabled />
+                {project.single_idea_collection_module
+                  ? (
+                    <View style={styles.containerInner}>
+                      <View style={styles.listActions}>
+                        <Button icon={filterIcon} type='clear' disabled />
+                        <Button icon={sortIcon} type='clear' disabled />
+                      </View>
+                      <View style={styles.listContainer}>
+                        <IdeasList
+                          ideas={ideas}
+                          module={module}
+                          navigation={props.navigation}
+                        />
+                      </View>
                     </View>
-                    <View style={styles.listContainer}>
-                      <IdeasList
-                        ideas={ideas}
-                        module={module}
-                        navigation={props.navigation}
-                      />
-                    </View>
-                  </View>
-                ) : (
-                  <TextSourceSans>
-                    {t('Oops. Multiple module projects are not supported in adhocracy+ app,'
+                  )
+                  : (
+                    <TextSourceSans>
+                      {t('Oops. Multiple module projects are not supported in adhocracy+ app,'
                         + ' yet! Please find them on adhocracy+ web.')}
-                  </TextSourceSans>
-                )}
+                    </TextSourceSans>
+                  )}
               </View>
             }
             {visibleTab === tabs.information &&

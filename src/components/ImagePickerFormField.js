@@ -98,7 +98,9 @@ export const ImagePickerFormField = (props) => {
       />
       <Image
         style={styles.formImagePreview}
-        source={ image ? {uri: image} : {uri: capturedImage}}
+        source={ image
+          ? {uri: image}
+          : {uri: capturedImage}}
         resizeMode="contain"
         accessibilityIgnoresInvertColors={true}
       />
@@ -108,14 +110,17 @@ export const ImagePickerFormField = (props) => {
   return (
     <>
       <View
-        style={capturedImage || image ?
-          styles.formImagePickerFull : styles.formImagePicker
+        style={capturedImage || image
+          ? styles.formImagePickerFull
+          : styles.formImagePicker
         }
       >
         {!capturedImage && !image &&
         <Button
           buttonStyle={[styles.imageAddButton, styles.imageAddButtonLeft]}
-          title={isSimulator ? 'Camera - not available' : 'Camera'}
+          title={isSimulator
+            ? 'Camera - not available'
+            : 'Camera'}
           onPress={captureImageHandler}
           icon={cameraIcon}
           type='clear'
@@ -123,13 +128,16 @@ export const ImagePickerFormField = (props) => {
           imageUri={capturedImage}
           disabled={isSimulator}
           accessible={true}
-          accessibilityLabel={isSimulator ? t('Camera - not available') : t('Camera image')}
+          accessibilityLabel={isSimulator
+            ? t('Camera - not available')
+            : t('Camera image')}
           accessibilityHint={t('Click this button to add image using your camera')}
         />}
         {capturedImage && props.imagePreview && imagePreview}
       </View>
-      <View style={capturedImage || image ?
-        styles.formImagePickerFull : styles.formImagePicker
+      <View style={capturedImage || image
+        ? styles.formImagePickerFull
+        : styles.formImagePicker
       }>
         {!capturedImage && !image &&
         <Button
