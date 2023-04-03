@@ -61,8 +61,12 @@ export const useImageResize = () => {
     const extRegex = /\w+$/
     const imgExt = imgName[0].match(extRegex)
 
-    outputImage.type = imgExt ? mime.getType(imgExt[0]) : 'image/jpeg'
-    outputImage.name = imgName ? imgName[0] : 'unnamed'
+    outputImage.type = imgExt
+      ? mime.getType(imgExt[0])
+      : 'image/jpeg'
+    outputImage.name = imgName
+      ? imgName[0]
+      : 'unnamed'
     outputImage.size = image.fileSize || image.size
     outputImage.uri = image.uri
 

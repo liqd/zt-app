@@ -59,7 +59,9 @@ const endpoints = {
 const getHeaders = async (isFormData = false) => {
   const headers = {
     Accept: 'application/json',
-    'Content-Type': isFormData ? 'multipart/form-data' : 'application/json'
+    'Content-Type': isFormData
+      ? 'multipart/form-data'
+      : 'application/json'
   }
   const token = await AsyncStorage.getItem('authToken')
   if (token) {
@@ -97,7 +99,9 @@ const makePostRequest = (url, data = {}) => {
     .then(headers => fetch(url, {
       method: 'POST',
       headers: headers,
-      body: isFormData ? data : JSON.stringify(data)
+      body: isFormData
+        ? data
+        : JSON.stringify(data)
     }))
     .then(response => {
       const statusCode = response.status
@@ -116,7 +120,9 @@ const makePutRequest = (url, data = {}) => {
     .then(headers => fetch(url, {
       method: 'PUT',
       headers: headers,
-      body: isFormData ? data : JSON.stringify(data)
+      body: isFormData
+        ? data
+        : JSON.stringify(data)
     }))
     .then(response => {
       const statusCode = response.status
@@ -138,7 +144,9 @@ const makeDeleteRequest = (url) => {
     .then(response => {
       const statusCode = response.status
       let data
-      statusCode == 204 ? data = {} : data = response.json()
+      statusCode == 204
+        ? data = {}
+        : data = response.json()
       return Promise.all([ statusCode, data ])
     })
     .then(values => {

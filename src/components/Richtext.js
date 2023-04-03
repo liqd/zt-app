@@ -67,7 +67,9 @@ export const Richtext = ({ text }) => {
   const extractIframeData = (tnode) => {
     const url = tnode.domNode.attribs.src
     const isYoutube = url.match(/(youtube)/)
-    const platform = isYoutube ? 'Youtube.com' : 'Vimeo.com'
+    const platform = isYoutube
+      ? 'Youtube.com'
+      : 'Vimeo.com'
     return {platform, url}
   }
 

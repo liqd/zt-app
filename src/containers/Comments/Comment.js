@@ -277,7 +277,9 @@ export const Comment = (props) => {
               onPress={toggleWholeComment}
             >
               <TextSourceSans style={styles.linkButton}>
-                {showWholeComment ? t('Read Less') : t('Read More')}
+                {showWholeComment
+                  ? t('Read Less')
+                  : t('Read More')}
               </TextSourceSans>
             </TouchableWithoutFeedback>}
         </View>

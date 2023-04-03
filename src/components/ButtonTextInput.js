@@ -17,7 +17,10 @@ export const ButtonTextInput = (props) => {
       accessibilityLabel={props.field}
       accessibilityHint={props.fieldHint}
     >
-      <TextSourceSans style={[props.textInputButtonTitle, styles.textInputButtonTitleBase]} numberOfLines={1}>
+      <TextSourceSans
+        style={[props.textInputButtonTitle, styles.textInputButtonTitleBase]}
+        numberOfLines={1}
+      >
         {props.title}
       </TextSourceSans>
       <TextSourceSans style={[props.textInputButtonTitle, styles.textInputButtonTitleBase]}>

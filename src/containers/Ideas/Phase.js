@@ -9,8 +9,12 @@ import { styles } from './Phase.styles'
 export const Phase = props => {
   const { t } = useTranslation()
   const {activePhase, futurePhases, pastPhases} = props
-  const startDate = futurePhases ? futurePhases[0].start_date : null
-  const endDate = pastPhases ? pastPhases[pastPhases.length-1].end_date : null
+  const startDate = futurePhases
+    ? futurePhases[0].start_date
+    : null
+  const endDate = pastPhases
+    ? pastPhases[pastPhases.length-1].end_date
+    : null
 
   function getInactivePhaseText() {
     if(!pastPhases){
@@ -48,6 +52,6 @@ export const Phase = props => {
             </TextSourceSans>
           </View>
         </View>
-    )
+      )
   )
 }

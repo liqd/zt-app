@@ -21,7 +21,9 @@ export const styles = StyleSheet.create({
     padding: SPACINGS.multiplyBy(0.5)
   },
   textInput:
-    Platform.OS !== 'ios' ? { width: '100%' } : { width: '100%', paddingTop: 0, paddingBottom: 0 },
+    Platform.OS !== 'ios'
+      ? { width: '100%' }
+      : { width: '100%', paddingTop: 0, paddingBottom: 0 },
   submitButton: {
     padding: SPACINGS.multiplyBy(0.25),
     paddingRight: SPACINGS.multiplyBy(0.4),

@@ -43,19 +43,21 @@ export const IdeasListItem = (props) => {
       <View style={styles.container}>
         <View style={styles.topContainer}>
           <TextSourceSans style={styles.title} accessibilityRole="header">{name}</TextSourceSans>
-          {getCategory().length > 0 ? (
-            <View style={styles.labelsContainer}>
-              {getCategory().map((category, idx) => (
-                <View
-                  key={idx + category}
-                  style={styles.labelWrapper}
-                >
-                  <Label  title={category} />
-                </View>
-              ))}
-            </View>
-          ) : (
-            <View style={styles.noLabelSpacing}></View>)}
+          {getCategory().length > 0
+            ? (
+              <View style={styles.labelsContainer}>
+                {getCategory().map((category, idx) => (
+                  <View
+                    key={idx + category}
+                    style={styles.labelWrapper}
+                  >
+                    <Label  title={category} />
+                  </View>
+                ))}
+              </View>
+            )
+            : (
+              <View style={styles.noLabelSpacing}></View>)}
         </View>
         <View style={styles.bottomContainer}>
           <TextSourceSans style={styles.text}>{creator}</TextSourceSans>
