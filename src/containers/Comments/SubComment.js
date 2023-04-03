@@ -40,7 +40,9 @@ export const SubComment = (props) => {
         <View style={styles.topLeft}>
           {props.isDisplayed(props.comment) &&
           <Image
-            source={{ uri: (props.comment.user_image) ? props.comment.user_image : props.comment.user_image_fallback }}
+            source={{ uri: (props.comment.user_image)
+              ? props.comment.user_image
+              : props.comment.user_image_fallback }}
             style={styles.avatar}
             accessibilityIgnoresInvertColors={true}
           />
@@ -83,7 +85,9 @@ export const SubComment = (props) => {
             onPress={toggleWholeComment}
           >
             <TextSourceSans style={styles.linkButton}>
-              {showWholeComment ? t('Read Less') : t('Read More')}
+              {showWholeComment
+                ? t('Read Less')
+                : t('Read More')}
             </TextSourceSans>
           </TouchableWithoutFeedback>}
       </View>
