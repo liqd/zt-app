@@ -2,8 +2,6 @@ import React, { useEffect,useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Image,ImageBackground, Linking, ScrollView, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import IconFA from 'react-native-vector-icons/FontAwesome'
-import IconSLI from 'react-native-vector-icons/SimpleLineIcons'
 import { Button } from '@rneui/themed'
 import { LinearGradient } from 'expo-linear-gradient'
 
@@ -41,22 +39,23 @@ export const IdeaProject = (props) => {
       module: module
     })
 
-  const plusIcon = <IconSLI name='plus' size={24} color={COLORS.paper} />
-  const sortIcon = <IconFA name='filter' size={20} color={COLORS.grey.light} />
-  const filterIcon = (
-    <IconFA name='search' size={20} color={COLORS.grey.light} />
-  )
+  // FIXME to be added with functionality
+  // const plusIcon = <IconSLI name='plus' size={24} color={COLORS.paper} />
+  // const sortIcon = <IconFA name='filter' size={20} color={COLORS.grey.light} />
+  // const filterIcon = (
+  //   <IconFA name='search' size={20} color={COLORS.grey.light} />
+  // )
 
-  const followButton = (
-    <Button
-      buttonStyle={styles.button}
-      titleStyle={styles.buttonText}
-      title={t('Follow')}
-      icon={plusIcon}
-      type='clear'
-      accessible={false}
-    />
-  )
+  // const followButton = (
+  //   <Button
+  //     buttonStyle={styles.button}
+  //     titleStyle={styles.buttonText}
+  //     title={t('Follow')}
+  //     icon={plusIcon}
+  //     type='clear'
+  //     accessible={false}
+  //   />
+  // )
 
   const fetchIdeas = () => {
     project.single_idea_collection_module &&
@@ -108,7 +107,7 @@ export const IdeaProject = (props) => {
           arrowColor={COLORS.paper}
           backButtonStyle={styles.button}
           backButtonTextStyle={styles.buttonText}
-          rightButton={followButton}
+          // rightButton={followButton} FIXME removed as currently non functional
           navigation={props.navigation} />
         <View style={styles.overlayContainer}>
           <View style={styles.infoContainer}>
@@ -174,8 +173,8 @@ export const IdeaProject = (props) => {
                   ? (
                     <View style={styles.containerInner}>
                       <View style={styles.listActions}>
-                        <Button icon={filterIcon} type='clear' disabled />
-                        <Button icon={sortIcon} type='clear' disabled />
+                        {/* <Button icon={filterIcon} type='clear' disabled /> FIXME removed as currently non functional */}
+                        {/* <Button icon={sortIcon} type='clear' disabled /> FIXME removed as currently non functional */}
                       </View>
                       <View style={styles.listContainer}>
                         <IdeasList
