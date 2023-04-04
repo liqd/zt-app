@@ -30,9 +30,6 @@ export const SettingsOverview = (props) => {
         <ListLink
           linkTitle={t('Edit Profile')}
           onPress={toProfileSettings}/>
-        <ListLink
-          linkTitle={('Dummy Settings')}
-          onPress={toProfileSettings}/>
       </ListContainer>
     </SafeAreaView>
   )

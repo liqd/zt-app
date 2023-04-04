@@ -208,7 +208,7 @@ export const Comment = (props) => {
   const arrowUpIcon = (<IconSLI name='arrow-up' size={18} />)
   const arrowDownIcon = (<IconSLI name='arrow-down' size={18} />)
   const commentIcon = (<IconSLI name='bubble' size={18} />)
-  const redoIcon = (<IconSLI name='action-redo' size={18} />)
+  // const redoIcon = (<IconSLI name='action-redo' size={18} />)
 
   return (
     <>
@@ -341,12 +341,12 @@ export const Comment = (props) => {
             }}
             disabled={!props.hasCommentingPermission}
           />
-          <Button
+          {/* <Button
             icon={redoIcon}
             title={t('Share')}
             titleStyle={styles.buttonTitle}
             type='clear'
-          />
+          /> */}
         </View>
         }
       </View>
