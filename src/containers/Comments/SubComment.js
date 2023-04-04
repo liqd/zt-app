@@ -32,7 +32,7 @@ export const SubComment = (props) => {
   const optionsIcon = (<IconSLI name='options-vertical' size={22} />)
   const arrowUpIcon = (<IconSLI name='arrow-up' size={18} />)
   const arrowDownIcon = (<IconSLI name='arrow-down' size={18} />)
-  const redoIcon = (<IconSLI name='action-redo' size={18} />)
+  // const redoIcon = (<IconSLI name='action-redo' size={18} />)
 
   return (
     <View style={styles.subContainer}>
@@ -119,12 +119,12 @@ export const SubComment = (props) => {
             disabled={!props.comment.user_info.has_rating_permission}
           />
         </View>
-        <Button
+        {/* <Button
           icon={redoIcon}
           title={t('Share')}
           titleStyle={styles.buttonTitle}
           type='clear'
-        />
+        /> */}
       </View>
       }
     </View>
